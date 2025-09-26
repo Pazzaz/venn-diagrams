@@ -440,11 +440,11 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                         !(y1..y2).any(|i| occupied_right[i][x])
                     }).unwrap();
 
-                    if first_possible_left <= first_possible_right {
+                    if first_possible_left < first_possible_right {
                         for i in y1..y2 {
                             occupied_left[i][first_possible_left] = true;
                         }
-                        offsets[p_i][e_i] = -(first_possible_left as i32);
+                        offsets[p_i][e_i] = -(first_possible_left as i32) - 1;
                     } else {
                         for i in y1..y2 {
                             occupied_right[i][first_possible_right] = true;
@@ -480,11 +480,11 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                         !(x1..x2).any(|i| occupied_right[i][x])
                     }).unwrap();
 
-                    if first_possible_left <= first_possible_right {
+                    if first_possible_left < first_possible_right {
                         for i in x1..x2 {
                             occupied_left[i][first_possible_left] = true;
                         }
-                        offsets[p_i][e_i] = -(first_possible_left as i32);
+                        offsets[p_i][e_i] = -(first_possible_left as i32) - 1;
                     } else {
                         for i in x1..x2 {
                             occupied_right[i][first_possible_right] = true;
