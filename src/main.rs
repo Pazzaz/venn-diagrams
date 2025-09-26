@@ -390,14 +390,11 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
 
             out.push(current.unwrap());
 
-            match (out[0].clone(), out.last().unwrap().clone()) {
-                (Horizontal { .. }, Horizontal { .. })
-                | (Vertical { .. }, Vertical { .. }) => {
-                    let last = out.pop().unwrap();
-                    out[0] = combine(&out[0], &last).unwrap();
-                },
-                (Horizontal { .. }, Vertical { .. })
-                | (Vertical { .. }, Horizontal { .. }) => {},
+            if let (Horizontal { .. }, Horizontal { .. }) | (Vertical { .. }, Vertical { .. }) =
+                (out[0].clone(), out.last().unwrap().clone())
+            {
+                let last = out.pop().unwrap();
+                out[0] = combine(&out[0], &last).unwrap();
             }
 
             combined_paths.push(out);
@@ -423,7 +420,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                 let bp = combined_paths[b.0][b.1].len();
                 ap.cmp(&bp).reverse()
             });
-            
+
             let column = &columns[i];
 
             let mut occupied_left = vec![vec![false; column.len()]; Y];
@@ -433,12 +430,12 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                 let edge = &combined_paths[p_i][e_i];
                 if let &Vertical { y1, y2, .. } = edge {
                     assert!(y1 < y2);
-                    let first_possible_left = (0..column.len()).position(|x| {
-                        !(y1..y2).any(|i| occupied_left[i][x])
-                    }).unwrap();
-                    let first_possible_right = (0..column.len()).position(|x| {
-                        !(y1..y2).any(|i| occupied_right[i][x])
-                    }).unwrap();
+                    let first_possible_left = (0..column.len())
+                        .position(|x| !(y1..y2).any(|i| occupied_left[i][x]))
+                        .unwrap();
+                    let first_possible_right = (0..column.len())
+                        .position(|x| !(y1..y2).any(|i| occupied_right[i][x]))
+                        .unwrap();
 
                     if first_possible_left < first_possible_right {
                         for i in y1..y2 {
@@ -463,7 +460,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                 let bp = combined_paths[b.0][b.1].len();
                 ap.cmp(&bp).reverse()
             });
-            
+
             let column = &rows[i];
 
             let mut occupied_left = vec![vec![false; column.len()]; X];
@@ -473,12 +470,12 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                 let edge = &combined_paths[p_i][e_i];
                 if let &Horizontal { x1, x2, .. } = edge {
                     assert!(x1 < x2);
-                    let first_possible_left = (0..column.len()).position(|x| {
-                        !(x1..x2).any(|i| occupied_left[i][x])
-                    }).unwrap();
-                    let first_possible_right = (0..column.len()).position(|x| {
-                        !(x1..x2).any(|i| occupied_right[i][x])
-                    }).unwrap();
+                    let first_possible_left = (0..column.len())
+                        .position(|x| !(x1..x2).any(|i| occupied_left[i][x]))
+                        .unwrap();
+                    let first_possible_right = (0..column.len())
+                        .position(|x| !(x1..x2).any(|i| occupied_right[i][x]))
+                        .unwrap();
 
                     if first_possible_left < first_possible_right {
                         for i in x1..x2 {
