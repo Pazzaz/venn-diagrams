@@ -2,9 +2,10 @@
 extern crate static_assertions;
 
 fn main() {
-    let colors_s = ["green", "blue", "red", "yellow", "purple", "hotpink", "white", "brown"];
+    let colors_s = ["#DDDD00", "#1B49DD", "#EE2020", "#AF0000", "#83CF39", "#009933", "#231977", "#6BB7EC"];
+    let values = [0.303, 0.205, 0.191, 0.068, 0.067, 0.053, 0.051, 0.046];
     let colors = colors_s.map(|x| x.to_string());
-    let diagram = Diagram { venns: EIGHT, values: [0.0; 8], colors };
+    let diagram = Diagram { venns: EIGHT, values, colors };
 
     diagram.to_svg();
 }
@@ -217,7 +218,7 @@ use std::{path, vec};
 
 use svg::{
     Document,
-    node::element::{Path, path::Data},
+    node::element::{Circle, Path, Rectangle, SVG, path::Data},
 };
 
 #[derive(Debug, PartialEq, Eq, Clone)]
@@ -280,13 +281,25 @@ use Direction::*;
 
 impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
     fn to_svg(&self) {
+
+        let min_x = -((SCALE / 2) as i32);
+        let max_x = (X + 1) * SCALE;
+
+        let min_y = 0;
+        let max_y = Y * SCALE;
         let mut out = Document::new()
-            .set(
-                "viewBox",
-                (-((SCALE / 2) as i32), -((SCALE / 2) as i32), (X + 1) * SCALE, (Y + 1) * SCALE),
-            )
-            .set("width", "200px")
-            .set("height", "200px");
+            .set("viewBox", (min_x, min_y, max_x, max_y))
+            .set("width", format!("{}px", 2 * X * SCALE))
+            .set("height", format!("{}px", 2 * Y * SCALE));
+        
+        let rect = Rectangle::new()
+            .set("width", (X + 1) * SCALE)
+            .set("height", (Y + 1) * SCALE)
+            .set("x", -((SCALE / 2) as i32))
+            .set("y", -((SCALE / 2) as i32));
+        
+        out = out.add(rect);
+            
 
         let mut polys: Vec<Vec<Direction>> = Vec::new();
 
@@ -552,6 +565,21 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             }
             data = data.close();
             let path = Path::new()
+                .set("fill", color.clone())
+                .set("fill-opacity", 0.2)
+                .set("stroke", "none")
+                .set("stroke-width", 1)
+                .set("d", data);
+            out = out.add(path);
+        }
+
+        for (points, color) in points.iter().zip(&self.colors) {
+            let mut data = Data::new().move_to(points[0]);
+            for coord in &points[1..] {
+                data = data.line_to(*coord);
+            }
+            data = data.close();
+            let path = Path::new()
                 .set("fill", "none")
                 .set("stroke", color.clone())
                 .set("stroke-width", 1)
@@ -559,40 +587,47 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             out = out.add(path);
         }
 
-        // for x in 0..X {
-        //     for y in 0..Y {
-        //         // 2. Remove "double edges"
-        //         // 3. Create paths
-        //         // 4. Draw paths
+        for x in 0..X {
+            for y in 0..Y {
+                let pairs: Vec<(f64, &String)> = (0..N).filter(|&i| {
+                    self.venns[i].0[y][x]
+                })
+                .map(|i| {
+                    (self.values[i], &self.colors[i])
+                }).collect();
+                out = draw_circle(x * SCALE + SCALE / 2, y * SCALE + SCALE / 2, &pairs, out);
+            }
+        }
 
-        //         let v: f64 = self
-        //             .venns
-        //             .iter()
-        //             .enumerate()
-        //             .map(|(i, p)| if p.0[y][x] { self.values[i] } else { 0.0 })
-        //             .sum();
+        // let pairs = vec![(0.2, &self.colors[0]), (0.1, &self.colors[1]), (0.3, &self.colors[2])];
 
-        //         let clamped_v = v.clamp(0.0, 1.0);
-
-        //         let data = Data::new()
-        //             .move_to((x * 10, y * 10))
-        //             .line_by((0, 10))
-        //             .line_by((10, 0))
-        //             .line_by((0, -10))
-        //             .close();
-
-        //         let path = Path::new()
-        //             .set("fill", "none")
-        //             .set("stroke", "black")
-        //             .set("stroke-width", 1)
-        //             .set("d", data);
-
-        //         out = out.add(path);
-        //     }
-        // }
+        // let out = draw_circle(100, 100, &pairs, out);
 
         svg::save("image.svg", &out).unwrap();
     }
+}
+
+fn draw_circle(cx: usize, cy: usize, values: &[(f64, &String)], mut out: SVG) -> SVG {
+    let r = 3.5;
+    let c = std::f64::consts::TAU * r as f64;
+    let mut added = 0.0;
+    for (size, color) in values {
+        let circle = Circle::new()
+            .set("r", r)
+            .set("cx", cx)
+            .set("cy", cy)
+            .set("fill", "transparent")
+            .set("stroke", (*color).clone())
+            .set("stroke-width", r * 2.0)
+            .set("transform", format!("rotate(-90 {} {})", cx, cy))
+            .set("stroke-dasharray", format!("{}, {}", c * size, c))
+            .set("stroke-dashoffset", -added);
+        
+        added += c * size;
+        out = out.add(circle);
+    }
+    out
+
 }
 
 const fn grid_to_polyomino<const X: usize, const Y: usize>(grid: [&str; Y]) -> Polyomino<X, Y> {
