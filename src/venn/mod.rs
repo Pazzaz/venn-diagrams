@@ -7,6 +7,11 @@ mod d5;
 mod d6;
 mod d8;
 
+pub use d2::TWO;
+pub use d3::THREE;
+pub use d4::FOUR;
+pub use d5::FIVE;
+pub use d6::SIX;
 pub use d8::EIGHT;
 
 // TODO: Can we check connectivity too?
@@ -18,7 +23,7 @@ const fn check_diagram<const N: usize, const X: usize, const Y: usize>(
     let mut i = 0;
     while i != N {
         let mut count = 0;
-        let part = parts[i].0;
+        let part = parts[i];
         let mut x = 0;
         while x != X {
             let mut y = 0;
@@ -71,7 +76,7 @@ const fn check_diagram<const N: usize, const X: usize, const Y: usize>(
 const fn to_polymonio<const N: usize, const X: usize, const Y: usize>(
     boxes: [[&str; X]; Y],
 ) -> [Polyomino<X, Y>; N] {
-    let mut out = [Polyomino([[false; X]; Y]); N];
+    let mut out = [[[false; X]; Y]; N];
     let mut y = 0;
     while y != Y {
         let mut x = 0;
@@ -82,7 +87,7 @@ const fn to_polymonio<const N: usize, const X: usize, const Y: usize>(
                 let c = s[c_i];
 
                 let p = c - b'A';
-                out[p as usize].0[y][x] = true;
+                out[p as usize][y][x] = true;
                 c_i += 1;
             }
             x += 1;
@@ -107,13 +112,13 @@ const fn grid_to_polyomino<const X: usize, const Y: usize>(grid: [&str; Y]) -> P
         }
         y += 1;
     }
-    Polyomino(out)
+    out
 }
 
 const fn to_polymonio_2<const N: usize, const X: usize, const Y: usize>(
     grids: [[&str; Y]; N],
 ) -> [Polyomino<X, Y>; N] {
-    let mut out = [Polyomino([[false; X]; Y]); N];
+    let mut out = [[[false; X]; Y]; N];
     let mut i = 0;
     while i != N {
         out[i] = grid_to_polyomino(grids[i]);
@@ -130,7 +135,7 @@ const fn empty_at<const N: usize, const X: usize, const Y: usize>(
 ) -> bool {
     let mut i = 0;
     while i != N {
-        let p2 = polys[i].0[y][x];
+        let p2 = polys[i][y][x];
         if p2 {
             return false;
         }
@@ -148,8 +153,8 @@ const fn different_at<const N: usize, const X: usize, const Y: usize>(
 ) -> bool {
     let mut i = 0;
     while i != N {
-        let p1 = polys[i].0[y1][x1];
-        let p2 = polys[i].0[y2][x2];
+        let p1 = polys[i][y1][x1];
+        let p2 = polys[i][y2][x2];
         if p1 != p2 {
             return true;
         }

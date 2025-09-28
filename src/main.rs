@@ -1,8 +1,3 @@
-#[macro_use]
-extern crate static_assertions;
-
-mod venn;
-
 fn main() {
     let colors_s =
         ["#EE2020", "#DDDD00", "#1B49DD", "#AF0000", "#009933", "#231977", "#83CF39", "#6BB7EC"];
@@ -17,10 +12,6 @@ fn normalize<const N: usize>(values: [f64; N]) -> [f64; N] {
     let sum: f64 = values.iter().sum();
     values.map(|x| x / sum)
 }
-
-#[derive(Debug, Clone, Copy)]
-struct Polyomino<const X: usize, const Y: usize>([[bool; X]; Y]);
-
 
 const SCALE: usize = 20;
 
@@ -94,6 +85,7 @@ fn combine(a: &Direction, b: &Direction) -> Option<Direction> {
 }
 
 use Direction::*;
+use venn_diagrams::{Polyomino, venn};
 
 impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
     fn to_svg(&self) {
@@ -119,7 +111,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
 
         for i in 0..N {
             // 1. List all the edges
-            let poly = self.venns[i].0;
+            let poly = self.venns[i];
             let mut edges: Vec<Direction> = Vec::new();
 
             for x in 0..X {
@@ -404,7 +396,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
         for x in 0..X {
             for y in 0..Y {
                 let pairs: Vec<(f64, &String)> = (0..N)
-                    .filter(|&i| self.venns[i].0[y][x])
+                    .filter(|&i| self.venns[i][y][x])
                     .map(|i| (self.values[i], &self.colors[i]))
                     .collect();
                 out = draw_circle(x * SCALE + SCALE / 2, y * SCALE + SCALE / 2, &pairs, out);
