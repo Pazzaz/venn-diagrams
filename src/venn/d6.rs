@@ -1,6 +1,5 @@
+use super::{check_diagram, to_polymonio_2};
 use crate::Polyomino;
-
-use super::{to_polymonio_2, check_diagram};
 
 pub const SIX: [Polyomino<11, 11>; 6] = to_polymonio_2(GRIDS);
 

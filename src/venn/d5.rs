@@ -1,6 +1,5 @@
+use super::{check_diagram, to_polymonio};
 use crate::Polyomino;
-
-use super::{to_polymonio, check_diagram};
 
 pub const FIVE: [Polyomino<7, 7>; 5] = to_polymonio(STR);
 
