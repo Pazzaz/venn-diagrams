@@ -346,13 +346,14 @@ fn draw_circle(cx: usize, cy: usize, values: &[(f64, &String)], out: SVG) -> SVG
     let c = std::f64::consts::TAU * r as f64;
     let mut added = 0.0;
     let total: f64 = values.iter().map(|x| x.0).sum();
-    let mut group = Group::new();
+    let mut group = Group::new().set("transform", format!("rotate(-90 {} {})", cx, cy));
     let on_edge: bool = values.iter().all(|x| total - x.0 < 0.5);
     if total <= 0.5 {
         group = group.set("opacity", 0.2);
     } else if !on_edge {
         group = group.set("opacity", 0.6);
     }
+
     for (size, color) in values {
         let mut circle = Circle::new()
             .set("r", r)
@@ -361,7 +362,6 @@ fn draw_circle(cx: usize, cy: usize, values: &[(f64, &String)], out: SVG) -> SVG
             .set("fill", "transparent")
             .set("stroke", (*color).clone())
             .set("stroke-width", r * 2.0)
-            .set("transform", format!("rotate(-90 {} {})", cx, cy))
             .set("stroke-dasharray", format!("{}, {}", c * size, c));
         if added != 0.0 {
             circle = circle.set("stroke-dashoffset", -added);
