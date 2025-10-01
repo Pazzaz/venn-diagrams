@@ -341,18 +341,28 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
     }
 }
 
+enum Coalition {
+    Below,
+    Edge,
+    Above,
+}
+
 fn draw_circle(cx: usize, cy: usize, values: &[(f64, &String)], out: SVG) -> SVG {
     let r = 3.5;
     let c = std::f64::consts::TAU * r as f64;
     let mut added = 0.0;
-    let total: f64 = values.iter().map(|x| x.0).sum();
     let mut group = Group::new().set("transform", format!("rotate(-90 {} {})", cx, cy));
+
+    let total: f64 = values.iter().map(|x| x.0).sum();
     let on_edge: bool = values.iter().all(|x| total - x.0 < 0.5);
-    if total <= 0.5 {
-        group = group.set("opacity", 0.2);
-    } else if !on_edge {
-        group = group.set("opacity", 0.6);
-    }
+
+    let coalition: Coalition = if total < 0.5 {
+        Coalition::Below
+    } else if on_edge {
+        Coalition::Edge
+    } else {
+        Coalition::Above
+    };
 
     for (size, color) in values {
         let mut circle = Circle::new()
@@ -371,16 +381,28 @@ fn draw_circle(cx: usize, cy: usize, values: &[(f64, &String)], out: SVG) -> SVG
         group = group.add(circle);
     }
 
-    if total >= 0.5 && on_edge {
-        let circle = Circle::new()
-            .set("r", r * 2.0)
-            .set("cx", cx)
-            .set("cy", cy)
-            .set("fill", "transparent")
-            .set("stroke", "white")
-            .set("stroke-width", 0.5);
-        group = group.add(circle);
+    let mut circle = Circle::new()
+        .set("r", r * 2.0)
+        .set("cx", cx)
+        .set("cy", cy)
+        .set("fill", "transparent")
+        .set("stroke", "white")
+        .set("stroke-width", 0.5);
+
+    match coalition {
+        Coalition::Below => {
+            circle = circle.set("stroke", "red");
+            group = group.set("opacity", 0.3);
+        }
+        Coalition::Edge => {
+            circle = circle.set("stroke", "white");
+        }
+        Coalition::Above => {
+            circle = circle.set("stroke", "green");
+            group = group.set("opacity", 0.3);
+        }
     }
+    group = group.add(circle);
 
     out.add(group)
 }
