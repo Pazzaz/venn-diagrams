@@ -349,24 +349,28 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             Edge,
             Above,
         }
-        
+
         let r = self.radius;
         let c = std::f64::consts::TAU * r as f64;
         let mut group = Group::new().set("transform", format!("rotate(-90 {} {})", cx, cy));
         let mut total: f64 = 0.0;
         for i in 0..N {
-            if !values[i] { continue }
+            if !values[i] {
+                continue;
+            }
             total += self.values[i];
         }
-        
+
         let mut on_edge = true;
         for i in 0..N {
-            if !values[i] { continue }
+            if !values[i] {
+                continue;
+            }
             if !(total - self.values[i] < 0.5) {
                 on_edge = false;
             }
         }
-    
+
         let coalition: Coalition = if total < 0.5 {
             Coalition::Below
         } else if on_edge {
@@ -374,10 +378,12 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
         } else {
             Coalition::Above
         };
-    
+
         let mut added = 0.0;
         for i in 0..N {
-            if !values[i] { continue }
+            if !values[i] {
+                continue;
+            }
             let size = &self.values[i];
             let color = &self.colors[i];
 
@@ -392,11 +398,11 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             if added != 0.0 {
                 circle = circle.set("stroke-dashoffset", -added);
             }
-    
+
             added += c * size;
             group = group.add(circle);
         }
-    
+
         let mut circle = Circle::new()
             .set("r", r * 2.0)
             .set("cx", cx)
@@ -404,7 +410,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             .set("fill", "transparent")
             .set("stroke", "white")
             .set("stroke-width", 0.5);
-    
+
         match coalition {
             Coalition::Below => {
                 circle = circle.set("stroke", "red");
