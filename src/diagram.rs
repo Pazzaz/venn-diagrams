@@ -334,10 +334,16 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
         let mut pairs = [false; N];
         for x in 0..X {
             for y in 0..Y {
+                let mut any_true = false;
                 for i in 0..N {
-                    pairs[i] = self.venns[i][y][x];
+                    let v = self.venns[i][y][x];
+                    any_true |= v;
+                    pairs[i] = v;
                 }
-                out = self.draw_circle(x * SCALE + SCALE / 2, y * SCALE + SCALE / 2, &pairs, out);
+                if any_true {
+                    out =
+                        self.draw_circle(x * SCALE + SCALE / 2, y * SCALE + SCALE / 2, &pairs, out);
+                }
             }
         }
         out
