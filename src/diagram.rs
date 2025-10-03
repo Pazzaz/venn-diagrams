@@ -2,6 +2,10 @@ pub struct Diagram<const N: usize, const X: usize, const Y: usize> {
     pub venns: [Polyomino<X, Y>; N],
     pub values: [f64; N],
     pub colors: [String; N],
+    pub radius: f64,
+    pub opacity_below: f64,
+    pub opacity_edge: f64,
+    pub opacity_above: f64,
 }
 
 const SCALE: usize = 20;
@@ -333,76 +337,83 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                     .filter(|&i| self.venns[i][y][x])
                     .map(|i| (self.values[i], &self.colors[i]))
                     .collect();
-                out = draw_circle(x * SCALE + SCALE / 2, y * SCALE + SCALE / 2, &pairs, out);
+                out = self.draw_circle(x * SCALE + SCALE / 2, y * SCALE + SCALE / 2, &pairs, out);
             }
         }
 
         out
     }
-}
 
-enum Coalition {
-    Below,
-    Edge,
-    Above,
-}
-
-fn draw_circle(cx: usize, cy: usize, values: &[(f64, &String)], out: SVG) -> SVG {
-    let r = 3.5;
-    let c = std::f64::consts::TAU * r as f64;
-    let mut added = 0.0;
-    let mut group = Group::new().set("transform", format!("rotate(-90 {} {})", cx, cy));
-
-    let total: f64 = values.iter().map(|x| x.0).sum();
-    let on_edge: bool = values.iter().all(|x| total - x.0 < 0.5);
-
-    let coalition: Coalition = if total < 0.5 {
-        Coalition::Below
-    } else if on_edge {
-        Coalition::Edge
-    } else {
-        Coalition::Above
-    };
-
-    for (size, color) in values {
+    fn draw_circle(&self, cx: usize, cy: usize, values: &[(f64, &String)], out: SVG) -> SVG {
+        enum Coalition {
+            Below,
+            Edge,
+            Above,
+        }
+        
+        let r = self.radius;
+        let c = std::f64::consts::TAU * r as f64;
+        let mut added = 0.0;
+        let mut group = Group::new().set("transform", format!("rotate(-90 {} {})", cx, cy));
+    
+        let total: f64 = values.iter().map(|x| x.0).sum();
+        let on_edge: bool = values.iter().all(|x| total - x.0 < 0.5);
+    
+        let coalition: Coalition = if total < 0.5 {
+            Coalition::Below
+        } else if on_edge {
+            Coalition::Edge
+        } else {
+            Coalition::Above
+        };
+    
+        for (size, color) in values {
+            let mut circle = Circle::new()
+                .set("r", r)
+                .set("cx", cx)
+                .set("cy", cy)
+                .set("fill", "transparent")
+                .set("stroke", (*color).clone())
+                .set("stroke-width", r * 2.0)
+                .set("stroke-dasharray", format!("{}, {}", c * size, c));
+            if added != 0.0 {
+                circle = circle.set("stroke-dashoffset", -added);
+            }
+    
+            added += c * size;
+            group = group.add(circle);
+        }
+    
         let mut circle = Circle::new()
-            .set("r", r)
+            .set("r", r * 2.0)
             .set("cx", cx)
             .set("cy", cy)
             .set("fill", "transparent")
-            .set("stroke", (*color).clone())
-            .set("stroke-width", r * 2.0)
-            .set("stroke-dasharray", format!("{}, {}", c * size, c));
-        if added != 0.0 {
-            circle = circle.set("stroke-dashoffset", -added);
+            .set("stroke", "white")
+            .set("stroke-width", 0.5);
+    
+        match coalition {
+            Coalition::Below => {
+                circle = circle.set("stroke", "red");
+                if self.opacity_below != 1.0 {
+                    group = group.set("opacity", self.opacity_below);
+                }
+            }
+            Coalition::Edge => {
+                circle = circle.set("stroke", "white");
+                if self.opacity_edge != 1.0 {
+                    group = group.set("opacity", self.opacity_edge);
+                }
+            }
+            Coalition::Above => {
+                circle = circle.set("stroke", "green");
+                if self.opacity_above != 1.0 {
+                    group = group.set("opacity", self.opacity_above);
+                }
+            }
         }
-
-        added += c * size;
         group = group.add(circle);
+
+        out.add(group)
     }
-
-    let mut circle = Circle::new()
-        .set("r", r * 2.0)
-        .set("cx", cx)
-        .set("cy", cy)
-        .set("fill", "transparent")
-        .set("stroke", "white")
-        .set("stroke-width", 0.5);
-
-    match coalition {
-        Coalition::Below => {
-            circle = circle.set("stroke", "red");
-            group = group.set("opacity", 0.3);
-        }
-        Coalition::Edge => {
-            circle = circle.set("stroke", "white");
-        }
-        Coalition::Above => {
-            circle = circle.set("stroke", "green");
-            group = group.set("opacity", 0.3);
-        }
-    }
-    group = group.add(circle);
-
-    out.add(group)
 }
