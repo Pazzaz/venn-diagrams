@@ -331,20 +331,19 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             out = out.add(path);
         }
 
+        let mut pairs = [false; N];
         for x in 0..X {
             for y in 0..Y {
-                let pairs: Vec<(f64, &String)> = (0..N)
-                    .filter(|&i| self.venns[i][y][x])
-                    .map(|i| (self.values[i], &self.colors[i]))
-                    .collect();
+                for i in 0..N {
+                    pairs[i] = self.venns[i][y][x];
+                }
                 out = self.draw_circle(x * SCALE + SCALE / 2, y * SCALE + SCALE / 2, &pairs, out);
             }
         }
-
         out
     }
 
-    fn draw_circle(&self, cx: usize, cy: usize, values: &[(f64, &String)], out: SVG) -> SVG {
+    fn draw_circle(&self, cx: usize, cy: usize, values: &[bool; N], out: SVG) -> SVG {
         enum Coalition {
             Below,
             Edge,
@@ -353,11 +352,20 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
         
         let r = self.radius;
         let c = std::f64::consts::TAU * r as f64;
-        let mut added = 0.0;
         let mut group = Group::new().set("transform", format!("rotate(-90 {} {})", cx, cy));
-    
-        let total: f64 = values.iter().map(|x| x.0).sum();
-        let on_edge: bool = values.iter().all(|x| total - x.0 < 0.5);
+        let mut total: f64 = 0.0;
+        for i in 0..N {
+            if !values[i] { continue }
+            total += self.values[i];
+        }
+        
+        let mut on_edge = true;
+        for i in 0..N {
+            if !values[i] { continue }
+            if !(total - self.values[i] < 0.5) {
+                on_edge = false;
+            }
+        }
     
         let coalition: Coalition = if total < 0.5 {
             Coalition::Below
@@ -367,7 +375,12 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             Coalition::Above
         };
     
-        for (size, color) in values {
+        let mut added = 0.0;
+        for i in 0..N {
+            if !values[i] { continue }
+            let size = &self.values[i];
+            let color = &self.colors[i];
+
             let mut circle = Circle::new()
                 .set("r", r)
                 .set("cx", cx)
