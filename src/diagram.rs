@@ -10,7 +10,7 @@ pub struct Diagram<const N: usize, const X: usize, const Y: usize> {
 
 const SCALE: usize = 20;
 
-use std::vec;
+use std::{mem, vec};
 
 use svg::{
     Document,
@@ -26,7 +26,7 @@ use super::{
 };
 
 impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
-    fn get_offsets(combined_paths: &Vec<Vec<Edge>>) -> Vec<Vec<i32>> {
+    fn get_offsets(combined_paths: &Vec<Vec<DirectedEdge>>) -> Vec<Vec<i32>> {
         let mut offsets: Vec<Vec<i32>> =
             combined_paths.iter().map(|x| vec![i32::MIN; x.len()]).collect();
         let mut columns = vec![Vec::new(); X + 1];
@@ -35,8 +35,8 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
         for (p_i, es) in combined_paths.iter().enumerate() {
             for (e_i, e) in es.iter().enumerate() {
                 match e {
-                    &Horizontal { y, .. } => rows[y].push((p_i, e_i)),
-                    &Vertical { x, .. } => columns[x].push((p_i, e_i)),
+                    &DirectedEdge::Horizontal { y, .. } => rows[y].push((p_i, e_i)),
+                    &DirectedEdge::Vertical { x, .. } => columns[x].push((p_i, e_i)),
                 }
             }
         }
@@ -55,22 +55,25 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
 
             for &(p_i, e_i) in column {
                 let edge = &combined_paths[p_i][e_i];
-                if let &Vertical { y1, y2, .. } = edge {
-                    assert!(y1 < y2);
+                if let &DirectedEdge::Vertical { mut y_from, mut y_to, .. } = edge {
+                    if y_to < y_from {
+                        mem::swap(&mut y_from, &mut y_to);
+                    }
+                    assert!(y_from < y_to);
                     let first_possible_left = (0..column.len())
-                        .position(|x| !(y1..y2).any(|i| occupied_left[i][x]))
+                        .position(|x| !(y_from..y_to).any(|i| occupied_left[i][x]))
                         .unwrap();
                     let first_possible_right = (0..column.len())
-                        .position(|x| !(y1..y2).any(|i| occupied_right[i][x]))
+                        .position(|x| !(y_from..y_to).any(|i| occupied_right[i][x]))
                         .unwrap();
 
                     if first_possible_left < first_possible_right {
-                        for i in y1..y2 {
+                        for i in y_from..y_to {
                             occupied_left[i][first_possible_left] = true;
                         }
                         offsets[p_i][e_i] = -(first_possible_left as i32) - 1;
                     } else {
-                        for i in y1..y2 {
+                        for i in y_from..y_to {
                             occupied_right[i][first_possible_right] = true;
                         }
                         offsets[p_i][e_i] = first_possible_right as i32;
@@ -95,22 +98,25 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
 
             for &(p_i, e_i) in column {
                 let edge = &combined_paths[p_i][e_i];
-                if let &Horizontal { x1, x2, .. } = edge {
-                    assert!(x1 < x2);
+                if let &DirectedEdge::Horizontal { mut x_from, mut x_to, .. } = edge {
+                    if x_to < x_from {
+                        mem::swap(&mut x_from, &mut x_to);
+                    }
+                    assert!(x_from < x_to);
                     let first_possible_left = (0..column.len())
-                        .position(|x| !(x1..x2).any(|i| occupied_left[i][x]))
+                        .position(|x| !(x_from..x_to).any(|i| occupied_left[i][x]))
                         .unwrap();
                     let first_possible_right = (0..column.len())
-                        .position(|x| !(x1..x2).any(|i| occupied_right[i][x]))
+                        .position(|x| !(x_from..x_to).any(|i| occupied_right[i][x]))
                         .unwrap();
 
                     if first_possible_left < first_possible_right {
-                        for i in x1..x2 {
+                        for i in x_from..x_to {
                             occupied_left[i][first_possible_left] = true;
                         }
                         offsets[p_i][e_i] = -(first_possible_left as i32) - 1;
                     } else {
-                        for i in x1..x2 {
+                        for i in x_from..x_to {
                             occupied_right[i][first_possible_right] = true;
                         }
                         offsets[p_i][e_i] = first_possible_right as i32;
@@ -284,10 +290,9 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
         let paths = self.get_paths(&polys);
 
         let combined_paths = Self::get_combined_paths(paths);
+        let combined_paths = Self::rotate_paths(combined_paths);
 
         let offsets = Self::get_offsets(&combined_paths);
-
-        let combined_paths = Self::rotate_paths(combined_paths);
 
         // We will convert to just points, with offsets applied
         let mut points: Vec<Vec<(i32, i32)>> = Vec::new();

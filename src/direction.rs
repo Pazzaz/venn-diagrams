@@ -17,12 +17,6 @@ impl Edge {
         Edge::Vertical { x, y1, y2 }
     }
 
-    pub fn len(&self) -> usize {
-        match self {
-            &Horizontal { x1, x2, .. } => x1.abs_diff(x2),
-            &Vertical { y1, y2, .. } => y1.abs_diff(y2),
-        }
-    }
     pub fn endpoints(&self) -> ((usize, usize), (usize, usize)) {
         match self {
             &Horizontal { y, x1, x2 } => ((x1, y), (x2, y)),
@@ -85,6 +79,13 @@ impl DirectedEdge {
         match self {
             &DirectedEdge::Horizontal { y, x_to, .. } => (x_to, y),
             &DirectedEdge::Vertical { x, y_to, .. } => (x, y_to),
+        }
+    }
+
+    pub fn len(&self) -> usize {
+        match self {
+            &DirectedEdge::Horizontal { x_from, x_to, .. } => x_from.abs_diff(x_to),
+            &DirectedEdge::Vertical { y_from, y_to, .. } => y_from.abs_diff(y_to),
         }
     }
 }
