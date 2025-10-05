@@ -26,137 +26,7 @@ use super::{
 };
 
 impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
-    pub fn to_svg(&self) -> SVG {
-        let min_x = -((SCALE / 2) as i32);
-        let max_x = (X + 1) * SCALE;
-
-        let min_y = 0;
-        let max_y = Y * SCALE;
-        let mut out = Document::new()
-            .set("viewBox", (min_x, min_y, max_x, max_y))
-            .set("width", format!("{}px", 2 * X * SCALE))
-            .set("height", format!("{}px", 2 * Y * SCALE));
-
-        let rect = Rectangle::new()
-            .set("width", (X + 1) * SCALE)
-            .set("height", (Y + 1) * SCALE)
-            .set("x", -((SCALE / 2) as i32))
-            .set("y", -((SCALE / 2) as i32));
-
-        out = out.add(rect);
-
-        let mut polys: Vec<Vec<Direction>> = Vec::new();
-
-        for i in 0..N {
-            // 1. List all the edges
-            let poly = self.venns[i];
-            let mut edges: Vec<Direction> = Vec::new();
-
-            for x in 0..X {
-                for y in 0..Y {
-                    if poly[y][x] {
-                        // Left
-                        if x == 0 || !poly[y][x - 1] {
-                            edges.push(Vertical { x, y1: y, y2: y + 1 });
-                        }
-                        // Up
-                        if y == 0 || !poly[y - 1][x] {
-                            edges.push(Horizontal { y, x1: x, x2: x + 1 });
-                        }
-                        // Right
-                        if x == (X - 1) || !poly[y][x + 1] {
-                            edges.push(Vertical { x: x + 1, y1: y, y2: y + 1 });
-                        }
-                        // Down
-                        if y == (Y - 1) || !poly[y + 1][x] {
-                            edges.push(Horizontal { y: y + 1, x1: x, x2: x + 1 });
-                        }
-                    }
-                }
-            }
-
-            polys.push(edges);
-        }
-
-        let mut paths: Vec<Vec<Direction>> = Vec::new();
-
-        for edges in polys {
-            // 1. Create adjancy matrix
-            let l = edges.len();
-            let mut adj: Vec<Vec<bool>> = vec![vec![false; l]; l];
-
-            for i in 0..l {
-                for j in 0..l {
-                    if i == j {
-                        continue;
-                    }
-                    if connected(&edges[i], &edges[j]) {
-                        adj[i][j] = true;
-                    }
-                }
-            }
-
-            let mut path: Vec<Direction> = Vec::new();
-
-            // current edge we're examining
-            let mut i: usize = 0;
-            path.push(edges[0].clone());
-            while let Some(j) = adj[i].iter().position(|x| *x) {
-                // Remove from adjacency matrix
-                for k in 0..l {
-                    adj[i][k] = false;
-                    adj[k][i] = false;
-                }
-
-                path.push(edges[j].clone());
-                i = j;
-            }
-
-            for k in 0..l {
-                adj[i][k] = false;
-                adj[k][i] = false;
-            }
-
-            // I don't think we need to handle holes or disjoint yet
-            // Let's just check we used every edge in this path
-            for i in 0..l {
-                for j in 0..l {
-                    assert!(!adj[i][j]);
-                }
-            }
-            paths.push(path);
-        }
-
-        // TODO: Combine edges here
-        let mut combined_paths: Vec<Vec<Direction>> = Vec::new();
-        for path in paths {
-            let mut out = Vec::new();
-            let mut current = None;
-            for edge in path {
-                current = match current {
-                    Some(current_edge) => match combine(&current_edge, &edge) {
-                        Some(combined_edge) => Some(combined_edge),
-                        None => {
-                            out.push(current_edge);
-                            Some(edge)
-                        }
-                    },
-                    None => Some(edge),
-                };
-            }
-
-            out.push(current.unwrap());
-
-            if let (Horizontal { .. }, Horizontal { .. }) | (Vertical { .. }, Vertical { .. }) =
-                (out[0].clone(), out.last().unwrap().clone())
-            {
-                let last = out.pop().unwrap();
-                out[0] = combine(&out[0], &last).unwrap();
-            }
-
-            combined_paths.push(out);
-        }
-
+    fn get_offsets(combined_paths: &Vec<Vec<Direction>>) -> Vec<Vec<i32>> {
         let mut offsets: Vec<Vec<i32>> =
             combined_paths.iter().map(|x| vec![i32::MIN; x.len()]).collect();
         let mut columns = vec![Vec::new(); X + 1];
@@ -252,9 +122,97 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
         }
 
         println!("{:?}", &offsets);
+        offsets
+    }
 
+    fn get_combined_paths(paths: Vec<Vec<Direction>>) -> Vec<Vec<Direction>> {
+        let mut combined_paths: Vec<Vec<Direction>> = Vec::new();
+        for path in paths {
+            let mut out = Vec::new();
+            let mut current = None;
+            for edge in path {
+                current = match current {
+                    Some(current_edge) => match combine(&current_edge, &edge) {
+                        Some(combined_edge) => Some(combined_edge),
+                        None => {
+                            out.push(current_edge);
+                            Some(edge)
+                        }
+                    },
+                    None => Some(edge),
+                };
+            }
+
+            out.push(current.unwrap());
+
+            if let (Horizontal { .. }, Horizontal { .. }) | (Vertical { .. }, Vertical { .. }) =
+                (out[0].clone(), out.last().unwrap().clone())
+            {
+                let last = out.pop().unwrap();
+                out[0] = combine(&out[0], &last).unwrap();
+            }
+
+            combined_paths.push(out);
+        }
+        combined_paths
+    }
+
+    fn get_paths(&self, polys: &[Vec<Direction>]) -> Vec<Vec<Direction>> {
+        let mut paths: Vec<Vec<Direction>> = Vec::new();
+
+        for edges in polys {
+            // 1. Create adjancy matrix
+            let l = edges.len();
+            let mut adj: Vec<Vec<bool>> = vec![vec![false; l]; l];
+
+            for i in 0..l {
+                for j in 0..l {
+                    if i == j {
+                        continue;
+                    }
+                    if connected(&edges[i], &edges[j]) {
+                        adj[i][j] = true;
+                    }
+                }
+            }
+
+            let mut path: Vec<Direction> = Vec::new();
+
+            // current edge we're examining
+            let mut i: usize = 0;
+            path.push(edges[0].clone());
+            while let Some(j) = adj[i].iter().position(|x| *x) {
+                // Remove from adjacency matrix
+                for k in 0..l {
+                    adj[i][k] = false;
+                    adj[k][i] = false;
+                }
+
+                path.push(edges[j].clone());
+                i = j;
+            }
+
+            for k in 0..l {
+                adj[i][k] = false;
+                adj[k][i] = false;
+            }
+
+            // I don't think we need to handle holes or disjoint yet
+            // Let's just check we used every edge in this path
+            for i in 0..l {
+                for j in 0..l {
+                    assert!(!adj[i][j]);
+                }
+            }
+            paths.push(path);
+        }
+        paths
+    }
+
+    // TODO: Can't this be done before?
+    fn rotate_paths(combined_paths: &mut [Vec<Direction>]) {
         // Rotate the edges to the right direction
-        for path in &mut combined_paths {
+        for path in combined_paths {
             let (first, second) = (&path[0], &path[1]);
             let (a1, a2) = endpoints(first);
             let (b1, b2) = endpoints(second);
@@ -277,6 +235,53 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                 }
             }
         }
+    }
+
+    fn get_polys(&self) -> Vec<Vec<Direction>> {
+        let mut polys: Vec<Vec<Direction>> = Vec::new();
+
+        for i in 0..N {
+            // 1. List all the edges
+            let poly = self.venns[i];
+            let mut edges: Vec<Direction> = Vec::new();
+
+            for x in 0..X {
+                for y in 0..Y {
+                    if poly[y][x] {
+                        // Left
+                        if x == 0 || !poly[y][x - 1] {
+                            edges.push(Vertical { x, y1: y, y2: y + 1 });
+                        }
+                        // Up
+                        if y == 0 || !poly[y - 1][x] {
+                            edges.push(Horizontal { y, x1: x, x2: x + 1 });
+                        }
+                        // Right
+                        if x == (X - 1) || !poly[y][x + 1] {
+                            edges.push(Vertical { x: x + 1, y1: y, y2: y + 1 });
+                        }
+                        // Down
+                        if y == (Y - 1) || !poly[y + 1][x] {
+                            edges.push(Horizontal { y: y + 1, x1: x, x2: x + 1 });
+                        }
+                    }
+                }
+            }
+
+            polys.push(edges);
+        }
+        polys
+    }
+
+    fn get_points(&self) -> Vec<Vec<(i32, i32)>> {
+        let polys = self.get_polys();
+        let paths = self.get_paths(&polys);
+
+        let mut combined_paths = Self::get_combined_paths(paths);
+
+        let offsets = Self::get_offsets(&combined_paths);
+
+        Self::rotate_paths(&mut combined_paths);
 
         // We will convert to just points, with offsets applied
         let mut points: Vec<Vec<(i32, i32)>> = Vec::new();
@@ -301,6 +306,29 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             }
             points.push(out);
         }
+        points
+    }
+
+    pub fn to_svg(&self) -> SVG {
+        let min_x = -((SCALE / 2) as i32);
+        let max_x = (X + 1) * SCALE;
+
+        let min_y = 0;
+        let max_y = Y * SCALE;
+        let mut out = Document::new()
+            .set("viewBox", (min_x, min_y, max_x, max_y))
+            .set("width", format!("{}px", 2 * X * SCALE))
+            .set("height", format!("{}px", 2 * Y * SCALE));
+
+        let rect = Rectangle::new()
+            .set("width", (X + 1) * SCALE)
+            .set("height", (Y + 1) * SCALE)
+            .set("x", -((SCALE / 2) as i32))
+            .set("y", -((SCALE / 2) as i32));
+
+        out = out.add(rect);
+
+        let points = self.get_points();
 
         for (points, color) in points.iter().zip(&self.colors) {
             let mut data = Data::new().move_to(points[0]);
