@@ -19,11 +19,14 @@ use svg::{
 
 use super::{
     Polyomino,
-    direction::Direction::{self, *},
+    direction::{
+        DirectedEdge,
+        Edge::{self, *},
+    },
 };
 
 impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
-    fn get_offsets(combined_paths: &Vec<Vec<Direction>>) -> Vec<Vec<i32>> {
+    fn get_offsets(combined_paths: &Vec<Vec<Edge>>) -> Vec<Vec<i32>> {
         let mut offsets: Vec<Vec<i32>> =
             combined_paths.iter().map(|x| vec![i32::MIN; x.len()]).collect();
         let mut columns = vec![Vec::new(); X + 1];
@@ -122,11 +125,11 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
         offsets
     }
 
-    fn get_combined_paths(paths: Vec<Vec<Direction>>) -> Vec<Vec<Direction>> {
-        let mut combined_paths: Vec<Vec<Direction>> = Vec::new();
+    fn get_combined_paths(paths: Vec<Vec<Edge>>) -> Vec<Vec<Edge>> {
+        let mut combined_paths: Vec<Vec<Edge>> = Vec::new();
         for path in paths {
             let mut out = Vec::new();
-            let mut current: Option<Direction> = None;
+            let mut current: Option<Edge> = None;
             for edge in path {
                 current = match current {
                     Some(current_edge) => match current_edge.combine(&edge) {
@@ -154,8 +157,8 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
         combined_paths
     }
 
-    fn get_paths(&self, polys: &[Vec<Direction>]) -> Vec<Vec<Direction>> {
-        let mut paths: Vec<Vec<Direction>> = Vec::new();
+    fn get_paths(&self, polys: &[Vec<Edge>]) -> Vec<Vec<Edge>> {
+        let mut paths: Vec<Vec<Edge>> = Vec::new();
 
         for edges in polys {
             // 1. Create adjancy matrix
@@ -173,7 +176,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                 }
             }
 
-            let mut path: Vec<Direction> = Vec::new();
+            let mut path: Vec<Edge> = Vec::new();
 
             // current edge we're examining
             let mut i: usize = 0;
@@ -207,9 +210,11 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
     }
 
     // TODO: Can't this be done before?
-    fn rotate_paths(combined_paths: &mut [Vec<Direction>]) {
+    fn rotate_paths(combined_paths: Vec<Vec<Edge>>) -> Vec<Vec<DirectedEdge>> {
+        let mut out = Vec::new();
         // Rotate the edges to the right direction
         for path in combined_paths {
+            let mut directed_path = Vec::new();
             let (first, second) = (&path[0], &path[1]);
             let (a1, a2) = first.endpoints();
             let (b1, b2) = second.endpoints();
@@ -223,24 +228,28 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
 
             for e in path {
                 let (a1, a2) = e.endpoints();
-                (*e, start_point) = if a1 == start_point {
-                    (Direction::from_endpoints(start_point, a2), a2)
+                let (next_edge, next_start_point) = if a1 == start_point {
+                    (DirectedEdge::from_endpoints(start_point, a2), a2)
                 } else if a2 == start_point {
-                    (Direction::from_endpoints(start_point, a1), a1)
+                    (DirectedEdge::from_endpoints(start_point, a1), a1)
                 } else {
                     unreachable!();
-                }
+                };
+                directed_path.push(next_edge);
+                start_point = next_start_point;
             }
+            out.push(directed_path);
         }
+        out
     }
 
-    fn get_polys(&self) -> Vec<Vec<Direction>> {
-        let mut polys: Vec<Vec<Direction>> = Vec::new();
+    fn get_polys(&self) -> Vec<Vec<Edge>> {
+        let mut polys: Vec<Vec<Edge>> = Vec::new();
 
         for i in 0..N {
             // 1. List all the edges
             let poly = self.venns[i];
-            let mut edges: Vec<Direction> = Vec::new();
+            let mut edges: Vec<Edge> = Vec::new();
 
             for x in 0..X {
                 for y in 0..Y {
@@ -274,30 +283,30 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
         let polys = self.get_polys();
         let paths = self.get_paths(&polys);
 
-        let mut combined_paths = Self::get_combined_paths(paths);
+        let combined_paths = Self::get_combined_paths(paths);
 
         let offsets = Self::get_offsets(&combined_paths);
 
-        Self::rotate_paths(&mut combined_paths);
+        let combined_paths = Self::rotate_paths(combined_paths);
 
         // We will convert to just points, with offsets applied
         let mut points: Vec<Vec<(i32, i32)>> = Vec::new();
         for (path_edges, path_offsets) in combined_paths.into_iter().zip(offsets) {
             let mut out = Vec::new();
-            let last_edge = path_edges.last().unwrap().clone();
+            let last_edge = path_edges.last().unwrap();
             let last_offset = path_offsets.last().unwrap().clone();
 
-            let path_edges = std::iter::once(last_edge).chain(path_edges);
+            let path_edges = std::iter::once(last_edge).chain(&path_edges);
             let path_offsets = std::iter::once(last_offset).chain(path_offsets);
-            let parts: Vec<(Direction, i32)> = path_edges.zip(path_offsets).collect();
+            let parts: Vec<(&DirectedEdge, i32)> = path_edges.zip(path_offsets).collect();
             for aa in parts.windows(2) {
                 let ((e1, o1), (e2, o2)) = (&aa[0], &aa[1]);
-                let (_, (shared_x, shared_y)) = e1.endpoints();
-                assert!((shared_x, shared_y) == e2.endpoints().0);
+                let (shared_x, shared_y) = e1.to();
+                assert!((shared_x, shared_y) == e2.from());
 
                 let (ox, oy) = match e1 {
-                    Horizontal { .. } => (o2, o1),
-                    Vertical { .. } => (o1, o2),
+                    DirectedEdge::Horizontal { .. } => (o2, o1),
+                    DirectedEdge::Vertical { .. } => (o1, o2),
                 };
                 out.push(((shared_x * SCALE) as i32 + ox, (shared_y * SCALE) as i32 + oy));
             }
