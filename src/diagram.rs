@@ -19,10 +19,7 @@ use svg::{
 
 use super::{
     Polyomino,
-    direction::{
-        DirectedEdge,
-        Edge::{self, *},
-    },
+    direction::{DirectedEdge, Edge},
 };
 
 impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
@@ -131,14 +128,14 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
         offsets
     }
 
-    fn get_combined_paths(paths: Vec<Vec<Edge>>) -> Vec<Vec<Edge>> {
-        let mut combined_paths: Vec<Vec<Edge>> = Vec::new();
+    fn get_combined_paths(paths: Vec<Vec<DirectedEdge>>) -> Vec<Vec<DirectedEdge>> {
+        let mut combined_paths: Vec<Vec<DirectedEdge>> = Vec::new();
         for path in paths {
-            let mut out = Vec::new();
-            let mut current: Option<Edge> = None;
+            let mut out: Vec<DirectedEdge> = Vec::new();
+            let mut current: Option<DirectedEdge> = None;
             for edge in path {
                 current = match current {
-                    Some(current_edge) => match current_edge.combine(&edge) {
+                    Some(current_edge) => match current_edge.combine_directed(&edge) {
                         Some(combined_edge) => Some(combined_edge),
                         None => {
                             out.push(current_edge);
@@ -149,13 +146,12 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                 };
             }
 
-            out.push(current.unwrap());
-
-            if let (Horizontal { .. }, Horizontal { .. }) | (Vertical { .. }, Vertical { .. }) =
-                (out[0].clone(), out.last().unwrap().clone())
-            {
-                let last = out.pop().unwrap();
-                out[0] = out[0].combine(&last).unwrap();
+            if let Some(current) = current {
+                if let Some(combined) = out[0].combine_directed(&current) {
+                    out[0] = combined;
+                } else {
+                    out.push(current)
+                }
             }
 
             combined_paths.push(out);
@@ -241,7 +237,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                 } else {
                     unreachable!();
                 };
-                directed_path.push(next_edge);
+                directed_path.push(next_edge.unwrap());
                 start_point = next_start_point;
             }
             out.push(directed_path);
@@ -289,8 +285,9 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
         let polys = self.get_polys();
         let paths = self.get_paths(&polys);
 
+        let paths = Self::rotate_paths(paths);
+
         let combined_paths = Self::get_combined_paths(paths);
-        let combined_paths = Self::rotate_paths(combined_paths);
 
         let offsets = Self::get_offsets(&combined_paths);
 

@@ -47,8 +47,17 @@ impl Edge {
             }
         }
     }
+
+    /// Choose an arbitrary direction
+    pub fn to_directed(&self) -> DirectedEdge {
+        match self {
+            &Horizontal { y, x1, x2 } => DirectedEdge::Horizontal { y, x_from: x1, x_to: x2 },
+            &Vertical { x, y1, y2 } => DirectedEdge::Vertical { x, y_from: y1, y_to: y2 },
+        }
+    }
 }
 
+#[derive(Debug, PartialEq, Eq, Clone)]
 pub enum DirectedEdge {
     Horizontal { y: usize, x_from: usize, x_to: usize },
     Vertical { x: usize, y_from: usize, y_to: usize },
@@ -58,13 +67,13 @@ impl DirectedEdge {
     pub fn from_endpoints(
         (x_from, y_from): (usize, usize),
         (x_to, y_to): (usize, usize),
-    ) -> DirectedEdge {
+    ) -> Option<DirectedEdge> {
         if x_from == x_to {
-            DirectedEdge::Vertical { x: x_from, y_from, y_to }
+            Some(DirectedEdge::Vertical { x: x_from, y_from, y_to })
         } else if y_from == y_to {
-            DirectedEdge::Horizontal { y: y_from, x_from, x_to }
+            Some(DirectedEdge::Horizontal { y: y_from, x_from, x_to })
         } else {
-            panic!("Invalid endpoints");
+            None
         }
     }
 
@@ -86,6 +95,38 @@ impl DirectedEdge {
         match self {
             &DirectedEdge::Horizontal { x_from, x_to, .. } => x_from.abs_diff(x_to),
             &DirectedEdge::Vertical { y_from, y_to, .. } => y_from.abs_diff(y_to),
+        }
+    }
+
+    pub fn combine(&self, other: &Edge) -> Option<DirectedEdge> {
+        let from = self.from();
+        let to = self.to();
+
+        let (o1, o2) = other.endpoints();
+        if o1 == from {
+            Self::from_endpoints(o2, to)
+        } else if o1 == to {
+            Self::from_endpoints(from, o2)
+        } else if o2 == from {
+            Self::from_endpoints(o1, to)
+        } else if o2 == to {
+            Self::from_endpoints(from, o1)
+        } else {
+            None
+        }
+    }
+
+    pub fn combine_directed(&self, other: &DirectedEdge) -> Option<DirectedEdge> {
+        let from1 = self.from();
+        let to1 = self.to();
+        let from2 = other.from();
+        let to2 = other.to();
+        if from1 == to2 {
+            DirectedEdge::from_endpoints(from2, to1)
+        } else if from2 == to1 {
+            DirectedEdge::from_endpoints(from1, to2)
+        } else {
+            None
         }
     }
 }
