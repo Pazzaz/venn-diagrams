@@ -19,10 +19,7 @@ use svg::{
 
 use super::{
     Polyomino,
-    direction::{
-        Direction::{self, *},
-        combine, connected, endpoints, from_endpoints,
-    },
+    direction::Direction::{self, *},
 };
 
 impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
@@ -129,10 +126,10 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
         let mut combined_paths: Vec<Vec<Direction>> = Vec::new();
         for path in paths {
             let mut out = Vec::new();
-            let mut current = None;
+            let mut current: Option<Direction> = None;
             for edge in path {
                 current = match current {
-                    Some(current_edge) => match combine(&current_edge, &edge) {
+                    Some(current_edge) => match current_edge.combine(&edge) {
                         Some(combined_edge) => Some(combined_edge),
                         None => {
                             out.push(current_edge);
@@ -149,7 +146,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                 (out[0].clone(), out.last().unwrap().clone())
             {
                 let last = out.pop().unwrap();
-                out[0] = combine(&out[0], &last).unwrap();
+                out[0] = out[0].combine(&last).unwrap();
             }
 
             combined_paths.push(out);
@@ -170,7 +167,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                     if i == j {
                         continue;
                     }
-                    if connected(&edges[i], &edges[j]) {
+                    if edges[i].connected(&edges[j]) {
                         adj[i][j] = true;
                     }
                 }
@@ -214,8 +211,8 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
         // Rotate the edges to the right direction
         for path in combined_paths {
             let (first, second) = (&path[0], &path[1]);
-            let (a1, a2) = endpoints(first);
-            let (b1, b2) = endpoints(second);
+            let (a1, a2) = first.endpoints();
+            let (b1, b2) = second.endpoints();
             let mut start_point = if a1 == b1 || a1 == b2 {
                 a2
             } else if a2 == b1 || a2 == b2 {
@@ -225,11 +222,11 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             };
 
             for e in path {
-                let (a1, a2) = endpoints(e);
+                let (a1, a2) = e.endpoints();
                 (*e, start_point) = if a1 == start_point {
-                    (from_endpoints(start_point, a2), a2)
+                    (Direction::from_endpoints(start_point, a2), a2)
                 } else if a2 == start_point {
-                    (from_endpoints(start_point, a1), a1)
+                    (Direction::from_endpoints(start_point, a1), a1)
                 } else {
                     unreachable!();
                 }
@@ -295,8 +292,8 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             let parts: Vec<(Direction, i32)> = path_edges.zip(path_offsets).collect();
             for aa in parts.windows(2) {
                 let ((e1, o1), (e2, o2)) = (&aa[0], &aa[1]);
-                let (_, (shared_x, shared_y)) = endpoints(e1);
-                assert!((shared_x, shared_y) == endpoints(e2).0);
+                let (_, (shared_x, shared_y)) = e1.endpoints();
+                assert!((shared_x, shared_y) == e2.endpoints().0);
 
                 let (ox, oy) = match e1 {
                     Horizontal { .. } => (o2, o1),
