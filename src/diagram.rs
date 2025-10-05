@@ -256,19 +256,19 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                     if poly[y][x] {
                         // Left
                         if x == 0 || !poly[y][x - 1] {
-                            edges.push(Vertical { x, y1: y, y2: y + 1 });
+                            edges.push(Edge::new_vertical(x, y, y + 1));
                         }
                         // Up
                         if y == 0 || !poly[y - 1][x] {
-                            edges.push(Horizontal { y, x1: x, x2: x + 1 });
+                            edges.push(Edge::new_horizontal(y, x, x + 1));
                         }
                         // Right
                         if x == (X - 1) || !poly[y][x + 1] {
-                            edges.push(Vertical { x: x + 1, y1: y, y2: y + 1 });
+                            edges.push(Edge::new_vertical(x + 1, y, y + 1));
                         }
                         // Down
                         if y == (Y - 1) || !poly[y + 1][x] {
-                            edges.push(Horizontal { y: y + 1, x1: x, x2: x + 1 });
+                            edges.push(Edge::new_horizontal(y + 1, x, x + 1));
                         }
                     }
                 }

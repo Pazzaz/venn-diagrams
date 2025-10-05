@@ -7,6 +7,16 @@ pub enum Edge {
 use Edge::*;
 
 impl Edge {
+    pub fn new_horizontal(y: usize, x1: usize, x2: usize) -> Edge {
+        debug_assert!(x1 <= x2);
+        Edge::Horizontal { y, x1, x2 }
+    }
+
+    pub fn new_vertical(x: usize, y1: usize, y2: usize) -> Edge {
+        debug_assert!(y1 <= y2);
+        Edge::Vertical { x, y1, y2 }
+    }
+
     pub fn len(&self) -> usize {
         match self {
             &Horizontal { x1, x2, .. } => x1.abs_diff(x2),
