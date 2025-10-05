@@ -30,31 +30,6 @@ impl Edge {
         let (p3, p4) = other.endpoints();
         p1 == p3 || p1 == p4 || p2 == p3 || p2 == p4
     }
-
-    pub fn combine(&self, other: &Edge) -> Option<Edge> {
-        if !self.connected(other) {
-            return None;
-        }
-
-        match (self, other) {
-            (&Horizontal { x1, x2, y }, &Horizontal { x1: x3, x2: x4, .. }) => {
-                Some(Horizontal { y, x1: x1.min(x3), x2: x2.max(x4) })
-            }
-            (Horizontal { .. }, Vertical { .. }) => None,
-            (Vertical { .. }, Horizontal { .. }) => None,
-            (&Vertical { x, y1, y2 }, &Vertical { y1: y3, y2: y4, .. }) => {
-                Some(Vertical { x, y1: y1.min(y3), y2: y2.max(y4) })
-            }
-        }
-    }
-
-    /// Choose an arbitrary direction
-    pub fn to_directed(&self) -> DirectedEdge {
-        match self {
-            &Horizontal { y, x1, x2 } => DirectedEdge::Horizontal { y, x_from: x1, x_to: x2 },
-            &Vertical { x, y1, y2 } => DirectedEdge::Vertical { x, y_from: y1, y_to: y2 },
-        }
-    }
 }
 
 #[derive(Debug, PartialEq, Eq, Clone)]

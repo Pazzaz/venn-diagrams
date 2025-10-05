@@ -159,8 +159,8 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
         combined_paths
     }
 
-    fn get_paths(&self, polys: &[Vec<Edge>]) -> Vec<Vec<Edge>> {
-        let mut paths: Vec<Vec<Edge>> = Vec::new();
+    fn get_paths(&self, polys: &[Vec<Edge>]) -> Vec<Vec<DirectedEdge>> {
+        let mut paths: Vec<Vec<DirectedEdge>> = Vec::new();
 
         for edges in polys {
             // 1. Create adjancy matrix
@@ -178,71 +178,78 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                 }
             }
 
-            let mut path: Vec<Edge> = Vec::new();
+            let mut path: Vec<DirectedEdge> = Vec::new();
 
             // current edge we're examining
             let mut i: usize = 0;
-            path.push(edges[0].clone());
-            while let Some(j) = adj[i].iter().position(|x| *x) {
-                // Remove from adjacency matrix
+            let mut pre: Option<(usize, usize)> = None;
+            loop {
+                let j = if let Some(next) = adj[i].iter().position(|x| *x) {
+                    next
+                } else {
+                    break;
+                };
+
                 for k in 0..l {
                     adj[i][k] = false;
                     adj[k][i] = false;
                 }
 
-                path.push(edges[j].clone());
+                let directed: Option<DirectedEdge>;
+                (directed, pre) = if let Some(op) = pre {
+                    let edge = &edges[i];
+                    let (e1, e2) = edge.endpoints();
+                    if op == e1 {
+                        (DirectedEdge::from_endpoints(e1, e2), Some(e2))
+                    } else if op == e2 {
+                        (DirectedEdge::from_endpoints(e2, e1), Some(e1))
+                    } else {
+                        unreachable!();
+                    }
+                } else {
+                    let edge1 = &edges[i];
+                    let edge2 = &edges[j];
+                    let (a1, a2) = edge1.endpoints();
+                    let (b1, b2) = edge2.endpoints();
+                    if a1 == b1 || a1 == b2 {
+                        (DirectedEdge::from_endpoints(a2, a1), Some(a1))
+                    } else if a2 == b1 || a2 == b2 {
+                        (DirectedEdge::from_endpoints(a1, a2), Some(a2))
+                    } else {
+                        unreachable!();
+                    }
+                };
+
+                path.push(directed.unwrap());
                 i = j;
             }
+            let directed: Option<DirectedEdge>;
+            (directed) = if let Some(op) = pre {
+                let edge = &edges[i];
+                let (e1, e2) = edge.endpoints();
+                if op == e1 {
+                    DirectedEdge::from_endpoints(e1, e2)
+                } else if op == e2 {
+                    DirectedEdge::from_endpoints(e2, e1)
+                } else {
+                    unreachable!();
+                }
+            } else {
+                unreachable!();
+            };
 
-            for k in 0..l {
-                adj[i][k] = false;
-                adj[k][i] = false;
-            }
+            path.push(directed.unwrap());
 
             // I don't think we need to handle holes or disjoint yet
             // Let's just check we used every edge in this path
             for i in 0..l {
                 for j in 0..l {
-                    assert!(!adj[i][j]);
+                    debug_assert!(!adj[i][j]);
                 }
             }
             paths.push(path);
         }
         paths
-    }
-
-    // TODO: Can't this be done before?
-    fn rotate_paths(combined_paths: Vec<Vec<Edge>>) -> Vec<Vec<DirectedEdge>> {
-        let mut out = Vec::new();
-        // Rotate the edges to the right direction
-        for path in combined_paths {
-            let mut directed_path = Vec::new();
-            let (first, second) = (&path[0], &path[1]);
-            let (a1, a2) = first.endpoints();
-            let (b1, b2) = second.endpoints();
-            let mut start_point = if a1 == b1 || a1 == b2 {
-                a2
-            } else if a2 == b1 || a2 == b2 {
-                a1
-            } else {
-                unreachable!();
-            };
-
-            for e in path {
-                let (a1, a2) = e.endpoints();
-                let (next_edge, next_start_point) = if a1 == start_point {
-                    (DirectedEdge::from_endpoints(start_point, a2), a2)
-                } else if a2 == start_point {
-                    (DirectedEdge::from_endpoints(start_point, a1), a1)
-                } else {
-                    unreachable!();
-                };
-                directed_path.push(next_edge.unwrap());
-                start_point = next_start_point;
-            }
-            out.push(directed_path);
-        }
-        out
     }
 
     fn get_polys(&self) -> Vec<Vec<Edge>> {
@@ -284,8 +291,6 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
     fn get_points(&self) -> Vec<Vec<(i32, i32)>> {
         let polys = self.get_polys();
         let paths = self.get_paths(&polys);
-
-        let paths = Self::rotate_paths(paths);
 
         let combined_paths = Self::get_combined_paths(paths);
 
