@@ -38,6 +38,28 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             }
         }
 
+        enum Put {
+            Left(usize),
+            Right(usize),
+        }
+
+        impl Put {
+            fn choose_smallest(a: Option<usize>, b: Option<usize>) -> Put {
+                match (a, b) {
+                    (None, None) => unreachable!(),
+                    (None, Some(pr)) => Put::Right(pr),
+                    (Some(pl), None) => Put::Left(pl),
+                    (Some(pl), Some(pr)) => {
+                        if pl < pr {
+                            Put::Left(pl)
+                        } else {
+                            Put::Right(pr)
+                        }
+                    }
+                }
+            }
+        }
+
         for i in 0..=X {
             columns[i].sort_by(|a, b| {
                 let ap = combined_paths[a.0][a.1].len();
@@ -60,20 +82,25 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                     }
                     debug_assert!(y_from < y_to);
                     let first_possible_left =
-                        (0..l).position(|x| !(y_from..y_to).any(|i| occupied_left[i][x])).unwrap();
+                        (0..l).position(|x| !(y_from..y_to).any(|i| occupied_left[i][x]));
                     let first_possible_right =
-                        (0..l).position(|x| !(y_from..y_to).any(|i| occupied_right[i][x])).unwrap();
+                        (0..l).position(|x| !(y_from..y_to).any(|i| occupied_right[i][x]));
 
-                    if first_possible_left < first_possible_right {
-                        for i in y_from..y_to {
-                            occupied_left[i][first_possible_left] = true;
+                    let put = Put::choose_smallest(first_possible_left, first_possible_right);
+
+                    match put {
+                        Put::Left(j) => {
+                            for i in y_from..y_to {
+                                occupied_left[i][j] = true;
+                            }
+                            offsets[p_i][e_i] = -(j as i32) - 1;
                         }
-                        offsets[p_i][e_i] = -(first_possible_left as i32) - 1;
-                    } else {
-                        for i in y_from..y_to {
-                            occupied_right[i][first_possible_right] = true;
+                        Put::Right(j) => {
+                            for i in y_from..y_to {
+                                occupied_right[i][j] = true;
+                            }
+                            offsets[p_i][e_i] = j as i32;
                         }
-                        offsets[p_i][e_i] = first_possible_right as i32;
                     }
                 } else {
                     unreachable!();
@@ -102,20 +129,25 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                     }
                     debug_assert!(x_from < x_to);
                     let first_possible_left =
-                        (0..l).position(|x| !(x_from..x_to).any(|i| occupied_left[i][x])).unwrap();
+                        (0..l).position(|x| !(x_from..x_to).any(|i| occupied_left[i][x]));
                     let first_possible_right =
-                        (0..l).position(|x| !(x_from..x_to).any(|i| occupied_right[i][x])).unwrap();
+                        (0..l).position(|x| !(x_from..x_to).any(|i| occupied_right[i][x]));
 
-                    if first_possible_left < first_possible_right {
-                        for i in x_from..x_to {
-                            occupied_left[i][first_possible_left] = true;
+                    let put = Put::choose_smallest(first_possible_left, first_possible_right);
+
+                    match put {
+                        Put::Left(j) => {
+                            for i in x_from..x_to {
+                                occupied_left[i][j] = true;
+                            }
+                            offsets[p_i][e_i] = -(j as i32) - 1;
                         }
-                        offsets[p_i][e_i] = -(first_possible_left as i32) - 1;
-                    } else {
-                        for i in x_from..x_to {
-                            occupied_right[i][first_possible_right] = true;
+                        Put::Right(j) => {
+                            for i in x_from..x_to {
+                                occupied_right[i][j] = true;
+                            }
+                            offsets[p_i][e_i] = j as i32;
                         }
-                        offsets[p_i][e_i] = first_possible_right as i32;
                     }
                 } else {
                     unreachable!();
