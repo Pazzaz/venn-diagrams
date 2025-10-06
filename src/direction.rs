@@ -18,9 +18,9 @@ impl Edge {
     }
 
     pub fn endpoints(&self) -> ((usize, usize), (usize, usize)) {
-        match self {
-            &Horizontal { y, x1, x2 } => ((x1, y), (x2, y)),
-            &Vertical { x, y1, y2 } => ((x, y1), (x, y2)),
+        match *self {
+            Horizontal { y, x1, x2 } => ((x1, y), (x2, y)),
+            Vertical { x, y1, y2 } => ((x, y1), (x, y2)),
         }
     }
 
@@ -53,23 +53,23 @@ impl DirectedEdge {
     }
 
     pub fn from(&self) -> (usize, usize) {
-        match self {
-            &DirectedEdge::Horizontal { y, x_from, .. } => (x_from, y),
-            &DirectedEdge::Vertical { x, y_from, .. } => (x, y_from),
+        match *self {
+            DirectedEdge::Horizontal { y, x_from, .. } => (x_from, y),
+            DirectedEdge::Vertical { x, y_from, .. } => (x, y_from),
         }
     }
 
     pub fn to(&self) -> (usize, usize) {
-        match self {
-            &DirectedEdge::Horizontal { y, x_to, .. } => (x_to, y),
-            &DirectedEdge::Vertical { x, y_to, .. } => (x, y_to),
+        match *self {
+            DirectedEdge::Horizontal { y, x_to, .. } => (x_to, y),
+            DirectedEdge::Vertical { x, y_to, .. } => (x, y_to),
         }
     }
 
     pub fn len(&self) -> usize {
-        match self {
-            &DirectedEdge::Horizontal { x_from, x_to, .. } => x_from.abs_diff(x_to),
-            &DirectedEdge::Vertical { y_from, y_to, .. } => y_from.abs_diff(y_to),
+        match *self {
+            DirectedEdge::Horizontal { x_from, x_to, .. } => x_from.abs_diff(x_to),
+            DirectedEdge::Vertical { y_from, y_to, .. } => y_from.abs_diff(y_to),
         }
     }
 

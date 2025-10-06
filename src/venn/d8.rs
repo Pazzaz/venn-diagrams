@@ -6,7 +6,6 @@ pub const EIGHT: [Polyomino<17, 15>; 8] = to_polymonio_2(GRIDS);
 const_assert!(check_diagram(EIGHT));
 
 #[rustfmt::skip]
-
 const GRIDS: [[&str; 15]; 8] = [
     [
         "00000000111111110",

@@ -23,7 +23,7 @@ use super::{
 };
 
 impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
-    fn get_offsets(combined_paths: &Vec<Vec<DirectedEdge>>) -> Vec<Vec<i32>> {
+    fn get_offsets(combined_paths: &[Vec<DirectedEdge>]) -> Vec<Vec<i32>> {
         let mut offsets: Vec<Vec<i32>> =
             combined_paths.iter().map(|x| vec![i32::MIN; x.len()]).collect();
         let mut columns = vec![Vec::new(); X + 1];
@@ -31,9 +31,9 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
 
         for (p_i, es) in combined_paths.iter().enumerate() {
             for (e_i, e) in es.iter().enumerate() {
-                match e {
-                    &DirectedEdge::Horizontal { y, .. } => rows[y].push((p_i, e_i)),
-                    &DirectedEdge::Vertical { x, .. } => columns[x].push((p_i, e_i)),
+                match *e {
+                    DirectedEdge::Horizontal { y, .. } => rows[y].push((p_i, e_i)),
+                    DirectedEdge::Vertical { x, .. } => columns[x].push((p_i, e_i)),
                 }
             }
         }
@@ -69,7 +69,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
 
             let column = &columns[i];
 
-            let l = (column.len() + 1) / 2;
+            let l = column.len().div_ceil(2);
 
             let mut occupied_left = vec![vec![false; l]; Y];
             let mut occupied_right = vec![vec![false; l]; Y];
@@ -116,7 +116,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             });
 
             let row = &rows[i];
-            let l = (row.len() + 1) / 2;
+            let l = row.len().div_ceil(2);
 
             let mut occupied_left = vec![vec![false; l]; X];
             let mut occupied_right = vec![vec![false; l]; X];
@@ -213,13 +213,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             // current edge we're examining
             let mut i: usize = 0;
             let mut pre: Option<(usize, usize)> = None;
-            loop {
-                let j = if let Some(next) = adj[i].iter().position(|x| *x) {
-                    next
-                } else {
-                    break;
-                };
-
+            while let Some(j) = adj[i].iter().position(|x| *x) {
                 for k in 0..l {
                     adj[i][k] = false;
                     adj[k][i] = false;
@@ -253,8 +247,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                 path.push(directed.unwrap());
                 i = j;
             }
-            let directed: Option<DirectedEdge>;
-            (directed) = if let Some(op) = pre {
+            let directed = if let Some(op) = pre {
                 let edge = &edges[i];
                 let (e1, e2) = edge.endpoints();
                 if op == e1 {
@@ -331,7 +324,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
         for (path_edges, path_offsets) in combined_paths.into_iter().zip(offsets) {
             let mut out = Vec::new();
             let last_edge = path_edges.last().unwrap();
-            let last_offset = path_offsets.last().unwrap().clone();
+            let last_offset = *path_offsets.last().unwrap();
 
             let path_edges = std::iter::once(last_edge).chain(&path_edges);
             let path_offsets = std::iter::once(last_offset).chain(path_offsets);
@@ -412,8 +405,9 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                     pairs[i] = v;
                 }
                 if any_true {
-                    out =
-                        self.draw_circle(x * SCALE + SCALE / 2, y * SCALE + SCALE / 2, &pairs, out);
+                    let x_pos = x * SCALE + SCALE / 2;
+                    let y_pos = y * SCALE + SCALE / 2;
+                    out = self.draw_circle(x_pos, y_pos, &pairs, out);
                 }
             }
         }
@@ -428,7 +422,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
         }
 
         let r = self.radius;
-        let c = std::f64::consts::TAU * r as f64;
+        let c = std::f64::consts::TAU * r;
         let mut group = Group::new().set("transform", format!("rotate(-90 {} {})", cx, cy));
         let mut total: f64 = 0.0;
         for i in 0..N {
@@ -443,7 +437,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             if !values[i] {
                 continue;
             }
-            if !(total - self.values[i] < 0.5) {
+            if total - self.values[i] >= 0.5 {
                 on_edge = false;
             }
         }

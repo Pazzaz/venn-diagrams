@@ -6,7 +6,6 @@ pub const SIX: [Polyomino<11, 11>; 6] = to_polymonio_2(GRIDS);
 const_assert!(check_diagram(SIX));
 
 #[rustfmt::skip]
-
 const GRIDS: [[&str; 11]; 6] = [
     [
         "00000100000",
