@@ -59,12 +59,10 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                         mem::swap(&mut y_from, &mut y_to);
                     }
                     debug_assert!(y_from < y_to);
-                    let first_possible_left = (0..l)
-                        .position(|x| !(y_from..y_to).any(|i| occupied_left[i][x]))
-                        .unwrap();
-                    let first_possible_right = (0..l)
-                        .position(|x| !(y_from..y_to).any(|i| occupied_right[i][x]))
-                        .unwrap();
+                    let first_possible_left =
+                        (0..l).position(|x| !(y_from..y_to).any(|i| occupied_left[i][x])).unwrap();
+                    let first_possible_right =
+                        (0..l).position(|x| !(y_from..y_to).any(|i| occupied_right[i][x])).unwrap();
 
                     if first_possible_left < first_possible_right {
                         for i in y_from..y_to {
@@ -103,12 +101,10 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                         mem::swap(&mut x_from, &mut x_to);
                     }
                     debug_assert!(x_from < x_to);
-                    let first_possible_left = (0..l)
-                        .position(|x| !(x_from..x_to).any(|i| occupied_left[i][x]))
-                        .unwrap();
-                    let first_possible_right = (0..l)
-                        .position(|x| !(x_from..x_to).any(|i| occupied_right[i][x]))
-                        .unwrap();
+                    let first_possible_left =
+                        (0..l).position(|x| !(x_from..x_to).any(|i| occupied_left[i][x])).unwrap();
+                    let first_possible_right =
+                        (0..l).position(|x| !(x_from..x_to).any(|i| occupied_right[i][x])).unwrap();
 
                     if first_possible_left < first_possible_right {
                         for i in x_from..x_to {
