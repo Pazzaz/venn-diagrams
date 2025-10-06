@@ -47,8 +47,10 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
 
             let column = &columns[i];
 
-            let mut occupied_left = vec![vec![false; column.len()]; Y];
-            let mut occupied_right = vec![vec![false; column.len()]; Y];
+            let l = (column.len() + 1) / 2;
+
+            let mut occupied_left = vec![vec![false; l]; Y];
+            let mut occupied_right = vec![vec![false; l]; Y];
 
             for &(p_i, e_i) in column {
                 let edge = &combined_paths[p_i][e_i];
@@ -56,11 +58,11 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                     if y_to < y_from {
                         mem::swap(&mut y_from, &mut y_to);
                     }
-                    assert!(y_from < y_to);
-                    let first_possible_left = (0..column.len())
+                    debug_assert!(y_from < y_to);
+                    let first_possible_left = (0..l)
                         .position(|x| !(y_from..y_to).any(|i| occupied_left[i][x]))
                         .unwrap();
-                    let first_possible_right = (0..column.len())
+                    let first_possible_right = (0..l)
                         .position(|x| !(y_from..y_to).any(|i| occupied_right[i][x]))
                         .unwrap();
 
@@ -88,22 +90,23 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                 ap.cmp(&bp).reverse()
             });
 
-            let column = &rows[i];
+            let row = &rows[i];
+            let l = (row.len() + 1) / 2;
 
-            let mut occupied_left = vec![vec![false; column.len()]; X];
-            let mut occupied_right = vec![vec![false; column.len()]; X];
+            let mut occupied_left = vec![vec![false; l]; X];
+            let mut occupied_right = vec![vec![false; l]; X];
 
-            for &(p_i, e_i) in column {
+            for &(p_i, e_i) in row {
                 let edge = &combined_paths[p_i][e_i];
                 if let &DirectedEdge::Horizontal { mut x_from, mut x_to, .. } = edge {
                     if x_to < x_from {
                         mem::swap(&mut x_from, &mut x_to);
                     }
-                    assert!(x_from < x_to);
-                    let first_possible_left = (0..column.len())
+                    debug_assert!(x_from < x_to);
+                    let first_possible_left = (0..l)
                         .position(|x| !(x_from..x_to).any(|i| occupied_left[i][x]))
                         .unwrap();
-                    let first_possible_right = (0..column.len())
+                    let first_possible_right = (0..l)
                         .position(|x| !(x_from..x_to).any(|i| occupied_right[i][x]))
                         .unwrap();
 
@@ -124,7 +127,6 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             }
         }
 
-        println!("{:?}", &offsets);
         offsets
     }
 
@@ -309,7 +311,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             for aa in parts.windows(2) {
                 let ((e1, o1), (e2, o2)) = (&aa[0], &aa[1]);
                 let (shared_x, shared_y) = e1.to();
-                assert!((shared_x, shared_y) == e2.from());
+                debug_assert!(e1.to() == e2.from());
 
                 let (ox, oy) = match e1 {
                     DirectedEdge::Horizontal { .. } => (o2, o1),
