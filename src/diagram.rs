@@ -30,10 +30,10 @@ use super::{
 
 #[derive(Debug, Default, Clone, Copy)]
 struct InnerOffset {
-    above: usize,
-    below: usize,
-    right: usize,
-    left: usize,
+    above: i32,
+    below: i32,
+    right: i32,
+    left: i32,
 }
 
 impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
@@ -124,21 +124,33 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             }
 
             for j in 0..Y {
-                let mut last_right = 0;
-                let mut last_left = 0;
+                let mut min_pos: i32 = i32::MAX;
+                let mut max_pos: i32 = i32::MIN;
                 for k in 0..l {
                     if occupied_right[j][k] {
-                        last_right = k
+                        let kk = k as i32;
+                        if kk < min_pos {
+                            min_pos = kk;
+                        }
+                        if kk > max_pos {
+                            max_pos = kk;
+                        }
                     }
                     if occupied_left[j][k] {
-                        last_left = k
+                        let kk = -(k as i32) - 1;
+                        if kk < min_pos {
+                            min_pos = kk;
+                        }
+                        if kk > max_pos {
+                            max_pos = kk;
+                        }
                     }
                 }
                 if i != X {
-                    inner_offset[j][i].left = last_right;
+                    inner_offset[j][i].left = max_pos;
                 }
                 if i != 0 {
-                    inner_offset[j][i - 1].right = last_left;
+                    inner_offset[j][i - 1].right = min_pos;
                 }
             }
         }
@@ -190,24 +202,39 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             }
 
             for j in 0..X {
-                let mut last_right = 0;
-                let mut last_left = 0;
+                let mut min_pos: i32 = i32::MAX;
+                let mut max_pos: i32 = i32::MIN;
                 for k in 0..l {
                     if occupied_right[j][k] {
-                        last_right = k
+                        let kk = k as i32;
+                        if kk < min_pos {
+                            min_pos = kk;
+                        }
+                        if kk > max_pos {
+                            max_pos = kk;
+                        }
                     }
                     if occupied_left[j][k] {
-                        last_left = k
+                        let kk = -(k as i32) - 1;
+                        if kk < min_pos {
+                            min_pos = kk;
+                        }
+                        if kk > max_pos {
+                            max_pos = kk;
+                        }
                     }
                 }
                 if i != Y {
-                    inner_offset[i][j].above = last_right;
+                    inner_offset[i][j].above = max_pos;
                 }
                 if i != 0 {
-                    inner_offset[i - 1][j].below = last_left;
+                    inner_offset[i - 1][j].below = min_pos;
                 }
             }
         }
+
+        println!("{:?}", &offsets);
+        println!("{:?}", &inner_offset);
 
         (offsets, inner_offset)
     }
@@ -483,14 +510,20 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                 ((y * SCALE) as f64) + (SCALE as f64) / 2.0,
             ),
             CirclePlacement::SquareCenter => {
-                let inner_offset = internal_offsets[y][x];
-                let x_offset = (inner_offset.left as f64 - inner_offset.right as f64) / 2.0;
-                let y_offset = (inner_offset.above as f64 - inner_offset.below as f64) / 2.0;
+                let internal_offset = internal_offsets[y][x];
+                let cx = (x * SCALE) as f64;
+                let cy = (y * SCALE) as f64;
 
-                (
-                    ((x * SCALE) as f64) + x_offset + (SCALE as f64) / 2.0,
-                    ((y * SCALE) as f64) + y_offset + (SCALE as f64) / 2.0,
-                )
+                let whole = SCALE as f64;
+
+                let above_y = cy + internal_offset.above as f64;
+                let below_y = cy + whole + internal_offset.below as f64;
+                let left_x = cx + internal_offset.left as f64;
+                let right_x = cx + whole + internal_offset.right as f64;
+
+                let cy = (above_y + below_y) / 2.0;
+                let cx = (left_x + right_x) / 2.0;
+                (cx, cy)
             }
         }
     }
