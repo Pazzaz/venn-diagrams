@@ -233,9 +233,6 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             }
         }
 
-        println!("{:?}", &offsets);
-        println!("{:?}", &inner_offset);
-
         (offsets, inner_offset)
     }
 
