@@ -6,6 +6,12 @@ pub struct Diagram<const N: usize, const X: usize, const Y: usize> {
     pub opacity_below: f64,
     pub opacity_edge: f64,
     pub opacity_above: f64,
+    pub circle_placement: CirclePlacement,
+}
+
+pub enum CirclePlacement {
+    Basic,
+    SquareCenter,
 }
 
 const SCALE: usize = 20;
@@ -22,12 +28,22 @@ use super::{
     direction::{DirectedEdge, Edge},
 };
 
+#[derive(Debug, Default, Clone, Copy)]
+struct InnerOffset {
+    above: usize,
+    below: usize,
+    right: usize,
+    left: usize,
+}
+
 impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
-    fn get_offsets(combined_paths: &[Vec<DirectedEdge>]) -> Vec<Vec<i32>> {
+    fn get_offsets(combined_paths: &[Vec<DirectedEdge>]) -> (Vec<Vec<i32>>, Vec<Vec<InnerOffset>>) {
         let mut offsets: Vec<Vec<i32>> =
             combined_paths.iter().map(|x| vec![i32::MIN; x.len()]).collect();
         let mut columns = vec![Vec::new(); X + 1];
         let mut rows = vec![Vec::new(); Y + 1];
+
+        let mut inner_offset: Vec<Vec<InnerOffset>> = vec![vec![InnerOffset::default(); X]; Y];
 
         for (p_i, es) in combined_paths.iter().enumerate() {
             for (e_i, e) in es.iter().enumerate() {
@@ -106,6 +122,25 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                     unreachable!();
                 }
             }
+
+            for j in 0..Y {
+                let mut last_right = 0;
+                let mut last_left = 0;
+                for k in 0..l {
+                    if occupied_right[j][k] {
+                        last_right = k
+                    }
+                    if occupied_left[j][k] {
+                        last_left = k
+                    }
+                }
+                if i != X {
+                    inner_offset[j][i].left = last_right;
+                }
+                if i != 0 {
+                    inner_offset[j][i - 1].right = last_left;
+                }
+            }
         }
 
         for i in 0..=Y {
@@ -153,9 +188,28 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                     unreachable!();
                 }
             }
+
+            for j in 0..X {
+                let mut last_right = 0;
+                let mut last_left = 0;
+                for k in 0..l {
+                    if occupied_right[j][k] {
+                        last_right = k
+                    }
+                    if occupied_left[j][k] {
+                        last_left = k
+                    }
+                }
+                if i != Y {
+                    inner_offset[i][j].above = last_right;
+                }
+                if i != 0 {
+                    inner_offset[i - 1][j].below = last_left;
+                }
+            }
         }
 
-        offsets
+        (offsets, inner_offset)
     }
 
     fn get_combined_paths(paths: Vec<Vec<DirectedEdge>>) -> Vec<Vec<DirectedEdge>> {
@@ -311,14 +365,11 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
         polys
     }
 
-    fn get_points(&self) -> Vec<Vec<(i32, i32)>> {
-        let polys = self.get_polys();
-        let paths = self.get_paths(&polys);
-
-        let combined_paths = Self::get_combined_paths(paths);
-
-        let offsets = Self::get_offsets(&combined_paths);
-
+    fn get_points(
+        &self,
+        combined_paths: Vec<Vec<DirectedEdge>>,
+        offsets: Vec<Vec<i32>>,
+    ) -> Vec<Vec<(i32, i32)>> {
         // We will convert to just points, with offsets applied
         let mut points: Vec<Vec<(i32, i32)>> = Vec::new();
         for (path_edges, path_offsets) in combined_paths.into_iter().zip(offsets) {
@@ -364,7 +415,14 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
 
         out = out.add(rect);
 
-        let points = self.get_points();
+        let polys = self.get_polys();
+        let paths = self.get_paths(&polys);
+
+        let combined_paths = Self::get_combined_paths(paths);
+
+        let (offsets, internal_offsets) = Self::get_offsets(&combined_paths);
+
+        let points = self.get_points(combined_paths, offsets);
 
         for (points, color) in points.iter().zip(&self.colors) {
             let mut data = Data::new().move_to(points[0]);
@@ -405,8 +463,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                     pairs[i] = v;
                 }
                 if any_true {
-                    let x_pos = x * SCALE + SCALE / 2;
-                    let y_pos = y * SCALE + SCALE / 2;
+                    let (x_pos, y_pos) = self.get_circle_pos(x, y, &internal_offsets);
                     out = self.draw_circle(x_pos, y_pos, &pairs, out);
                 }
             }
@@ -414,7 +471,31 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
         out
     }
 
-    fn draw_circle(&self, cx: usize, cy: usize, values: &[bool; N], out: SVG) -> SVG {
+    fn get_circle_pos(
+        &self,
+        x: usize,
+        y: usize,
+        internal_offsets: &[Vec<InnerOffset>],
+    ) -> (f64, f64) {
+        match self.circle_placement {
+            CirclePlacement::Basic => (
+                ((x * SCALE) as f64) + (SCALE as f64) / 2.0,
+                ((y * SCALE) as f64) + (SCALE as f64) / 2.0,
+            ),
+            CirclePlacement::SquareCenter => {
+                let inner_offset = internal_offsets[y][x];
+                let x_offset = (inner_offset.left as f64 - inner_offset.right as f64) / 2.0;
+                let y_offset = (inner_offset.above as f64 - inner_offset.below as f64) / 2.0;
+
+                (
+                    ((x * SCALE) as f64) + x_offset + (SCALE as f64) / 2.0,
+                    ((y * SCALE) as f64) + y_offset + (SCALE as f64) / 2.0,
+                )
+            }
+        }
+    }
+
+    fn draw_circle(&self, cx: f64, cy: f64, values: &[bool; N], out: SVG) -> SVG {
         enum Coalition {
             Below,
             Edge,

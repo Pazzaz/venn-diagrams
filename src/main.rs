@@ -1,4 +1,7 @@
-use venn_diagrams::{diagram::Diagram, venn};
+use venn_diagrams::{
+    diagram::{CirclePlacement, Diagram},
+    venn,
+};
 
 fn main() {
     let colors_s =
@@ -13,6 +16,7 @@ fn main() {
         opacity_below: 0.3,
         opacity_edge: 1.0,
         opacity_above: 0.3,
+        circle_placement: CirclePlacement::SquareCenter,
     };
 
     let svg = diagram.to_svg();
