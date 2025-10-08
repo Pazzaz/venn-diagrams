@@ -7,6 +7,12 @@ pub struct Diagram<const N: usize, const X: usize, const Y: usize> {
     pub opacity_edge: f64,
     pub opacity_above: f64,
     pub circle_placement: CirclePlacement,
+    pub corner_style: CornerStyle,
+}
+
+pub enum CornerStyle {
+    Straight,
+    Smooth,
 }
 
 pub enum CirclePlacement {
@@ -37,11 +43,12 @@ struct InnerOffset {
     left: i32,
 }
 
-const CORNER_OFFSET: i32 = 2;
+const CORNER_OFFSET: i32 = 3;
 
 struct Corner {
     from: (i32, i32),
     to: (i32, i32),
+    short_sweep: bool,
 }
 
 impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
@@ -439,7 +446,26 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                     Direction::Down => (meet_x, meet_y + CORNER_OFFSET),
                 };
 
-                let corner = Corner { from, to };
+                let short_sweep = match (e1.direction(), e2.direction()) {
+                    (Direction::Left, Direction::Up) => true,
+                    (Direction::Left, Direction::Down) => false,
+                    (Direction::Right, Direction::Up) => false,
+                    (Direction::Right, Direction::Down) => true,
+                    (Direction::Up, Direction::Left) => false,
+                    (Direction::Up, Direction::Right) => true,
+                    (Direction::Down, Direction::Left) => true,
+                    (Direction::Down, Direction::Right) => false,
+                    (Direction::Left, Direction::Left)
+                    | (Direction::Left, Direction::Right)
+                    | (Direction::Right, Direction::Left)
+                    | (Direction::Right, Direction::Right)
+                    | (Direction::Up, Direction::Up)
+                    | (Direction::Up, Direction::Down)
+                    | (Direction::Down, Direction::Up)
+                    | (Direction::Down, Direction::Down) => unreachable!(),
+                };
+
+                let corner = Corner { from, to, short_sweep };
                 out.push(corner);
             }
             points.push(out);
@@ -475,38 +501,69 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
 
         let points = self.get_points(combined_paths, offsets);
 
-        for (points, color) in points.iter().zip(&self.colors) {
-            let first = &points[0];
-            let mut data = Data::new().move_to(first.from);
-            data = data.line_to(first.to);
+        let mut paths = Vec::new();
 
-            for corner in &points[1..] {
-                data = data.line_to(corner.from).line_to(corner.to);
+        match self.corner_style {
+            CornerStyle::Straight => {
+                for corners in &points {
+                    let first = &corners[0];
+                    let mut data = Data::new().move_to(first.from);
+                    data = data.line_to(first.to);
+
+                    for corner in &corners[1..] {
+                        data = data.line_to(corner.from).line_to(corner.to);
+                    }
+                    data = data.close();
+                    let path = Path::new().set("d", data);
+                    paths.push(path);
+                }
             }
-            data = data.close();
-            let path = Path::new()
+            CornerStyle::Smooth => {
+                for corners in &points {
+                    let first = &corners[0];
+                    let mut data = Data::new().move_to(first.from);
+                    let short_sweep = if first.short_sweep { 1 } else { 0 };
+                    let params =
+                        (CORNER_OFFSET, CORNER_OFFSET, 0, 0, short_sweep, first.to.0, first.to.1);
+                    data = data.elliptical_arc_to(params);
+
+                    for corner in &corners[1..] {
+                        data = data.line_to(corner.from);
+                        let short_sweep = if corner.short_sweep { 1 } else { 0 };
+                        let params = (
+                            CORNER_OFFSET,
+                            CORNER_OFFSET,
+                            0,
+                            0,
+                            short_sweep,
+                            corner.to.0,
+                            corner.to.1,
+                        );
+                        data = data.elliptical_arc_to(params);
+                    }
+                    data = data.close();
+                    let path = Path::new().set("d", data);
+                    paths.push(path);
+                }
+            }
+        }
+
+        for (path, color) in paths.iter().zip(&self.colors) {
+            let path = path
+                .clone()
                 .set("fill", color.clone())
                 .set("fill-opacity", 0.2)
                 .set("stroke", "none")
-                .set("stroke-width", 1)
-                .set("d", data);
+                .set("stroke-width", 1);
             out = out.add(path);
         }
 
-        for (points, color) in points.iter().zip(&self.colors) {
-            let first = &points[0];
-            let mut data = Data::new().move_to(first.from);
-            data = data.line_to(first.to);
-
-            for corner in &points[1..] {
-                data = data.line_to(corner.from).line_to(corner.to);
-            }
-            data = data.close();
-            let path = Path::new()
+        for (path, color) in paths.iter().zip(&self.colors) {
+            let path = path
+                .clone()
                 .set("fill", "none")
                 .set("stroke", color.clone())
-                .set("stroke-width", 1)
-                .set("d", data);
+                .set("stroke-width", 1);
             out = out.add(path);
         }
 

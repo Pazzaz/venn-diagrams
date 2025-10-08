@@ -1,5 +1,5 @@
 use venn_diagrams::{
-    diagram::{CirclePlacement, Diagram},
+    diagram::{CirclePlacement, CornerStyle, Diagram},
     venn,
 };
 
@@ -17,6 +17,7 @@ fn main() {
         opacity_edge: 1.0,
         opacity_above: 0.3,
         circle_placement: CirclePlacement::SquareCenter,
+        corner_style: CornerStyle::Smooth,
     };
 
     let svg = diagram.to_svg();
