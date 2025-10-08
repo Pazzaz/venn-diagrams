@@ -27,6 +27,7 @@ use super::{
     Polyomino,
     direction::{DirectedEdge, Edge},
 };
+use crate::direction::Direction;
 
 #[derive(Debug, Default, Clone, Copy)]
 struct InnerOffset {
@@ -34,6 +35,13 @@ struct InnerOffset {
     below: i32,
     right: i32,
     left: i32,
+}
+
+const CORNER_OFFSET: i32 = 2;
+
+struct Corner {
+    from: (i32, i32),
+    to: (i32, i32),
 }
 
 impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
@@ -393,9 +401,9 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
         &self,
         combined_paths: Vec<Vec<DirectedEdge>>,
         offsets: Vec<Vec<i32>>,
-    ) -> Vec<Vec<(i32, i32)>> {
+    ) -> Vec<Vec<Corner>> {
         // We will convert to just points, with offsets applied
-        let mut points: Vec<Vec<(i32, i32)>> = Vec::new();
+        let mut points: Vec<Vec<Corner>> = Vec::new();
         for (path_edges, path_offsets) in combined_paths.into_iter().zip(offsets) {
             let mut out = Vec::new();
             let last_edge = path_edges.last().unwrap();
@@ -413,7 +421,26 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                     DirectedEdge::Horizontal { .. } => (o2, o1),
                     DirectedEdge::Vertical { .. } => (o1, o2),
                 };
-                out.push(((shared_x * SCALE) as i32 + ox, (shared_y * SCALE) as i32 + oy));
+
+                let meet_x = (shared_x * SCALE) as i32 + ox;
+                let meet_y = (shared_y * SCALE) as i32 + oy;
+
+                let from = match e1.direction() {
+                    Direction::Left => (meet_x + CORNER_OFFSET, meet_y),
+                    Direction::Right => (meet_x - CORNER_OFFSET, meet_y),
+                    Direction::Up => (meet_x, meet_y + CORNER_OFFSET),
+                    Direction::Down => (meet_x, meet_y - CORNER_OFFSET),
+                };
+
+                let to = match e2.direction() {
+                    Direction::Left => (meet_x - CORNER_OFFSET, meet_y),
+                    Direction::Right => (meet_x + CORNER_OFFSET, meet_y),
+                    Direction::Up => (meet_x, meet_y - CORNER_OFFSET),
+                    Direction::Down => (meet_x, meet_y + CORNER_OFFSET),
+                };
+
+                let corner = Corner { from, to };
+                out.push(corner);
             }
             points.push(out);
         }
@@ -449,9 +476,12 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
         let points = self.get_points(combined_paths, offsets);
 
         for (points, color) in points.iter().zip(&self.colors) {
-            let mut data = Data::new().move_to(points[0]);
-            for coord in &points[1..] {
-                data = data.line_to(*coord);
+            let first = &points[0];
+            let mut data = Data::new().move_to(first.from);
+            data = data.line_to(first.to);
+
+            for corner in &points[1..] {
+                data = data.line_to(corner.from).line_to(corner.to);
             }
             data = data.close();
             let path = Path::new()
@@ -464,9 +494,12 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
         }
 
         for (points, color) in points.iter().zip(&self.colors) {
-            let mut data = Data::new().move_to(points[0]);
-            for coord in &points[1..] {
-                data = data.line_to(*coord);
+            let first = &points[0];
+            let mut data = Data::new().move_to(first.from);
+            data = data.line_to(first.to);
+
+            for corner in &points[1..] {
+                data = data.line_to(corner.from).line_to(corner.to);
             }
             data = data.close();
             let path = Path::new()

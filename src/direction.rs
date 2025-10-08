@@ -38,6 +38,13 @@ pub enum DirectedEdge {
     Vertical { x: usize, y_from: usize, y_to: usize },
 }
 
+pub enum Direction {
+    Left,
+    Right,
+    Up,
+    Down,
+}
+
 impl DirectedEdge {
     pub fn from_endpoints(
         (x_from, y_from): (usize, usize),
@@ -49,6 +56,25 @@ impl DirectedEdge {
             Some(DirectedEdge::Horizontal { y: y_from, x_from, x_to })
         } else {
             None
+        }
+    }
+
+    pub fn direction(&self) -> Direction {
+        match self {
+            DirectedEdge::Horizontal { x_from, x_to, .. } => {
+                if x_from < x_to {
+                    Direction::Right
+                } else {
+                    Direction::Left
+                }
+            }
+            DirectedEdge::Vertical { y_from, y_to, .. } => {
+                if y_from < y_to {
+                    Direction::Down
+                } else {
+                    Direction::Up
+                }
+            }
         }
     }
 
