@@ -22,7 +22,7 @@ pub enum CirclePlacement {
 
 const SCALE: usize = 20;
 
-use std::{mem, vec};
+use std::{cmp::Ordering, mem, vec};
 
 use svg::{
     Document,
@@ -75,20 +75,50 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
         }
 
         impl Put {
-            fn choose_smallest(a: Option<usize>, b: Option<usize>) -> Put {
+            fn choose_smallest(a: Option<usize>, b: Option<usize>, prioritize_right: bool) -> Put {
                 match (a, b) {
                     (None, None) => unreachable!(),
                     (None, Some(pr)) => Put::Right(pr),
                     (Some(pl), None) => Put::Left(pl),
-                    (Some(pl), Some(pr)) => {
-                        if pl < pr {
-                            Put::Left(pl)
-                        } else {
+                    (Some(pl), Some(mut pr)) => {
+                        if pr == 0 {
                             Put::Right(pr)
+                        } else {
+                            pr -= 1;
+                            match pl.cmp(&pr) {
+                                Ordering::Less => Put::Left(pl),
+                                Ordering::Equal => {
+                                    if prioritize_right {
+                                        Put::Right(pr + 1)
+                                    } else {
+                                        Put::Left(pl)
+                                    }
+                                }
+                                Ordering::Greater => Put::Right(pr + 1),
+                            }
                         }
                     }
                 }
             }
+        }
+
+        let mut directions: Vec<Vec<Option<Direction>>> = Vec::new();
+
+        for path in combined_paths {
+            let mut path_directions: Vec<Option<Direction>> = Vec::new();
+            let mut edges_extra: Vec<Direction> = Vec::with_capacity(path.len() + 2);
+            edges_extra.push(path.last().unwrap().direction());
+            edges_extra.extend(path.iter().map(|e| e.direction()));
+            edges_extra.push(path.last().unwrap().direction());
+
+            for window in edges_extra.windows(3) {
+                if let [e0, _, e2] = window {
+                    let res = if *e0 == e2.opposite() { Some(*e2) } else { None };
+                    path_directions.push(res);
+                }
+            }
+
+            directions.push(path_directions);
         }
 
         for i in 0..=X {
@@ -107,6 +137,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
 
             for &(p_i, e_i) in column {
                 let edge = &combined_paths[p_i][e_i];
+                let edge_direction = directions[p_i][e_i];
                 if let &DirectedEdge::Vertical { mut y_from, mut y_to, .. } = edge {
                     if y_to < y_from {
                         mem::swap(&mut y_from, &mut y_to);
@@ -117,7 +148,20 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                     let first_possible_right =
                         (0..l).position(|x| !(y_from..y_to).any(|i| occupied_right[i][x]));
 
-                    let put = Put::choose_smallest(first_possible_left, first_possible_right);
+                    let prioritize_right = match edge_direction {
+                        Some(d) => match d {
+                            Direction::Left => false,
+                            Direction::Right => true,
+                            Direction::Up | Direction::Down => unreachable!(),
+                        },
+                        None => true,
+                    };
+
+                    let put = Put::choose_smallest(
+                        first_possible_left,
+                        first_possible_right,
+                        prioritize_right,
+                    );
 
                     match put {
                         Put::Left(j) => {
@@ -185,6 +229,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
 
             for &(p_i, e_i) in row {
                 let edge = &combined_paths[p_i][e_i];
+                let edge_direction = directions[p_i][e_i];
                 if let &DirectedEdge::Horizontal { mut x_from, mut x_to, .. } = edge {
                     if x_to < x_from {
                         mem::swap(&mut x_from, &mut x_to);
@@ -195,7 +240,20 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                     let first_possible_right =
                         (0..l).position(|x| !(x_from..x_to).any(|i| occupied_right[i][x]));
 
-                    let put = Put::choose_smallest(first_possible_left, first_possible_right);
+                    let prioritize_right = match edge_direction {
+                        Some(d) => match d {
+                            Direction::Up => false,
+                            Direction::Down => true,
+                            Direction::Left | Direction::Right => unreachable!(),
+                        },
+                        None => true,
+                    };
+
+                    let put = Put::choose_smallest(
+                        first_possible_left,
+                        first_possible_right,
+                        prioritize_right,
+                    );
 
                     match put {
                         Put::Left(j) => {

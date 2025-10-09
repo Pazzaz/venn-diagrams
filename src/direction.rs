@@ -38,11 +38,23 @@ pub enum DirectedEdge {
     Vertical { x: usize, y_from: usize, y_to: usize },
 }
 
+#[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub enum Direction {
     Left,
     Right,
     Up,
     Down,
+}
+
+impl Direction {
+    pub fn opposite(&self) -> Direction {
+        match self {
+            Direction::Left => Direction::Right,
+            Direction::Right => Direction::Left,
+            Direction::Up => Direction::Down,
+            Direction::Down => Direction::Up,
+        }
+    }
 }
 
 impl DirectedEdge {
