@@ -26,7 +26,7 @@ use std::{cmp::Ordering, mem, vec};
 
 use svg::{
     Document,
-    node::element::{Circle, Group, Path, Rectangle, SVG, path::Data},
+    node::{Value, element::{Circle, Definitions, Element, Group, Mask, Path, Rectangle, SVG, path::Data}},
 };
 
 use super::{
@@ -542,14 +542,6 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             .set("width", format!("{}px", 2 * X * SCALE))
             .set("height", format!("{}px", 2 * Y * SCALE));
 
-        let rect = Rectangle::new()
-            .set("width", (X + 1) * SCALE)
-            .set("height", (Y + 1) * SCALE)
-            .set("x", -((SCALE / 2) as i32))
-            .set("y", -((SCALE / 2) as i32));
-
-        out = out.add(rect);
-
         let polys = self.get_polys();
         let paths = self.get_paths(&polys);
 
@@ -605,6 +597,25 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                 }
             }
         }
+        let mut mask = Mask::new().set("id", "background_mask");
+        for path in &paths {
+            let part = path.clone().set("fill", "white")
+                .set("stroke", "none");
+            mask = mask.add(part);
+        }
+
+        let defs = Definitions::new().add(mask);
+
+        out = out.add(defs);
+
+        let rect = Rectangle::new()
+            .set("width", (X + 1) * SCALE)
+            .set("height", (Y + 1) * SCALE)
+            .set("x", -((SCALE / 2) as i32))
+            .set("y", -((SCALE / 2) as i32))
+            .set("mask", "url(#background_mask)");
+
+        out = out.add(rect);
 
         for (path, color) in paths.iter().zip(&self.colors) {
             let path = path
