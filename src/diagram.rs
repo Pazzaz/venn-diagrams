@@ -26,7 +26,7 @@ use std::{cmp::Ordering, mem, vec};
 
 use svg::{
     Document,
-    node::{Value, element::{Circle, Definitions, Element, Group, Mask, Path, Rectangle, SVG, path::Data}},
+    node::element::{Circle, Definitions, Group, Mask, Path, Rectangle, SVG, path::Data},
 };
 
 use super::{
@@ -599,8 +599,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
         }
         let mut mask = Mask::new().set("id", "background_mask");
         for path in &paths {
-            let part = path.clone().set("fill", "white")
-                .set("stroke", "none");
+            let part = path.clone().set("fill", "white").set("stroke", "none");
             mask = mask.add(part);
         }
 
