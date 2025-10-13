@@ -51,6 +51,14 @@ struct Corner {
     short_sweep: bool,
 }
 
+impl Corner {
+    // Parameters which can be used to create an "elliptical_arc" in SVG
+    fn params(&self) -> (i32, i32, i32, i32, i32, i32, i32) {
+        let short_sweep = if self.short_sweep { 1 } else { 0 };
+        (CORNER_OFFSET, CORNER_OFFSET, 0, 0, short_sweep, self.to.0, self.to.1)
+    }
+}
+
 impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
     fn get_offsets(combined_paths: &[Vec<DirectedEdge>]) -> (Vec<Vec<i32>>, Vec<Vec<InnerOffset>>) {
         let mut offsets: Vec<Vec<i32>> =
@@ -552,25 +560,11 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             CornerStyle::Smooth => {
                 for corners in &points {
                     let first = &corners[0];
-                    let mut data = Data::new().move_to(first.from);
-                    let short_sweep = if first.short_sweep { 1 } else { 0 };
-                    let params =
-                        (CORNER_OFFSET, CORNER_OFFSET, 0, 0, short_sweep, first.to.0, first.to.1);
-                    data = data.elliptical_arc_to(params);
+                    let mut data =
+                        Data::new().move_to(first.from).elliptical_arc_to(first.params());
 
                     for corner in &corners[1..] {
-                        data = data.line_to(corner.from);
-                        let short_sweep = if corner.short_sweep { 1 } else { 0 };
-                        let params = (
-                            CORNER_OFFSET,
-                            CORNER_OFFSET,
-                            0,
-                            0,
-                            short_sweep,
-                            corner.to.0,
-                            corner.to.1,
-                        );
-                        data = data.elliptical_arc_to(params);
+                        data = data.line_to(corner.from).elliptical_arc_to(corner.params());
                     }
                     data = data.close();
                     let path = Path::new().set("d", data);
