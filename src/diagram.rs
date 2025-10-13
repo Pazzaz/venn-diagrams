@@ -136,9 +136,8 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
 
                     let prioritize_left = match edge_direction {
                         Some(Direction::Left) => true,
-                        Some(Direction::Right) => false,
+                        Some(Direction::Right) | None => false,
                         Some(Direction::Up | Direction::Down) => unreachable!(),
-                        None => false,
                     };
 
                     let left_dist = middle.abs_diff(first_possible_left);
@@ -224,9 +223,8 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
 
                     let prioritize_left = match edge_direction {
                         Some(Direction::Up) => true,
-                        Some(Direction::Down) => false,
+                        Some(Direction::Down) | None => false,
                         Some(Direction::Left | Direction::Right) => unreachable!(),
-                        None => false,
                     };
 
                     let left_dist = middle.abs_diff(first_possible_left);
