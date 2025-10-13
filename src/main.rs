@@ -1,5 +1,5 @@
 use venn_diagrams::{
-    diagram::{CirclePlacement, CornerStyle, Diagram},
+    diagram::{CircleConfig, CirclePlacement, CornerStyle, Diagram},
     venn,
 };
 
@@ -13,9 +13,9 @@ fn main() {
         values,
         colors,
         radius: 3.5,
-        opacity_below: 0.3,
-        opacity_edge: 1.0,
-        opacity_above: 0.3,
+        circle_below: CircleConfig::new(0.3, String::from("red")),
+        circle_edge: CircleConfig::new(1.0, String::from("white")),
+        circle_above: CircleConfig::new(0.3, String::from("green")),
         circle_placement: CirclePlacement::SquareCenter,
         corner_style: CornerStyle::Smooth,
     };

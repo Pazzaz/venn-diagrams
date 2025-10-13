@@ -3,11 +3,23 @@ pub struct Diagram<const N: usize, const X: usize, const Y: usize> {
     pub values: [f64; N],
     pub colors: [String; N],
     pub radius: f64,
-    pub opacity_below: f64,
-    pub opacity_edge: f64,
-    pub opacity_above: f64,
+    pub circle_below: CircleConfig,
+    pub circle_edge: CircleConfig,
+    pub circle_above: CircleConfig,
     pub circle_placement: CirclePlacement,
     pub corner_style: CornerStyle,
+}
+
+#[derive(Debug, Clone)]
+pub struct CircleConfig {
+    opacity: f64,
+    color: String,
+}
+
+impl CircleConfig {
+    pub fn new(opacity: f64, color: String) -> Self {
+        Self { opacity, color }
+    }
 }
 
 pub enum CornerStyle {
@@ -704,25 +716,15 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             .set("stroke", "white")
             .set("stroke-width", 0.5);
 
-        match coalition {
-            Coalition::Below => {
-                circle = circle.set("stroke", "red");
-                if self.opacity_below != 1.0 {
-                    group = group.set("opacity", self.opacity_below);
-                }
-            }
-            Coalition::Edge => {
-                circle = circle.set("stroke", "white");
-                if self.opacity_edge != 1.0 {
-                    group = group.set("opacity", self.opacity_edge);
-                }
-            }
-            Coalition::Above => {
-                circle = circle.set("stroke", "green");
-                if self.opacity_above != 1.0 {
-                    group = group.set("opacity", self.opacity_above);
-                }
-            }
+        let config: &CircleConfig = match coalition {
+            Coalition::Below => &self.circle_below,
+            Coalition::Edge => &self.circle_edge,
+            Coalition::Above => &self.circle_above,
+        };
+
+        if config.opacity != 1.0 {
+            circle = circle.set("stroke", config.color.as_str());
+            group = group.set("opacity", config.opacity);
         }
         group = group.add(circle);
 
