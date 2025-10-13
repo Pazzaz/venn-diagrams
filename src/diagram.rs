@@ -48,14 +48,14 @@ const CORNER_OFFSET: i32 = 3;
 struct Corner {
     from: (i32, i32),
     to: (i32, i32),
-    short_sweep: bool,
+    clockwise: bool,
 }
 
 impl Corner {
     // Parameters which can be used to create an "elliptical_arc" in SVG
     fn params(&self) -> (i32, i32, i32, i32, i32, i32, i32) {
-        let short_sweep = if self.short_sweep { 1 } else { 0 };
-        (CORNER_OFFSET, CORNER_OFFSET, 0, 0, short_sweep, self.to.0, self.to.1)
+        let clockwise = if self.clockwise { 1 } else { 0 };
+        (CORNER_OFFSET, CORNER_OFFSET, 0, 0, clockwise, self.to.0, self.to.1)
     }
 }
 
@@ -512,15 +512,15 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                     Direction::Down => (meet_x, meet_y + CORNER_OFFSET),
                 };
 
-                let short_sweep = match (e1.direction(), e2.direction()) {
-                    (Direction::Left, Direction::Up) => true,
-                    (Direction::Left, Direction::Down) => false,
-                    (Direction::Right, Direction::Up) => false,
-                    (Direction::Right, Direction::Down) => true,
-                    (Direction::Up, Direction::Left) => false,
-                    (Direction::Up, Direction::Right) => true,
-                    (Direction::Down, Direction::Left) => true,
-                    (Direction::Down, Direction::Right) => false,
+                let clockwise = match (e1.direction(), e2.direction()) {
+                    (Direction::Left, Direction::Down)
+                    | (Direction::Right, Direction::Up)
+                    | (Direction::Up, Direction::Left)
+                    | (Direction::Down, Direction::Right) => false,
+                    (Direction::Left, Direction::Up)
+                    | (Direction::Right, Direction::Down)
+                    | (Direction::Up, Direction::Right)
+                    | (Direction::Down, Direction::Left) => true,
                     (Direction::Left, Direction::Left)
                     | (Direction::Left, Direction::Right)
                     | (Direction::Right, Direction::Left)
@@ -531,7 +531,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                     | (Direction::Down, Direction::Down) => unreachable!(),
                 };
 
-                let corner = Corner { from, to, short_sweep };
+                let corner = Corner { from, to, clockwise };
                 out.push(corner);
             }
             points.push(out);
