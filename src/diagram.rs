@@ -721,9 +721,9 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             Coalition::Edge => &self.circle_edge,
             Coalition::Above => &self.circle_above,
         };
+        circle = circle.set("stroke", config.color.as_str());
 
         if config.opacity != 1.0 {
-            circle = circle.set("stroke", config.color.as_str());
             group = group.set("opacity", config.opacity);
         }
         group = group.add(circle);
