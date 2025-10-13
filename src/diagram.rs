@@ -76,39 +76,6 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             }
         }
 
-        enum Put {
-            Left(usize),
-            Right(usize),
-        }
-
-        impl Put {
-            fn choose_smallest(a: Option<usize>, b: Option<usize>, prioritize_right: bool) -> Put {
-                match (a, b) {
-                    (None, None) => unreachable!(),
-                    (None, Some(pr)) => Put::Right(pr),
-                    (Some(pl), None) => Put::Left(pl),
-                    (Some(pl), Some(mut pr)) => {
-                        if pr == 0 {
-                            Put::Right(pr)
-                        } else {
-                            pr -= 1;
-                            match pl.cmp(&pr) {
-                                Ordering::Less => Put::Left(pl),
-                                Ordering::Equal => {
-                                    if prioritize_right {
-                                        Put::Right(pr + 1)
-                                    } else {
-                                        Put::Left(pl)
-                                    }
-                                }
-                                Ordering::Greater => Put::Right(pr + 1),
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
         let mut directions: Vec<Vec<Option<Direction>>> = Vec::new();
 
         for path in combined_paths {
@@ -137,10 +104,10 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
 
             let column = &columns[i];
 
-            let l = column.len().div_ceil(2);
+            let l = column.len();
+            let middle = l / 2;
 
-            let mut occupied_left = vec![vec![false; l]; Y];
-            let mut occupied_right = vec![vec![false; l]; Y];
+            let mut occupied = vec![vec![false; l]; Y];
 
             for &(p_i, e_i) in column {
                 let edge = &combined_paths[p_i][e_i];
@@ -150,73 +117,68 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                         mem::swap(&mut y_from, &mut y_to);
                     }
                     debug_assert!(y_from < y_to);
-                    let first_possible_left =
-                        (0..l).position(|x| !(y_from..y_to).any(|i| occupied_left[i][x]));
-                    let first_possible_right =
-                        (0..l).position(|x| !(y_from..y_to).any(|i| occupied_right[i][x]));
-
-                    let prioritize_right = match edge_direction {
-                        Some(d) => match d {
-                            Direction::Left => false,
-                            Direction::Right => true,
-                            Direction::Up | Direction::Down => unreachable!(),
-                        },
-                        None => true,
-                    };
-
-                    let put = Put::choose_smallest(
-                        first_possible_left,
-                        first_possible_right,
-                        prioritize_right,
-                    );
-
-                    match put {
-                        Put::Left(j) => {
-                            for i in y_from..y_to {
-                                occupied_left[i][j] = true;
-                            }
-                            offsets[p_i][e_i] = -(j as i32) - 1;
-                        }
-                        Put::Right(j) => {
-                            for i in y_from..y_to {
-                                occupied_right[i][j] = true;
-                            }
-                            offsets[p_i][e_i] = j as i32;
+                    let mut first_possible_left = middle;
+                    while first_possible_left != 0 {
+                        if (y_from..y_to).any(|i| occupied[i][first_possible_left]) {
+                            first_possible_left -= 1;
+                        } else {
+                            break;
                         }
                     }
+                    let mut first_possible_right = middle;
+                    while first_possible_right != l {
+                        if (y_from..y_to).any(|i| occupied[i][first_possible_right]) {
+                            first_possible_right += 1;
+                        } else {
+                            break;
+                        }
+                    }
+
+                    let prioritize_left = match edge_direction {
+                        Some(Direction::Left) => true,
+                        Some(Direction::Right) => false,
+                        Some(Direction::Up | Direction::Down) => unreachable!(),
+                        None => false,
+                    };
+
+                    let left_dist = middle.abs_diff(first_possible_left);
+                    let right_dist = middle.abs_diff(first_possible_right);
+
+                    let choose_left = match left_dist.cmp(&right_dist) {
+                        Ordering::Less => true,
+                        Ordering::Equal => prioritize_left,
+                        Ordering::Greater => false,
+                    };
+
+                    let j = if choose_left { first_possible_left } else { first_possible_right };
+
+                    for i in y_from..y_to {
+                        occupied[i][j] = true;
+                    }
+                    offsets[p_i][e_i] = (j as i32) - middle as i32;
                 } else {
                     unreachable!();
                 }
             }
 
             for j in 0..Y {
-                let mut min_pos: i32 = i32::MAX;
-                let mut max_pos: i32 = i32::MIN;
+                let mut min_pos: usize = usize::MAX;
+                let mut max_pos: usize = usize::MIN;
                 for k in 0..l {
-                    if occupied_right[j][k] {
-                        let kk = k as i32;
-                        if kk < min_pos {
-                            min_pos = kk;
+                    if occupied[j][k] {
+                        if k < min_pos {
+                            min_pos = k;
                         }
-                        if kk > max_pos {
-                            max_pos = kk;
-                        }
-                    }
-                    if occupied_left[j][k] {
-                        let kk = -(k as i32) - 1;
-                        if kk < min_pos {
-                            min_pos = kk;
-                        }
-                        if kk > max_pos {
-                            max_pos = kk;
+                        if k > max_pos {
+                            max_pos = k;
                         }
                     }
                 }
                 if i != X {
-                    inner_offset[j][i].left = max_pos;
+                    inner_offset[j][i].left = (max_pos as i32) - middle as i32;
                 }
                 if i != 0 {
-                    inner_offset[j][i - 1].right = min_pos;
+                    inner_offset[j][i - 1].right = (min_pos as i32) - middle as i32;
                 }
             }
         }
@@ -229,10 +191,11 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             });
 
             let row = &rows[i];
-            let l = row.len().div_ceil(2);
 
-            let mut occupied_left = vec![vec![false; l]; X];
-            let mut occupied_right = vec![vec![false; l]; X];
+            let l = row.len();
+            let middle = l / 2;
+
+            let mut occupied = vec![vec![false; l]; X];
 
             for &(p_i, e_i) in row {
                 let edge = &combined_paths[p_i][e_i];
@@ -242,73 +205,68 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                         mem::swap(&mut x_from, &mut x_to);
                     }
                     debug_assert!(x_from < x_to);
-                    let first_possible_left =
-                        (0..l).position(|x| !(x_from..x_to).any(|i| occupied_left[i][x]));
-                    let first_possible_right =
-                        (0..l).position(|x| !(x_from..x_to).any(|i| occupied_right[i][x]));
-
-                    let prioritize_right = match edge_direction {
-                        Some(d) => match d {
-                            Direction::Up => false,
-                            Direction::Down => true,
-                            Direction::Left | Direction::Right => unreachable!(),
-                        },
-                        None => true,
-                    };
-
-                    let put = Put::choose_smallest(
-                        first_possible_left,
-                        first_possible_right,
-                        prioritize_right,
-                    );
-
-                    match put {
-                        Put::Left(j) => {
-                            for i in x_from..x_to {
-                                occupied_left[i][j] = true;
-                            }
-                            offsets[p_i][e_i] = -(j as i32) - 1;
-                        }
-                        Put::Right(j) => {
-                            for i in x_from..x_to {
-                                occupied_right[i][j] = true;
-                            }
-                            offsets[p_i][e_i] = j as i32;
+                    let mut first_possible_left = middle;
+                    while first_possible_left != 0 {
+                        if (x_from..x_to).any(|i| occupied[i][first_possible_left]) {
+                            first_possible_left -= 1;
+                        } else {
+                            break;
                         }
                     }
+                    let mut first_possible_right = middle;
+                    while first_possible_right != l {
+                        if (x_from..x_to).any(|i| occupied[i][first_possible_right]) {
+                            first_possible_right += 1;
+                        } else {
+                            break;
+                        }
+                    }
+
+                    let prioritize_left = match edge_direction {
+                        Some(Direction::Up) => true,
+                        Some(Direction::Down) => false,
+                        Some(Direction::Left | Direction::Right) => unreachable!(),
+                        None => false,
+                    };
+
+                    let left_dist = middle.abs_diff(first_possible_left);
+                    let right_dist = middle.abs_diff(first_possible_right);
+
+                    let choose_left = match left_dist.cmp(&right_dist) {
+                        Ordering::Less => true,
+                        Ordering::Equal => prioritize_left,
+                        Ordering::Greater => false,
+                    };
+
+                    let j = if choose_left { first_possible_left } else { first_possible_right };
+
+                    for i in x_from..x_to {
+                        occupied[i][j] = true;
+                    }
+                    offsets[p_i][e_i] = (j as i32) - middle as i32;
                 } else {
                     unreachable!();
                 }
             }
 
             for j in 0..X {
-                let mut min_pos: i32 = i32::MAX;
-                let mut max_pos: i32 = i32::MIN;
+                let mut min_pos: usize = usize::MAX;
+                let mut max_pos: usize = usize::MIN;
                 for k in 0..l {
-                    if occupied_right[j][k] {
-                        let kk = k as i32;
-                        if kk < min_pos {
-                            min_pos = kk;
+                    if occupied[j][k] {
+                        if k < min_pos {
+                            min_pos = k;
                         }
-                        if kk > max_pos {
-                            max_pos = kk;
-                        }
-                    }
-                    if occupied_left[j][k] {
-                        let kk = -(k as i32) - 1;
-                        if kk < min_pos {
-                            min_pos = kk;
-                        }
-                        if kk > max_pos {
-                            max_pos = kk;
+                        if k > max_pos {
+                            max_pos = k;
                         }
                     }
                 }
                 if i != Y {
-                    inner_offset[i][j].above = max_pos;
+                    inner_offset[i][j].above = (max_pos as i32) - middle as i32;
                 }
                 if i != 0 {
-                    inner_offset[i - 1][j].below = min_pos;
+                    inner_offset[i - 1][j].below = (min_pos as i32) - middle as i32;
                 }
             }
         }
