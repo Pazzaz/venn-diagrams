@@ -111,24 +111,6 @@ impl DirectedEdge {
         }
     }
 
-    pub fn combine(&self, other: &Edge) -> Option<DirectedEdge> {
-        let from = self.from();
-        let to = self.to();
-
-        let (o1, o2) = other.endpoints();
-        if o1 == from {
-            Self::from_endpoints(o2, to)
-        } else if o1 == to {
-            Self::from_endpoints(from, o2)
-        } else if o2 == from {
-            Self::from_endpoints(o1, to)
-        } else if o2 == to {
-            Self::from_endpoints(from, o1)
-        } else {
-            None
-        }
-    }
-
     pub fn combine_directed(&self, other: &DirectedEdge) -> Option<DirectedEdge> {
         let from1 = self.from();
         let to1 = self.to();
