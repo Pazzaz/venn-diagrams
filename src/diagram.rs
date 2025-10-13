@@ -559,16 +559,18 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             }
             CornerStyle::Smooth => {
                 for corners in &points {
-                    let first = &corners[0];
-                    let mut data =
-                        Data::new().move_to(first.from).elliptical_arc_to(first.params());
-
-                    for corner in &corners[1..] {
-                        data = data.line_to(corner.from).elliptical_arc_to(corner.params());
+                    if let Some((first, rest)) = corners.split_first() {
+                        let mut data =
+                            Data::new().move_to(first.from).elliptical_arc_to(first.params());
+                        for corner in rest {
+                            data = data.line_to(corner.from).elliptical_arc_to(corner.params());
+                        }
+                        data = data.close();
+                        let path = Path::new().set("d", data);
+                        paths.push(path);
+                    } else {
+                        unreachable!();
                     }
-                    data = data.close();
-                    let path = Path::new().set("d", data);
-                    paths.push(path);
                 }
             }
         }
