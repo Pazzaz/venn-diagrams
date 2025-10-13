@@ -54,7 +54,7 @@ struct Corner {
 impl Corner {
     // Parameters which can be used to create an "elliptical_arc" in SVG
     fn params(&self) -> (i32, i32, i32, i32, i32, i32, i32) {
-        (CORNER_OFFSET, CORNER_OFFSET, 0, 0, self.clockwise as i32, self.to.0, self.to.1)
+        (CORNER_OFFSET, CORNER_OFFSET, 0, 0, i32::from(self.clockwise), self.to.0, self.to.1)
     }
 }
 
@@ -115,7 +115,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             let mut path_directions: Vec<Option<Direction>> = Vec::new();
             let mut edges_extra: Vec<Direction> = Vec::with_capacity(path.len() + 2);
             edges_extra.push(path.last().unwrap().direction());
-            edges_extra.extend(path.iter().map(|e| e.direction()));
+            edges_extra.extend(path.iter().map(DirectedEdge::direction));
             edges_extra.push(path.last().unwrap().direction());
 
             for window in edges_extra.windows(3) {
@@ -323,13 +323,10 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             let mut current: Option<DirectedEdge> = None;
             for edge in path {
                 current = match current {
-                    Some(current_edge) => match current_edge.combine_directed(&edge) {
-                        Some(combined_edge) => Some(combined_edge),
-                        None => {
-                            out.push(current_edge);
-                            Some(edge)
-                        }
-                    },
+                    Some(current_edge) => current_edge.combine_directed(&edge).or_else(|| {
+                        out.push(current_edge);
+                        Some(edge)
+                    }),
                     None => Some(edge),
                 };
             }
@@ -338,7 +335,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                 if let Some(combined) = out[0].combine_directed(&current) {
                     out[0] = combined;
                 } else {
-                    out.push(current)
+                    out.push(current);
                 }
             }
 
@@ -347,7 +344,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
         combined_paths
     }
 
-    fn get_paths(&self, polys: &[Vec<Edge>]) -> Vec<Vec<DirectedEdge>> {
+    fn get_paths(polys: &[Vec<Edge>]) -> Vec<Vec<DirectedEdge>> {
         let mut paths: Vec<Vec<DirectedEdge>> = Vec::new();
 
         for edges in polys {
@@ -470,7 +467,6 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
     }
 
     fn get_points(
-        &self,
         combined_paths: Vec<Vec<DirectedEdge>>,
         offsets: Vec<Vec<i32>>,
     ) -> Vec<Vec<Corner>> {
@@ -520,14 +516,10 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                     | (Direction::Right, Direction::Down)
                     | (Direction::Up, Direction::Right)
                     | (Direction::Down, Direction::Left) => true,
-                    (Direction::Left, Direction::Left)
-                    | (Direction::Left, Direction::Right)
-                    | (Direction::Right, Direction::Left)
-                    | (Direction::Right, Direction::Right)
-                    | (Direction::Up, Direction::Up)
-                    | (Direction::Up, Direction::Down)
-                    | (Direction::Down, Direction::Up)
-                    | (Direction::Down, Direction::Down) => unreachable!(),
+                    (Direction::Left | Direction::Right, Direction::Left | Direction::Right)
+                    | (Direction::Up | Direction::Down, Direction::Up | Direction::Down) => {
+                        unreachable!()
+                    }
                 };
 
                 let corner = Corner { from, to, clockwise };
@@ -577,16 +569,17 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
         paths
     }
 
+    #[must_use]
     pub fn to_svg(&self) -> SVG {
         // First we do calculations
         let polys = self.get_polys();
-        let paths = self.get_paths(&polys);
+        let paths = Self::get_paths(&polys);
 
         let combined_paths = Self::get_combined_paths(paths);
 
         let (offsets, internal_offsets) = Self::get_offsets(&combined_paths);
 
-        let points = self.get_points(combined_paths, offsets);
+        let points = Self::get_points(combined_paths, offsets);
 
         let paths = self.get_rounded_paths(points);
 
@@ -680,8 +673,8 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                 let left_x = cx + internal_offset.left as f64;
                 let right_x = cx + whole + internal_offset.right as f64;
 
-                let cy = (above_y + below_y) / 2.0;
-                let cx = (left_x + right_x) / 2.0;
+                let cy = f64::midpoint(above_y, below_y);
+                let cx = f64::midpoint(left_x, right_x);
                 (cx, cy)
             }
         }
@@ -696,7 +689,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
 
         let r = self.radius;
         let c = std::f64::consts::TAU * r;
-        let mut group = Group::new().set("transform", format!("rotate(-90 {} {})", cx, cy));
+        let mut group = Group::new().set("transform", format!("rotate(-90 {cx} {cy})"));
         let mut total: f64 = 0.0;
         for i in 0..N {
             if !values[i] {
