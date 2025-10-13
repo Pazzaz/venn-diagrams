@@ -54,8 +54,7 @@ struct Corner {
 impl Corner {
     // Parameters which can be used to create an "elliptical_arc" in SVG
     fn params(&self) -> (i32, i32, i32, i32, i32, i32, i32) {
-        let clockwise = if self.clockwise { 1 } else { 0 };
-        (CORNER_OFFSET, CORNER_OFFSET, 0, 0, clockwise, self.to.0, self.to.1)
+        (CORNER_OFFSET, CORNER_OFFSET, 0, 0, self.clockwise as i32, self.to.0, self.to.1)
     }
 }
 
