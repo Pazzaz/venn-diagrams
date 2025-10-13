@@ -531,26 +531,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
         points
     }
 
-    pub fn to_svg(&self) -> SVG {
-        let min_x = -((SCALE / 2) as i32);
-        let max_x = (X + 1) * SCALE;
-
-        let min_y = 0;
-        let max_y = Y * SCALE;
-        let mut out = Document::new()
-            .set("viewBox", (min_x, min_y, max_x, max_y))
-            .set("width", format!("{}px", 2 * X * SCALE))
-            .set("height", format!("{}px", 2 * Y * SCALE));
-
-        let polys = self.get_polys();
-        let paths = self.get_paths(&polys);
-
-        let combined_paths = Self::get_combined_paths(paths);
-
-        let (offsets, internal_offsets) = Self::get_offsets(&combined_paths);
-
-        let points = self.get_points(combined_paths, offsets);
-
+    fn get_rounded_paths(&self, points: Vec<Vec<Corner>>) -> Vec<Path> {
         let mut paths = Vec::new();
 
         match self.corner_style {
@@ -597,6 +578,34 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                 }
             }
         }
+
+        paths
+    }
+
+    pub fn to_svg(&self) -> SVG {
+        // First we do calculations
+        let polys = self.get_polys();
+        let paths = self.get_paths(&polys);
+
+        let combined_paths = Self::get_combined_paths(paths);
+
+        let (offsets, internal_offsets) = Self::get_offsets(&combined_paths);
+
+        let points = self.get_points(combined_paths, offsets);
+
+        let paths = self.get_rounded_paths(points);
+
+        // Then we create the svg
+        let min_x = -((SCALE / 2) as i32);
+        let max_x = (X + 1) * SCALE;
+
+        let min_y = 0;
+        let max_y = Y * SCALE;
+        let mut out = Document::new()
+            .set("viewBox", (min_x, min_y, max_x, max_y))
+            .set("width", format!("{}px", 2 * X * SCALE))
+            .set("height", format!("{}px", 2 * Y * SCALE));
+
         let mut mask = Mask::new().set("id", "background_mask");
         for path in &paths {
             let part = path.clone().set("fill", "white").set("stroke", "none");
