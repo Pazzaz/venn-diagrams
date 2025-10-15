@@ -55,12 +55,12 @@ impl<const N: usize, const X: usize, const Y: usize> ConstVennDiagram<N, X, Y> {
                     let mut y2 = 0;
                     while y2 != Y {
                         let eq_coord = x1 == x2 && y1 == y2;
-                        let all_false_1 = empty_at(&self.polyominos, x1, y1);
-                        let all_false_2 = empty_at(&self.polyominos, x2, y2);
+                        let all_false_1 = self.empty_at(x1, y1);
+                        let all_false_2 = self.empty_at(x2, y2);
                         if !eq_coord
                             && !all_false_1
                             && !all_false_2
-                            && !different_at(&self.polyominos, x1, y1, x2, y2)
+                            && !self.different_at(x1, y1, x2, y2)
                         {
                             return false;
                         }
@@ -108,41 +108,31 @@ impl<const N: usize, const X: usize, const Y: usize> ConstVennDiagram<N, X, Y> {
         }
         ConstVennDiagram::new(out)
     }
-}
 
-const fn empty_at<const N: usize, const X: usize, const Y: usize>(
-    polys: &[ConstPolyomino<X, Y>; N],
-    x: usize,
-    y: usize,
-) -> bool {
-    let mut i = 0;
-    while i != N {
-        let p2 = polys[i].values[y][x];
-        if p2 {
-            return false;
+    const fn empty_at(&self, x: usize, y: usize) -> bool {
+        let mut i = 0;
+        while i != N {
+            let p2 = self.polyominos[i].values[y][x];
+            if p2 {
+                return false;
+            }
+            i += 1;
         }
-        i += 1;
+        true
     }
-    true
-}
 
-const fn different_at<const N: usize, const X: usize, const Y: usize>(
-    polys: &[ConstPolyomino<X, Y>; N],
-    x1: usize,
-    y1: usize,
-    x2: usize,
-    y2: usize,
-) -> bool {
-    let mut i = 0;
-    while i != N {
-        let p1 = polys[i].values[y1][x1];
-        let p2 = polys[i].values[y2][x2];
-        if p1 != p2 {
-            return true;
+    const fn different_at(&self, x1: usize, y1: usize, x2: usize, y2: usize) -> bool {
+        let mut i = 0;
+        while i != N {
+            let p1 = self.polyominos[i].values[y1][x1];
+            let p2 = self.polyominos[i].values[y2][x2];
+            if p1 != p2 {
+                return true;
+            }
+            i += 1;
         }
-        i += 1;
+        false
     }
-    false
 }
 
 #[derive(Debug, Clone)]
