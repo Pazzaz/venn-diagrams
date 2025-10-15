@@ -1,7 +1,6 @@
-use super::to_polymonio_2;
 use crate::diagram::ConstVennDiagram;
 
-pub const SIX: ConstVennDiagram<6, 11, 11> = to_polymonio_2(GRIDS);
+pub const SIX: ConstVennDiagram<6, 11, 11> = ConstVennDiagram::from_binary_str(GRIDS);
 
 #[rustfmt::skip]
 const GRIDS: [[&str; 11]; 6] = [

@@ -75,6 +75,17 @@ impl<const N: usize, const X: usize, const Y: usize> ConstVennDiagram<N, X, Y> {
 
         true
     }
+
+    pub const fn from_binary_str(grids: [[&str; Y]; N]) -> ConstVennDiagram<N, X, Y> {
+        let mut out = [ConstPolyomino::empty(); N];
+        let mut i = 0;
+        while i != N {
+            out[i] = ConstPolyomino::from_binary_str(grids[i]);
+            i += 1;
+        }
+
+        ConstVennDiagram::new(out)
+    }
 }
 
 const fn empty_at<const N: usize, const X: usize, const Y: usize>(
@@ -143,11 +154,8 @@ use svg::{
     node::element::{Circle, Definitions, Group, Mask, Path, Rectangle, SVG, path::Data},
 };
 
-use super::{
-    ConstPolyomino,
-    direction::{DirectedEdge, Edge},
-};
-use crate::direction::Direction;
+use super::direction::{DirectedEdge, Edge};
+use crate::{direction::Direction, polyomino::ConstPolyomino};
 
 #[derive(Debug, Default, Clone, Copy)]
 struct InnerOffset {

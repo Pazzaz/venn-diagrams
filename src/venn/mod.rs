@@ -1,4 +1,4 @@
-use crate::{ConstPolyomino, diagram::ConstVennDiagram};
+use crate::{diagram::ConstVennDiagram, polyomino::ConstPolyomino};
 
 mod d2;
 mod d3;
@@ -35,38 +35,5 @@ const fn to_polymonio<const N: usize, const X: usize, const Y: usize>(
         }
         y += 1;
     }
-    ConstVennDiagram::new(out)
-}
-
-const fn grid_to_polyomino<const X: usize, const Y: usize>(
-    grid: [&str; Y],
-) -> ConstPolyomino<X, Y> {
-    let mut out = ConstPolyomino::empty();
-
-    let mut y = 0;
-    while y != Y {
-        let row = grid[y].as_bytes();
-        let mut x = 0;
-        while x != X {
-            if row[x] == b'1' {
-                out.values[y][x] = true;
-            }
-            x += 1;
-        }
-        y += 1;
-    }
-    out
-}
-
-const fn to_polymonio_2<const N: usize, const X: usize, const Y: usize>(
-    grids: [[&str; Y]; N],
-) -> ConstVennDiagram<N, X, Y> {
-    let mut out = [ConstPolyomino::empty(); N];
-    let mut i = 0;
-    while i != N {
-        out[i] = grid_to_polyomino(grids[i]);
-        i += 1;
-    }
-
     ConstVennDiagram::new(out)
 }
