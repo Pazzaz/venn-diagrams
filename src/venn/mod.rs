@@ -1,4 +1,4 @@
-use crate::Polyomino;
+use crate::ConstPolyomino;
 
 mod d2;
 mod d3;
@@ -16,19 +16,19 @@ pub use d8::EIGHT;
 
 // TODO: Can we check connectivity too?
 const fn check_diagram<const N: usize, const X: usize, const Y: usize>(
-    parts: [Polyomino<X, Y>; N],
+    parts: [ConstPolyomino<X, Y>; N],
 ) -> bool {
     // We check that each group is the right size
     let count_goal: u64 = 1 << (N - 1);
     let mut i = 0;
     while i != N {
         let mut count = 0;
-        let part = parts[i];
+        let part = &parts[i];
         let mut x = 0;
         while x != X {
             let mut y = 0;
             while y != Y {
-                if part[y][x] {
+                if part.values[y][x] {
                     count += 1;
                 }
                 y += 1;
@@ -75,8 +75,8 @@ const fn check_diagram<const N: usize, const X: usize, const Y: usize>(
 
 const fn to_polymonio<const N: usize, const X: usize, const Y: usize>(
     boxes: [[&str; X]; Y],
-) -> [Polyomino<X, Y>; N] {
-    let mut out = [[[false; X]; Y]; N];
+) -> [ConstPolyomino<X, Y>; N] {
+    let mut out = [ConstPolyomino::empty(); N];
     let mut y = 0;
     while y != Y {
         let mut x = 0;
@@ -87,7 +87,7 @@ const fn to_polymonio<const N: usize, const X: usize, const Y: usize>(
                 let c = s[c_i];
 
                 let p = c - b'A';
-                out[p as usize][y][x] = true;
+                out[p as usize].values[y][x] = true;
                 c_i += 1;
             }
             x += 1;
@@ -97,8 +97,8 @@ const fn to_polymonio<const N: usize, const X: usize, const Y: usize>(
     out
 }
 
-const fn grid_to_polyomino<const X: usize, const Y: usize>(grid: [&str; Y]) -> Polyomino<X, Y> {
-    let mut out = [[false; X]; Y];
+const fn grid_to_polyomino<const X: usize, const Y: usize>(grid: [&str; Y]) -> ConstPolyomino<X, Y> {
+    let mut out = ConstPolyomino::empty();
 
     let mut y = 0;
     while y != Y {
@@ -106,7 +106,7 @@ const fn grid_to_polyomino<const X: usize, const Y: usize>(grid: [&str; Y]) -> P
         let mut x = 0;
         while x != X {
             if row[x] == b'1' {
-                out[y][x] = true;
+                out.values[y][x] = true;
             }
             x += 1;
         }
@@ -117,8 +117,8 @@ const fn grid_to_polyomino<const X: usize, const Y: usize>(grid: [&str; Y]) -> P
 
 const fn to_polymonio_2<const N: usize, const X: usize, const Y: usize>(
     grids: [[&str; Y]; N],
-) -> [Polyomino<X, Y>; N] {
-    let mut out = [[[false; X]; Y]; N];
+) -> [ConstPolyomino<X, Y>; N] {
+    let mut out = [ConstPolyomino::empty(); N];
     let mut i = 0;
     while i != N {
         out[i] = grid_to_polyomino(grids[i]);
@@ -129,13 +129,13 @@ const fn to_polymonio_2<const N: usize, const X: usize, const Y: usize>(
 }
 
 const fn empty_at<const N: usize, const X: usize, const Y: usize>(
-    polys: &[Polyomino<X, Y>; N],
+    polys: &[ConstPolyomino<X, Y>; N],
     x: usize,
     y: usize,
 ) -> bool {
     let mut i = 0;
     while i != N {
-        let p2 = polys[i][y][x];
+        let p2 = polys[i].values[y][x];
         if p2 {
             return false;
         }
@@ -145,7 +145,7 @@ const fn empty_at<const N: usize, const X: usize, const Y: usize>(
 }
 
 const fn different_at<const N: usize, const X: usize, const Y: usize>(
-    polys: &[Polyomino<X, Y>; N],
+    polys: &[ConstPolyomino<X, Y>; N],
     x1: usize,
     y1: usize,
     x2: usize,
@@ -153,8 +153,8 @@ const fn different_at<const N: usize, const X: usize, const Y: usize>(
 ) -> bool {
     let mut i = 0;
     while i != N {
-        let p1 = polys[i][y1][x1];
-        let p2 = polys[i][y2][x2];
+        let p1 = polys[i].values[y1][x1];
+        let p2 = polys[i].values[y2][x2];
         if p1 != p2 {
             return true;
         }

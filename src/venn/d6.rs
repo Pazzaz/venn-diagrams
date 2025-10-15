@@ -1,7 +1,7 @@
 use super::{check_diagram, to_polymonio_2};
-use crate::Polyomino;
+use crate::ConstPolyomino;
 
-pub const SIX: [Polyomino<11, 11>; 6] = to_polymonio_2(GRIDS);
+pub const SIX: [ConstPolyomino<11, 11>; 6] = to_polymonio_2(GRIDS);
 
 const_assert!(check_diagram(SIX));
 
