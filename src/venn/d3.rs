@@ -1,7 +1,7 @@
 use super::{check_diagram, to_polymonio};
-use crate::ConstPolyomino;
+use crate::diagram::ConstVennDiagram;
 
-pub const THREE: [ConstPolyomino<5, 2>; 3] = to_polymonio(STR);
+pub const THREE: ConstVennDiagram<3, 5, 2> = to_polymonio(STR);
 
 const_assert!(check_diagram(THREE));
 

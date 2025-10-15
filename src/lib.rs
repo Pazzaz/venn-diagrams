@@ -8,7 +8,7 @@ pub mod venn;
 
 #[derive(Debug, Clone, Copy)]
 pub struct ConstPolyomino<const X: usize, const Y: usize> {
-    values: [[bool; X]; Y]
+    values: [[bool; X]; Y],
 }
 
 impl<const X: usize, const Y: usize> ConstPolyomino<X, Y> {

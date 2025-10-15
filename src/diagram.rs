@@ -1,5 +1,5 @@
 pub struct Diagram<const N: usize, const X: usize, const Y: usize> {
-    pub venns: [ConstPolyomino<X, Y>; N],
+    pub venns: ConstVennDiagram<N, X, Y>,
     pub values: [f64; N],
     pub colors: [String; N],
     pub radius: f64,
@@ -8,6 +8,16 @@ pub struct Diagram<const N: usize, const X: usize, const Y: usize> {
     pub circle_above: CircleConfig,
     pub circle_placement: CirclePlacement,
     pub corner_style: CornerStyle,
+}
+
+pub struct ConstVennDiagram<const N: usize, const X: usize, const Y: usize> {
+    pub(crate) polyominos: [ConstPolyomino<X, Y>; N],
+}
+
+impl<const N: usize, const X: usize, const Y: usize> ConstVennDiagram<N, X, Y> {
+    pub const fn new(polyominos: [ConstPolyomino<X, Y>; N]) -> Self {
+        Self { polyominos }
+    }
 }
 
 #[derive(Debug, Clone)]
@@ -401,9 +411,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
     fn get_polys(&self) -> Vec<Vec<Edge>> {
         let mut polys: Vec<Vec<Edge>> = Vec::new();
 
-        for i in 0..N {
-            // 1. List all the edges
-            let poly = self.venns[i];
+        for poly in self.venns.polyominos {
             let mut edges: Vec<Edge> = Vec::new();
 
             for x in 0..X {
@@ -605,7 +613,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             for y in 0..Y {
                 let mut any_true = false;
                 for i in 0..N {
-                    let v = self.venns[i].values[y][x];
+                    let v = self.venns.polyominos[i].values[y][x];
                     any_true |= v;
                     pairs[i] = v;
                 }

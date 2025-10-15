@@ -1,4 +1,4 @@
-use crate::ConstPolyomino;
+use crate::{ConstPolyomino, diagram::ConstVennDiagram};
 
 mod d2;
 mod d3;
@@ -16,14 +16,14 @@ pub use d8::EIGHT;
 
 // TODO: Can we check connectivity too?
 const fn check_diagram<const N: usize, const X: usize, const Y: usize>(
-    parts: [ConstPolyomino<X, Y>; N],
+    parts: ConstVennDiagram<N, X, Y>,
 ) -> bool {
     // We check that each group is the right size
     let count_goal: u64 = 1 << (N - 1);
     let mut i = 0;
     while i != N {
         let mut count = 0;
-        let part = &parts[i];
+        let part = &parts.polyominos[i];
         let mut x = 0;
         while x != X {
             let mut y = 0;
@@ -52,12 +52,12 @@ const fn check_diagram<const N: usize, const X: usize, const Y: usize>(
                 let mut y2 = 0;
                 while y2 != Y {
                     let eq_coord = x1 == x2 && y1 == y2;
-                    let all_false_1 = empty_at(&parts, x1, y1);
-                    let all_false_2 = empty_at(&parts, x2, y2);
+                    let all_false_1 = empty_at(&parts.polyominos, x1, y1);
+                    let all_false_2 = empty_at(&parts.polyominos, x2, y2);
                     if !eq_coord
                         && !all_false_1
                         && !all_false_2
-                        && !different_at(&parts, x1, y1, x2, y2)
+                        && !different_at(&parts.polyominos, x1, y1, x2, y2)
                     {
                         return false;
                     }
@@ -75,7 +75,7 @@ const fn check_diagram<const N: usize, const X: usize, const Y: usize>(
 
 const fn to_polymonio<const N: usize, const X: usize, const Y: usize>(
     boxes: [[&str; X]; Y],
-) -> [ConstPolyomino<X, Y>; N] {
+) -> ConstVennDiagram<N, X, Y> {
     let mut out = [ConstPolyomino::empty(); N];
     let mut y = 0;
     while y != Y {
@@ -94,10 +94,12 @@ const fn to_polymonio<const N: usize, const X: usize, const Y: usize>(
         }
         y += 1;
     }
-    out
+    ConstVennDiagram::new(out)
 }
 
-const fn grid_to_polyomino<const X: usize, const Y: usize>(grid: [&str; Y]) -> ConstPolyomino<X, Y> {
+const fn grid_to_polyomino<const X: usize, const Y: usize>(
+    grid: [&str; Y],
+) -> ConstPolyomino<X, Y> {
     let mut out = ConstPolyomino::empty();
 
     let mut y = 0;
@@ -117,7 +119,7 @@ const fn grid_to_polyomino<const X: usize, const Y: usize>(grid: [&str; Y]) -> C
 
 const fn to_polymonio_2<const N: usize, const X: usize, const Y: usize>(
     grids: [[&str; Y]; N],
-) -> [ConstPolyomino<X, Y>; N] {
+) -> ConstVennDiagram<N, X, Y> {
     let mut out = [ConstPolyomino::empty(); N];
     let mut i = 0;
     while i != N {
@@ -125,7 +127,7 @@ const fn to_polymonio_2<const N: usize, const X: usize, const Y: usize>(
         i += 1;
     }
 
-    out
+    ConstVennDiagram::new(out)
 }
 
 const fn empty_at<const N: usize, const X: usize, const Y: usize>(

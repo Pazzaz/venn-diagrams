@@ -1,7 +1,7 @@
 use super::{check_diagram, to_polymonio_2};
-use crate::ConstPolyomino;
+use crate::diagram::ConstVennDiagram;
 
-pub const EIGHT: [ConstPolyomino<17, 15>; 8] = to_polymonio_2(GRIDS);
+pub const EIGHT: ConstVennDiagram<8, 17, 15> = to_polymonio_2(GRIDS);
 
 const_assert!(check_diagram(EIGHT));
 
