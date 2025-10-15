@@ -1,6 +1,3 @@
-#[macro_use]
-extern crate static_assertions;
-
 mod direction;
 
 pub mod diagram;

@@ -3,8 +3,6 @@ use crate::diagram::ConstVennDiagram;
 
 pub const FIVE: ConstVennDiagram<5, 7, 7> = to_polymonio(STR);
 
-const_assert!(FIVE.complete());
-
 #[rustfmt::skip]
 const STR: [[&str; 7]; 7] = [
     ["",  "",    "",      "",     "D",    "CD",   "",   ],
@@ -15,3 +13,13 @@ const STR: [[&str; 7]; 7] = [
     ["",  "BE",  "ABE",   "",     "AC",   "C",    "A",  ],
     ["",  "B",   "AB",    "",     "",     "",     "",   ],
 ];
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn is_complete() {
+        assert!(FIVE.complete());
+    }
+}

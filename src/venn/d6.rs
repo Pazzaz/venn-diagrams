@@ -3,8 +3,6 @@ use crate::diagram::ConstVennDiagram;
 
 pub const SIX: ConstVennDiagram<6, 11, 11> = to_polymonio_2(GRIDS);
 
-const_assert!(SIX.complete());
-
 #[rustfmt::skip]
 const GRIDS: [[&str; 11]; 6] = [
     [
@@ -86,3 +84,13 @@ const GRIDS: [[&str; 11]; 6] = [
         "00000010000",
     ],
 ];
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn is_complete() {
+        assert!(SIX.complete());
+    }
+}
