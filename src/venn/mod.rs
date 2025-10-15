@@ -11,3 +11,5 @@ pub use d4::FOUR;
 pub use d5::FIVE;
 pub use d6::SIX;
 pub use d8::EIGHT;
+
+pub mod venn_diagram;

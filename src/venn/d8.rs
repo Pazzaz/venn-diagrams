@@ -1,4 +1,4 @@
-use crate::diagram::ConstVennDiagram;
+use super::venn_diagram::ConstVennDiagram;
 
 pub const EIGHT: ConstVennDiagram<8, 17, 15> = ConstVennDiagram::from_binary_str(GRIDS);
 

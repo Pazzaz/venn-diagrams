@@ -1,4 +1,4 @@
-use crate::diagram::ConstVennDiagram;
+use super::venn_diagram::ConstVennDiagram;
 
 pub const TWO: ConstVennDiagram<2, 3, 1> = ConstVennDiagram::from_letters(STR);
 
