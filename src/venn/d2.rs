@@ -1,7 +1,6 @@
-use super::to_polymonio;
 use crate::diagram::ConstVennDiagram;
 
-pub const TWO: ConstVennDiagram<2, 3, 1> = to_polymonio(STR);
+pub const TWO: ConstVennDiagram<2, 3, 1> = ConstVennDiagram::from_letters(STR);
 
 #[rustfmt::skip]
 const STR: [[&str; 3]; 1] = [
