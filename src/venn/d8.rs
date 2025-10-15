@@ -1,9 +1,9 @@
-use super::{check_diagram, to_polymonio_2};
+use super::to_polymonio_2;
 use crate::diagram::ConstVennDiagram;
 
 pub const EIGHT: ConstVennDiagram<8, 17, 15> = to_polymonio_2(GRIDS);
 
-const_assert!(check_diagram(EIGHT));
+const_assert!(EIGHT.complete());
 
 #[rustfmt::skip]
 const GRIDS: [[&str; 15]; 8] = [

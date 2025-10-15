@@ -1,9 +1,9 @@
-use super::{check_diagram, to_polymonio};
+use super::to_polymonio;
 use crate::diagram::ConstVennDiagram;
 
 pub const FOUR: ConstVennDiagram<4, 5, 5> = to_polymonio(STR);
 
-const_assert!(check_diagram(FOUR));
+const_assert!(FOUR.complete());
 
 #[rustfmt::skip]
 const STR: [[&str; 5]; 5] = [

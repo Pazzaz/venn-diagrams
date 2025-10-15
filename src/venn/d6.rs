@@ -1,9 +1,9 @@
-use super::{check_diagram, to_polymonio_2};
+use super::to_polymonio_2;
 use crate::diagram::ConstVennDiagram;
 
 pub const SIX: ConstVennDiagram<6, 11, 11> = to_polymonio_2(GRIDS);
 
-const_assert!(check_diagram(SIX));
+const_assert!(SIX.complete());
 
 #[rustfmt::skip]
 const GRIDS: [[&str; 11]; 6] = [
