@@ -8,3 +8,6 @@ svg = "0.18.0"
 
 [lints.clippy]
 needless_range_loop = "allow"
+
+[dev-dependencies]
+insta = "1.43.2"
