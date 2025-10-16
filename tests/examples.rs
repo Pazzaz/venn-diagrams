@@ -1,5 +1,5 @@
 use venn_diagrams::{
-    diagram::{CircleConfig, CirclePlacement, CornerStyle, Diagram},
+    diagram::{Diagram, DiagramConfig},
     venn,
 };
 
@@ -13,17 +13,7 @@ fn eight() {
         ["#EE2020", "#DDDD00", "#1B49DD", "#AF0000", "#009933", "#231977", "#83CF39", "#6BB7EC"];
     let values = normalize([107.0, 73.0, 68.0, 24.0, 24.0, 19.0, 18.0, 16.0]);
     let colors = colors_s.map(ToString::to_string);
-    let diagram = Diagram {
-        venns: venn::EIGHT,
-        values,
-        colors,
-        radius: 3.5,
-        circle_below: CircleConfig::new(0.3, String::from("red")),
-        circle_edge: CircleConfig::new(1.0, String::from("white")),
-        circle_above: CircleConfig::new(0.3, String::from("green")),
-        circle_placement: CirclePlacement::SquareCenter,
-        corner_style: CornerStyle::Smooth,
-    };
+    let diagram = Diagram { venns: venn::EIGHT, values, colors, config: DiagramConfig::default() };
 
     let svg = diagram.to_svg();
     insta::assert_binary_snapshot!(

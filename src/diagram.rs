@@ -14,12 +14,29 @@ pub struct Diagram<const N: usize, const X: usize, const Y: usize> {
     pub venns: ConstVennDiagram<N, X, Y>,
     pub values: [f64; N],
     pub colors: [String; N],
+    pub config: DiagramConfig,
+}
+
+pub struct DiagramConfig {
     pub radius: f64,
     pub circle_below: CircleConfig,
     pub circle_edge: CircleConfig,
     pub circle_above: CircleConfig,
     pub circle_placement: CirclePlacement,
     pub corner_style: CornerStyle,
+}
+
+impl Default for DiagramConfig {
+    fn default() -> Self {
+        Self {
+            radius: 3.5,
+            circle_below: CircleConfig::new(0.3, String::from("red")),
+            circle_edge: CircleConfig::new(1.0, String::from("white")),
+            circle_above: CircleConfig::new(0.3, String::from("green")),
+            circle_placement: CirclePlacement::SquareCenter,
+            corner_style: CornerStyle::Smooth,
+        }
+    }
 }
 
 #[derive(Debug, Clone)]
@@ -484,7 +501,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
     fn get_rounded_paths(&self, points: Vec<Vec<Corner>>) -> Vec<Path> {
         let mut paths = Vec::new();
 
-        match self.corner_style {
+        match self.config.corner_style {
             CornerStyle::Straight => {
                 for corners in &points {
                     let first = &corners[0];
@@ -607,7 +624,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
         y: usize,
         internal_offsets: &[Vec<InnerOffset>],
     ) -> (f64, f64) {
-        match self.circle_placement {
+        match self.config.circle_placement {
             CirclePlacement::Basic => (
                 ((x * SCALE) as f64) + (SCALE as f64) / 2.0,
                 ((y * SCALE) as f64) + (SCALE as f64) / 2.0,
@@ -638,7 +655,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             Above,
         }
 
-        let r = self.radius;
+        let r = self.config.radius;
         let c = std::f64::consts::TAU * r;
         let mut group = Group::new().set("transform", format!("rotate(-90 {cx} {cy})"));
         let mut total: f64 = 0.0;
@@ -700,9 +717,9 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             .set("stroke-width", 0.5);
 
         let config: &CircleConfig = match coalition {
-            Coalition::Below => &self.circle_below,
-            Coalition::Edge => &self.circle_edge,
-            Coalition::Above => &self.circle_above,
+            Coalition::Below => &self.config.circle_below,
+            Coalition::Edge => &self.config.circle_edge,
+            Coalition::Above => &self.config.circle_above,
         };
         circle = circle.set("stroke", config.color.as_str());
 
