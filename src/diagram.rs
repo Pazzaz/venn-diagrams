@@ -403,21 +403,21 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
 
             for x in 0..X {
                 for y in 0..Y {
-                    if poly.values[y][x] {
+                    if poly[(x, y)] {
                         // Left
-                        if x == 0 || !poly.values[y][x - 1] {
+                        if x == 0 || !poly[(x - 1, y)] {
                             edges.push(Edge::new_vertical(x, y, y + 1));
                         }
                         // Up
-                        if y == 0 || !poly.values[y - 1][x] {
+                        if y == 0 || !poly[(x, y - 1)] {
                             edges.push(Edge::new_horizontal(y, x, x + 1));
                         }
                         // Right
-                        if x == (X - 1) || !poly.values[y][x + 1] {
+                        if x == (X - 1) || !poly[(x + 1, y)] {
                             edges.push(Edge::new_vertical(x + 1, y, y + 1));
                         }
                         // Down
-                        if y == (Y - 1) || !poly.values[y + 1][x] {
+                        if y == (Y - 1) || !poly[(x, y + 1)] {
                             edges.push(Edge::new_horizontal(y + 1, x, x + 1));
                         }
                     }
@@ -600,7 +600,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             for y in 0..Y {
                 let mut any_true = false;
                 for i in 0..N {
-                    let v = self.venns.polyominos[i].values[y][x];
+                    let v = self.venns.polyominos[i][(x, y)];
                     any_true |= v;
                     pairs[i] = v;
                 }
