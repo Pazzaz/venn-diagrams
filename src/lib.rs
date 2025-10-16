@@ -1,7 +1,10 @@
 //! # Venn Diagrams
 //!
 //! A library to work with [Venn diagrams][wp-venn], specifically those
-//! consisting of [polyominos][wp-poly].
+//! consisting of [polyominos][wp-poly] on a grid.
+//!
+//! # Example
+#![doc = include_str!("../image.svg")]
 //!
 //! # Research
 //! Parts of this library is based on the following research:

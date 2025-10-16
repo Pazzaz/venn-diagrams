@@ -6,7 +6,7 @@ use svg::{
 };
 
 use super::direction::{DirectedEdge, Edge};
-use crate::{direction::Direction, venn::venn_diagram::ConstVennDiagram};
+use crate::{direction::Direction, venn::ConstVennDiagram};
 
 const SCALE: usize = 20;
 
