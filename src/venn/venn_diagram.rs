@@ -140,12 +140,16 @@ pub struct VennDiagram {
 }
 
 impl VennDiagram {
-    fn x(&self) -> usize {
+    pub fn x(&self) -> usize {
         self.x
     }
 
-    fn y(&self) -> usize {
+    pub fn y(&self) -> usize {
         self.y
+    }
+
+    pub fn n(&self) -> usize {
+        self.polyominos.len()
     }
 }
 

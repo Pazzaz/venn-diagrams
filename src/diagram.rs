@@ -6,16 +6,11 @@ use svg::{
 };
 
 use super::direction::{DirectedEdge, Edge};
-use crate::{direction::Direction, venn::ConstVennDiagram};
+use crate::{direction::Direction, polyomino::Polyomino, venn::VennDiagram};
 
 const SCALE: usize = 20;
 
-pub struct Diagram<const N: usize, const X: usize, const Y: usize> {
-    pub venns: ConstVennDiagram<N, X, Y>,
-    pub values: [f64; N],
-    pub colors: [String; N],
-    pub config: DiagramConfig,
-}
+pub struct Diagram {}
 
 pub struct DiagramConfig {
     pub radius: f64,
@@ -51,6 +46,7 @@ impl CircleConfig {
     }
 }
 
+#[derive(Debug, Clone, Copy)]
 pub enum CornerStyle {
     Straight,
     Smooth,
@@ -110,14 +106,18 @@ impl Corner {
     }
 }
 
-impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
-    fn get_offsets(combined_paths: &[Vec<DirectedEdge>]) -> (Vec<Vec<i32>>, Vec<Vec<InnerOffset>>) {
+impl Diagram {
+    fn get_offsets(
+        x: usize,
+        y: usize,
+        combined_paths: &[Vec<DirectedEdge>],
+    ) -> (Vec<Vec<i32>>, Vec<Vec<InnerOffset>>) {
         let mut offsets: Vec<Vec<i32>> =
             combined_paths.iter().map(|x| vec![i32::MIN; x.len()]).collect();
-        let mut columns = vec![Vec::new(); X + 1];
-        let mut rows = vec![Vec::new(); Y + 1];
+        let mut columns = vec![Vec::new(); x + 1];
+        let mut rows = vec![Vec::new(); y + 1];
 
-        let mut inner_offset: Vec<Vec<InnerOffset>> = vec![vec![InnerOffset::default(); X]; Y];
+        let mut inner_offset: Vec<Vec<InnerOffset>> = vec![vec![InnerOffset::default(); x]; y];
 
         for (p_i, es) in combined_paths.iter().enumerate() {
             for (e_i, e) in es.iter().enumerate() {
@@ -147,7 +147,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             directions.push(path_directions);
         }
 
-        for i in 0..=X {
+        for i in 0..=x {
             columns[i].sort_by(|a, b| {
                 let ap = combined_paths[a.0][a.1].len();
                 let bp = combined_paths[b.0][b.1].len();
@@ -159,7 +159,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             let l = column.len();
             let middle = l / 2;
 
-            let mut occupied = vec![vec![false; l]; Y];
+            let mut occupied = vec![vec![false; l]; y];
 
             for &(p_i, e_i) in column {
                 let edge = &combined_paths[p_i][e_i];
@@ -212,7 +212,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                 }
             }
 
-            for j in 0..Y {
+            for j in 0..y {
                 let mut min_pos: usize = usize::MAX;
                 let mut max_pos: usize = usize::MIN;
                 for k in 0..l {
@@ -225,7 +225,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                         }
                     }
                 }
-                if i != X {
+                if i != x {
                     inner_offset[j][i].left = (max_pos as i32) - middle as i32;
                 }
                 if i != 0 {
@@ -234,7 +234,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             }
         }
 
-        for i in 0..=Y {
+        for i in 0..=y {
             rows[i].sort_by(|a, b| {
                 let ap = combined_paths[a.0][a.1].len();
                 let bp = combined_paths[b.0][b.1].len();
@@ -246,7 +246,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             let l = row.len();
             let middle = l / 2;
 
-            let mut occupied = vec![vec![false; l]; X];
+            let mut occupied = vec![vec![false; l]; x];
 
             for &(p_i, e_i) in row {
                 let edge = &combined_paths[p_i][e_i];
@@ -299,7 +299,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                 }
             }
 
-            for j in 0..X {
+            for j in 0..x {
                 let mut min_pos: usize = usize::MAX;
                 let mut max_pos: usize = usize::MIN;
                 for k in 0..l {
@@ -312,7 +312,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                         }
                     }
                 }
-                if i != Y {
+                if i != y {
                     inner_offset[i][j].above = (max_pos as i32) - middle as i32;
                 }
                 if i != 0 {
@@ -438,30 +438,30 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
         paths
     }
 
-    fn get_polys(&self) -> Vec<Vec<Edge>> {
+    fn get_polys(x: usize, y: usize, polyominos: &[Polyomino]) -> Vec<Vec<Edge>> {
         let mut polys: Vec<Vec<Edge>> = Vec::new();
 
-        for poly in self.venns.polyominos {
+        for poly in polyominos {
             let mut edges: Vec<Edge> = Vec::new();
 
-            for x in 0..X {
-                for y in 0..Y {
-                    if poly[(x, y)] {
+            for i in 0..x {
+                for j in 0..y {
+                    if poly[(i, j)] {
                         // Left
-                        if x == 0 || !poly[(x - 1, y)] {
-                            edges.push(Edge::new_vertical(x, y, y + 1));
+                        if i == 0 || !poly[(i - 1, j)] {
+                            edges.push(Edge::new_vertical(i, j, j + 1));
                         }
                         // Up
-                        if y == 0 || !poly[(x, y - 1)] {
-                            edges.push(Edge::new_horizontal(y, x, x + 1));
+                        if j == 0 || !poly[(i, j - 1)] {
+                            edges.push(Edge::new_horizontal(j, i, i + 1));
                         }
                         // Right
-                        if x == (X - 1) || !poly[(x + 1, y)] {
-                            edges.push(Edge::new_vertical(x + 1, y, y + 1));
+                        if i == (x - 1) || !poly[(i + 1, j)] {
+                            edges.push(Edge::new_vertical(i + 1, j, j + 1));
                         }
                         // Down
-                        if y == (Y - 1) || !poly[(x, y + 1)] {
-                            edges.push(Edge::new_horizontal(y + 1, x, x + 1));
+                        if j == (y - 1) || !poly[(i, j + 1)] {
+                            edges.push(Edge::new_horizontal(j + 1, i, i + 1));
                         }
                     }
                 }
@@ -524,10 +524,10 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
         points
     }
 
-    fn get_rounded_paths(&self, points: Vec<Vec<Corner>>) -> Vec<Path> {
+    fn get_rounded_paths(points: Vec<Vec<Corner>>, corner_style: CornerStyle) -> Vec<Path> {
         let mut paths = Vec::new();
 
-        match self.config.corner_style {
+        match corner_style {
             CornerStyle::Straight => {
                 for corners in &points {
                     let first = &corners[0];
@@ -564,29 +564,36 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
     }
 
     #[must_use]
-    pub fn to_svg(&self) -> SVG {
+    pub fn to_svg(
+        venn_diagram: &VennDiagram,
+        values: &[f64],
+        colors: &[String],
+        config: &DiagramConfig,
+    ) -> SVG {
+        let x = venn_diagram.x();
+        let y = venn_diagram.y();
         // First we do calculations
-        let polys = self.get_polys();
+        let polys = Self::get_polys(x, y, &venn_diagram.polyominos);
         let paths = Self::get_paths(&polys);
 
         let combined_paths = Self::get_combined_paths(paths);
 
-        let (offsets, internal_offsets) = Self::get_offsets(&combined_paths);
+        let (offsets, internal_offsets) = Self::get_offsets(x, y, &combined_paths);
 
         let points = Self::get_points(combined_paths, offsets);
 
-        let paths = self.get_rounded_paths(points);
+        let paths = Self::get_rounded_paths(points, config.corner_style);
 
         // Then we create the svg
         let min_x = -((SCALE / 2) as i32);
-        let max_x = (X + 1) * SCALE;
+        let max_x = (x + 1) * SCALE;
 
         let min_y = 0;
-        let max_y = Y * SCALE;
+        let max_y = y * SCALE;
         let mut out = Document::new()
             .set("viewBox", (min_x, min_y, max_x, max_y))
-            .set("width", format!("{}px", 2 * X * SCALE))
-            .set("height", format!("{}px", 2 * Y * SCALE));
+            .set("width", format!("{}px", 2 * x * SCALE))
+            .set("height", format!("{}px", 2 * y * SCALE));
 
         let mut mask = Mask::new().set("id", "background_mask");
         for path in &paths {
@@ -599,15 +606,15 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
         out = out.add(defs);
 
         let rect = Rectangle::new()
-            .set("width", (X + 1) * SCALE)
-            .set("height", (Y + 1) * SCALE)
+            .set("width", (x + 1) * SCALE)
+            .set("height", (y + 1) * SCALE)
             .set("x", -((SCALE / 2) as i32))
             .set("y", -((SCALE / 2) as i32))
             .set("mask", "url(#background_mask)");
 
         out = out.add(rect);
 
-        for (path, color) in paths.iter().zip(&self.colors) {
+        for (path, color) in paths.iter().zip(colors) {
             let path = path
                 .clone()
                 .set("fill", color.clone())
@@ -617,7 +624,7 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             out = out.add(path);
         }
 
-        for (path, color) in paths.iter().zip(&self.colors) {
+        for (path, color) in paths.iter().zip(colors) {
             let path = path
                 .clone()
                 .set("fill", "none")
@@ -626,47 +633,58 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             out = out.add(path);
         }
 
-        let mut pairs = [false; N];
-        for x in 0..X {
-            for y in 0..Y {
+        let n = venn_diagram.n();
+
+        let mut pairs = vec![false; n];
+        for x in 0..x {
+            for y in 0..y {
                 let mut any_true = false;
-                for i in 0..N {
-                    let v = self.venns.polyominos[i][(x, y)];
+                for i in 0..n {
+                    let v = venn_diagram.polyominos[i][(x, y)];
                     any_true |= v;
                     pairs[i] = v;
                 }
                 if any_true {
                     let (x_pos, y_pos) =
-                        self.config.circle_placement.get_circle_pos(x, y, internal_offsets[y][x]);
-                    out = self.draw_circle(x_pos, y_pos, &pairs, out);
+                        config.circle_placement.get_circle_pos(x, y, internal_offsets[y][x]);
+                    out = Self::draw_circle(x_pos, y_pos, &pairs, out, config, values, colors);
                 }
             }
         }
         out
     }
 
-    fn draw_circle(&self, cx: f64, cy: f64, values: &[bool; N], out: SVG) -> SVG {
-        let r = self.config.radius;
-        let c = std::f64::consts::TAU * r;
+    fn draw_circle(
+        cx: f64,
+        cy: f64,
+        mask: &[bool],
+        out: SVG,
+        config: &DiagramConfig,
+        values: &[f64],
+        colors: &[String],
+    ) -> SVG {
+        let n = mask.len();
+        debug_assert!(values.len() == n && colors.len() == n);
+        let c = std::f64::consts::TAU * config.radius;
         let mut group = Group::new().set("transform", format!("rotate(-90 {cx} {cy})"));
 
-        let coalition: Coalition = Coalition::from_values(values, &self.values);
+        let coalition: Coalition = Coalition::from_values(mask, values);
 
         let mut added = 0.0;
-        for i in 0..N {
-            if !values[i] {
+        for i in 0..n {
+            if !mask[i] {
                 continue;
             }
-            let size = &self.values[i];
-            let color = &self.colors[i];
+            let size = values[i];
+            let color = &colors[i];
 
             let mut circle = Circle::new()
-                .set("r", r)
+                .set("r", config.radius)
                 .set("cx", cx)
                 .set("cy", cy)
                 .set("fill", "transparent")
-                .set("stroke", (*color).clone())
-                .set("stroke-width", r * 2.0)
+                .set("stroke", color.as_str())
+                .set("stroke-width", config.radius * 2.0)
                 .set("stroke-dasharray", format!("{}, {}", c * size, c));
             if added != 0.0 {
                 circle = circle.set("stroke-dashoffset", -added);
@@ -676,18 +694,18 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             group = group.add(circle);
         }
 
-        let config = self.config.circle_config(coalition);
+        let circle_config = config.circle_config(coalition);
 
         let circle = Circle::new()
-            .set("r", r * 2.0)
+            .set("r", config.radius * 2.0)
             .set("cx", cx)
             .set("cy", cy)
             .set("fill", "transparent")
-            .set("stroke", config.color.as_str())
+            .set("stroke", circle_config.color.as_str())
             .set("stroke-width", 0.5);
 
-        if config.opacity != 1.0 {
-            group = group.set("opacity", config.opacity);
+        if circle_config.opacity != 1.0 {
+            group = group.set("opacity", circle_config.opacity);
         }
         group = group.add(circle);
 

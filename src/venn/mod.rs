@@ -24,4 +24,4 @@ pub use d6::SIX;
 pub use d8::EIGHT;
 
 mod venn_diagram;
-pub use venn_diagram::ConstVennDiagram;
+pub use venn_diagram::{ConstVennDiagram, VennDiagram};
