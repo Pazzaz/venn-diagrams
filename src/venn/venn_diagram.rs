@@ -1,4 +1,4 @@
-use crate::polyomino::ConstPolyomino;
+use crate::polyomino::{ConstPolyomino, Polyomino};
 
 pub struct ConstVennDiagram<const N: usize, const X: usize, const Y: usize> {
     pub(crate) polyominos: [ConstPolyomino<X, Y>; N],
@@ -122,5 +122,41 @@ impl<const N: usize, const X: usize, const Y: usize> ConstVennDiagram<N, X, Y> {
             i += 1;
         }
         false
+    }
+}
+
+impl<const N: usize, const X: usize, const Y: usize> From<ConstVennDiagram<N, X, Y>>
+    for VennDiagram
+{
+    fn from(value: ConstVennDiagram<N, X, Y>) -> Self {
+        Self { x: X, y: Y, polyominos: value.polyominos.into_iter().map(|x| x.into()).collect() }
+    }
+}
+
+pub struct VennDiagram {
+    x: usize,
+    y: usize,
+    pub(crate) polyominos: Vec<Polyomino>,
+}
+
+impl VennDiagram {
+    fn x(&self) -> usize {
+        self.x
+    }
+
+    fn y(&self) -> usize {
+        self.y
+    }
+}
+
+impl Clone for VennDiagram {
+    fn clone(&self) -> Self {
+        Self { x: self.x, y: self.y, polyominos: self.polyominos.clone() }
+    }
+
+    fn clone_from(&mut self, source: &Self) {
+        self.x = source.x;
+        self.y = source.y;
+        self.polyominos.clone_from(&source.polyominos);
     }
 }
