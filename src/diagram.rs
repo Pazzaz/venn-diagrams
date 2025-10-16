@@ -470,20 +470,8 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                     Direction::Down => (meet_x, meet_y + CORNER_OFFSET),
                 };
 
-                let clockwise = match (e1.direction(), e2.direction()) {
-                    (Direction::Left, Direction::Down)
-                    | (Direction::Right, Direction::Up)
-                    | (Direction::Up, Direction::Left)
-                    | (Direction::Down, Direction::Right) => false,
-                    (Direction::Left, Direction::Up)
-                    | (Direction::Right, Direction::Down)
-                    | (Direction::Up, Direction::Right)
-                    | (Direction::Down, Direction::Left) => true,
-                    (Direction::Left | Direction::Right, Direction::Left | Direction::Right)
-                    | (Direction::Up | Direction::Down, Direction::Up | Direction::Down) => {
-                        unreachable!()
-                    }
-                };
+                // We're moving clockwise or counter-clockwise
+                let clockwise = Direction::clockwise(e1.direction(), e2.direction()).unwrap();
 
                 let corner = Corner { from, to, clockwise };
                 out.push(corner);

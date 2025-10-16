@@ -55,6 +55,25 @@ impl Direction {
             Direction::Down => Direction::Up,
         }
     }
+
+    /// Returns
+    /// - `Some(true)` if moving in direction `e1` followed by `e2` is clockwise
+    /// - `Some(false)` if it's counter-clockwise
+    /// - `None` if it's neither
+    pub(crate) const fn clockwise(e1: Direction, e2: Direction) -> Option<bool> {
+        match (e1, e2) {
+            (Direction::Left, Direction::Down)
+            | (Direction::Right, Direction::Up)
+            | (Direction::Up, Direction::Left)
+            | (Direction::Down, Direction::Right) => Some(false),
+            (Direction::Left, Direction::Up)
+            | (Direction::Right, Direction::Down)
+            | (Direction::Up, Direction::Right)
+            | (Direction::Down, Direction::Left) => Some(true),
+            (Direction::Left | Direction::Right, Direction::Left | Direction::Right)
+            | (Direction::Up | Direction::Down, Direction::Up | Direction::Down) => None,
+        }
+    }
 }
 
 impl DirectedEdge {
