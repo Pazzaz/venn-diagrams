@@ -61,6 +61,32 @@ pub enum CirclePlacement {
     SquareCenter,
 }
 
+impl CirclePlacement {
+    fn get_circle_pos(&self, x: usize, y: usize, internal_offset: InnerOffset) -> (f64, f64) {
+        match self {
+            CirclePlacement::Basic => (
+                ((x * SCALE) as f64) + (SCALE as f64) / 2.0,
+                ((y * SCALE) as f64) + (SCALE as f64) / 2.0,
+            ),
+            CirclePlacement::SquareCenter => {
+                let cx = (x * SCALE) as f64;
+                let cy = (y * SCALE) as f64;
+
+                let whole = SCALE as f64;
+
+                let above_y = cy + internal_offset.above as f64;
+                let below_y = cy + whole + internal_offset.below as f64;
+                let left_x = cx + internal_offset.left as f64;
+                let right_x = cx + whole + internal_offset.right as f64;
+
+                let cy = f64::midpoint(above_y, below_y);
+                let cx = f64::midpoint(left_x, right_x);
+                (cx, cy)
+            }
+        }
+    }
+}
+
 #[derive(Debug, Default, Clone, Copy)]
 struct InnerOffset {
     above: i32,
@@ -610,7 +636,8 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
                     pairs[i] = v;
                 }
                 if any_true {
-                    let (x_pos, y_pos) = self.get_circle_pos(x, y, &internal_offsets);
+                    let (x_pos, y_pos) =
+                        self.config.circle_placement.get_circle_pos(x, y, internal_offsets[y][x]);
                     out = self.draw_circle(x_pos, y_pos, &pairs, out);
                 }
             }
@@ -618,71 +645,12 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
         out
     }
 
-    fn get_circle_pos(
-        &self,
-        x: usize,
-        y: usize,
-        internal_offsets: &[Vec<InnerOffset>],
-    ) -> (f64, f64) {
-        match self.config.circle_placement {
-            CirclePlacement::Basic => (
-                ((x * SCALE) as f64) + (SCALE as f64) / 2.0,
-                ((y * SCALE) as f64) + (SCALE as f64) / 2.0,
-            ),
-            CirclePlacement::SquareCenter => {
-                let internal_offset = internal_offsets[y][x];
-                let cx = (x * SCALE) as f64;
-                let cy = (y * SCALE) as f64;
-
-                let whole = SCALE as f64;
-
-                let above_y = cy + internal_offset.above as f64;
-                let below_y = cy + whole + internal_offset.below as f64;
-                let left_x = cx + internal_offset.left as f64;
-                let right_x = cx + whole + internal_offset.right as f64;
-
-                let cy = f64::midpoint(above_y, below_y);
-                let cx = f64::midpoint(left_x, right_x);
-                (cx, cy)
-            }
-        }
-    }
-
     fn draw_circle(&self, cx: f64, cy: f64, values: &[bool; N], out: SVG) -> SVG {
-        enum Coalition {
-            Below,
-            Edge,
-            Above,
-        }
-
         let r = self.config.radius;
         let c = std::f64::consts::TAU * r;
         let mut group = Group::new().set("transform", format!("rotate(-90 {cx} {cy})"));
-        let mut total: f64 = 0.0;
-        for i in 0..N {
-            if !values[i] {
-                continue;
-            }
-            total += self.values[i];
-        }
 
-        let mut on_edge = true;
-        for i in 0..N {
-            if !values[i] {
-                continue;
-            }
-            if total - self.values[i] >= 0.5 {
-                on_edge = false;
-            }
-        }
-
-        let coalition: Coalition = if total < 0.5 {
-            Coalition::Below
-        } else if on_edge {
-            Coalition::Edge
-        } else {
-            Coalition::Above
-        };
+        let coalition: Coalition = Coalition::from_values(values, &self.values);
 
         let mut added = 0.0;
         for i in 0..N {
@@ -708,20 +676,15 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
             group = group.add(circle);
         }
 
-        let mut circle = Circle::new()
+        let config = self.config.circle_config(coalition);
+
+        let circle = Circle::new()
             .set("r", r * 2.0)
             .set("cx", cx)
             .set("cy", cy)
             .set("fill", "transparent")
-            .set("stroke", "white")
+            .set("stroke", config.color.as_str())
             .set("stroke-width", 0.5);
-
-        let config: &CircleConfig = match coalition {
-            Coalition::Below => &self.config.circle_below,
-            Coalition::Edge => &self.config.circle_edge,
-            Coalition::Above => &self.config.circle_above,
-        };
-        circle = circle.set("stroke", config.color.as_str());
 
         if config.opacity != 1.0 {
             group = group.set("opacity", config.opacity);
@@ -729,5 +692,53 @@ impl<const N: usize, const X: usize, const Y: usize> Diagram<N, X, Y> {
         group = group.add(circle);
 
         out.add(group)
+    }
+}
+
+enum Coalition {
+    Below,
+    Edge,
+    Above,
+}
+
+impl Coalition {
+    fn from_values(mask: &[bool], values: &[f64]) -> Coalition {
+        let n = mask.len();
+        debug_assert!(n == values.len());
+        let mut total: f64 = 0.0;
+        for i in 0..n {
+            if !mask[i] {
+                continue;
+            }
+            total += values[i];
+        }
+
+        let mut on_edge = true;
+        for i in 0..n {
+            if !mask[i] {
+                continue;
+            }
+            if total - values[i] >= 0.5 {
+                on_edge = false;
+            }
+        }
+
+        if total < 0.5 {
+            Coalition::Below
+        } else if on_edge {
+            Coalition::Edge
+        } else {
+            Coalition::Above
+        }
+    }
+}
+
+impl DiagramConfig {
+    fn circle_config(&self, coalition: Coalition) -> &CircleConfig {
+        match coalition {
+            Coalition::Below => &self.circle_below,
+            Coalition::Edge => &self.circle_edge,
+            Coalition::Above => &self.circle_above,
+        }
     }
 }
