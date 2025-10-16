@@ -4,7 +4,7 @@ use venn_diagrams::{
 };
 
 #[test]
-fn parliament_test() {
+fn eight() {
     fn normalize<const N: usize>(values: [f64; N]) -> [f64; N] {
         let sum: f64 = values.iter().sum();
         values.map(|x| x / sum)
@@ -26,5 +26,8 @@ fn parliament_test() {
     };
 
     let svg = diagram.to_svg();
-    insta::assert_binary_snapshot!(".svg", svg.to_string().as_bytes().into_iter().cloned().collect());
+    insta::assert_binary_snapshot!(
+        "eight.svg",
+        svg.to_string().as_bytes().into_iter().cloned().collect()
+    );
 }

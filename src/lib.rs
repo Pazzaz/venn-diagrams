@@ -4,7 +4,7 @@
 //! consisting of [polyominos][wp-poly] on a grid.
 //!
 //! # Example
-#![doc = include_str!("../image.svg")]
+#![doc = include_str!("../tests/snapshots/examples__eight.snap.svg")]
 //!
 //! # Research
 //! Parts of this library is based on the following research:
