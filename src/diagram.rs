@@ -13,6 +13,7 @@ const SCALE: usize = 20;
 pub struct Diagram {}
 
 pub struct DiagramConfig {
+    pub line_width: f64,
     pub radius: f64,
     pub circle_below: CircleConfig,
     pub circle_edge: CircleConfig,
@@ -24,6 +25,7 @@ pub struct DiagramConfig {
 impl Default for DiagramConfig {
     fn default() -> Self {
         Self {
+            line_width: 1.0,
             radius: 3.5,
             circle_below: CircleConfig::new(0.3, String::from("red")),
             circle_edge: CircleConfig::new(1.0, String::from("white")),
@@ -58,7 +60,13 @@ pub enum CirclePlacement {
 }
 
 impl CirclePlacement {
-    fn get_circle_pos(&self, x: usize, y: usize, internal_offset: InnerOffset) -> (f64, f64) {
+    fn get_circle_pos(
+        &self,
+        x: usize,
+        y: usize,
+        internal_offset: InnerOffset,
+        line_width: f64,
+    ) -> (f64, f64) {
         match self {
             CirclePlacement::Basic => (
                 ((x * SCALE) as f64) + (SCALE as f64) / 2.0,
@@ -70,10 +78,10 @@ impl CirclePlacement {
 
                 let whole = SCALE as f64;
 
-                let above_y = cy + internal_offset.above as f64;
-                let below_y = cy + whole + internal_offset.below as f64;
-                let left_x = cx + internal_offset.left as f64;
-                let right_x = cx + whole + internal_offset.right as f64;
+                let above_y = cy + internal_offset.above as f64 * line_width;
+                let below_y = cy + whole + internal_offset.below as f64 * line_width;
+                let left_x = cx + internal_offset.left as f64 * line_width;
+                let right_x = cx + whole + internal_offset.right as f64 * line_width;
 
                 let cy = f64::midpoint(above_y, below_y);
                 let cx = f64::midpoint(left_x, right_x);
@@ -94,14 +102,14 @@ struct InnerOffset {
 const CORNER_OFFSET: i32 = 3;
 
 struct Corner {
-    from: (i32, i32),
-    to: (i32, i32),
+    from: (f64, f64),
+    to: (f64, f64),
     clockwise: bool,
 }
 
 impl Corner {
     // Parameters which can be used to create an "elliptical_arc" in SVG
-    fn params(&self) -> (i32, i32, i32, i32, i32, i32, i32) {
+    fn params(&self) -> (i32, i32, i32, i32, i32, f64, f64) {
         (CORNER_OFFSET, CORNER_OFFSET, 0, 0, i32::from(self.clockwise), self.to.0, self.to.1)
     }
 }
@@ -478,6 +486,7 @@ impl Diagram {
     fn get_points(
         combined_paths: Vec<Vec<DirectedEdge>>,
         offsets: Vec<Vec<i32>>,
+        line_width: f64,
     ) -> Vec<Vec<Corner>> {
         // We will convert to just points, with offsets applied
         let mut points: Vec<Vec<Corner>> = Vec::new();
@@ -499,21 +508,21 @@ impl Diagram {
                     DirectedEdge::Vertical { .. } => (o1, o2),
                 };
 
-                let meet_x = (shared_x * SCALE) as i32 + ox;
-                let meet_y = (shared_y * SCALE) as i32 + oy;
+                let meet_x: f64 = (shared_x * SCALE) as f64 + *ox as f64 * line_width;
+                let meet_y: f64 = (shared_y * SCALE) as f64 + *oy as f64 * line_width;
 
-                let from = match e1.direction() {
-                    Direction::Left => (meet_x + CORNER_OFFSET, meet_y),
-                    Direction::Right => (meet_x - CORNER_OFFSET, meet_y),
-                    Direction::Up => (meet_x, meet_y + CORNER_OFFSET),
-                    Direction::Down => (meet_x, meet_y - CORNER_OFFSET),
+                let from: (f64, f64) = match e1.direction() {
+                    Direction::Left => (meet_x + CORNER_OFFSET as f64, meet_y),
+                    Direction::Right => (meet_x - CORNER_OFFSET as f64, meet_y),
+                    Direction::Up => (meet_x, meet_y + CORNER_OFFSET as f64),
+                    Direction::Down => (meet_x, meet_y - CORNER_OFFSET as f64),
                 };
 
-                let to = match e2.direction() {
-                    Direction::Left => (meet_x - CORNER_OFFSET, meet_y),
-                    Direction::Right => (meet_x + CORNER_OFFSET, meet_y),
-                    Direction::Up => (meet_x, meet_y - CORNER_OFFSET),
-                    Direction::Down => (meet_x, meet_y + CORNER_OFFSET),
+                let to: (f64, f64) = match e2.direction() {
+                    Direction::Left => (meet_x - CORNER_OFFSET as f64, meet_y),
+                    Direction::Right => (meet_x + CORNER_OFFSET as f64, meet_y),
+                    Direction::Up => (meet_x, meet_y - CORNER_OFFSET as f64),
+                    Direction::Down => (meet_x, meet_y + CORNER_OFFSET as f64),
                 };
 
                 // We're moving clockwise or counter-clockwise
@@ -583,7 +592,7 @@ impl Diagram {
 
         let (offsets, internal_offsets) = Self::get_offsets(x, y, &combined_paths);
 
-        let points = Self::get_points(combined_paths, offsets);
+        let points = Self::get_points(combined_paths, offsets, config.line_width);
 
         let paths = Self::get_rounded_paths(points, config.corner_style);
 
@@ -632,7 +641,7 @@ impl Diagram {
                 .clone()
                 .set("fill", "none")
                 .set("stroke", color.clone())
-                .set("stroke-width", 1);
+                .set("stroke-width", config.line_width);
             out = out.add(path);
         }
 
@@ -648,8 +657,12 @@ impl Diagram {
                     pairs[i] = v;
                 }
                 if any_true {
-                    let (x_pos, y_pos) =
-                        config.circle_placement.get_circle_pos(x, y, internal_offsets[(x, y)]);
+                    let (x_pos, y_pos) = config.circle_placement.get_circle_pos(
+                        x,
+                        y,
+                        internal_offsets[(x, y)],
+                        config.line_width,
+                    );
                     out = Self::draw_circle(x_pos, y_pos, &pairs, out, config, values, colors);
                 }
             }
