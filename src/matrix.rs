@@ -1,7 +1,7 @@
 use std::ops::{Index, IndexMut};
 
 #[derive(Debug, Clone)]
-pub struct Matrix<T: Clone> {
+pub(crate) struct Matrix<T: Clone> {
     x: usize,
     // y: usize,
     values: Vec<T>,
@@ -14,6 +14,10 @@ impl<T: Clone> Matrix<T> {
             // y,
             values: vec![default; x * y],
         }
+    }
+
+    pub fn row(&self, i: usize) -> &[T] {
+        &self.values[i * self.x..((i + 1) * self.x)]
     }
 }
 

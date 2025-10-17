@@ -361,7 +361,7 @@ impl Diagram {
         for edges in polys {
             // 1. Create adjancy matrix
             let l = edges.len();
-            let mut adj: Vec<Vec<bool>> = vec![vec![false; l]; l];
+            let mut adj = Matrix::new(l, l, false);
 
             for i in 0..l {
                 for j in 0..l {
@@ -369,7 +369,7 @@ impl Diagram {
                         continue;
                     }
                     if edges[i].connected(&edges[j]) {
-                        adj[i][j] = true;
+                        adj[(j, i)] = true;
                     }
                 }
             }
@@ -379,10 +379,10 @@ impl Diagram {
             // current edge we're examining
             let mut i: usize = 0;
             let mut pre: Option<(usize, usize)> = None;
-            while let Some(j) = adj[i].iter().position(|x| *x) {
+            while let Some(j) = adj.row(i).iter().position(|x| *x) {
                 for k in 0..l {
-                    adj[i][k] = false;
-                    adj[k][i] = false;
+                    adj[(k, i)] = false;
+                    adj[(i, k)] = false;
                 }
 
                 let directed: Option<DirectedEdge>;
@@ -433,7 +433,7 @@ impl Diagram {
             // Let's just check we used every edge in this path
             for i in 0..l {
                 for j in 0..l {
-                    debug_assert!(!adj[i][j]);
+                    debug_assert!(!adj[(j, i)]);
                 }
             }
             paths.push(path);
