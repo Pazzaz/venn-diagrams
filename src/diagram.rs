@@ -6,7 +6,7 @@ use svg::{
 };
 
 use super::direction::{DirectedEdge, Edge};
-use crate::{direction::Direction, polyomino::Polyomino, venn::VennDiagram};
+use crate::{direction::Direction, matrix::Matrix, polyomino::Polyomino, venn::VennDiagram};
 
 const SCALE: usize = 20;
 
@@ -111,13 +111,13 @@ impl Diagram {
         x: usize,
         y: usize,
         combined_paths: &[Vec<DirectedEdge>],
-    ) -> (Vec<Vec<i32>>, Vec<Vec<InnerOffset>>) {
+    ) -> (Vec<Vec<i32>>, Matrix<InnerOffset>) {
         let mut offsets: Vec<Vec<i32>> =
             combined_paths.iter().map(|x| vec![i32::MIN; x.len()]).collect();
         let mut columns = vec![Vec::new(); x + 1];
         let mut rows = vec![Vec::new(); y + 1];
 
-        let mut inner_offset: Vec<Vec<InnerOffset>> = vec![vec![InnerOffset::default(); x]; y];
+        let mut inner_offset: Matrix<InnerOffset> = Matrix::new(x, y, InnerOffset::default());
 
         for (p_i, es) in combined_paths.iter().enumerate() {
             for (e_i, e) in es.iter().enumerate() {
@@ -164,7 +164,7 @@ impl Diagram {
 
             let middle = l / 2;
 
-            let mut occupied = vec![vec![false; l]; y];
+            let mut occupied = Matrix::new(l, y, false);
 
             for &(p_i, e_i) in column {
                 let edge = &combined_paths[p_i][e_i];
@@ -176,9 +176,9 @@ impl Diagram {
                     debug_assert!(y_from < y_to);
 
                     let first_possible_left =
-                        (0..=middle).rev().find(|j| !(y_from..y_to).any(|i| occupied[i][*j]));
+                        (0..=middle).rev().find(|j| !(y_from..y_to).any(|i| occupied[(*j, i)]));
                     let first_possible_right =
-                        (middle..l).find(|j| !(y_from..y_to).any(|i| occupied[i][*j]));
+                        (middle..l).find(|j| !(y_from..y_to).any(|i| occupied[(*j, i)]));
 
                     let j = match (first_possible_left, first_possible_right) {
                         (None, None) => unreachable!(),
@@ -205,8 +205,8 @@ impl Diagram {
                     };
 
                     for i in y_from..y_to {
-                        debug_assert!(!occupied[i][j]);
-                        occupied[i][j] = true;
+                        debug_assert!(!occupied[(j, i)]);
+                        occupied[(j, i)] = true;
                     }
                     offsets[p_i][e_i] = (j as i32) - middle as i32;
                 } else {
@@ -218,7 +218,7 @@ impl Diagram {
                 let mut min_pos: usize = usize::MAX;
                 let mut max_pos: usize = usize::MIN;
                 for k in 0..l {
-                    if occupied[j][k] {
+                    if occupied[(k, j)] {
                         if k < min_pos {
                             min_pos = k;
                         }
@@ -228,10 +228,10 @@ impl Diagram {
                     }
                 }
                 if i != x {
-                    inner_offset[j][i].left = (max_pos as i32) - middle as i32;
+                    inner_offset[(i, j)].left = (max_pos as i32) - middle as i32;
                 }
                 if i != 0 {
-                    inner_offset[j][i - 1].right = (min_pos as i32) - middle as i32;
+                    inner_offset[(i - 1, j)].right = (min_pos as i32) - middle as i32;
                 }
             }
         }
@@ -252,7 +252,7 @@ impl Diagram {
 
             let middle = l / 2;
 
-            let mut occupied = vec![vec![false; l]; x];
+            let mut occupied = Matrix::new(l, x, false);
 
             for &(p_i, e_i) in row {
                 let edge = &combined_paths[p_i][e_i];
@@ -264,9 +264,9 @@ impl Diagram {
                     debug_assert!(x_from < x_to);
 
                     let first_possible_left =
-                        (0..=middle).rev().find(|j| !(x_from..x_to).any(|i| occupied[i][*j]));
+                        (0..=middle).rev().find(|j| !(x_from..x_to).any(|i| occupied[(*j, i)]));
                     let first_possible_right =
-                        (middle..l).find(|j| !(x_from..x_to).any(|i| occupied[i][*j]));
+                        (middle..l).find(|j| !(x_from..x_to).any(|i| occupied[(*j, i)]));
 
                     let j = match (first_possible_left, first_possible_right) {
                         (None, None) => unreachable!(),
@@ -293,8 +293,8 @@ impl Diagram {
                     };
 
                     for i in x_from..x_to {
-                        debug_assert!(!occupied[i][j]);
-                        occupied[i][j] = true;
+                        debug_assert!(!occupied[(j, i)]);
+                        occupied[(j, i)] = true;
                     }
                     offsets[p_i][e_i] = (j as i32) - middle as i32;
                 } else {
@@ -306,7 +306,7 @@ impl Diagram {
                 let mut min_pos: usize = usize::MAX;
                 let mut max_pos: usize = usize::MIN;
                 for k in 0..l {
-                    if occupied[j][k] {
+                    if occupied[(k, j)] {
                         if k < min_pos {
                             min_pos = k;
                         }
@@ -316,10 +316,10 @@ impl Diagram {
                     }
                 }
                 if i != y {
-                    inner_offset[i][j].above = (max_pos as i32) - middle as i32;
+                    inner_offset[(j, i)].above = (max_pos as i32) - middle as i32;
                 }
                 if i != 0 {
-                    inner_offset[i - 1][j].below = (min_pos as i32) - middle as i32;
+                    inner_offset[(j, i - 1)].below = (min_pos as i32) - middle as i32;
                 }
             }
         }
@@ -649,7 +649,7 @@ impl Diagram {
                 }
                 if any_true {
                     let (x_pos, y_pos) =
-                        config.circle_placement.get_circle_pos(x, y, internal_offsets[y][x]);
+                        config.circle_placement.get_circle_pos(x, y, internal_offsets[(x, y)]);
                     out = Self::draw_circle(x_pos, y_pos, &pairs, out, config, values, colors);
                 }
             }
