@@ -60,13 +60,7 @@ pub enum CirclePlacement {
 }
 
 impl CirclePlacement {
-    fn get_circle_pos(
-        &self,
-        x: usize,
-        y: usize,
-        internal_offset: InnerOffset,
-        line_width: f64,
-    ) -> (f64, f64) {
+    fn get_circle_pos(&self, x: usize, y: usize, internal_offset: InnerOffset) -> (f64, f64) {
         match self {
             CirclePlacement::Basic => (
                 ((x * SCALE) as f64) + (SCALE as f64) / 2.0,
@@ -78,10 +72,10 @@ impl CirclePlacement {
 
                 let whole = SCALE as f64;
 
-                let above_y = cy + internal_offset.above as f64 * line_width;
-                let below_y = cy + whole + internal_offset.below as f64 * line_width;
-                let left_x = cx + internal_offset.left as f64 * line_width;
-                let right_x = cx + whole + internal_offset.right as f64 * line_width;
+                let above_y = cy + internal_offset.above as f64;
+                let below_y = cy + whole + internal_offset.below as f64;
+                let left_x = cx + internal_offset.left as f64;
+                let right_x = cx + whole + internal_offset.right as f64;
 
                 let cy = f64::midpoint(above_y, below_y);
                 let cx = f64::midpoint(left_x, right_x);
@@ -93,10 +87,10 @@ impl CirclePlacement {
 
 #[derive(Debug, Default, Clone, Copy)]
 struct InnerOffset {
-    above: i32,
-    below: i32,
-    right: i32,
-    left: i32,
+    above: f64,
+    below: f64,
+    right: f64,
+    left: f64,
 }
 
 const CORNER_OFFSET: i32 = 3;
@@ -119,6 +113,7 @@ impl Diagram {
         x: usize,
         y: usize,
         combined_paths: &[Vec<DirectedEdge>],
+        line_width: f64,
     ) -> (Vec<Vec<i32>>, Matrix<InnerOffset>) {
         let mut offsets: Vec<Vec<i32>> =
             combined_paths.iter().map(|x| vec![i32::MIN; x.len()]).collect();
@@ -236,10 +231,10 @@ impl Diagram {
                     }
                 }
                 if i != x {
-                    inner_offset[(i, j)].left = (max_pos as i32) - middle as i32;
+                    inner_offset[(i, j)].left = (max_pos as f64 - middle as f64) * line_width;
                 }
                 if i != 0 {
-                    inner_offset[(i - 1, j)].right = (min_pos as i32) - middle as i32;
+                    inner_offset[(i - 1, j)].right = (min_pos as f64 - middle as f64) * line_width;
                 }
             }
         }
@@ -324,10 +319,10 @@ impl Diagram {
                     }
                 }
                 if i != y {
-                    inner_offset[(j, i)].above = (max_pos as i32) - middle as i32;
+                    inner_offset[(j, i)].above = (max_pos as f64 - middle as f64) * line_width;
                 }
                 if i != 0 {
-                    inner_offset[(j, i - 1)].below = (min_pos as i32) - middle as i32;
+                    inner_offset[(j, i - 1)].below = (min_pos as f64 - middle as f64) * line_width;
                 }
             }
         }
@@ -590,7 +585,8 @@ impl Diagram {
 
         let combined_paths = Self::get_combined_paths(paths);
 
-        let (offsets, internal_offsets) = Self::get_offsets(x, y, &combined_paths);
+        let (offsets, internal_offsets) =
+            Self::get_offsets(x, y, &combined_paths, config.line_width);
 
         let points = Self::get_points(combined_paths, offsets, config.line_width);
 
@@ -657,12 +653,8 @@ impl Diagram {
                     pairs[i] = v;
                 }
                 if any_true {
-                    let (x_pos, y_pos) = config.circle_placement.get_circle_pos(
-                        x,
-                        y,
-                        internal_offsets[(x, y)],
-                        config.line_width,
-                    );
+                    let (x_pos, y_pos) =
+                        config.circle_placement.get_circle_pos(x, y, internal_offsets[(x, y)]);
                     out = Self::draw_circle(x_pos, y_pos, &pairs, out, config, values, colors);
                 }
             }
