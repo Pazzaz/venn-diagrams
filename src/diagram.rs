@@ -147,16 +147,21 @@ impl Diagram {
             directions.push(path_directions);
         }
 
+        // We choose the position in each column seperately
         for i in 0..=x {
+            // We sort each edge that's contained is this column such that we start by
+            // placing the longest edges
             columns[i].sort_by(|a, b| {
                 let ap = combined_paths[a.0][a.1].len();
                 let bp = combined_paths[b.0][b.1].len();
                 ap.cmp(&bp).reverse()
             });
 
+            // the current column
             let column = &columns[i];
 
             let l = column.len();
+
             let middle = l / 2;
 
             let mut occupied = vec![vec![false; l]; y];
@@ -169,41 +174,38 @@ impl Diagram {
                         mem::swap(&mut y_from, &mut y_to);
                     }
                     debug_assert!(y_from < y_to);
-                    let mut first_possible_left = middle;
-                    while first_possible_left != 0 {
-                        if (y_from..y_to).any(|i| occupied[i][first_possible_left]) {
-                            first_possible_left -= 1;
-                        } else {
-                            break;
+
+                    let first_possible_left =
+                        (0..=middle).rev().find(|j| !(y_from..y_to).any(|i| occupied[i][*j]));
+                    let first_possible_right =
+                        (middle..l).find(|j| !(y_from..y_to).any(|i| occupied[i][*j]));
+
+                    let j = match (first_possible_left, first_possible_right) {
+                        (None, None) => unreachable!(),
+                        (None, Some(r)) => r,
+                        (Some(l), None) => l,
+                        (Some(l), Some(r)) => {
+                            let prioritize_left = match edge_direction {
+                                Some(Direction::Left) => true,
+                                Some(Direction::Right) | None => false,
+                                Some(Direction::Up | Direction::Down) => unreachable!(),
+                            };
+
+                            let left_dist = middle.abs_diff(l);
+                            let right_dist = middle.abs_diff(r);
+
+                            let choose_left = match left_dist.cmp(&right_dist) {
+                                Ordering::Less => true,
+                                Ordering::Equal => prioritize_left,
+                                Ordering::Greater => false,
+                            };
+
+                            if choose_left { l } else { r }
                         }
-                    }
-                    let mut first_possible_right = middle;
-                    while first_possible_right != l {
-                        if (y_from..y_to).any(|i| occupied[i][first_possible_right]) {
-                            first_possible_right += 1;
-                        } else {
-                            break;
-                        }
-                    }
-
-                    let prioritize_left = match edge_direction {
-                        Some(Direction::Left) => true,
-                        Some(Direction::Right) | None => false,
-                        Some(Direction::Up | Direction::Down) => unreachable!(),
                     };
-
-                    let left_dist = middle.abs_diff(first_possible_left);
-                    let right_dist = middle.abs_diff(first_possible_right);
-
-                    let choose_left = match left_dist.cmp(&right_dist) {
-                        Ordering::Less => true,
-                        Ordering::Equal => prioritize_left,
-                        Ordering::Greater => false,
-                    };
-
-                    let j = if choose_left { first_possible_left } else { first_possible_right };
 
                     for i in y_from..y_to {
+                        debug_assert!(!occupied[i][j]);
                         occupied[i][j] = true;
                     }
                     offsets[p_i][e_i] = (j as i32) - middle as i32;
@@ -234,7 +236,10 @@ impl Diagram {
             }
         }
 
+        // We choose the position in each row seperately
         for i in 0..=y {
+            // We sort each edge that's contained is this row such that we start by
+            // placing the longest edges
             rows[i].sort_by(|a, b| {
                 let ap = combined_paths[a.0][a.1].len();
                 let bp = combined_paths[b.0][b.1].len();
@@ -244,6 +249,7 @@ impl Diagram {
             let row = &rows[i];
 
             let l = row.len();
+
             let middle = l / 2;
 
             let mut occupied = vec![vec![false; l]; x];
@@ -256,41 +262,38 @@ impl Diagram {
                         mem::swap(&mut x_from, &mut x_to);
                     }
                     debug_assert!(x_from < x_to);
-                    let mut first_possible_left = middle;
-                    while first_possible_left != 0 {
-                        if (x_from..x_to).any(|i| occupied[i][first_possible_left]) {
-                            first_possible_left -= 1;
-                        } else {
-                            break;
+
+                    let first_possible_left =
+                        (0..=middle).rev().find(|j| !(x_from..x_to).any(|i| occupied[i][*j]));
+                    let first_possible_right =
+                        (middle..l).find(|j| !(x_from..x_to).any(|i| occupied[i][*j]));
+
+                    let j = match (first_possible_left, first_possible_right) {
+                        (None, None) => unreachable!(),
+                        (None, Some(r)) => r,
+                        (Some(l), None) => l,
+                        (Some(l), Some(r)) => {
+                            let prioritize_left = match edge_direction {
+                                Some(Direction::Up) => true,
+                                Some(Direction::Down) | None => false,
+                                Some(Direction::Left | Direction::Right) => unreachable!(),
+                            };
+
+                            let left_dist = middle.abs_diff(l);
+                            let right_dist = middle.abs_diff(r);
+
+                            let choose_left = match left_dist.cmp(&right_dist) {
+                                Ordering::Less => true,
+                                Ordering::Equal => prioritize_left,
+                                Ordering::Greater => false,
+                            };
+
+                            if choose_left { l } else { r }
                         }
-                    }
-                    let mut first_possible_right = middle;
-                    while first_possible_right != l {
-                        if (x_from..x_to).any(|i| occupied[i][first_possible_right]) {
-                            first_possible_right += 1;
-                        } else {
-                            break;
-                        }
-                    }
-
-                    let prioritize_left = match edge_direction {
-                        Some(Direction::Up) => true,
-                        Some(Direction::Down) | None => false,
-                        Some(Direction::Left | Direction::Right) => unreachable!(),
                     };
-
-                    let left_dist = middle.abs_diff(first_possible_left);
-                    let right_dist = middle.abs_diff(first_possible_right);
-
-                    let choose_left = match left_dist.cmp(&right_dist) {
-                        Ordering::Less => true,
-                        Ordering::Equal => prioritize_left,
-                        Ordering::Greater => false,
-                    };
-
-                    let j = if choose_left { first_possible_left } else { first_possible_right };
 
                     for i in x_from..x_to {
+                        debug_assert!(!occupied[i][j]);
                         occupied[i][j] = true;
                     }
                     offsets[p_i][e_i] = (j as i32) - middle as i32;
