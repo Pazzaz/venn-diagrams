@@ -1,5 +1,9 @@
 use super::venn_diagram::ConstVennDiagram;
 
+/// A Venn diagram for 8 groups.
+///
+/// # Example
+#[doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/tests/snapshots/examples__eight.snap.svg"))]
 pub const EIGHT: ConstVennDiagram<8, 17, 15> = ConstVennDiagram::from_binary_str(GRIDS);
 
 #[rustfmt::skip]

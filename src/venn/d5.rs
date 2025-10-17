@@ -1,5 +1,9 @@
 use super::venn_diagram::ConstVennDiagram;
 
+/// A Venn diagram for 5 groups.
+///
+/// # Example
+#[doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/tests/snapshots/examples__five.snap.svg"))]
 pub const FIVE: ConstVennDiagram<5, 7, 7> = ConstVennDiagram::from_letters(STR);
 
 #[rustfmt::skip]
