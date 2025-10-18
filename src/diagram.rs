@@ -20,6 +20,8 @@ pub struct DiagramConfig {
     pub circle_above: CircleConfig,
     pub circle_placement: CirclePlacement,
     pub corner_style: CornerStyle,
+    pub width_mul: Option<usize>,
+    pub height_mul: Option<usize>,
 }
 
 impl Default for DiagramConfig {
@@ -32,6 +34,8 @@ impl Default for DiagramConfig {
             circle_above: CircleConfig::new(0.3, String::from("green")),
             circle_placement: CirclePlacement::SquareCenter,
             corner_style: CornerStyle::Smooth,
+            width_mul: Some(4),
+            height_mul: None,
         }
     }
 }
@@ -599,10 +603,15 @@ impl Diagram {
         let min_y = -((SCALE / 2) as i32);
         let height = (y + 1) * SCALE;
 
-        let mut out = Document::new()
-            .set("viewBox", (min_x, min_y, width, height))
-            .set("width", format!("{}px", 4 * width))
-            .set("height", format!("{}px", 4 * height));
+        let mut out = Document::new().set("viewBox", (min_x, min_y, width, height));
+
+        if let Some(width_mul) = config.width_mul {
+            out = out.set("width", format!("{}px", width_mul * width));
+        }
+
+        if let Some(height_mul) = config.height_mul {
+            out = out.set("width", format!("{}px", height_mul * width));
+        }
 
         let mut mask = Mask::new().set("id", "background_mask");
         for path in &paths {
