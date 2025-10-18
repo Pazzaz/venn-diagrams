@@ -610,7 +610,7 @@ impl Diagram {
         }
 
         if let Some(height_mul) = config.height_mul {
-            out = out.set("width", format!("{}px", height_mul * width));
+            out = out.set("height", format!("{}px", height_mul * width));
         }
 
         let mut mask = Mask::new().set("id", "background_mask");
