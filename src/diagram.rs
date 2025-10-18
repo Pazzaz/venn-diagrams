@@ -624,10 +624,10 @@ impl Diagram {
         out = out.add(defs);
 
         let rect = Rectangle::new()
-            .set("width", (x + 1) * SCALE)
-            .set("height", (y + 1) * SCALE)
-            .set("x", -((SCALE / 2) as i32))
-            .set("y", -((SCALE / 2) as i32))
+            .set("width", width)
+            .set("height", height)
+            .set("x", min_x)
+            .set("y", min_y)
             .set("mask", "url(#background_mask)");
 
         out = out.add(rect);
