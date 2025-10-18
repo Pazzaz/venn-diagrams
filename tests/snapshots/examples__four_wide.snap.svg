@@ -1,4 +1,4 @@
-<svg height="200px" viewBox="-10 0 120 100" width="200px" xmlns="http://www.w3.org/2000/svg">
+<svg height="480px" viewBox="-10 -10 120 120" width="480px" xmlns="http://www.w3.org/2000/svg">
 <defs>
 <mask id="background_mask">
 <path d="M23,82 A3,3,0,0,1,20,79 L20,3 A3,3,0,0,1,23,0 L37,0 A3,3,0,0,1,40,3 L40,19 A3,3,0,0,0,43,22 L57,22 A3,3,0,0,1,60,25 L60,97 A3,3,0,0,1,57,100 L45,100 A3,3,0,0,1,42,97 L42,85 A3,3,0,0,0,39,82 z" fill="white" stroke="none"/>

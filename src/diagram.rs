@@ -594,14 +594,15 @@ impl Diagram {
 
         // Then we create the svg
         let min_x = -((SCALE / 2) as i32);
-        let max_x = (x + 1) * SCALE;
+        let width = (x + 1) * SCALE;
 
-        let min_y = 0;
-        let max_y = y * SCALE;
+        let min_y = -((SCALE / 2) as i32);
+        let height = (y + 1) * SCALE;
+
         let mut out = Document::new()
-            .set("viewBox", (min_x, min_y, max_x, max_y))
-            .set("width", format!("{}px", 2 * x * SCALE))
-            .set("height", format!("{}px", 2 * y * SCALE));
+            .set("viewBox", (min_x, min_y, width, height))
+            .set("width", format!("{}px", 4 * width))
+            .set("height", format!("{}px", 4 * height));
 
         let mut mask = Mask::new().set("id", "background_mask");
         for path in &paths {
