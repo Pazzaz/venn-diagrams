@@ -1,5 +1,6 @@
 use std::{cmp::Ordering, mem, vec};
 
+use itertools::Itertools;
 use svg::{
     Document,
     node::element::{Circle, Definitions, Group, Mask, Path, Rectangle, SVG, path::Data},
@@ -99,16 +100,84 @@ struct InnerOffset {
 
 const CORNER_OFFSET: i32 = 3;
 
+#[derive(Debug, Clone)]
+struct BasicCorner {
+    x: usize,
+    y: usize,
+    x_offset: i32,
+    y_offset: i32,
+    from: Direction,
+    to: Direction,
+}
+
+impl BasicCorner {
+    fn offset_group(&self) -> i32 {
+        match self.diagonal() {
+            Diagonal::DownRight | Diagonal::UpLeft => self.u(),
+            Diagonal::UpRight | Diagonal::DownLeft => self.v(),
+        }
+    }
+
+    /// Opposite of `offset_group`
+    fn offset_group_2(&self) -> i32 {
+        match self.diagonal() {
+            Diagonal::DownRight | Diagonal::UpLeft => self.v(),
+            Diagonal::UpRight | Diagonal::DownLeft => self.u(),
+        }
+    }
+
+    // Diagonal coordinates
+    fn u(&self) -> i32 {
+        self.x_offset - self.y_offset
+    }
+
+    fn v(&self) -> i32 {
+        self.x_offset + self.y_offset
+    }
+
+    fn diagonal(&self) -> Diagonal {
+        match (self.from.opposite(), self.to) {
+            (Direction::Left, Direction::Up) | (Direction::Up, Direction::Left) => Diagonal::UpLeft,
+            (Direction::Up, Direction::Right) | (Direction::Right, Direction::Up) => {
+                Diagonal::UpRight
+            }
+            (Direction::Left, Direction::Down) | (Direction::Down, Direction::Left) => {
+                Diagonal::DownLeft
+            }
+            (Direction::Right, Direction::Down) | (Direction::Down, Direction::Right) => {
+                Diagonal::DownRight
+            }
+            (Direction::Left | Direction::Right, Direction::Left | Direction::Right) => {
+                unreachable!()
+            }
+            (Direction::Up | Direction::Down, Direction::Up | Direction::Down) => unreachable!(),
+        }
+    }
+
+    fn group_category(&self) -> (i32, Diagonal) {
+        (self.offset_group(), self.diagonal())
+    }
+}
+
+#[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
+enum Diagonal {
+    UpLeft,
+    UpRight,
+    DownLeft,
+    DownRight,
+}
+
 struct Corner {
     from: (f64, f64),
     to: (f64, f64),
     clockwise: bool,
+    radius: f64,
 }
 
 impl Corner {
     // Parameters which can be used to create an "elliptical_arc" in SVG
-    fn params(&self) -> (i32, i32, i32, i32, i32, f64, f64) {
-        (CORNER_OFFSET, CORNER_OFFSET, 0, 0, i32::from(self.clockwise), self.to.0, self.to.1)
+    fn params(&self) -> (f64, f64, i32, i32, i32, f64, f64) {
+        (self.radius, self.radius, 0, 0, i32::from(self.clockwise), self.to.0, self.to.1)
     }
 }
 
@@ -483,21 +552,29 @@ impl Diagram {
     }
 
     fn get_points(
+        x: usize,
+        y: usize,
         combined_paths: Vec<Vec<DirectedEdge>>,
         offsets: Vec<Vec<i32>>,
         line_width: f64,
     ) -> Vec<Vec<Corner>> {
         // We will convert to just points, with offsets applied
-        let mut points: Vec<Vec<Corner>> = Vec::new();
-        for (path_edges, path_offsets) in combined_paths.into_iter().zip(offsets) {
+        let mut points: Vec<Vec<BasicCorner>> = Vec::new();
+        let mut group_offsets: Vec<Vec<Option<i32>>> = Vec::new();
+
+        let mut positioned_corners: Matrix<Vec<(usize, usize)>> =
+            Matrix::new(x + 1, y + 1, Vec::new());
+
+        for (i, (path_edges, path_offsets)) in combined_paths.into_iter().zip(offsets).enumerate() {
             let mut out = Vec::new();
+            let mut path_group_offsets = Vec::new();
             let last_edge = path_edges.last().unwrap();
             let last_offset = *path_offsets.last().unwrap();
 
             let path_edges = std::iter::once(last_edge).chain(&path_edges);
             let path_offsets = std::iter::once(last_offset).chain(path_offsets);
             let parts: Vec<(&DirectedEdge, i32)> = path_edges.zip(path_offsets).collect();
-            for aa in parts.windows(2) {
+            for (j, aa) in parts.windows(2).enumerate() {
                 let ((e1, o1), (e2, o2)) = (&aa[0], &aa[1]);
                 let (shared_x, shared_y) = e1.to();
                 debug_assert!(e1.to() == e2.from());
@@ -507,32 +584,98 @@ impl Diagram {
                     DirectedEdge::Vertical { .. } => (o1, o2),
                 };
 
-                let meet_x: f64 = (shared_x * SCALE) as f64 + *ox as f64 * line_width;
-                let meet_y: f64 = (shared_y * SCALE) as f64 + *oy as f64 * line_width;
-
-                let from: (f64, f64) = match e1.direction() {
-                    Direction::Left => (meet_x + CORNER_OFFSET as f64, meet_y),
-                    Direction::Right => (meet_x - CORNER_OFFSET as f64, meet_y),
-                    Direction::Up => (meet_x, meet_y + CORNER_OFFSET as f64),
-                    Direction::Down => (meet_x, meet_y - CORNER_OFFSET as f64),
+                let corner = BasicCorner {
+                    x: shared_x,
+                    y: shared_y,
+                    x_offset: *ox,
+                    y_offset: *oy,
+                    from: e1.direction(),
+                    to: e2.direction(),
                 };
 
-                let to: (f64, f64) = match e2.direction() {
-                    Direction::Left => (meet_x - CORNER_OFFSET as f64, meet_y),
-                    Direction::Right => (meet_x + CORNER_OFFSET as f64, meet_y),
-                    Direction::Up => (meet_x, meet_y - CORNER_OFFSET as f64),
-                    Direction::Down => (meet_x, meet_y + CORNER_OFFSET as f64),
+                // We store them in the order of the path
+                out.push(corner);
+
+                // We also store the corsers grouped by their x and y position
+                positioned_corners[(shared_x, shared_y)].push((i, j));
+
+                // We'll fill these in later
+                path_group_offsets.push(None);
+            }
+            points.push(out);
+            group_offsets.push(path_group_offsets);
+        }
+
+        // Then we look at each corner and align the turns
+        for j in 0..y {
+            for i in 0..x {
+                // Sort corners according to their category
+                positioned_corners[(i, j)].sort_by_key(|(i, j)| points[*i][*j].group_category());
+                // Group them according to their position
+                for (_, chunk) in &positioned_corners[(i, j)]
+                    .iter()
+                    .chunk_by(|(i, j)| points[*i][*j].group_category())
+                {
+                    let values: Vec<(usize, usize)> = chunk.cloned().collect();
+                    if values.len() == 1 {
+                        continue;
+                    }
+                    println!("{:?}", values);
+                    let (p, q) = values[values.len() / 2];
+                    let middle_pos = points[p][q].offset_group_2() as i32;
+
+                    for (i, j) in &values {
+                        let corner_pos = points[*i][*j].offset_group_2() as i32;
+                        let offset = corner_pos - middle_pos;
+                        debug_assert!(offset % 2 == 0);
+                        group_offsets[*i][*j] = Some(offset / 2);
+                    }
+                }
+            }
+        }
+
+        let mut other_points = Vec::new();
+        for (path, path_offsets) in points.iter().zip(&group_offsets) {
+            let mut other_out = Vec::new();
+            for (corner, offset) in path.iter().zip(path_offsets) {
+                let mut offset = offset.unwrap_or(0) as f64 * line_width;
+
+                // Are we on the inside or outside?
+                offset = match corner.diagonal() {
+                    Diagonal::UpLeft => offset,
+                    Diagonal::UpRight => -offset,
+                    Diagonal::DownLeft => offset,
+                    Diagonal::DownRight => -offset,
+                };
+
+                offset += CORNER_OFFSET as f64;
+
+                let meet_x: f64 = (corner.x * SCALE) as f64 + corner.x_offset as f64 * line_width;
+                let meet_y: f64 = (corner.y * SCALE) as f64 + corner.y_offset as f64 * line_width;
+
+                let from: (f64, f64) = match corner.from {
+                    Direction::Left => (meet_x + offset, meet_y),
+                    Direction::Right => (meet_x - offset, meet_y),
+                    Direction::Up => (meet_x, meet_y + offset),
+                    Direction::Down => (meet_x, meet_y - offset),
+                };
+
+                let to: (f64, f64) = match corner.to {
+                    Direction::Left => (meet_x - offset, meet_y),
+                    Direction::Right => (meet_x + offset, meet_y),
+                    Direction::Up => (meet_x, meet_y - offset),
+                    Direction::Down => (meet_x, meet_y + offset),
                 };
 
                 // We're moving clockwise or counter-clockwise
-                let clockwise = Direction::clockwise(e1.direction(), e2.direction()).unwrap();
+                let clockwise = Direction::clockwise(corner.from, corner.to).unwrap();
 
-                let corner = Corner { from, to, clockwise };
-                out.push(corner);
+                let corner = Corner { from, to, clockwise, radius: offset };
+                other_out.push(corner);
             }
-            points.push(out);
+            other_points.push(other_out);
         }
-        points
+        other_points
     }
 
     fn get_rounded_paths(points: Vec<Vec<Corner>>, corner_style: CornerStyle) -> Vec<Path> {
@@ -592,7 +735,7 @@ impl Diagram {
         let (offsets, internal_offsets) =
             Self::get_offsets(x, y, &combined_paths, config.line_width);
 
-        let points = Self::get_points(combined_paths, offsets, config.line_width);
+        let points = Self::get_points(x, y, combined_paths, offsets, config.line_width);
 
         let paths = Self::get_rounded_paths(points, config.corner_style);
 
