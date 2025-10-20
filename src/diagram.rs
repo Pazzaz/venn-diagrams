@@ -21,6 +21,7 @@ pub struct DiagramConfig {
     pub circle_above: CircleConfig,
     pub circle_placement: CirclePlacement,
     pub corner_style: CornerStyle,
+    pub corner_offset: f64,
     pub width_mul: Option<f64>,
     pub height_mul: Option<f64>,
 }
@@ -35,6 +36,7 @@ impl Default for DiagramConfig {
             circle_above: CircleConfig::new(0.3, String::from("green")),
             circle_placement: CirclePlacement::SquareCenter,
             corner_style: CornerStyle::Smooth,
+            corner_offset: 3.0,
             width_mul: Some(4.0),
             height_mul: None,
         }
@@ -94,8 +96,6 @@ struct InnerOffset {
     right: f64,
     left: f64,
 }
-
-const CORNER_OFFSET: f64 = 3.0;
 
 #[derive(Debug, Clone)]
 struct BasicCorner {
@@ -554,6 +554,7 @@ impl Diagram {
         combined_paths: Vec<Vec<DirectedEdge>>,
         offsets: Vec<Vec<i32>>,
         line_width: f64,
+        corner_offset: f64,
     ) -> Vec<Vec<Corner>> {
         // We will convert to just points, with offsets applied
         let mut points: Vec<Vec<BasicCorner>> = Vec::new();
@@ -645,7 +646,7 @@ impl Diagram {
         for (path, path_offsets) in points.iter().zip(&group_offsets) {
             let mut other_out = Vec::new();
             for (corner, offset) in path.iter().zip(path_offsets) {
-                let offset = offset.unwrap_or(0) as f64 * line_width + CORNER_OFFSET;
+                let offset = offset.unwrap_or(0) as f64 * line_width + corner_offset;
 
                 let meet_x: f64 = (corner.x as f64 * SCALE) + corner.x_offset as f64 * line_width;
                 let meet_y: f64 = (corner.y as f64 * SCALE) + corner.y_offset as f64 * line_width;
@@ -732,7 +733,14 @@ impl Diagram {
         let (offsets, internal_offsets) =
             Self::get_offsets(x, y, &combined_paths, config.line_width);
 
-        let points = Self::get_points(x, y, combined_paths, offsets, config.line_width);
+        let points = Self::get_points(
+            x,
+            y,
+            combined_paths,
+            offsets,
+            config.line_width,
+            config.corner_offset,
+        );
 
         let paths = Self::get_rounded_paths(points, config.corner_style);
 
