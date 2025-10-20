@@ -28,7 +28,7 @@ pub struct DiagramConfig {
 impl Default for DiagramConfig {
     fn default() -> Self {
         Self {
-            scale: 20.0,
+            scale: 1.0,
             line_width: 0.05,
             radius: 0.175,
             circle_below: CircleConfig::new(0.3, String::from("red")),
@@ -37,7 +37,7 @@ impl Default for DiagramConfig {
             circle_placement: CirclePlacement::SquareCenter,
             corner_style: CornerStyle::Smooth,
             corner_offset: 0.15,
-            width_mul: Some(4.0),
+            width_mul: Some(80.0),
             height_mul: None,
         }
     }
