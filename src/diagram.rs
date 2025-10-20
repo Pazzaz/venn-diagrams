@@ -612,7 +612,7 @@ impl Diagram {
                 // Sort corners according to their category
                 positioned_corners[(i, j)].sort_by_key(|(i, j)| points[*i][*j].group_category());
                 // Group them according to their position
-                for (_, chunk) in &positioned_corners[(i, j)]
+                for ((_, diag), chunk) in &positioned_corners[(i, j)]
                     .iter()
                     .chunk_by(|(i, j)| points[*i][*j].group_category())
                 {
@@ -621,14 +621,29 @@ impl Diagram {
                         continue;
                     }
                     println!("{:?}", values);
-                    let (p, q) = values[values.len() / 2];
-                    let middle_pos = points[p][q].offset_group_2() as i32;
+                    // Are we on the inside or outside?
+                    let inside = match diag {
+                        Diagonal::UpLeft => true,
+                        Diagonal::UpRight => false,
+                        Diagonal::DownLeft => true,
+                        Diagonal::DownRight => false,
+                    };
+
+                    let (p, q) = values
+                        .iter()
+                        .min_by_key(|(p, q)| {
+                            let v = points[*p][*q].offset_group_2();
+                            if inside { v } else { -v }
+                        })
+                        .unwrap();
+                    let default_pos = points[*p][*q].offset_group_2() as i32;
 
                     for (i, j) in &values {
                         let corner_pos = points[*i][*j].offset_group_2() as i32;
-                        let offset = corner_pos - middle_pos;
+                        let offset = corner_pos - default_pos;
                         debug_assert!(offset % 2 == 0);
-                        group_offsets[*i][*j] = Some(offset / 2);
+                        group_offsets[*i][*j] =
+                            if inside { Some(offset / 2) } else { Some(-(offset / 2)) }
                     }
                 }
             }
@@ -639,14 +654,6 @@ impl Diagram {
             let mut other_out = Vec::new();
             for (corner, offset) in path.iter().zip(path_offsets) {
                 let mut offset = offset.unwrap_or(0) as f64 * line_width;
-
-                // Are we on the inside or outside?
-                offset = match corner.diagonal() {
-                    Diagonal::UpLeft => offset,
-                    Diagonal::UpRight => -offset,
-                    Diagonal::DownLeft => offset,
-                    Diagonal::DownRight => -offset,
-                };
 
                 offset += CORNER_OFFSET as f64;
 
