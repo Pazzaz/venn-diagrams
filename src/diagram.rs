@@ -29,14 +29,14 @@ impl Default for DiagramConfig {
     fn default() -> Self {
         Self {
             scale: 20.0,
-            line_width: 1.0,
-            radius: 3.5,
+            line_width: 0.05,
+            radius: 0.175,
             circle_below: CircleConfig::new(0.3, String::from("red")),
             circle_edge: CircleConfig::new(1.0, String::from("white")),
             circle_above: CircleConfig::new(0.3, String::from("green")),
             circle_placement: CirclePlacement::SquareCenter,
             corner_style: CornerStyle::Smooth,
-            corner_offset: 3.0,
+            corner_offset: 0.15,
             width_mul: Some(4.0),
             height_mul: None,
         }
@@ -653,8 +653,6 @@ impl Diagram {
         for (path, path_offsets) in points.iter().zip(&group_offsets) {
             let mut other_out = Vec::new();
             for (corner, offset) in path.iter().zip(path_offsets) {
-                let corner_offset = corner_offset * (scale / 20.0);
-
                 let offset = offset.unwrap_or(0) as f64 * line_width + corner_offset;
 
                 let meet_x: f64 = (corner.x as f64 * scale) + corner.x_offset as f64 * line_width;
@@ -731,7 +729,9 @@ impl Diagram {
         colors: &[String],
         config: &DiagramConfig,
     ) -> SVG {
-        let line_width = config.line_width * config.scale / 20.0;
+        let line_width = config.line_width * config.scale;
+        let corner_offset = config.corner_offset * config.scale;
+
         let x = venn_diagram.x();
         let y = venn_diagram.y();
         // First we do calculations
@@ -749,7 +749,7 @@ impl Diagram {
             combined_paths,
             offsets,
             line_width,
-            config.corner_offset,
+            corner_offset,
         );
 
         let paths = Self::get_rounded_paths(points, config.corner_style);
@@ -845,7 +845,7 @@ impl Diagram {
     ) -> SVG {
         let n = mask.len();
         debug_assert!(values.len() == n && colors.len() == n);
-        let radius = config.radius * config.scale / 20.0;
+        let radius = config.radius * config.scale;
         let c = std::f64::consts::TAU * radius;
         let mut group = Group::new().set("transform", format!("rotate(-90 {cx} {cy})"));
 

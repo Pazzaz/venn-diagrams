@@ -54,7 +54,7 @@ fn four_wider() {
     let colors = &COLORS[0..4];
     let values = normalize(&VALUES[0..4]);
     let mut config = DiagramConfig::default();
-    config.line_width = 2.0;
+    config.line_width = 0.1;
     test_venn("four_wide.svg", &venn::FOUR.into(), &values, &colors, &mut config);
 }
 
