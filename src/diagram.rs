@@ -731,7 +731,7 @@ impl Diagram {
         colors: &[String],
         config: &DiagramConfig,
     ) -> SVG {
-        let line_width = config.line_width * (config.scale / 20.0);
+        let line_width = config.line_width * config.scale / 20.0;
         let x = venn_diagram.x();
         let y = venn_diagram.y();
         // First we do calculations
@@ -796,7 +796,7 @@ impl Diagram {
                 .set("fill", color.clone())
                 .set("fill-opacity", 0.2)
                 .set("stroke", "none")
-                .set("stroke-width", 1.0 * (config.scale / 20.0));
+                .set("stroke-width", 0.05 * config.scale);
             out = out.add(path);
         }
 
@@ -845,7 +845,7 @@ impl Diagram {
     ) -> SVG {
         let n = mask.len();
         debug_assert!(values.len() == n && colors.len() == n);
-        let radius = config.radius * (config.scale / 20.0);
+        let radius = config.radius * config.scale / 20.0;
         let c = std::f64::consts::TAU * radius;
         let mut group = Group::new().set("transform", format!("rotate(-90 {cx} {cy})"));
 
@@ -883,7 +883,7 @@ impl Diagram {
             .set("cy", cy)
             .set("fill", "transparent")
             .set("stroke", circle_config.color.as_str())
-            .set("stroke-width", 0.5 * (config.scale / 20.0));
+            .set("stroke-width", 0.025 * config.scale);
 
         if circle_config.opacity != 1.0 {
             group = group.set("opacity", circle_config.opacity);
