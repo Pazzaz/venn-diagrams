@@ -646,6 +646,8 @@ impl Diagram {
         for (path, path_offsets) in points.iter().zip(&group_offsets) {
             let mut other_out = Vec::new();
             for (corner, offset) in path.iter().zip(path_offsets) {
+                let corner_offset = corner_offset * (SCALE / 20.0);
+
                 let offset = offset.unwrap_or(0) as f64 * line_width + corner_offset;
 
                 let meet_x: f64 = (corner.x as f64 * SCALE) + corner.x_offset as f64 * line_width;
@@ -720,8 +722,9 @@ impl Diagram {
         venn_diagram: &VennDiagram,
         values: &[f64],
         colors: &[String],
-        config: &DiagramConfig,
+        config: &mut DiagramConfig,
     ) -> SVG {
+        config.line_width *= SCALE / 20.0;
         let x = venn_diagram.x();
         let y = venn_diagram.y();
         // First we do calculations
@@ -786,7 +789,7 @@ impl Diagram {
                 .set("fill", color.clone())
                 .set("fill-opacity", 0.2)
                 .set("stroke", "none")
-                .set("stroke-width", 1);
+                .set("stroke-width", 1.0 * (SCALE / 20.0));
             out = out.add(path);
         }
 
@@ -831,7 +834,8 @@ impl Diagram {
     ) -> SVG {
         let n = mask.len();
         debug_assert!(values.len() == n && colors.len() == n);
-        let c = std::f64::consts::TAU * config.radius;
+        let radius = config.radius * (SCALE / 20.0);
+        let c = std::f64::consts::TAU * radius;
         let mut group = Group::new().set("transform", format!("rotate(-90 {cx} {cy})"));
 
         let coalition: Coalition = Coalition::from_values(mask, values);
@@ -845,12 +849,12 @@ impl Diagram {
             let color = &colors[i];
 
             let mut circle = Circle::new()
-                .set("r", config.radius)
+                .set("r", radius)
                 .set("cx", cx)
                 .set("cy", cy)
                 .set("fill", "transparent")
                 .set("stroke", color.as_str())
-                .set("stroke-width", config.radius * 2.0)
+                .set("stroke-width", radius * 2.0)
                 .set("stroke-dasharray", format!("{}, {}", c * size, c));
             if added != 0.0 {
                 circle = circle.set("stroke-dashoffset", -added);
@@ -863,12 +867,12 @@ impl Diagram {
         let circle_config = config.circle_config(coalition);
 
         let circle = Circle::new()
-            .set("r", config.radius * 2.0)
+            .set("r", radius * 2.0)
             .set("cx", cx)
             .set("cy", cy)
             .set("fill", "transparent")
             .set("stroke", circle_config.color.as_str())
-            .set("stroke-width", 0.5);
+            .set("stroke-width", 0.5 * (SCALE / 20.0));
 
         if circle_config.opacity != 1.0 {
             group = group.set("opacity", circle_config.opacity);
