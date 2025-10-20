@@ -12,7 +12,6 @@ use crate::{direction::Direction, matrix::Matrix, polyomino::Polyomino, venn::Ve
 pub struct Diagram {}
 
 pub struct DiagramConfig {
-    pub scale: f64,
     pub line_width: f64,
     pub radius: f64,
     pub circle_below: CircleConfig,
@@ -28,7 +27,6 @@ pub struct DiagramConfig {
 impl Default for DiagramConfig {
     fn default() -> Self {
         Self {
-            scale: 1.0,
             line_width: 0.05,
             radius: 0.175,
             circle_below: CircleConfig::new(0.3, String::from("red")),
@@ -67,25 +65,17 @@ pub enum CirclePlacement {
 }
 
 impl CirclePlacement {
-    fn get_circle_pos(
-        &self,
-        scale: f64,
-        x: usize,
-        y: usize,
-        internal_offset: InnerOffset,
-    ) -> (f64, f64) {
+    fn get_circle_pos(&self, x: usize, y: usize, internal_offset: InnerOffset) -> (f64, f64) {
         match self {
-            CirclePlacement::Basic => {
-                ((x as f64 * scale) + scale / 2.0, (y as f64 * scale) + scale / 2.0)
-            }
+            CirclePlacement::Basic => (x as f64 + 0.5, (y as f64) + 0.5),
             CirclePlacement::SquareCenter => {
-                let cx = x as f64 * scale;
-                let cy = y as f64 * scale;
+                let cx = x as f64;
+                let cy = y as f64;
 
                 let above_y = cy + internal_offset.above;
-                let below_y = cy + scale + internal_offset.below;
+                let below_y = cy + 1.0 + internal_offset.below;
                 let left_x = cx + internal_offset.left;
-                let right_x = cx + scale + internal_offset.right;
+                let right_x = cx + 1.0 + internal_offset.right;
 
                 let cy = f64::midpoint(above_y, below_y);
                 let cx = f64::midpoint(left_x, right_x);
@@ -555,7 +545,6 @@ impl Diagram {
     }
 
     fn get_points(
-        scale: f64,
         x: usize,
         y: usize,
         combined_paths: Vec<Vec<DirectedEdge>>,
@@ -655,8 +644,8 @@ impl Diagram {
             for (corner, offset) in path.iter().zip(path_offsets) {
                 let offset = offset.unwrap_or(0) as f64 * line_width + corner_offset;
 
-                let meet_x: f64 = (corner.x as f64 * scale) + corner.x_offset as f64 * line_width;
-                let meet_y: f64 = (corner.y as f64 * scale) + corner.y_offset as f64 * line_width;
+                let meet_x: f64 = corner.x as f64 + corner.x_offset as f64 * line_width;
+                let meet_y: f64 = corner.y as f64 + corner.y_offset as f64 * line_width;
 
                 let from: (f64, f64) = match corner.from {
                     Direction::Left => (meet_x + offset, meet_y),
@@ -729,8 +718,8 @@ impl Diagram {
         colors: &[String],
         config: &DiagramConfig,
     ) -> SVG {
-        let line_width = config.line_width * config.scale;
-        let corner_offset = config.corner_offset * config.scale;
+        let line_width = config.line_width;
+        let corner_offset = config.corner_offset;
 
         let x = venn_diagram.x();
         let y = venn_diagram.y();
@@ -742,24 +731,16 @@ impl Diagram {
 
         let (offsets, internal_offsets) = Self::get_offsets(x, y, &combined_paths, line_width);
 
-        let points = Self::get_points(
-            config.scale,
-            x,
-            y,
-            combined_paths,
-            offsets,
-            line_width,
-            corner_offset,
-        );
+        let points = Self::get_points(x, y, combined_paths, offsets, line_width, corner_offset);
 
         let paths = Self::get_rounded_paths(points, config.corner_style);
 
         // Then we create the svg
-        let min_x = -config.scale / 2.0;
-        let width = (x + 1) as f64 * config.scale;
+        let min_x = -0.5;
+        let width = (x + 1) as f64;
 
-        let min_y = -config.scale / 2.0;
-        let height = (y + 1) as f64 * config.scale;
+        let min_y = -0.5;
+        let height = (y + 1) as f64;
 
         let mut out = Document::new().set("viewBox", (min_x, min_y, width, height));
 
@@ -796,7 +777,7 @@ impl Diagram {
                 .set("fill", color.clone())
                 .set("fill-opacity", 0.2)
                 .set("stroke", "none")
-                .set("stroke-width", 0.05 * config.scale);
+                .set("stroke-width", 0.05);
             out = out.add(path);
         }
 
@@ -821,12 +802,8 @@ impl Diagram {
                     pairs[i] = v;
                 }
                 if any_true {
-                    let (x_pos, y_pos) = config.circle_placement.get_circle_pos(
-                        config.scale,
-                        x,
-                        y,
-                        internal_offsets[(x, y)],
-                    );
+                    let (x_pos, y_pos) =
+                        config.circle_placement.get_circle_pos(x, y, internal_offsets[(x, y)]);
                     out = Self::draw_circle(x_pos, y_pos, &pairs, out, config, values, colors);
                 }
             }
@@ -845,7 +822,7 @@ impl Diagram {
     ) -> SVG {
         let n = mask.len();
         debug_assert!(values.len() == n && colors.len() == n);
-        let radius = config.radius * config.scale;
+        let radius = config.radius;
         let c = std::f64::consts::TAU * radius;
         let mut group = Group::new().set("transform", format!("rotate(-90 {cx} {cy})"));
 
@@ -883,7 +860,7 @@ impl Diagram {
             .set("cy", cy)
             .set("fill", "transparent")
             .set("stroke", circle_config.color.as_str())
-            .set("stroke-width", 0.025 * config.scale);
+            .set("stroke-width", 0.025);
 
         if circle_config.opacity != 1.0 {
             group = group.set("opacity", circle_config.opacity);
