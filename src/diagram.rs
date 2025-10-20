@@ -9,7 +9,7 @@ use svg::{
 use super::direction::{DirectedEdge, Edge};
 use crate::{direction::Direction, matrix::Matrix, polyomino::Polyomino, venn::VennDiagram};
 
-const SCALE: usize = 20;
+const SCALE: f64 = 20.0;
 
 pub struct Diagram {}
 
@@ -21,8 +21,8 @@ pub struct DiagramConfig {
     pub circle_above: CircleConfig,
     pub circle_placement: CirclePlacement,
     pub corner_style: CornerStyle,
-    pub width_mul: Option<usize>,
-    pub height_mul: Option<usize>,
+    pub width_mul: Option<f64>,
+    pub height_mul: Option<f64>,
 }
 
 impl Default for DiagramConfig {
@@ -35,7 +35,7 @@ impl Default for DiagramConfig {
             circle_above: CircleConfig::new(0.3, String::from("green")),
             circle_placement: CirclePlacement::SquareCenter,
             corner_style: CornerStyle::Smooth,
-            width_mul: Some(4),
+            width_mul: Some(4.0),
             height_mul: None,
         }
     }
@@ -67,20 +67,17 @@ pub enum CirclePlacement {
 impl CirclePlacement {
     fn get_circle_pos(&self, x: usize, y: usize, internal_offset: InnerOffset) -> (f64, f64) {
         match self {
-            CirclePlacement::Basic => (
-                ((x * SCALE) as f64) + (SCALE as f64) / 2.0,
-                ((y * SCALE) as f64) + (SCALE as f64) / 2.0,
-            ),
+            CirclePlacement::Basic => {
+                ((x as f64 * SCALE) + SCALE / 2.0, (y as f64 * SCALE) + SCALE / 2.0)
+            }
             CirclePlacement::SquareCenter => {
-                let cx = (x * SCALE) as f64;
-                let cy = (y * SCALE) as f64;
-
-                let whole = SCALE as f64;
+                let cx = x as f64 * SCALE;
+                let cy = y as f64 * SCALE;
 
                 let above_y = cy + internal_offset.above;
-                let below_y = cy + whole + internal_offset.below;
+                let below_y = cy + SCALE + internal_offset.below;
                 let left_x = cx + internal_offset.left;
-                let right_x = cx + whole + internal_offset.right;
+                let right_x = cx + SCALE + internal_offset.right;
 
                 let cy = f64::midpoint(above_y, below_y);
                 let cx = f64::midpoint(left_x, right_x);
@@ -98,7 +95,7 @@ struct InnerOffset {
     left: f64,
 }
 
-const CORNER_OFFSET: i32 = 3;
+const CORNER_OFFSET: f64 = 3.0;
 
 #[derive(Debug, Clone)]
 struct BasicCorner {
@@ -648,10 +645,10 @@ impl Diagram {
         for (path, path_offsets) in points.iter().zip(&group_offsets) {
             let mut other_out = Vec::new();
             for (corner, offset) in path.iter().zip(path_offsets) {
-                let offset = offset.unwrap_or(0) as f64 * line_width + CORNER_OFFSET as f64;
+                let offset = offset.unwrap_or(0) as f64 * line_width + CORNER_OFFSET;
 
-                let meet_x: f64 = (corner.x * SCALE) as f64 + corner.x_offset as f64 * line_width;
-                let meet_y: f64 = (corner.y * SCALE) as f64 + corner.y_offset as f64 * line_width;
+                let meet_x: f64 = (corner.x as f64 * SCALE) + corner.x_offset as f64 * line_width;
+                let meet_y: f64 = (corner.y as f64 * SCALE) + corner.y_offset as f64 * line_width;
 
                 let from: (f64, f64) = match corner.from {
                     Direction::Left => (meet_x + offset, meet_y),
@@ -740,11 +737,11 @@ impl Diagram {
         let paths = Self::get_rounded_paths(points, config.corner_style);
 
         // Then we create the svg
-        let min_x = -((SCALE / 2) as i32);
-        let width = (x + 1) * SCALE;
+        let min_x = -SCALE / 2.0;
+        let width = (x + 1) as f64 * SCALE;
 
-        let min_y = -((SCALE / 2) as i32);
-        let height = (y + 1) * SCALE;
+        let min_y = -SCALE / 2.0;
+        let height = (y + 1) as f64 * SCALE;
 
         let mut out = Document::new().set("viewBox", (min_x, min_y, width, height));
 
