@@ -77,10 +77,10 @@ impl CirclePlacement {
 
                 let whole = SCALE as f64;
 
-                let above_y = cy + internal_offset.above as f64;
-                let below_y = cy + whole + internal_offset.below as f64;
-                let left_x = cx + internal_offset.left as f64;
-                let right_x = cx + whole + internal_offset.right as f64;
+                let above_y = cy + internal_offset.above;
+                let below_y = cy + whole + internal_offset.below;
+                let left_x = cx + internal_offset.left;
+                let right_x = cx + whole + internal_offset.right;
 
                 let cy = f64::midpoint(above_y, below_y);
                 let cx = f64::midpoint(left_x, right_x);
@@ -631,10 +631,10 @@ impl Diagram {
                             if invert { v } else { -v }
                         })
                         .unwrap();
-                    let default_pos = points[*p][*q].offset_group_2() as i32;
+                    let default_pos = points[*p][*q].offset_group_2();
 
                     for (i, j) in &values {
-                        let corner_pos = points[*i][*j].offset_group_2() as i32;
+                        let corner_pos = points[*i][*j].offset_group_2();
                         let offset = corner_pos - default_pos;
                         debug_assert!(offset % 2 == 0);
                         group_offsets[*i][*j] =
