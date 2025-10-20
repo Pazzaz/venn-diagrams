@@ -722,9 +722,9 @@ impl Diagram {
         venn_diagram: &VennDiagram,
         values: &[f64],
         colors: &[String],
-        config: &mut DiagramConfig,
+        config: &DiagramConfig,
     ) -> SVG {
-        config.line_width *= SCALE / 20.0;
+        let line_width = config.line_width * (SCALE / 20.0);
         let x = venn_diagram.x();
         let y = venn_diagram.y();
         // First we do calculations
@@ -733,17 +733,10 @@ impl Diagram {
 
         let combined_paths = Self::get_combined_paths(paths);
 
-        let (offsets, internal_offsets) =
-            Self::get_offsets(x, y, &combined_paths, config.line_width);
+        let (offsets, internal_offsets) = Self::get_offsets(x, y, &combined_paths, line_width);
 
-        let points = Self::get_points(
-            x,
-            y,
-            combined_paths,
-            offsets,
-            config.line_width,
-            config.corner_offset,
-        );
+        let points =
+            Self::get_points(x, y, combined_paths, offsets, line_width, config.corner_offset);
 
         let paths = Self::get_rounded_paths(points, config.corner_style);
 
@@ -798,7 +791,7 @@ impl Diagram {
                 .clone()
                 .set("fill", "none")
                 .set("stroke", color.clone())
-                .set("stroke-width", config.line_width);
+                .set("stroke-width", line_width);
             out = out.add(path);
         }
 
