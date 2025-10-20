@@ -620,20 +620,15 @@ impl Diagram {
                     if values.len() == 1 {
                         continue;
                     }
-                    println!("{:?}", values);
-                    // Are we on the inside or outside?
-                    let inside = match diag {
-                        Diagonal::UpLeft => true,
-                        Diagonal::UpRight => false,
-                        Diagonal::DownLeft => true,
-                        Diagonal::DownRight => false,
-                    };
+
+                    // We invert some coordinates in two of the quadrants
+                    let invert = matches!(diag, Diagonal::UpLeft | Diagonal::DownLeft);
 
                     let (p, q) = values
                         .iter()
                         .min_by_key(|(p, q)| {
                             let v = points[*p][*q].offset_group_2();
-                            if inside { v } else { -v }
+                            if invert { v } else { -v }
                         })
                         .unwrap();
                     let default_pos = points[*p][*q].offset_group_2() as i32;
@@ -643,7 +638,7 @@ impl Diagram {
                         let offset = corner_pos - default_pos;
                         debug_assert!(offset % 2 == 0);
                         group_offsets[*i][*j] =
-                            if inside { Some(offset / 2) } else { Some(-(offset / 2)) }
+                            if invert { Some(offset / 2) } else { Some(-(offset / 2)) }
                     }
                 }
             }
@@ -653,9 +648,7 @@ impl Diagram {
         for (path, path_offsets) in points.iter().zip(&group_offsets) {
             let mut other_out = Vec::new();
             for (corner, offset) in path.iter().zip(path_offsets) {
-                let mut offset = offset.unwrap_or(0) as f64 * line_width;
-
-                offset += CORNER_OFFSET as f64;
+                let offset = offset.unwrap_or(0) as f64 * line_width + CORNER_OFFSET as f64;
 
                 let meet_x: f64 = (corner.x * SCALE) as f64 + corner.x_offset as f64 * line_width;
                 let meet_y: f64 = (corner.y * SCALE) as f64 + corner.y_offset as f64 * line_width;
