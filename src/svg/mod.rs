@@ -10,18 +10,13 @@ use svg::{
     node::element::{Definitions, Mask, Rectangle, SVG},
 };
 
-use super::direction::{DirectedEdge, Edge};
-use crate::{
-    direction::Direction,
-    matrix::Matrix,
-    polyomino::Polyomino,
-    svg::{
-        circles::{Coalition, draw_circle},
-        corner::{BasicCorner, Corner, Diagonal, get_rounded_paths},
-        offset::{InnerOffset, get_offsets},
-    },
-    venn::VennDiagram,
+use self::{
+    circles::{Coalition, draw_circle},
+    corner::{BasicCorner, Corner, Diagonal, get_rounded_paths},
+    offset::{InnerOffset, get_offsets},
 };
+use super::direction::{DirectedEdge, Edge};
+use crate::{direction::Direction, matrix::Matrix, polyomino::Polyomino, venn::VennDiagram};
 
 fn get_combined_paths(paths: Vec<Vec<DirectedEdge>>) -> Vec<Vec<DirectedEdge>> {
     let mut combined_paths: Vec<Vec<DirectedEdge>> = Vec::new();

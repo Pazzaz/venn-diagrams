@@ -1,5 +1,5 @@
 pub use super::corner::CornerStyle;
-use crate::svg::{
+use super::{
     Coalition,
     circles::{CircleConfig, CirclePlacement},
 };

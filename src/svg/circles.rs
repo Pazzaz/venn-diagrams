@@ -1,7 +1,6 @@
 use svg::node::element::{Circle, Group, SVG};
 
-use super::config::DiagramConfig;
-use crate::svg::InnerOffset;
+use super::{InnerOffset, config::DiagramConfig};
 
 #[derive(Debug, Clone)]
 pub struct CircleConfig {
