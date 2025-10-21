@@ -1,5 +1,5 @@
 use venn_diagrams::{
-    diagram::{Diagram, DiagramConfig},
+    diagram::{DiagramConfig, to_svg},
     venn::{self, VennDiagram},
 };
 
@@ -73,7 +73,7 @@ fn test_venn(
     assert!(colors.len() == values.len());
     assert!(colors.len() == venn.n());
 
-    let svg = Diagram::to_svg(
+    let svg = to_svg(
         venn,
         &values,
         &colors.iter().map(ToString::to_string).collect::<Vec<String>>(),
