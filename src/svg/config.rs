@@ -1,7 +1,7 @@
+pub use super::corner::CornerStyle;
 use crate::svg::{
     Coalition,
     circles::{CircleConfig, CirclePlacement},
-    corner::CornerStyle,
 };
 
 pub struct DiagramConfig {

@@ -1,5 +1,5 @@
 use venn_diagrams::{
-    svg::{DiagramConfig, to_svg},
+    svg::{CornerStyle, DiagramConfig, to_svg},
     venn::{self, VennDiagram},
 };
 
@@ -56,6 +56,15 @@ fn four_wider() {
     let mut config = DiagramConfig::default();
     config.line_width = 0.1;
     test_venn("four_wide.svg", &venn::FOUR.into(), &values, &colors, &mut config);
+}
+
+#[test]
+fn eight_straight() {
+    let colors = COLORS;
+    let values = normalize(&VALUES);
+    let mut config = DiagramConfig::default();
+    config.corner_style = CornerStyle::Straight;
+    test_venn("eight_straight.svg", &venn::EIGHT.into(), &values, &colors, &mut config);
 }
 
 fn normalize(values: &[f64]) -> Vec<f64> {

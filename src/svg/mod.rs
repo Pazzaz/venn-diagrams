@@ -3,11 +3,11 @@ mod config;
 mod corner;
 mod offset;
 
-pub use config::DiagramConfig;
+pub use config::{CornerStyle, DiagramConfig};
 use itertools::Itertools;
 use svg::{
     Document,
-    node::element::{Definitions, Mask, Path, Rectangle, SVG, path::Data},
+    node::element::{Definitions, Mask, Rectangle, SVG},
 };
 
 use super::direction::{DirectedEdge, Edge};
@@ -17,7 +17,7 @@ use crate::{
     polyomino::Polyomino,
     svg::{
         circles::{Coalition, draw_circle},
-        corner::{BasicCorner, Corner, CornerStyle, Diagonal},
+        corner::{BasicCorner, Corner, Diagonal, get_rounded_paths},
         offset::{InnerOffset, get_offsets},
     },
     venn::VennDiagram,
@@ -298,45 +298,6 @@ fn get_points(
     other_points
 }
 
-fn get_rounded_paths(points: Vec<Vec<Corner>>, corner_style: CornerStyle) -> Vec<Path> {
-    let mut paths = Vec::new();
-
-    match corner_style {
-        CornerStyle::Straight => {
-            for corners in &points {
-                let first = &corners[0];
-                let mut data = Data::new().move_to(first.from);
-                data = data.line_to(first.to);
-
-                for corner in &corners[1..] {
-                    data = data.line_to(corner.from).line_to(corner.to);
-                }
-                data = data.close();
-                let path = Path::new().set("d", data);
-                paths.push(path);
-            }
-        }
-        CornerStyle::Smooth => {
-            for corners in &points {
-                if let Some((first, rest)) = corners.split_first() {
-                    let mut data =
-                        Data::new().move_to(first.from).elliptical_arc_to(first.params());
-                    for corner in rest {
-                        data = data.line_to(corner.from).elliptical_arc_to(corner.params());
-                    }
-                    data = data.close();
-                    let path = Path::new().set("d", data);
-                    paths.push(path);
-                } else {
-                    unreachable!();
-                }
-            }
-        }
-    }
-
-    paths
-}
-
 #[must_use]
 pub fn to_svg(
     venn_diagram: &VennDiagram,
@@ -359,7 +320,7 @@ pub fn to_svg(
 
     let points = get_points(x, y, combined_paths, offsets, line_width, corner_offset);
 
-    let paths = get_rounded_paths(points, config.corner_style);
+    let paths = get_rounded_paths(&points, config.corner_style);
 
     // Then we create the svg
     let min_x = -0.5;
