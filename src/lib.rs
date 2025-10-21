@@ -16,8 +16,8 @@
 
 mod direction;
 
-pub mod diagram;
 pub mod polyomino;
+pub mod svg;
 pub mod venn;
 
 mod matrix;

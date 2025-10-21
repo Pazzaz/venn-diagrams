@@ -1,5 +1,5 @@
 use venn_diagrams::{
-    diagram::{DiagramConfig, to_svg},
+    svg::{DiagramConfig, to_svg},
     venn::{self, VennDiagram},
 };
 
