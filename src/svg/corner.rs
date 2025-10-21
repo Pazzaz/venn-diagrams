@@ -89,34 +89,32 @@ impl Corner {
     }
 }
 
-fn get_rounded_path(corners: &[Corner], corner_style: CornerStyle) -> Path {
-    match corner_style {
-        CornerStyle::Straight => {
-            let first = &corners[0];
-            let mut data = Data::new().move_to(first.from);
-            data = data.line_to(first.to);
-
-            for corner in &corners[1..] {
-                data = data.line_to(corner.from).line_to(corner.to);
+/// Combine corners into an SVG path. Returns `None` if `corners` is empty.
+fn get_rounded_path(corners: &[Corner], corner_style: CornerStyle) -> Option<Path> {
+    corners.split_first().map(|(first, rest)| {
+        let mut data = Data::new().move_to(first.from);
+        match corner_style {
+            CornerStyle::Straight => {
+                data = data.line_to(first.to);
+                for corner in rest {
+                    data = data.line_to(corner.from).line_to(corner.to);
+                }
             }
-            data = data.close();
-            Path::new().set("d", data)
-        }
-        CornerStyle::Smooth => {
-            if let Some((first, rest)) = corners.split_first() {
-                let mut data = Data::new().move_to(first.from).elliptical_arc_to(first.params());
+            CornerStyle::Smooth => {
+                data = data.elliptical_arc_to(first.params());
                 for corner in rest {
                     data = data.line_to(corner.from).elliptical_arc_to(corner.params());
                 }
-                data = data.close();
-                Path::new().set("d", data)
-            } else {
-                unreachable!();
             }
         }
-    }
+        data = data.close();
+        Path::new().set("d", data)
+    })
 }
 
-pub(super) fn get_rounded_paths(corners: &[Vec<Corner>], corner_style: CornerStyle) -> Vec<Path> {
+pub(super) fn get_rounded_paths(
+    corners: &[Vec<Corner>],
+    corner_style: CornerStyle,
+) -> Option<Vec<Path>> {
     corners.iter().map(|v| get_rounded_path(v, corner_style)).collect()
 }

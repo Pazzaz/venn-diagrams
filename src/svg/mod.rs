@@ -320,7 +320,7 @@ pub fn to_svg(
 
     let points = get_points(x, y, combined_paths, offsets, line_width, corner_offset);
 
-    let paths = get_rounded_paths(&points, config.corner_style);
+    let paths = get_rounded_paths(&points, config.corner_style).unwrap();
 
     // Then we create the svg
     let min_x = -0.5;
