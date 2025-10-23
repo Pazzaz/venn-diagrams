@@ -1,5 +1,5 @@
 use venn_diagrams::{
-    svg::{CornerStyle, DiagramConfig, to_svg},
+    svg::{CornerStyle, DiagramConfig, OffsetMethod, to_svg},
     venn::{self, VennDiagram},
 };
 
@@ -65,6 +65,15 @@ fn eight_straight() {
     let mut config = DiagramConfig::default();
     config.corner_style = CornerStyle::Straight;
     test_venn("eight_straight.svg", &venn::EIGHT.into(), &values, &colors, &mut config);
+}
+
+#[test]
+fn five_optimizing() {
+    let colors = &COLORS[0..5];
+    let values = normalize(&VALUES[0..5]);
+    let mut config = DiagramConfig::default();
+    config.offset_method = OffsetMethod::Optimizing;
+    test_venn("five_optimizing.svg", &venn::FIVE.into(), &values, &colors, &mut config);
 }
 
 fn normalize(values: &[f64]) -> Vec<f64> {

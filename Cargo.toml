@@ -6,6 +6,7 @@ edition = "2024"
 [dependencies]
 itertools = "0.14.0"
 svg = "0.18.0"
+z3 = {version = "0.19.2", features = ["gh-release"]}
 
 [lints.clippy]
 needless_range_loop = "allow"

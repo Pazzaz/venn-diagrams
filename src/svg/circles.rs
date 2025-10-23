@@ -130,9 +130,9 @@ impl CirclePlacement {
                 let cy = y as f64;
 
                 let above_y = cy + internal_offset.above;
-                let below_y = cy + 1.0 + internal_offset.below;
+                let below_y = cy + 1.0 - internal_offset.below;
                 let left_x = cx + internal_offset.left;
-                let right_x = cx + 1.0 + internal_offset.right;
+                let right_x = cx + 1.0 - internal_offset.right;
 
                 let cy = f64::midpoint(above_y, below_y);
                 let cx = f64::midpoint(left_x, right_x);

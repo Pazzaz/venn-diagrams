@@ -1,8 +1,8 @@
-pub use super::corner::CornerStyle;
 use super::{
     Coalition,
     circles::{CircleConfig, CirclePlacement},
 };
+pub use super::{corner::CornerStyle, offset::OffsetMethod};
 
 pub struct DiagramConfig {
     pub line_width: f64,
@@ -15,6 +15,7 @@ pub struct DiagramConfig {
     pub corner_offset: f64,
     pub width_mul: Option<f64>,
     pub height_mul: Option<f64>,
+    pub offset_method: OffsetMethod,
 }
 
 impl Default for DiagramConfig {
@@ -30,6 +31,7 @@ impl Default for DiagramConfig {
             corner_offset: 0.15,
             width_mul: Some(80.0),
             height_mul: None,
+            offset_method: OffsetMethod::Greedy,
         }
     }
 }
