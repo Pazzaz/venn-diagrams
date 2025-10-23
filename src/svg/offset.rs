@@ -254,7 +254,7 @@ pub(super) fn get_offsets_optimize(
 
             for i in (-each_side)..=each_side {
                 let bb = edge_variable.ne(i);
-                solver.assert_soft(&bb, (i.abs() as usize) * edge.len(), None);
+                solver.assert_soft(&bb, (i.unsigned_abs() as usize) * edge.len(), None);
             }
 
             match *edge {

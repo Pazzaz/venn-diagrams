@@ -7,7 +7,7 @@ pub use config::{CornerStyle, DiagramConfig, OffsetMethod};
 use itertools::Itertools;
 use svg::{
     Document,
-    node::element::{Circle, Definitions, Mask, Rectangle, SVG},
+    node::element::{Definitions, Mask, Rectangle, SVG},
 };
 
 use self::{
