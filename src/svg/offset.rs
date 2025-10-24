@@ -191,8 +191,8 @@ pub(super) fn get_offsets_optimize(
 ) -> (Vec<Vec<i32>>, Matrix<InnerOffset>) {
     let mut offsets: Vec<Vec<i32>> =
         combined_paths.iter().map(|x| vec![i32::MIN; x.len()]).collect();
-    let mut row_edges: Matrix<(usize, Vec<Int>)> = Matrix::new(x, y + 1, (0, Vec::new()));
-    let mut column_edges: Matrix<(usize, Vec<Int>)> = Matrix::new(x + 1, y, (0, Vec::new()));
+    let mut row_edges: Matrix<(usize, Vec<Int>)> = Matrix::new(x, y + 1, (1, Vec::new()));
+    let mut column_edges: Matrix<(usize, Vec<Int>)> = Matrix::new(x + 1, y, (1, Vec::new()));
 
     let solver = Optimize::new();
 
@@ -322,6 +322,7 @@ pub(super) fn get_offsets_optimize(
 
         for window in edges.windows(2) {
             if let [(edge_from, variable_from), (edge_to, variable_to)] = *window {
+                debug_assert!(edge_from.to() == edge_to.from());
                 let from_vertical: bool = match edge_from.direction() {
                     Direction::Left | Direction::Right => false,
                     Direction::Up | Direction::Down => true,
@@ -358,18 +359,18 @@ pub(super) fn get_offsets_optimize(
                 for edge in &crossing.crossing_horizontal {
                     let h = &corner.int_horizontal;
                     if corner.diagonal.down() {
-                        solver.assert_soft(&!h.le(edge), CORNER_WEIGHT, None);
+                        solver.assert_soft(&h.ge(edge), CORNER_WEIGHT, None);
                     } else {
-                        solver.assert_soft(&!h.ge(edge), CORNER_WEIGHT, None);
+                        solver.assert_soft(&h.le(edge), CORNER_WEIGHT, None);
                     }
                 }
 
                 for edge in &crossing.crossing_vertical {
                     let v = &corner.int_vertical;
                     if corner.diagonal.right() {
-                        solver.assert_soft(&!v.le(edge), CORNER_WEIGHT, None);
+                        solver.assert_soft(&v.ge(edge), CORNER_WEIGHT, None);
                     } else {
-                        solver.assert_soft(&!v.ge(edge), CORNER_WEIGHT, None);
+                        solver.assert_soft(&v.le(edge), CORNER_WEIGHT, None);
                     }
                 }
             }
