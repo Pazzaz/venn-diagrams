@@ -44,22 +44,7 @@ impl BasicCorner {
     }
 
     fn diagonal(&self) -> Diagonal {
-        match (self.from.opposite(), self.to) {
-            (Direction::Left, Direction::Up) | (Direction::Up, Direction::Left) => Diagonal::UpLeft,
-            (Direction::Up, Direction::Right) | (Direction::Right, Direction::Up) => {
-                Diagonal::UpRight
-            }
-            (Direction::Left, Direction::Down) | (Direction::Down, Direction::Left) => {
-                Diagonal::DownLeft
-            }
-            (Direction::Right, Direction::Down) | (Direction::Down, Direction::Right) => {
-                Diagonal::DownRight
-            }
-            (Direction::Left | Direction::Right, Direction::Left | Direction::Right) => {
-                unreachable!()
-            }
-            (Direction::Up | Direction::Down, Direction::Up | Direction::Down) => unreachable!(),
-        }
+        Diagonal::from_directions(self.from.opposite(), self.to).unwrap()
     }
 
     pub(super) fn group_category(&self) -> (i32, Diagonal) {
@@ -67,12 +52,47 @@ impl BasicCorner {
     }
 }
 
-#[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
+#[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Clone, Copy)]
 pub(super) enum Diagonal {
     UpLeft,
     UpRight,
     DownLeft,
     DownRight,
+}
+
+impl Diagonal {
+    pub(super) fn from_directions(a: Direction, b: Direction) -> Option<Self> {
+        match (a, b) {
+            (Direction::Left, Direction::Up) | (Direction::Up, Direction::Left) => {
+                Some(Diagonal::UpLeft)
+            }
+            (Direction::Up, Direction::Right) | (Direction::Right, Direction::Up) => {
+                Some(Diagonal::UpRight)
+            }
+            (Direction::Left, Direction::Down) | (Direction::Down, Direction::Left) => {
+                Some(Diagonal::DownLeft)
+            }
+            (Direction::Right, Direction::Down) | (Direction::Down, Direction::Right) => {
+                Some(Diagonal::DownRight)
+            }
+            (Direction::Left | Direction::Right, Direction::Left | Direction::Right)
+            | (Direction::Up | Direction::Down, Direction::Up | Direction::Down) => None,
+        }
+    }
+
+    pub(super) fn down(&self) -> bool {
+        match self {
+            Diagonal::UpLeft | Diagonal::UpRight => false,
+            Diagonal::DownLeft | Diagonal::DownRight => true,
+        }
+    }
+
+    pub(super) fn right(&self) -> bool {
+        match self {
+            Diagonal::UpRight | Diagonal::DownRight => true,
+            Diagonal::UpLeft | Diagonal::DownLeft => false,
+        }
+    }
 }
 
 pub(super) struct Corner {

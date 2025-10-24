@@ -1,10 +1,14 @@
 use std::{cmp::Ordering, mem};
 
-use z3::{Optimize, SatResult, ast::Int};
+use z3::{
+    Optimize, SatResult,
+    ast::{Bool, Int},
+};
 
 use crate::{
     direction::{DirectedEdge, Direction},
     matrix::Matrix,
+    svg::Diagonal,
 };
 
 #[derive(Debug, Default, Clone, Copy)]
@@ -195,12 +199,31 @@ pub(super) fn get_offsets_optimize(
     // Create a variable for each edge
     let mut offset_variables: Vec<Vec<Int>> = Vec::new();
 
-    // TODO:
-    // 1. Add each edge to the corner which it passes (seperate vertical and
-    //    horizontal)
-    // 2. Co through each corner, and add penalties when it crosses an edge
-    // 3. But wait, sometimes edges turn on the same edge
-    // 4. There are gonna be a lot of cases...
+    #[derive(Debug, Clone)]
+    struct Corner {
+        int_vertical: Int,
+        diagonal: Diagonal,
+        int_horizontal: Int,
+    }
+
+    #[derive(Debug, Clone)]
+    struct CornerCrossings {
+        corners: Vec<Corner>,
+        crossing_vertical: Vec<Int>,
+        crossing_horizontal: Vec<Int>,
+    }
+
+    impl Default for CornerCrossings {
+        fn default() -> Self {
+            Self {
+                corners: Default::default(),
+                crossing_vertical: Default::default(),
+                crossing_horizontal: Default::default(),
+            }
+        }
+    }
+
+    let mut crossings = Matrix::new(x + 1, y + 1, CornerCrossings::default());
 
     // Find how many edges are on each part
     for path in combined_paths {
@@ -226,11 +249,15 @@ pub(super) fn get_offsets_optimize(
         }
     }
 
-    for path in combined_paths {
-        let mut path_variables = Vec::new();
-        for edge in path {
-            let edge_variable = Int::fresh_const("edge");
+    // Create a variable for each edge
+    let path_variables: Vec<Vec<Int>> = combined_paths
+        .iter()
+        .map(|x| x.iter().map(|_| Int::fresh_const("edge")).collect::<Vec<Int>>())
+        .collect();
 
+    for (path, variables) in combined_paths.iter().zip(&path_variables) {
+        let mut path_variables = Vec::new();
+        for (edge, edge_variable) in path.iter().zip(variables) {
             let max_count = match *edge {
                 DirectedEdge::Horizontal { y, mut x_from, mut x_to } => {
                     if x_from > x_to {
@@ -265,6 +292,11 @@ pub(super) fn get_offsets_optimize(
                     for i in x_from..x_to {
                         row_edges[(i, y)].1.push(edge_variable.clone());
                     }
+
+                    // Add to crossing info
+                    for i in (x_from + 1)..x_to {
+                        crossings[(i, y)].crossing_horizontal.push(edge_variable.clone());
+                    }
                 }
                 DirectedEdge::Vertical { x, mut y_from, mut y_to } => {
                     if y_from > y_to {
@@ -273,12 +305,151 @@ pub(super) fn get_offsets_optimize(
                     for j in y_from..y_to {
                         column_edges[(x, j)].1.push(edge_variable.clone());
                     }
+
+                    // Add to crossing info
+                    for j in (y_from + 1)..y_to {
+                        crossings[(x, j)].crossing_vertical.push(edge_variable.clone());
+                    }
                 }
             }
         }
         offset_variables.push(path_variables);
     }
 
+    for (path, variables) in combined_paths.iter().zip(&path_variables) {
+        let mut edges: Vec<_> = path.iter().zip(variables).collect();
+        edges.push(edges[0]);
+
+        for window in edges.windows(2) {
+            if let [(edge_from, variable_from), (edge_to, variable_to)] = *window {
+                let from_vertical: bool = match edge_from.direction() {
+                    Direction::Left | Direction::Right => false,
+                    Direction::Up | Direction::Down => true,
+                };
+
+                let diagonal = Diagonal::from_directions(
+                    edge_from.direction().opposite(),
+                    edge_to.direction(),
+                )
+                .unwrap();
+
+                let (int_vertical, int_horizontal) = if from_vertical {
+                    (variable_from.clone(), variable_to.clone())
+                } else {
+                    (variable_to.clone(), variable_from.clone())
+                };
+
+                let corner = Corner { int_vertical, diagonal, int_horizontal };
+
+                let meets = edge_from.to();
+                crossings[meets].corners.push(corner);
+            } else {
+                unreachable!();
+            }
+        }
+    }
+
+    for j in 0..=y {
+        for i in 0..=x {
+            let crossing = &crossings[(i, j)];
+
+            const CORNER_WEIGHT: usize = 10;
+            for corner in &crossing.corners {
+                for edge in &crossing.crossing_horizontal {
+                    let h = &corner.int_horizontal;
+                    if corner.diagonal.down() {
+                        solver.assert_soft(&!h.le(edge), CORNER_WEIGHT, None);
+                    } else {
+                        solver.assert_soft(&!h.ge(edge), CORNER_WEIGHT, None);
+                    }
+                }
+
+                for edge in &crossing.crossing_vertical {
+                    let v = &corner.int_vertical;
+                    if corner.diagonal.right() {
+                        solver.assert_soft(&!v.le(edge), CORNER_WEIGHT, None);
+                    } else {
+                        solver.assert_soft(&!v.ge(edge), CORNER_WEIGHT, None);
+                    }
+                }
+            }
+
+            let l = crossing.corners.len();
+            for p in 0..l {
+                for q in 0..p {
+                    let corner1 = &crossing.corners[p];
+                    let corner2 = &crossing.corners[q];
+
+                    enum Case {
+                        Same,
+                        VSame,
+                        HSame,
+                    }
+
+                    let case: Case = match (corner1.diagonal, corner2.diagonal) {
+                        (Diagonal::UpLeft, Diagonal::UpLeft) => Case::Same,
+                        (Diagonal::UpRight, Diagonal::UpRight) => Case::Same,
+                        (Diagonal::DownLeft, Diagonal::DownLeft) => Case::Same,
+                        (Diagonal::DownRight, Diagonal::DownRight) => Case::Same,
+                        (Diagonal::UpLeft, Diagonal::UpRight) => Case::VSame,
+                        (Diagonal::UpRight, Diagonal::UpLeft) => Case::VSame,
+                        (Diagonal::DownLeft, Diagonal::DownRight) => Case::VSame,
+                        (Diagonal::DownRight, Diagonal::DownLeft) => Case::VSame,
+                        (Diagonal::UpLeft, Diagonal::DownLeft) => Case::HSame,
+                        (Diagonal::UpRight, Diagonal::DownRight) => Case::HSame,
+                        (Diagonal::DownLeft, Diagonal::UpLeft) => Case::HSame,
+                        (Diagonal::DownRight, Diagonal::UpRight) => Case::HSame,
+
+                        // We assume that corners pointing in opposite directions don't intersect
+                        (Diagonal::UpRight, Diagonal::DownLeft)
+                        | (Diagonal::DownLeft, Diagonal::UpRight)
+                        | (Diagonal::UpLeft, Diagonal::DownRight)
+                        | (Diagonal::DownRight, Diagonal::UpLeft) => continue,
+                    };
+
+                    let v1 = &corner1.int_vertical;
+                    let v2 = &corner2.int_vertical;
+                    let h1 = &corner1.int_horizontal;
+                    let h2 = &corner2.int_horizontal;
+                    let b = match case {
+                        Case::Same => {
+                            let aligned = match corner1.diagonal {
+                                Diagonal::UpLeft | Diagonal::DownRight => true,
+                                Diagonal::UpRight | Diagonal::DownLeft => false,
+                            };
+
+                            if aligned {
+                                let b_le = Bool::and(&[v1.le(v2), h1.le(h2)]);
+                                let b_ge = Bool::and(&[v1.ge(v2), h1.ge(h2)]);
+                                Bool::or(&[b_le, b_ge])
+                            } else {
+                                let b_le_ge = Bool::and(&[v1.le(v2), h1.ge(h2)]);
+                                let b_ge_le = Bool::and(&[v1.ge(v2), h1.le(h2)]);
+                                Bool::or(&[b_le_ge, b_ge_le])
+                            }
+                        }
+                        Case::HSame => {
+                            if corner1.diagonal.down() {
+                                v2.le(v1)
+                            } else {
+                                v1.le(v2)
+                            }
+                        }
+                        Case::VSame => {
+                            if corner1.diagonal.right() {
+                                h2.le(h1)
+                            } else {
+                                h1.le(h2)
+                            }
+                        }
+                    };
+                    solver.assert_soft(&b, 2 * CORNER_WEIGHT, None);
+                }
+            }
+        }
+    }
+
+    // None of the column edges overlap
     for i in 0..=x {
         for j in 0..y {
             let edges = &column_edges[(i, j)].1;
@@ -293,6 +464,7 @@ pub(super) fn get_offsets_optimize(
         }
     }
 
+    // None of the row edges overlap
     for i in 0..x {
         for j in 0..=y {
             let edges = &row_edges[(i, j)].1;
@@ -307,6 +479,7 @@ pub(super) fn get_offsets_optimize(
         }
     }
 
+    // Find the optimial solution, if there is one
     assert!(solver.check(&[]) == SatResult::Sat);
     if let Some(model) = solver.get_model() {
         for (i, path) in offset_variables.iter().enumerate() {
