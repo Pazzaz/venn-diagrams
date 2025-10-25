@@ -1,4 +1,4 @@
-use std::{cmp::Ordering, mem};
+use std::cmp::Ordering;
 
 use z3::{
     Optimize, SatResult,
@@ -6,7 +6,7 @@ use z3::{
 };
 
 use crate::{
-    direction::{DirectedEdge, Direction},
+    direction::{DirectedEdge, Direction, Edge},
     matrix::Matrix,
     svg::Diagonal,
 };
@@ -65,17 +65,13 @@ pub(super) fn get_offsets_greedy(
     }
 
     for (p_i, es) in combined_paths.iter().enumerate() {
-        for (e_i, e) in es.iter().enumerate() {
+        for (e_i, &e) in es.iter().enumerate() {
             let direction = directions[p_i][e_i];
 
-            let (mut from, mut to, out) = match *e {
-                DirectedEdge::Horizontal { x_from, x_to, y } => (x_from, x_to, &mut rows[y]),
-                DirectedEdge::Vertical { y_from, y_to, x } => (y_from, y_to, &mut columns[x]),
+            let (from, to, out) = match e.into() {
+                Edge::Horizontal { x1, x2, y } => (x1, x2, &mut rows[y]),
+                Edge::Vertical { y1, y2, x } => (y1, y2, &mut columns[x]),
             };
-
-            if from > to {
-                mem::swap(&mut from, &mut to);
-            }
 
             out.push(EdgeInfo { from, to, direction, len: e.len(), p_i, e_i });
         }
@@ -208,21 +204,11 @@ pub(super) fn get_offsets_optimize(
         int_horizontal: Int,
     }
 
-    #[derive(Debug, Clone)]
+    #[derive(Debug, Clone, Default)]
     struct CornerCrossings {
         corners: Vec<Corner>,
         crossing_vertical: Vec<Int>,
         crossing_horizontal: Vec<Int>,
-    }
-
-    impl Default for CornerCrossings {
-        fn default() -> Self {
-            Self {
-                corners: Default::default(),
-                crossing_vertical: Default::default(),
-                crossing_horizontal: Default::default(),
-            }
-        }
     }
 
     let mut crossings = Matrix::new(x + 1, y + 1, CornerCrossings::default());
@@ -235,7 +221,7 @@ pub(super) fn get_offsets_optimize(
 
     for (path, variables) in combined_paths.iter().zip(&path_variables) {
         let mut path_variables = Vec::new();
-        for (edge, edge_variable) in path.iter().zip(variables) {
+        for (&edge, edge_variable) in path.iter().zip(variables) {
             let each_side = (n / 2) as i32;
 
             solver.assert(&edge_variable.le(each_side));
@@ -247,30 +233,24 @@ pub(super) fn get_offsets_optimize(
                 solver.assert_soft(&bb, (i.unsigned_abs() as usize) * edge.len(), None);
             }
 
-            match *edge {
-                DirectedEdge::Horizontal { y, mut x_from, mut x_to } => {
-                    if x_from > x_to {
-                        mem::swap(&mut x_from, &mut x_to);
-                    }
-                    for i in x_from..x_to {
+            match edge.into() {
+                Edge::Horizontal { y, x1, x2 } => {
+                    for i in x1..x2 {
                         row_edges[(i, y)].push(edge_variable.clone());
                     }
 
                     // Add to crossing info
-                    for i in (x_from + 1)..x_to {
+                    for i in (x1 + 1)..x2 {
                         crossings[(i, y)].crossing_horizontal.push(edge_variable.clone());
                     }
                 }
-                DirectedEdge::Vertical { x, mut y_from, mut y_to } => {
-                    if y_from > y_to {
-                        mem::swap(&mut y_from, &mut y_to);
-                    }
-                    for j in y_from..y_to {
+                Edge::Vertical { x, y1, y2 } => {
+                    for j in y1..y2 {
                         column_edges[(x, j)].push(edge_variable.clone());
                     }
 
                     // Add to crossing info
-                    for j in (y_from + 1)..y_to {
+                    for j in (y1 + 1)..y2 {
                         crossings[(x, j)].crossing_vertical.push(edge_variable.clone());
                     }
                 }
@@ -501,14 +481,11 @@ fn inner_offset(
     let mut inner_offset: Matrix<InnerOffset> = Matrix::new(max_x, max_y, min_offset);
 
     for (path, offsets) in combined_paths.iter().zip(path_offsets) {
-        for (edge, offset) in path.iter().zip(offsets) {
+        for (&edge, offset) in path.iter().zip(offsets) {
             let offset = *offset as f64 * line_width;
-            match *edge {
-                DirectedEdge::Horizontal { y, mut x_from, mut x_to } => {
-                    if x_from > x_to {
-                        mem::swap(&mut x_from, &mut x_to);
-                    }
-                    for i in x_from..x_to {
+            match edge.into() {
+                Edge::Horizontal { y, x1, x2 } => {
+                    for i in x1..x2 {
                         if y != 0 {
                             let box_above = &mut inner_offset[(i, y - 1)];
                             if -offset > box_above.below {
@@ -523,11 +500,8 @@ fn inner_offset(
                         }
                     }
                 }
-                DirectedEdge::Vertical { x, mut y_from, mut y_to } => {
-                    if y_from > y_to {
-                        mem::swap(&mut y_from, &mut y_to);
-                    }
-                    for j in y_from..y_to {
+                Edge::Vertical { x, y1, y2 } => {
+                    for j in y1..y2 {
                         if x != 0 {
                             let box_left = &mut inner_offset[(x - 1, j)];
                             if -offset > box_left.right {

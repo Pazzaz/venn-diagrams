@@ -4,6 +4,8 @@ pub enum Edge {
     Vertical { x: usize, y1: usize, y2: usize },
 }
 
+use std::mem;
+
 use Edge::*;
 
 impl Edge {
@@ -32,7 +34,7 @@ impl Edge {
     }
 }
 
-#[derive(Debug, PartialEq, Eq, Clone)]
+#[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub enum DirectedEdge {
     Horizontal { y: usize, x_from: usize, x_to: usize },
     Vertical { x: usize, y_from: usize, y_to: usize },
@@ -72,6 +74,25 @@ impl Direction {
             | (Direction::Down, Direction::Left) => Some(true),
             (Direction::Left | Direction::Right, Direction::Left | Direction::Right)
             | (Direction::Up | Direction::Down, Direction::Up | Direction::Down) => None,
+        }
+    }
+}
+
+impl From<DirectedEdge> for Edge {
+    fn from(value: DirectedEdge) -> Self {
+        match value {
+            DirectedEdge::Horizontal { y, mut x_from, mut x_to } => {
+                if x_from > x_to {
+                    mem::swap(&mut x_from, &mut x_to);
+                }
+                Edge::new_horizontal(y, x_from, x_to)
+            }
+            DirectedEdge::Vertical { x, mut y_from, mut y_to } => {
+                if y_from > y_to {
+                    mem::swap(&mut y_from, &mut y_to);
+                }
+                Edge::new_vertical(x, y_from, y_to)
+            }
         }
     }
 }

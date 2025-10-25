@@ -129,7 +129,7 @@ impl<const N: usize, const X: usize, const Y: usize> From<ConstVennDiagram<N, X,
     for VennDiagram
 {
     fn from(value: ConstVennDiagram<N, X, Y>) -> Self {
-        Self { x: X, y: Y, polyominos: value.polyominos.into_iter().map(|x| x.into()).collect() }
+        Self { x: X, y: Y, polyominos: value.polyominos.into_iter().map(Into::into).collect() }
     }
 }
 
