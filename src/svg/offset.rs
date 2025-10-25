@@ -189,10 +189,12 @@ pub(super) fn get_offsets_optimize(
     combined_paths: &[Vec<DirectedEdge>],
     line_width: f64,
 ) -> (Vec<Vec<i32>>, Matrix<InnerOffset>) {
+    let n = combined_paths.len();
+
     let mut offsets: Vec<Vec<i32>> =
         combined_paths.iter().map(|x| vec![i32::MIN; x.len()]).collect();
-    let mut row_edges: Matrix<(usize, Vec<Int>)> = Matrix::new(x, y + 1, (1, Vec::new()));
-    let mut column_edges: Matrix<(usize, Vec<Int>)> = Matrix::new(x + 1, y, (1, Vec::new()));
+    let mut row_edges: Matrix<Vec<Int>> = Matrix::new(x, y + 1, Vec::new());
+    let mut column_edges: Matrix<Vec<Int>> = Matrix::new(x + 1, y, Vec::new());
 
     let solver = Optimize::new();
 
@@ -225,30 +227,6 @@ pub(super) fn get_offsets_optimize(
 
     let mut crossings = Matrix::new(x + 1, y + 1, CornerCrossings::default());
 
-    // Find how many edges are on each part
-    for path in combined_paths {
-        for edge in path {
-            match *edge {
-                DirectedEdge::Horizontal { y, mut x_from, mut x_to } => {
-                    if x_from > x_to {
-                        mem::swap(&mut x_from, &mut x_to);
-                    }
-                    for i in x_from..x_to {
-                        row_edges[(i, y)].0 += 1;
-                    }
-                }
-                DirectedEdge::Vertical { x, mut y_from, mut y_to } => {
-                    if y_from > y_to {
-                        mem::swap(&mut y_from, &mut y_to);
-                    }
-                    for j in y_from..y_to {
-                        column_edges[(x, j)].0 += 1;
-                    }
-                }
-            }
-        }
-    }
-
     // Create a variable for each edge
     let path_variables: Vec<Vec<Int>> = combined_paths
         .iter()
@@ -258,22 +236,7 @@ pub(super) fn get_offsets_optimize(
     for (path, variables) in combined_paths.iter().zip(&path_variables) {
         let mut path_variables = Vec::new();
         for (edge, edge_variable) in path.iter().zip(variables) {
-            let max_count = match *edge {
-                DirectedEdge::Horizontal { y, mut x_from, mut x_to } => {
-                    if x_from > x_to {
-                        mem::swap(&mut x_from, &mut x_to);
-                    }
-                    (x_from..x_to).map(|i| row_edges[(i, y)].0).max().unwrap()
-                }
-                DirectedEdge::Vertical { x, mut y_from, mut y_to } => {
-                    if y_from > y_to {
-                        mem::swap(&mut y_from, &mut y_to);
-                    }
-                    (y_from..y_to).map(|j| column_edges[(x, j)].0).max().unwrap()
-                }
-            };
-
-            let each_side = (max_count / 2) as i32;
+            let each_side = (n / 2) as i32;
 
             solver.assert(&edge_variable.le(each_side));
             solver.assert(&edge_variable.ge(-each_side));
@@ -290,7 +253,7 @@ pub(super) fn get_offsets_optimize(
                         mem::swap(&mut x_from, &mut x_to);
                     }
                     for i in x_from..x_to {
-                        row_edges[(i, y)].1.push(edge_variable.clone());
+                        row_edges[(i, y)].push(edge_variable.clone());
                     }
 
                     // Add to crossing info
@@ -303,7 +266,7 @@ pub(super) fn get_offsets_optimize(
                         mem::swap(&mut y_from, &mut y_to);
                     }
                     for j in y_from..y_to {
-                        column_edges[(x, j)].1.push(edge_variable.clone());
+                        column_edges[(x, j)].push(edge_variable.clone());
                     }
 
                     // Add to crossing info
@@ -314,6 +277,34 @@ pub(super) fn get_offsets_optimize(
             }
         }
         offset_variables.push(path_variables);
+    }
+
+    // Include penalty for gaps
+    for j in 0..=y {
+        for i in 0..x {
+            let values = &row_edges[(i, j)];
+            debug_assert!(values.len() <= n);
+            let each_side = (n / 2) as i32;
+
+            for range in values.len()..n {
+                let mut parts: Vec<Bool> = Vec::new();
+                for start in -each_side..=each_side {
+                    if start + range as i32 - 1 > each_side {
+                        break;
+                    }
+                    let end = start + range as i32;
+                    let mut edges_contained: Vec<Bool> = Vec::new();
+                    for edge in values {
+                        edges_contained.extend_from_slice(&[edge.ge(start), edge.lt(end)]);
+                    }
+                    parts.push(Bool::and(&edges_contained));
+                }
+                if !parts.is_empty() {
+                    let b = Bool::or(&parts);
+                    solver.assert_soft(&b, 200 * (range - values.len()), None);
+                }
+            }
+        }
     }
 
     for (path, variables) in combined_paths.iter().zip(&path_variables) {
@@ -431,16 +422,16 @@ pub(super) fn get_offsets_optimize(
                         }
                         Case::HSame => {
                             if corner1.diagonal.down() {
-                                v2.le(v1)
+                                h2.le(h1)
                             } else {
-                                v1.le(v2)
+                                h1.le(h2)
                             }
                         }
                         Case::VSame => {
                             if corner1.diagonal.right() {
-                                h2.le(h1)
+                                v2.le(v1)
                             } else {
-                                h1.le(h2)
+                                v1.le(v2)
                             }
                         }
                     };
@@ -453,7 +444,7 @@ pub(super) fn get_offsets_optimize(
     // None of the column edges overlap
     for i in 0..=x {
         for j in 0..y {
-            let edges = &column_edges[(i, j)].1;
+            let edges = &column_edges[(i, j)];
             let k = edges.len();
             for p in 0..k {
                 for q in 0..p {
@@ -468,7 +459,7 @@ pub(super) fn get_offsets_optimize(
     // None of the row edges overlap
     for i in 0..x {
         for j in 0..=y {
-            let edges = &row_edges[(i, j)].1;
+            let edges = &row_edges[(i, j)];
             let k = edges.len();
             for p in 0..k {
                 for q in 0..p {
