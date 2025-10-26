@@ -1,11 +1,11 @@
 use venn_diagrams::{
-    svg::{CornerStyle, DiagramConfig, OffsetMethod, to_svg},
-    venn::{self, VennDiagram},
+    svg::{CornerStyle, DiagramConfig},
+    venn,
 };
 
-const COLORS: [&str; 8] =
-    ["#EE2020", "#DDDD00", "#1B49DD", "#AF0000", "#009933", "#231977", "#83CF39", "#6BB7EC"];
-const VALUES: [f64; 8] = [107.0, 73.0, 68.0, 24.0, 24.0, 19.0, 18.0, 16.0];
+use crate::common::{COLORS, VALUES, normalize, test_venn};
+
+mod common;
 
 #[test]
 fn eight() {
@@ -65,37 +65,4 @@ fn eight_straight() {
     let mut config = DiagramConfig::default();
     config.corner_style = CornerStyle::Straight;
     test_venn("eight_straight.svg", &venn::EIGHT.into(), &values, &colors, &mut config);
-}
-
-#[test]
-fn five_optimizing() {
-    let colors = &COLORS[0..5];
-    let values = normalize(&VALUES[0..5]);
-    let mut config = DiagramConfig::default();
-    config.offset_method = OffsetMethod::Optimizing;
-    test_venn("five_optimizing.svg", &venn::FIVE.into(), &values, &colors, &mut config);
-}
-
-fn normalize(values: &[f64]) -> Vec<f64> {
-    let sum: f64 = values.iter().sum();
-    values.iter().map(|x| x / sum).collect()
-}
-
-fn test_venn(
-    name: &str,
-    venn: &VennDiagram,
-    values: &[f64],
-    colors: &[&str],
-    config: &DiagramConfig,
-) {
-    assert!(colors.len() == values.len());
-    assert!(colors.len() == venn.n());
-
-    let svg = to_svg(
-        venn,
-        &values,
-        &colors.iter().map(ToString::to_string).collect::<Vec<String>>(),
-        config,
-    );
-    insta::assert_binary_snapshot!(name, svg.to_string().as_bytes().into_iter().cloned().collect());
 }
