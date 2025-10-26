@@ -259,31 +259,42 @@ pub(super) fn get_offsets_optimize(
         offset_variables.push(path_variables);
     }
 
+    let f = |values: &Vec<Int>| {
+        debug_assert!(values.len() <= n);
+        let each_side = (n / 2) as i32;
+
+        for range in values.len()..n {
+            let mut parts: Vec<Bool> = Vec::new();
+            for start in -each_side..=each_side {
+                let end = start + range as i32 - 1;
+                if end > each_side {
+                    break;
+                }
+                let mut edges_contained: Vec<Bool> = Vec::new();
+                for edge in values {
+                    edges_contained.extend_from_slice(&[edge.ge(start), edge.le(end)]);
+                }
+                if !edges_contained.is_empty() {
+                    parts.push(Bool::and(&edges_contained));
+                }
+            }
+            if !parts.is_empty() {
+                let b = Bool::or(&parts);
+                solver.assert_soft(&b, 200 * (n - range), None);
+            }
+        }
+    };
+
     // Include penalty for gaps
     for j in 0..=y {
         for i in 0..x {
-            let values = &row_edges[(i, j)];
-            debug_assert!(values.len() <= n);
-            let each_side = (n / 2) as i32;
+            f(&row_edges[(i, j)]);
+        }
+    }
 
-            for range in values.len()..n {
-                let mut parts: Vec<Bool> = Vec::new();
-                for start in -each_side..=each_side {
-                    if start + range as i32 - 1 > each_side {
-                        break;
-                    }
-                    let end = start + range as i32;
-                    let mut edges_contained: Vec<Bool> = Vec::new();
-                    for edge in values {
-                        edges_contained.extend_from_slice(&[edge.ge(start), edge.lt(end)]);
-                    }
-                    parts.push(Bool::and(&edges_contained));
-                }
-                if !parts.is_empty() {
-                    let b = Bool::or(&parts);
-                    solver.assert_soft(&b, 200 * (range - values.len()), None);
-                }
-            }
+    for j in 0..y {
+        for i in 0..=x {
+            f(&column_edges[(i, j)]);
         }
     }
 
