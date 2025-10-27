@@ -166,6 +166,7 @@ pub(super) fn get_offsets(
         }
     }
 
+    // Find which crossings corners are on
     for (path, variables) in combined_paths.iter().zip(&path_variables) {
         let mut edges: Vec<_> = path.iter().zip(variables).collect();
         edges.push(edges[0]);
@@ -230,6 +231,8 @@ pub(super) fn get_offsets(
                         let h2 = &corner2.int_horizontal;
                         let b = match case {
                             Case::Same => {
+                                // If going positive/negative in the x-direction and y-direction
+                                // both go "in" or "out" from the corner
                                 let aligned = match corner1.diagonal {
                                     Diagonal::UpLeft | Diagonal::DownRight => true,
                                     Diagonal::UpRight | Diagonal::DownLeft => false,
@@ -260,6 +263,8 @@ pub(super) fn get_offsets(
                                 }
                             }
                         };
+
+                        // There are two corners, so we multiply weight by 2
                         solver.assert_soft(&b, 2 * CORNER_WEIGHT, None);
                     }
                 }
