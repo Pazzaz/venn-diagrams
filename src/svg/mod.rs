@@ -225,8 +225,8 @@ fn get_points(
     }
 
     // Then we look at each corner and align the turns
-    for j in 0..y {
-        for i in 0..x {
+    for j in 0..=y {
+        for i in 0..=x {
             // Sort corners according to their category
             positioned_corners[(i, j)].sort_by_key(|(i, j)| points[*i][*j].group_category());
             // Group them according to their position
