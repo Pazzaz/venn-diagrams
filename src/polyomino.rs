@@ -6,10 +6,12 @@ pub struct ConstPolyomino<const X: usize, const Y: usize> {
 }
 
 impl<const X: usize, const Y: usize> ConstPolyomino<X, Y> {
+    #[must_use]
     pub const fn empty() -> Self {
         Self { values: [[false; X]; Y] }
     }
 
+    #[must_use]
     pub const fn from_binary_str(grid: [&str; Y]) -> ConstPolyomino<X, Y> {
         let mut out = ConstPolyomino::empty();
 
@@ -51,24 +53,19 @@ pub struct Polyomino {
 }
 
 impl Polyomino {
+    #[must_use]
     pub fn x(&self) -> usize {
         self.x
     }
 
+    #[must_use]
     pub fn y(&self) -> usize {
         self.y
     }
 
+    #[must_use]
     pub fn empty(x: usize, y: usize) -> Self {
         Self { x, y, values: vec![false; x * y] }
-    }
-
-    pub fn get(&self, x: usize, y: usize) -> bool {
-        self.values[y * self.x + x]
-    }
-
-    pub fn get_mut(&mut self, x: usize, y: usize) -> &mut bool {
-        &mut self.values[y * self.x + x]
     }
 }
 

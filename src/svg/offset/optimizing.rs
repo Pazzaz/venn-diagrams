@@ -11,6 +11,52 @@ use crate::{
     svg::Diagonal,
 };
 
+#[derive(Debug, Clone)]
+struct Corner {
+    int_vertical: Int,
+    diagonal: Diagonal,
+    int_horizontal: Int,
+}
+
+#[derive(Debug, Clone, Default)]
+struct CornerCrossings {
+    corners: Vec<Corner>,
+    crossing_vertical: Vec<Int>,
+    crossing_horizontal: Vec<Int>,
+}
+
+#[derive(Debug, Clone, Copy)]
+enum Case {
+    Same,
+    VSame,
+    HSame,
+}
+
+fn corner_intersection(d1: Diagonal, d2: Diagonal) -> Option<Case> {
+    match (d1, d2) {
+        (Diagonal::UpLeft, Diagonal::UpLeft)
+        | (Diagonal::UpRight, Diagonal::UpRight)
+        | (Diagonal::DownLeft, Diagonal::DownLeft)
+        | (Diagonal::DownRight, Diagonal::DownRight) => Some(Case::Same),
+        (Diagonal::UpLeft, Diagonal::UpRight)
+        | (Diagonal::UpRight, Diagonal::UpLeft)
+        | (Diagonal::DownLeft, Diagonal::DownRight)
+        | (Diagonal::DownRight, Diagonal::DownLeft) => Some(Case::VSame),
+        (Diagonal::UpLeft, Diagonal::DownLeft)
+        | (Diagonal::UpRight, Diagonal::DownRight)
+        | (Diagonal::DownLeft, Diagonal::UpLeft)
+        | (Diagonal::DownRight, Diagonal::UpRight) => Some(Case::HSame),
+
+        // We assume that corners pointing in opposite directions don't intersect
+        (Diagonal::UpRight, Diagonal::DownLeft)
+        | (Diagonal::DownLeft, Diagonal::UpRight)
+        | (Diagonal::UpLeft, Diagonal::DownRight)
+        | (Diagonal::DownRight, Diagonal::UpLeft) => None,
+    }
+}
+
+const CORNER_WEIGHT: usize = 10;
+
 pub(super) fn get_offsets(
     x: usize,
     y: usize,
@@ -27,20 +73,6 @@ pub(super) fn get_offsets(
 
     // Create a variable for each edge
     let mut offset_variables: Vec<Vec<Int>> = Vec::new();
-
-    #[derive(Debug, Clone)]
-    struct Corner {
-        int_vertical: Int,
-        diagonal: Diagonal,
-        int_horizontal: Int,
-    }
-
-    #[derive(Debug, Clone, Default)]
-    struct CornerCrossings {
-        corners: Vec<Corner>,
-        crossing_vertical: Vec<Int>,
-        crossing_horizontal: Vec<Int>,
-    }
 
     let mut crossings = Matrix::new(x + 1, y + 1, CornerCrossings::default());
 
@@ -171,25 +203,17 @@ pub(super) fn get_offsets(
     for j in 0..=y {
         for i in 0..=x {
             let crossing = &crossings[(i, j)];
-
-            const CORNER_WEIGHT: usize = 10;
             for corner in &crossing.corners {
                 for edge in &crossing.crossing_horizontal {
                     let h = &corner.int_horizontal;
-                    if corner.diagonal.down() {
-                        solver.assert_soft(&h.ge(edge), CORNER_WEIGHT, None);
-                    } else {
-                        solver.assert_soft(&h.le(edge), CORNER_WEIGHT, None);
-                    }
+                    let b = if corner.diagonal.down() { h.ge(edge) } else { h.le(edge) };
+                    solver.assert_soft(&b, CORNER_WEIGHT, None);
                 }
 
                 for edge in &crossing.crossing_vertical {
                     let v = &corner.int_vertical;
-                    if corner.diagonal.right() {
-                        solver.assert_soft(&v.ge(edge), CORNER_WEIGHT, None);
-                    } else {
-                        solver.assert_soft(&v.le(edge), CORNER_WEIGHT, None);
-                    }
+                    let b = if corner.diagonal.right() { v.ge(edge) } else { v.le(edge) };
+                    solver.assert_soft(&b, CORNER_WEIGHT, None);
                 }
             }
 
@@ -199,70 +223,45 @@ pub(super) fn get_offsets(
                     let corner1 = &crossing.corners[p];
                     let corner2 = &crossing.corners[q];
 
-                    enum Case {
-                        Same,
-                        VSame,
-                        HSame,
+                    if let Some(case) = corner_intersection(corner1.diagonal, corner2.diagonal) {
+                        let v1 = &corner1.int_vertical;
+                        let v2 = &corner2.int_vertical;
+                        let h1 = &corner1.int_horizontal;
+                        let h2 = &corner2.int_horizontal;
+                        let b = match case {
+                            Case::Same => {
+                                let aligned = match corner1.diagonal {
+                                    Diagonal::UpLeft | Diagonal::DownRight => true,
+                                    Diagonal::UpRight | Diagonal::DownLeft => false,
+                                };
+
+                                if aligned {
+                                    let b_le = Bool::and(&[v1.le(v2), h1.le(h2)]);
+                                    let b_ge = Bool::and(&[v1.ge(v2), h1.ge(h2)]);
+                                    Bool::or(&[b_le, b_ge])
+                                } else {
+                                    let b_le_ge = Bool::and(&[v1.le(v2), h1.ge(h2)]);
+                                    let b_ge_le = Bool::and(&[v1.ge(v2), h1.le(h2)]);
+                                    Bool::or(&[b_le_ge, b_ge_le])
+                                }
+                            }
+                            Case::HSame => {
+                                if corner1.diagonal.down() {
+                                    h2.le(h1)
+                                } else {
+                                    h1.le(h2)
+                                }
+                            }
+                            Case::VSame => {
+                                if corner1.diagonal.right() {
+                                    v2.le(v1)
+                                } else {
+                                    v1.le(v2)
+                                }
+                            }
+                        };
+                        solver.assert_soft(&b, 2 * CORNER_WEIGHT, None);
                     }
-
-                    let case: Case = match (corner1.diagonal, corner2.diagonal) {
-                        (Diagonal::UpLeft, Diagonal::UpLeft) => Case::Same,
-                        (Diagonal::UpRight, Diagonal::UpRight) => Case::Same,
-                        (Diagonal::DownLeft, Diagonal::DownLeft) => Case::Same,
-                        (Diagonal::DownRight, Diagonal::DownRight) => Case::Same,
-                        (Diagonal::UpLeft, Diagonal::UpRight) => Case::VSame,
-                        (Diagonal::UpRight, Diagonal::UpLeft) => Case::VSame,
-                        (Diagonal::DownLeft, Diagonal::DownRight) => Case::VSame,
-                        (Diagonal::DownRight, Diagonal::DownLeft) => Case::VSame,
-                        (Diagonal::UpLeft, Diagonal::DownLeft) => Case::HSame,
-                        (Diagonal::UpRight, Diagonal::DownRight) => Case::HSame,
-                        (Diagonal::DownLeft, Diagonal::UpLeft) => Case::HSame,
-                        (Diagonal::DownRight, Diagonal::UpRight) => Case::HSame,
-
-                        // We assume that corners pointing in opposite directions don't intersect
-                        (Diagonal::UpRight, Diagonal::DownLeft)
-                        | (Diagonal::DownLeft, Diagonal::UpRight)
-                        | (Diagonal::UpLeft, Diagonal::DownRight)
-                        | (Diagonal::DownRight, Diagonal::UpLeft) => continue,
-                    };
-
-                    let v1 = &corner1.int_vertical;
-                    let v2 = &corner2.int_vertical;
-                    let h1 = &corner1.int_horizontal;
-                    let h2 = &corner2.int_horizontal;
-                    let b = match case {
-                        Case::Same => {
-                            let aligned = match corner1.diagonal {
-                                Diagonal::UpLeft | Diagonal::DownRight => true,
-                                Diagonal::UpRight | Diagonal::DownLeft => false,
-                            };
-
-                            if aligned {
-                                let b_le = Bool::and(&[v1.le(v2), h1.le(h2)]);
-                                let b_ge = Bool::and(&[v1.ge(v2), h1.ge(h2)]);
-                                Bool::or(&[b_le, b_ge])
-                            } else {
-                                let b_le_ge = Bool::and(&[v1.le(v2), h1.ge(h2)]);
-                                let b_ge_le = Bool::and(&[v1.ge(v2), h1.le(h2)]);
-                                Bool::or(&[b_le_ge, b_ge_le])
-                            }
-                        }
-                        Case::HSame => {
-                            if corner1.diagonal.down() {
-                                h2.le(h1)
-                            } else {
-                                h1.le(h2)
-                            }
-                        }
-                        Case::VSame => {
-                            if corner1.diagonal.right() {
-                                v2.le(v1)
-                            } else {
-                                v1.le(v2)
-                            }
-                        }
-                    };
-                    solver.assert_soft(&b, 2 * CORNER_WEIGHT, None);
                 }
             }
         }

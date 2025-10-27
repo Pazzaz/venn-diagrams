@@ -5,11 +5,13 @@ pub struct ConstVennDiagram<const N: usize, const X: usize, const Y: usize> {
 }
 
 impl<const N: usize, const X: usize, const Y: usize> ConstVennDiagram<N, X, Y> {
+    #[must_use]
     pub const fn new(polyominos: [ConstPolyomino<X, Y>; N]) -> Self {
         Self { polyominos }
     }
 
     /// The venn diagram consists of all subsets (except the empty subset)
+    #[must_use]
     pub const fn complete(&self) -> bool {
         // We check that each group is the right size
         let count_goal: u64 = 1 << (N - 1);
@@ -66,6 +68,7 @@ impl<const N: usize, const X: usize, const Y: usize> ConstVennDiagram<N, X, Y> {
         true
     }
 
+    #[must_use]
     pub const fn from_binary_str(grids: [[&str; Y]; N]) -> ConstVennDiagram<N, X, Y> {
         let mut out = [ConstPolyomino::empty(); N];
         let mut i = 0;
@@ -77,6 +80,7 @@ impl<const N: usize, const X: usize, const Y: usize> ConstVennDiagram<N, X, Y> {
         ConstVennDiagram::new(out)
     }
 
+    #[must_use]
     pub const fn from_letters(boxes: [[&str; X]; Y]) -> ConstVennDiagram<N, X, Y> {
         let mut out = [ConstPolyomino::empty(); N];
         let mut y = 0;
@@ -140,14 +144,17 @@ pub struct VennDiagram {
 }
 
 impl VennDiagram {
+    #[must_use]
     pub fn x(&self) -> usize {
         self.x
     }
 
+    #[must_use]
     pub fn y(&self) -> usize {
         self.y
     }
 
+    #[must_use]
     pub fn n(&self) -> usize {
         self.polyominos.len()
     }

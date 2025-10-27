@@ -83,14 +83,14 @@ impl Diagonal {
 
 #[cfg(feature = "optimize")]
 impl Diagonal {
-    pub(super) fn down(&self) -> bool {
+    pub(super) fn down(self) -> bool {
         match self {
             Diagonal::UpLeft | Diagonal::UpRight => false,
             Diagonal::DownLeft | Diagonal::DownRight => true,
         }
     }
 
-    pub(super) fn right(&self) -> bool {
+    pub(super) fn right(self) -> bool {
         match self {
             Diagonal::UpRight | Diagonal::DownRight => true,
             Diagonal::UpLeft | Diagonal::DownLeft => false,

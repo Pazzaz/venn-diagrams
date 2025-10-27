@@ -73,6 +73,7 @@ pub(super) fn draw_circle(
     out.add(group)
 }
 
+#[derive(Debug, Clone, Copy)]
 pub(super) enum Coalition {
     Below,
     Edge,
