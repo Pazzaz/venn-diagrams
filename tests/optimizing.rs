@@ -1,3 +1,5 @@
+#![cfg(feature = "optimize")]
+
 use venn_diagrams::{
     svg::{DiagramConfig, OffsetMethod},
     venn,

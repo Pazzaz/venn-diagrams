@@ -16,13 +16,7 @@ use self::{
     offset::InnerOffset,
 };
 use super::direction::{DirectedEdge, Edge};
-use crate::{
-    direction::Direction,
-    matrix::Matrix,
-    polyomino::Polyomino,
-    svg::offset::{get_offsets_greedy, get_offsets_optimize},
-    venn::VennDiagram,
-};
+use crate::{direction::Direction, matrix::Matrix, polyomino::Polyomino, venn::VennDiagram};
 
 fn get_combined_paths(paths: Vec<Vec<DirectedEdge>>) -> Vec<Vec<DirectedEdge>> {
     let mut combined_paths: Vec<Vec<DirectedEdge>> = Vec::new();
@@ -317,10 +311,8 @@ pub fn to_svg(
 
     let combined_paths = get_combined_paths(paths);
 
-    let (offsets, internal_offsets) = match config.offset_method {
-        config::OffsetMethod::Greedy => get_offsets_greedy(x, y, &combined_paths, line_width),
-        config::OffsetMethod::Optimizing => get_offsets_optimize(x, y, &combined_paths, line_width),
-    };
+    let (offsets, internal_offsets) =
+        config.offset_method.get_offsets(x, y, &combined_paths, line_width);
 
     let points = get_points(x, y, combined_paths, offsets, line_width, corner_offset);
 

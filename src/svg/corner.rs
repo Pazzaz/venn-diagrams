@@ -79,7 +79,10 @@ impl Diagonal {
             | (Direction::Up | Direction::Down, Direction::Up | Direction::Down) => None,
         }
     }
+}
 
+#[cfg(feature = "optimize")]
+impl Diagonal {
     pub(super) fn down(&self) -> bool {
         match self {
             Diagonal::UpLeft | Diagonal::UpRight => false,
