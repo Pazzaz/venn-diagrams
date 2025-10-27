@@ -59,11 +59,6 @@ pub(super) fn get_offsets(
             solver.assert(&edge_variable.ge(-each_side));
             path_variables.push(edge_variable.clone());
 
-            for i in (-each_side)..=each_side {
-                let bb = edge_variable.ne(i);
-                solver.assert_soft(&bb, (i.unsigned_abs() as usize) * edge.len(), None);
-            }
-
             match edge.into() {
                 Edge::Horizontal { y, x1, x2 } => {
                     for i in x1..x2 {
@@ -112,6 +107,16 @@ pub(super) fn get_offsets(
             if !parts.is_empty() {
                 let b = Bool::or(&parts);
                 solver.assert_soft(&b, 200 * (n - range), None);
+            }
+
+            // Add penalty if not centered
+            let each_side = (range / 2) as i32;
+            let mut edges_contained: Vec<Bool> = Vec::new();
+            for edge in values {
+                edges_contained.extend_from_slice(&[edge.ge(-each_side), edge.le(each_side)]);
+            }
+            if !edges_contained.is_empty() {
+                solver.assert_soft(&Bool::and(&edges_contained), 10, None);
             }
         }
     };
