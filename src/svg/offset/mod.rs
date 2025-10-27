@@ -14,9 +14,13 @@ pub(super) struct InnerOffset {
     pub(super) left: f64,
 }
 
+/// Method used to calculate the positions of each edge in a venn diagram.
 pub enum OffsetMethod {
+    /// Decide offsets greedily, placing larger edges before smaller edges.
+    /// Positions are calculated seperately for each column and each row.
     Greedy,
 
+    /// Decide offsets by optimization, minimizing edge overlaps and gaps.
     #[cfg(feature = "optimize")]
     Optimizing,
 }
