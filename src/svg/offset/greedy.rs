@@ -3,18 +3,14 @@ use std::cmp::Ordering;
 use crate::{
     direction::{DirectedEdge, Direction, Edge},
     matrix::Matrix,
-    svg::{
-        InnerOffset,
-        offset::{EdgeInfo, inner_offset},
-    },
+    svg::offset::EdgeInfo,
 };
 
 pub(super) fn get_offsets(
     x: usize,
     y: usize,
     combined_paths: &[Vec<DirectedEdge>],
-    line_width: f64,
-) -> (Vec<Vec<i32>>, Matrix<InnerOffset>) {
+) -> Vec<Vec<i32>> {
     let mut offsets: Vec<Vec<i32>> =
         combined_paths.iter().map(|x| vec![i32::MIN; x.len()]).collect();
     let mut columns = vec![Vec::new(); x + 1];
@@ -149,7 +145,5 @@ pub(super) fn get_offsets(
         }
     }
 
-    let inner_offset = inner_offset(x, y, &offsets, combined_paths, line_width);
-
-    (offsets, inner_offset)
+    offsets
 }

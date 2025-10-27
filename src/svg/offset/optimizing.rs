@@ -8,15 +8,14 @@ use z3::{
 use crate::{
     direction::{DirectedEdge, Direction, Edge},
     matrix::Matrix,
-    svg::{Diagonal, InnerOffset, offset::inner_offset},
+    svg::Diagonal,
 };
 
 pub(super) fn get_offsets(
     x: usize,
     y: usize,
     combined_paths: &[Vec<DirectedEdge>],
-    line_width: f64,
-) -> (Vec<Vec<i32>>, Matrix<InnerOffset>) {
+) -> Vec<Vec<i32>> {
     let n = combined_paths.len();
 
     let mut offsets: Vec<Vec<i32>> =
@@ -307,7 +306,5 @@ pub(super) fn get_offsets(
         unreachable!();
     }
 
-    let inner_offset = inner_offset(x, y, &offsets, combined_paths, line_width);
-
-    (offsets, inner_offset)
+    offsets
 }

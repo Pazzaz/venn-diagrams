@@ -27,13 +27,12 @@ impl OffsetMethod {
         x: usize,
         y: usize,
         combined_paths: &[Vec<DirectedEdge>],
-        line_width: f64,
-    ) -> (Vec<Vec<i32>>, Matrix<InnerOffset>) {
+    ) -> Vec<Vec<i32>> {
         match self {
-            OffsetMethod::Greedy => greedy::get_offsets(x, y, combined_paths, line_width),
+            OffsetMethod::Greedy => greedy::get_offsets(x, y, combined_paths),
 
             #[cfg(feature = "optimize")]
-            OffsetMethod::Optimizing => optimizing::get_offsets(x, y, combined_paths, line_width),
+            OffsetMethod::Optimizing => optimizing::get_offsets(x, y, combined_paths),
         }
     }
 }
@@ -48,7 +47,7 @@ struct EdgeInfo {
     e_i: usize,
 }
 
-fn inner_offset(
+pub(super) fn inner_offset(
     max_x: usize,
     max_y: usize,
     path_offsets: &[Vec<i32>],
