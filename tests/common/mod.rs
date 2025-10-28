@@ -1,6 +1,6 @@
 use venn_diagrams::{
-    svg::{DiagramConfig, PathLayout},
     constants::VennDiagram,
+    svg::{DiagramConfig, PathLayout},
 };
 
 pub const COLORS: [&str; 8] =
@@ -12,15 +12,10 @@ pub fn normalize(values: &[f64]) -> Vec<f64> {
     values.iter().map(|x| x / sum).collect()
 }
 
-pub fn test_venn(
-    name: &str,
-    venn: VennDiagram,
-    values: &[f64],
-    colors: &[&str],
-    config: &DiagramConfig,
-) {
-    assert!(colors.len() == values.len());
-    assert!(colors.len() == venn.n());
+pub fn test_venn(name: &str, venn: VennDiagram, config: &DiagramConfig) {
+    let n = venn.n();
+    let colors = &COLORS[0..n];
+    let values = normalize(&VALUES[0..n]);
 
     let paths = PathLayout::from_diagram(venn, config.offset_method);
 

@@ -16,8 +16,8 @@
 
 mod direction;
 
+pub mod constants;
 pub mod polyomino;
 pub mod svg;
-pub mod constants;
 
 mod matrix;
