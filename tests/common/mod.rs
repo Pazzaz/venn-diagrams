@@ -1,5 +1,5 @@
 use venn_diagrams::{
-    svg::{DiagramConfig, to_svg},
+    svg::{DiagramConfig, PathLayout},
     venn::VennDiagram,
 };
 
@@ -14,7 +14,7 @@ pub fn normalize(values: &[f64]) -> Vec<f64> {
 
 pub fn test_venn(
     name: &str,
-    venn: &VennDiagram,
+    venn: VennDiagram,
     values: &[f64],
     colors: &[&str],
     config: &DiagramConfig,
@@ -22,8 +22,9 @@ pub fn test_venn(
     assert!(colors.len() == values.len());
     assert!(colors.len() == venn.n());
 
-    let svg = to_svg(
-        venn,
+    let paths = PathLayout::from_diagram(venn, config.offset_method);
+
+    let svg = paths.to_svg(
         &values,
         &colors.iter().map(ToString::to_string).collect::<Vec<String>>(),
         config,

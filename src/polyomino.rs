@@ -45,7 +45,7 @@ impl<const X: usize, const Y: usize> IndexMut<(usize, usize)> for ConstPolyomino
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq, Eq)]
 pub struct Polyomino {
     x: usize,
     y: usize,

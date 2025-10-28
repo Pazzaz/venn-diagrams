@@ -17,7 +17,10 @@ use self::{
 };
 use super::direction::{DirectedEdge, Edge};
 use crate::{
-    direction::Direction, matrix::Matrix, polyomino::Polyomino, svg::offset::inner_offset,
+    direction::Direction,
+    matrix::Matrix,
+    polyomino::{ConstPolyomino, Polyomino},
+    svg::offset::inner_offset,
     venn::VennDiagram,
 };
 
@@ -172,8 +175,8 @@ fn get_polys(x: usize, y: usize, polyominos: &[Polyomino]) -> Vec<Vec<Edge>> {
 fn get_points(
     x: usize,
     y: usize,
-    combined_paths: Vec<Vec<DirectedEdge>>,
-    offsets: Vec<Vec<i32>>,
+    combined_paths: &[Vec<DirectedEdge>],
+    offsets: &[Vec<i32>],
     line_width: f64,
     corner_offset: f64,
 ) -> Vec<Vec<Corner>> {
@@ -183,15 +186,15 @@ fn get_points(
 
     let mut positioned_corners: Matrix<Vec<(usize, usize)>> = Matrix::new(x + 1, y + 1, Vec::new());
 
-    for (i, (path_edges, path_offsets)) in combined_paths.into_iter().zip(offsets).enumerate() {
+    for (i, (path_edges, path_offsets)) in combined_paths.iter().zip(offsets).enumerate() {
         let mut out = Vec::new();
         let mut path_group_offsets = Vec::new();
         let last_edge = path_edges.last().unwrap();
-        let last_offset = *path_offsets.last().unwrap();
+        let last_offset = path_offsets.last().unwrap();
 
-        let path_edges = std::iter::once(last_edge).chain(&path_edges);
+        let path_edges = std::iter::once(last_edge).chain(path_edges);
         let path_offsets = std::iter::once(last_offset).chain(path_offsets);
-        let parts: Vec<(&DirectedEdge, i32)> = path_edges.zip(path_offsets).collect();
+        let parts: Vec<(&DirectedEdge, &i32)> = path_edges.zip(path_offsets).collect();
         for (j, aa) in parts.windows(2).enumerate() {
             let ((e1, o1), (e2, o2)) = (&aa[0], &aa[1]);
             let (shared_x, shared_y) = e1.to();
@@ -205,8 +208,8 @@ fn get_points(
             let corner = BasicCorner {
                 x: shared_x,
                 y: shared_y,
-                x_offset: *ox,
-                y_offset: *oy,
+                x_offset: **ox,
+                y_offset: **oy,
                 from: e1.direction(),
                 to: e2.direction(),
             };
@@ -296,104 +299,180 @@ fn get_points(
     other_points
 }
 
-#[must_use]
-pub fn to_svg(
-    venn_diagram: &VennDiagram,
-    values: &[f64],
-    colors: &[String],
-    config: &DiagramConfig,
-) -> SVG {
-    let line_width = config.line_width;
-    let corner_offset = config.corner_offset;
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct PathLayout {
+    x: usize,
+    y: usize,
+    combined_paths: Vec<Vec<DirectedEdge>>,
+    offsets: Vec<Vec<i32>>,
+    polyominoes: Vec<Polyomino>,
+}
 
-    let x = venn_diagram.x();
-    let y = venn_diagram.y();
-    // First we do calculations
-    let polys = get_polys(x, y, &venn_diagram.polyominos);
-    let paths = get_paths(&polys);
+#[derive(Debug, Clone)]
+pub(crate) struct PathLayoutConst<const L: usize, const K: usize, const X: usize, const Y: usize> {
+    pub combined_paths: [DirectedEdge; L],
+    pub offset: [i32; L],
+    pub parts_len: [usize; K],
+    pub polyominoes: [ConstPolyomino<X, Y>; K],
+}
 
-    let combined_paths = get_combined_paths(paths);
+struct PartsIterator<'a, T> {
+    part: usize,
+    start_i: usize,
+    values: &'a [T],
+    parts_len: &'a [usize],
+}
 
-    let offsets = config.offset_method.get_offsets(x, y, &combined_paths);
-    let internal_offsets = inner_offset(x, y, &offsets, &combined_paths, line_width);
+fn iterate<'a, T>(values: &'a [T], parts_len: &'a [usize]) -> PartsIterator<'a, T> {
+    debug_assert!(values.len() == parts_len.len());
+    PartsIterator { part: 0, start_i: 0, values, parts_len }
+}
 
-    let points = get_points(x, y, combined_paths, offsets, line_width, corner_offset);
+impl<'a, T> Iterator for PartsIterator<'a, T> {
+    type Item = &'a [T];
 
-    let paths = get_rounded_paths(&points, config.corner_style).unwrap();
+    fn next(&mut self) -> Option<Self::Item> {
+        if self.part >= self.parts_len.len() {
+            return None;
+        }
+        let part_len = self.parts_len[self.part];
 
-    // Then we create the svg
-    let min_x = -0.5;
-    let width = (x + 1) as f64;
+        let next = &self.values[self.start_i..(self.start_i + part_len)];
+        self.start_i += part_len;
+        self.part += 1;
 
-    let min_y = -0.5;
-    let height = (y + 1) as f64;
+        Some(next)
+    }
+}
 
-    let mut out = Document::new().set("viewBox", (min_x, min_y, width, height));
+impl<const L: usize, const K: usize, const X: usize, const Y: usize>
+    From<PathLayoutConst<L, K, X, Y>> for PathLayout
+{
+    fn from(value: PathLayoutConst<L, K, X, Y>) -> Self {
+        let combined_paths =
+            iterate(&value.combined_paths, &value.parts_len).map(|x| x.to_vec()).collect();
+        let offsets = iterate(&value.offset, &value.parts_len).map(|x| x.to_vec()).collect();
+        let polyominoes = value.polyominoes.into_iter().map(Into::into).collect();
 
-    if let Some(width_mul) = config.width_mul {
-        out = out.set("width", format!("{}px", width_mul * width));
+        PathLayout { x: X, y: Y, combined_paths, offsets, polyominoes }
+    }
+}
+
+impl PathLayout {
+    pub const fn n(&self) -> usize {
+        self.combined_paths.len()
     }
 
-    if let Some(height_mul) = config.height_mul {
-        out = out.set("height", format!("{}px", height_mul * width));
-    }
+    pub fn from_diagram(diagram: VennDiagram, offset_method: OffsetMethod) -> Self {
+        let polys = get_polys(diagram.x(), diagram.y(), &diagram.polyominos);
+        let paths = get_paths(&polys);
+        let combined_paths = get_combined_paths(paths);
+        let offsets = offset_method.get_offsets(diagram.x(), diagram.y(), &combined_paths);
 
-    let mut mask = Mask::new().set("id", "background_mask");
-    for path in &paths {
-        let part = path.clone().set("fill", "white").set("stroke", "none");
-        mask = mask.add(part);
-    }
-
-    let defs = Definitions::new().add(mask);
-
-    out = out.add(defs);
-
-    let rect = Rectangle::new()
-        .set("width", width)
-        .set("height", height)
-        .set("x", min_x)
-        .set("y", min_y)
-        .set("mask", "url(#background_mask)");
-
-    out = out.add(rect);
-
-    for (path, color) in paths.iter().zip(colors) {
-        let path = path
-            .clone()
-            .set("fill", color.clone())
-            .set("fill-opacity", 0.2)
-            .set("stroke", "none")
-            .set("stroke-width", 0.05);
-        out = out.add(path);
-    }
-
-    for (path, color) in paths.iter().zip(colors) {
-        let path = path
-            .clone()
-            .set("fill", "none")
-            .set("stroke", color.clone())
-            .set("stroke-width", line_width);
-        out = out.add(path);
-    }
-
-    let n = venn_diagram.n();
-
-    let mut pairs = vec![false; n];
-    for x in 0..x {
-        for y in 0..y {
-            let mut any_true = false;
-            for i in 0..n {
-                let v = venn_diagram.polyominos[i][(x, y)];
-                any_true |= v;
-                pairs[i] = v;
-            }
-            if any_true {
-                let (x_pos, y_pos) =
-                    config.circle_placement.get_circle_pos(x, y, internal_offsets[(x, y)]);
-                out = draw_circle(x_pos, y_pos, &pairs, out, config, values, colors);
-            }
+        Self {
+            x: diagram.x(),
+            y: diagram.y(),
+            combined_paths,
+            offsets,
+            polyominoes: diagram.polyominos,
         }
     }
 
-    out
+    // This function is used to generate const versions, but we store the result
+    // from that so we don't actually use it
+    #[allow(unused)]
+    fn flattened(self) -> (Vec<DirectedEdge>, Vec<i32>, Vec<usize>) {
+        let parts_len = self.combined_paths.iter().map(|x| x.len()).collect();
+        let combined_paths = self.combined_paths.iter().flatten().copied().collect();
+        let offsets = self.offsets.iter().flatten().copied().collect();
+
+        (combined_paths, offsets, parts_len)
+    }
+
+    #[must_use]
+    pub fn to_svg(&self, values: &[f64], colors: &[String], config: &DiagramConfig) -> SVG {
+        let PathLayout { x, y, combined_paths, offsets, polyominoes } = self;
+        let internal_offsets = inner_offset(*x, *y, offsets, combined_paths, config.line_width);
+
+        let points =
+            get_points(*x, *y, combined_paths, offsets, config.line_width, config.corner_offset);
+
+        let paths = get_rounded_paths(&points, config.corner_style).unwrap();
+
+        // Then we create the svg
+        let min_x = -0.5;
+        let width = (x + 1) as f64;
+
+        let min_y = -0.5;
+        let height = (y + 1) as f64;
+
+        let mut out = Document::new().set("viewBox", (min_x, min_y, width, height));
+
+        if let Some(width_mul) = config.width_mul {
+            out = out.set("width", format!("{}px", width_mul * width));
+        }
+
+        if let Some(height_mul) = config.height_mul {
+            out = out.set("height", format!("{}px", height_mul * width));
+        }
+
+        let mut mask = Mask::new().set("id", "background_mask");
+        for path in &paths {
+            let part = path.clone().set("fill", "white").set("stroke", "none");
+            mask = mask.add(part);
+        }
+
+        let defs = Definitions::new().add(mask);
+
+        out = out.add(defs);
+
+        let rect = Rectangle::new()
+            .set("width", width)
+            .set("height", height)
+            .set("x", min_x)
+            .set("y", min_y)
+            .set("mask", "url(#background_mask)");
+
+        out = out.add(rect);
+
+        for (path, color) in paths.iter().zip(colors) {
+            let path = path
+                .clone()
+                .set("fill", color.clone())
+                .set("fill-opacity", 0.2)
+                .set("stroke", "none")
+                .set("stroke-width", 0.05);
+            out = out.add(path);
+        }
+
+        for (path, color) in paths.iter().zip(colors) {
+            let path = path
+                .clone()
+                .set("fill", "none")
+                .set("stroke", color.clone())
+                .set("stroke-width", config.line_width);
+            out = out.add(path);
+        }
+
+        let n = self.n();
+
+        let mut pairs = vec![false; n];
+        for x in 0..*x {
+            for y in 0..*y {
+                let mut any_true = false;
+                for i in 0..n {
+                    let v = polyominoes[i][(x, y)];
+                    any_true |= v;
+                    pairs[i] = v;
+                }
+                if any_true {
+                    let (x_pos, y_pos) =
+                        config.circle_placement.get_circle_pos(x, y, internal_offsets[(x, y)]);
+                    out = draw_circle(x_pos, y_pos, &pairs, out, config, values, colors);
+                }
+            }
+        }
+
+        out
+    }
 }
