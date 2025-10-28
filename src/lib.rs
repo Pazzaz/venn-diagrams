@@ -18,6 +18,6 @@ mod direction;
 
 pub mod polyomino;
 pub mod svg;
-pub mod venn;
+pub mod constants;
 
 mod matrix;

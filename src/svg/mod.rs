@@ -21,7 +21,7 @@ use crate::{
     matrix::Matrix,
     polyomino::{ConstPolyomino, Polyomino},
     svg::offset::inner_offset,
-    venn::VennDiagram,
+    constants::VennDiagram,
 };
 
 fn get_combined_paths(paths: Vec<Vec<DirectedEdge>>) -> Vec<Vec<DirectedEdge>> {

@@ -1,6 +1,6 @@
 use venn_diagrams::{
     svg::{DiagramConfig, PathLayout},
-    venn::VennDiagram,
+    constants::VennDiagram,
 };
 
 pub const COLORS: [&str; 8] =
