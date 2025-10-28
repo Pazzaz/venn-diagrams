@@ -4,24 +4,54 @@
 //! [polyomino][crate::polyomino] module).
 //!
 //! There's the static version, [`ConstVennDiagram`], and a dynamic version
-//! `TODO`.
+//! [`VennDiagram`].
 //!
-//! There are premade Venn diagrams for 2 to 8 groups: [2][TWO], [3][THREE],
-//! [4][FOUR], [5][FIVE], [6][SIX], [8][EIGHT].
+//! There are premade Venn diagrams for 2 to 8 groups: [2][d2::TWO],
+//! [3][d3::THREE], [4][d4::FOUR], [5][d5::FIVE], [6][d6::SIX], [8][d8::EIGHT].
 
-mod d2;
-mod d3;
-mod d4;
-mod d5;
-mod d6;
-mod d8;
-
-pub use d2::TWO;
-pub use d3::THREE;
-pub use d4::FOUR;
-pub use d5::FIVE;
-pub use d6::SIX;
-pub use d8::EIGHT;
+pub mod d2;
+pub mod d3;
+pub mod d4;
+pub mod d5;
+pub mod d6;
+pub mod d8;
 
 mod venn_diagram;
+use std::fmt::Write;
+
 pub use venn_diagram::{ConstVennDiagram, VennDiagram};
+
+use crate::svg::PathLayout;
+
+// Function used to create a `PathLayoutConst` from a `PathLayout`.
+#[doc(hidden)]
+pub fn path_layout_to_const(
+    variable_name: &str,
+    path_layout: PathLayout,
+    diagram_name: &str,
+) -> Option<String> {
+    let l: usize = path_layout.combined_paths.iter().map(Vec::len).sum();
+    let k: usize = path_layout.combined_paths.len();
+    let x: usize = path_layout.x;
+    let y: usize = path_layout.y;
+
+    let combined_paths: Vec<_> = path_layout.combined_paths.iter().flatten().collect();
+    let offsets: Vec<_> = path_layout.offsets.iter().flatten().collect();
+    let parts_len: Vec<_> = path_layout.offsets.iter().map(Vec::len).collect();
+
+    let mut out = String::new();
+
+    writeln!(&mut out, "#[rustfmt::skip]").ok()?;
+    writeln!(
+        &mut out,
+        "pub const {variable_name}: PathLayoutConst<{l}, {k}, {x}, {y}> = PathLayoutConst {{"
+    )
+    .ok()?;
+    writeln!(&mut out, "    combined_paths: {combined_paths:?},").ok()?;
+    writeln!(&mut out, "    offsets: {offsets:?},").ok()?;
+    writeln!(&mut out, "    parts_len: {parts_len:?},").ok()?;
+    writeln!(&mut out, "    diagram: {diagram_name},").ok()?;
+    writeln!(&mut out, "}};").ok()?;
+
+    Some(out)
+}

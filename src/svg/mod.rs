@@ -17,10 +17,10 @@ use self::{
 };
 use super::direction::{DirectedEdge, Edge};
 use crate::{
-    constants::VennDiagram,
+    constants::{ConstVennDiagram, VennDiagram},
     direction::Direction,
     matrix::Matrix,
-    polyomino::{ConstPolyomino, Polyomino},
+    polyomino::Polyomino,
     svg::offset::inner_offset,
 };
 
@@ -301,19 +301,19 @@ fn get_points(
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct PathLayout {
-    x: usize,
-    y: usize,
-    combined_paths: Vec<Vec<DirectedEdge>>,
-    offsets: Vec<Vec<i32>>,
-    polyominoes: Vec<Polyomino>,
+    pub(crate) x: usize,
+    pub(crate) y: usize,
+    pub(crate) combined_paths: Vec<Vec<DirectedEdge>>,
+    pub(crate) offsets: Vec<Vec<i32>>,
+    pub(crate) diagram: VennDiagram,
 }
 
 #[derive(Debug, Clone)]
-pub(crate) struct PathLayoutConst<const L: usize, const K: usize, const X: usize, const Y: usize> {
+pub struct PathLayoutConst<const L: usize, const K: usize, const X: usize, const Y: usize> {
     pub combined_paths: [DirectedEdge; L],
-    pub offset: [i32; L],
+    pub offsets: [i32; L],
     pub parts_len: [usize; K],
-    pub polyominoes: [ConstPolyomino<X, Y>; K],
+    pub diagram: ConstVennDiagram<K, X, Y>,
 }
 
 struct PartsIterator<'a, T> {
@@ -324,7 +324,6 @@ struct PartsIterator<'a, T> {
 }
 
 fn iterate<'a, T>(values: &'a [T], parts_len: &'a [usize]) -> PartsIterator<'a, T> {
-    debug_assert!(values.len() == parts_len.len());
     PartsIterator { part: 0, start_i: 0, values, parts_len }
 }
 
@@ -351,10 +350,10 @@ impl<const L: usize, const K: usize, const X: usize, const Y: usize>
     fn from(value: PathLayoutConst<L, K, X, Y>) -> Self {
         let combined_paths =
             iterate(&value.combined_paths, &value.parts_len).map(|x| x.to_vec()).collect();
-        let offsets = iterate(&value.offset, &value.parts_len).map(|x| x.to_vec()).collect();
-        let polyominoes = value.polyominoes.into_iter().map(Into::into).collect();
+        let offsets = iterate(&value.offsets, &value.parts_len).map(|x| x.to_vec()).collect();
+        let polyominoes = value.diagram.into();
 
-        PathLayout { x: X, y: Y, combined_paths, offsets, polyominoes }
+        PathLayout { x: X, y: Y, combined_paths, offsets, diagram: polyominoes }
     }
 }
 
@@ -369,13 +368,7 @@ impl PathLayout {
         let combined_paths = get_combined_paths(paths);
         let offsets = offset_method.get_offsets(diagram.x(), diagram.y(), &combined_paths);
 
-        Self {
-            x: diagram.x(),
-            y: diagram.y(),
-            combined_paths,
-            offsets,
-            polyominoes: diagram.polyominos,
-        }
+        Self { x: diagram.x(), y: diagram.y(), combined_paths, offsets, diagram }
     }
 
     // This function is used to generate const versions, but we store the result
@@ -391,7 +384,7 @@ impl PathLayout {
 
     #[must_use]
     pub fn to_svg(&self, values: &[f64], colors: &[String], config: &DiagramConfig) -> SVG {
-        let PathLayout { x, y, combined_paths, offsets, polyominoes } = self;
+        let PathLayout { x, y, combined_paths, offsets, diagram: polyominoes } = self;
         let internal_offsets = inner_offset(*x, *y, offsets, combined_paths, config.line_width);
 
         let points =
@@ -461,7 +454,7 @@ impl PathLayout {
             for y in 0..*y {
                 let mut any_true = false;
                 for i in 0..n {
-                    let v = polyominoes[i][(x, y)];
+                    let v = polyominoes.polyominos[i][(x, y)];
                     any_true |= v;
                     pairs[i] = v;
                 }

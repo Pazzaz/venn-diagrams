@@ -2,45 +2,38 @@
 
 use venn_diagrams::{
     constants,
-    svg::{DiagramConfig, OffsetMethod},
+    svg::{OffsetMethod, PathLayout},
 };
-
-use crate::common::test_venn;
 
 mod common;
 
 #[test]
 fn two() {
-    let mut config = DiagramConfig::default();
-    config.offset_method = OffsetMethod::Optimizing;
-    test_venn("two.svg", constants::TWO.into(), &mut config);
+    let paths = PathLayout::from_diagram(constants::d2::TWO.into(), OffsetMethod::Optimizing);
+    assert!(paths == constants::d2::PATHLAYOUT_TWO_OPTIMIZING.into());
 }
 
 #[test]
 fn three() {
-    let mut config = DiagramConfig::default();
-    config.offset_method = OffsetMethod::Optimizing;
-    test_venn("three.svg", constants::THREE.into(), &mut config);
+    let paths = PathLayout::from_diagram(constants::d3::THREE.into(), OffsetMethod::Optimizing);
+    assert!(paths == constants::d3::PATHLAYOUT_THREE_OPTIMIZING.into());
 }
 
 #[test]
 fn four() {
-    let mut config = DiagramConfig::default();
-    config.offset_method = OffsetMethod::Optimizing;
-    test_venn("four.svg", constants::FOUR.into(), &mut config);
+    let paths = PathLayout::from_diagram(constants::d4::FOUR.into(), OffsetMethod::Optimizing);
+    assert!(paths == constants::d4::PATHLAYOUT_FOUR_OPTIMIZING.into());
 }
 
 #[test]
 fn five() {
-    let mut config = DiagramConfig::default();
-    config.offset_method = OffsetMethod::Optimizing;
-    test_venn("five.svg", constants::FIVE.into(), &mut config);
+    let paths = PathLayout::from_diagram(constants::d5::FIVE.into(), OffsetMethod::Optimizing);
+    assert!(paths == constants::d5::PATHLAYOUT_FIVE_OPTIMIZING.into());
 }
 
 #[test]
 #[ignore = "expensive"]
 fn eight() {
-    let mut config = DiagramConfig::default();
-    config.offset_method = OffsetMethod::Optimizing;
-    test_venn("eight.svg", constants::EIGHT.into(), &mut config);
+    let paths = PathLayout::from_diagram(constants::d8::EIGHT.into(), OffsetMethod::Optimizing);
+    assert!(paths == constants::d8::PATHLAYOUT_EIGHT_OPTIMIZING.into());
 }

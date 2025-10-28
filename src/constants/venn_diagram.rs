@@ -1,5 +1,6 @@
 use crate::polyomino::{ConstPolyomino, Polyomino};
 
+#[derive(Debug, Clone)]
 pub struct ConstVennDiagram<const N: usize, const X: usize, const Y: usize> {
     pub(crate) polyominos: [ConstPolyomino<X, Y>; N],
 }
@@ -137,6 +138,7 @@ impl<const N: usize, const X: usize, const Y: usize> From<ConstVennDiagram<N, X,
     }
 }
 
+#[derive(Debug, PartialEq, Eq)]
 pub struct VennDiagram {
     x: usize,
     y: usize,
