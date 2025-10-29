@@ -1,5 +1,10 @@
+<p align="center">
+
 # Venn Diagrams
+[![Crates.io](https://img.shields.io/crates/v/venn-diagrams.svg)](https://crates.io/crates/venn-diagrams)
 ![Example diagram](tests/common/snapshots/render_optimize__common__eight.snap.svg)
+
+</p>
 
 Program to illustrate data with Venn diagrams. Originally created to show possible coalitions in parliamentary democracies.
 
