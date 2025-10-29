@@ -1,7 +1,13 @@
 [package]
 name = "venn-diagrams"
+description = "Generate SVG venn diagrams"
+authors = ["Pazzaz <pazzaz.sundqvist@gmail.com>"]
 version = "0.1.0"
 edition = "2024"
+license = "MIT"
+homepage = "https://github.com/Pazzaz/venn-diagrams"
+repository = "https://github.com/Pazzaz/venn-diagrams"
+keywords = ["plot", "visualization", "svg", "charts", "dataviz"]
 
 [dependencies]
 itertools = "0.14.0"
