@@ -1,5 +1,5 @@
 # Venn Diagrams
-![Example diagram](tests/common/snapshots/optimizing__common__eight.snap.svg)
+![Example diagram](tests/common/snapshots/render_optimize__common__eight.snap.svg)
 
 Program to illustrate data with Venn diagrams. Originally created to show possible coalitions in parliamentary democracies.
 
