@@ -2,6 +2,7 @@ use svg::node::element::{Circle, Group, SVG};
 
 use super::{InnerOffset, config::DiagramConfig};
 
+/// Configuration for a circle around a pie chart, see [`DiagramConfig`].
 #[derive(Debug, Clone)]
 pub struct CircleConfig {
     opacity: f64,
@@ -112,8 +113,14 @@ impl Coalition {
     }
 }
 
+/// Method to decide where each pie chart should be placed.
+#[derive(Debug, Clone, Copy, Default)]
 pub enum CirclePlacement {
+    /// Each circle is placed on it's grid position.
     Basic,
+
+    /// Places circles in the middle of the intersections inner bounding square.
+    #[default]
     SquareCenter,
 }
 
