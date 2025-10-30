@@ -64,16 +64,16 @@ impl Diagonal {
     pub(super) fn from_directions(a: Direction, b: Direction) -> Option<Self> {
         match (a, b) {
             (Direction::Left, Direction::Up) | (Direction::Up, Direction::Left) => {
-                Some(Diagonal::UpLeft)
+                Some(Self::UpLeft)
             }
             (Direction::Up, Direction::Right) | (Direction::Right, Direction::Up) => {
-                Some(Diagonal::UpRight)
+                Some(Self::UpRight)
             }
             (Direction::Left, Direction::Down) | (Direction::Down, Direction::Left) => {
-                Some(Diagonal::DownLeft)
+                Some(Self::DownLeft)
             }
             (Direction::Right, Direction::Down) | (Direction::Down, Direction::Right) => {
-                Some(Diagonal::DownRight)
+                Some(Self::DownRight)
             }
             (Direction::Left | Direction::Right, Direction::Left | Direction::Right)
             | (Direction::Up | Direction::Down, Direction::Up | Direction::Down) => None,
@@ -85,15 +85,15 @@ impl Diagonal {
 impl Diagonal {
     pub(super) fn down(self) -> bool {
         match self {
-            Diagonal::UpLeft | Diagonal::UpRight => false,
-            Diagonal::DownLeft | Diagonal::DownRight => true,
+            Self::UpLeft | Self::UpRight => false,
+            Self::DownLeft | Self::DownRight => true,
         }
     }
 
     pub(super) fn right(self) -> bool {
         match self {
-            Diagonal::UpRight | Diagonal::DownRight => true,
-            Diagonal::UpLeft | Diagonal::DownLeft => false,
+            Self::UpRight | Self::DownRight => true,
+            Self::UpLeft | Self::DownLeft => false,
         }
     }
 }

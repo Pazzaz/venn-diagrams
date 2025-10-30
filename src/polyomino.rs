@@ -12,8 +12,8 @@ impl<const X: usize, const Y: usize> ConstPolyomino<X, Y> {
     }
 
     #[must_use]
-    pub const fn from_binary_str(grid: [&str; Y]) -> ConstPolyomino<X, Y> {
-        let mut out = ConstPolyomino::empty();
+    pub const fn from_binary_str(grid: [&str; Y]) -> Self {
+        let mut out = Self::empty();
 
         let mut y = 0;
         while y != Y {
@@ -97,7 +97,7 @@ impl IndexMut<(usize, usize)> for Polyomino {
 
 impl<const X: usize, const Y: usize> From<ConstPolyomino<X, Y>> for Polyomino {
     fn from(value: ConstPolyomino<X, Y>) -> Self {
-        Polyomino {
+        Self {
             width: X,
             height: Y,
             values: value.values.into_iter().flat_map(IntoIterator::into_iter).collect(),

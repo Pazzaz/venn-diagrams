@@ -70,7 +70,7 @@ impl<const N: usize, const X: usize, const Y: usize> ConstVennDiagram<N, X, Y> {
     }
 
     #[must_use]
-    pub const fn from_binary_str(grids: [[&str; Y]; N]) -> ConstVennDiagram<N, X, Y> {
+    pub const fn from_binary_str(grids: [[&str; Y]; N]) -> Self {
         let mut out = [ConstPolyomino::empty(); N];
         let mut i = 0;
         while i != N {
@@ -78,11 +78,11 @@ impl<const N: usize, const X: usize, const Y: usize> ConstVennDiagram<N, X, Y> {
             i += 1;
         }
 
-        ConstVennDiagram::new(out)
+        Self::new(out)
     }
 
     #[must_use]
-    pub const fn from_letters(boxes: [[&str; X]; Y]) -> ConstVennDiagram<N, X, Y> {
+    pub const fn from_letters(boxes: [[&str; X]; Y]) -> Self {
         let mut out = [ConstPolyomino::empty(); N];
         let mut y = 0;
         while y != Y {
@@ -101,7 +101,7 @@ impl<const N: usize, const X: usize, const Y: usize> ConstVennDiagram<N, X, Y> {
             }
             y += 1;
         }
-        ConstVennDiagram::new(out)
+        Self::new(out)
     }
 
     const fn empty_at(&self, x: usize, y: usize) -> bool {

@@ -16,6 +16,7 @@ z3 = {version = "0.19.2", features = ["gh-release"], optional = true}
 
 [lints.clippy]
 needless_range_loop = "allow"
+use_self = "warn"
 
 [dev-dependencies]
 insta = "1.43.2"

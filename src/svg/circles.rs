@@ -81,7 +81,7 @@ pub(super) enum Coalition {
 }
 
 impl Coalition {
-    fn from_values(mask: &[bool], values: &[f64]) -> Coalition {
+    fn from_values(mask: &[bool], values: &[f64]) -> Self {
         let n = mask.len();
         debug_assert!(n == values.len());
         let mut total: f64 = 0.0;
@@ -103,11 +103,11 @@ impl Coalition {
         }
 
         if total < 0.5 {
-            Coalition::Below
+            Self::Below
         } else if on_edge {
-            Coalition::Edge
+            Self::Edge
         } else {
-            Coalition::Above
+            Self::Above
         }
     }
 }
@@ -125,8 +125,8 @@ impl CirclePlacement {
         internal_offset: InnerOffset,
     ) -> (f64, f64) {
         match self {
-            CirclePlacement::Basic => (x as f64 + 0.5, (y as f64) + 0.5),
-            CirclePlacement::SquareCenter => {
+            Self::Basic => (x as f64 + 0.5, (y as f64) + 0.5),
+            Self::SquareCenter => {
                 let cx = x as f64;
                 let cy = y as f64;
 

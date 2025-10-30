@@ -63,7 +63,7 @@ impl<const L: usize, const K: usize, const X: usize, const Y: usize>
         let offsets = iterate(&value.offsets, &value.parts_len).map(|x| x.to_vec()).collect();
         let polyominoes = value.diagram.into();
 
-        PathLayout { width: X, height: Y, combined_paths, offsets, diagram: polyominoes }
+        Self { width: X, height: Y, combined_paths, offsets, diagram: polyominoes }
     }
 }
 
@@ -74,7 +74,7 @@ impl PathLayout {
 
     #[must_use]
     pub fn to_svg(&self, values: &[f64], colors: &[String], config: &DiagramConfig) -> SVG {
-        let PathLayout { width, height, combined_paths, offsets, diagram: polyominoes } = self;
+        let Self { width, height, combined_paths, offsets, diagram: polyominoes } = self;
         let internal_offsets =
             inner_offset(*width, *height, offsets, combined_paths, config.line_width);
 

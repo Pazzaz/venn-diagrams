@@ -265,10 +265,10 @@ fn get_points(
     for (path, path_offsets) in points.iter().zip(&group_offsets) {
         let mut other_out = Vec::new();
         for (corner, offset) in path.iter().zip(path_offsets) {
-            let offset = offset.unwrap_or(0) as f64 * line_width + corner_offset;
+            let offset = (offset.unwrap_or(0) as f64).mul_add(line_width, corner_offset);
 
-            let meet_x: f64 = corner.x as f64 + corner.x_offset as f64 * line_width;
-            let meet_y: f64 = corner.y as f64 + corner.y_offset as f64 * line_width;
+            let meet_x: f64 = (corner.x_offset as f64).mul_add(line_width, corner.x as f64);
+            let meet_y: f64 = (corner.y_offset as f64).mul_add(line_width, corner.y as f64);
 
             let from: (f64, f64) = match corner.from {
                 Direction::Left => (meet_x + offset, meet_y),

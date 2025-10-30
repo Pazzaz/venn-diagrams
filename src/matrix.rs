@@ -1,7 +1,7 @@
 use std::ops::{Index, IndexMut};
 
 #[derive(Debug, Clone)]
-pub(crate) struct Matrix<T> {
+pub struct Matrix<T> {
     // We don't need to store height, because we have the width and total size
     width: usize,
     values: Vec<T>,
