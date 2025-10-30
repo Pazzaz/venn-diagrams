@@ -371,17 +371,6 @@ impl PathLayout {
         Self { x: diagram.x(), y: diagram.y(), combined_paths, offsets, diagram }
     }
 
-    // This function is used to generate const versions, but we store the result
-    // from that so we don't actually use it
-    #[allow(unused)]
-    fn flattened(self) -> (Vec<DirectedEdge>, Vec<i32>, Vec<usize>) {
-        let parts_len = self.combined_paths.iter().map(|x| x.len()).collect();
-        let combined_paths = self.combined_paths.iter().flatten().copied().collect();
-        let offsets = self.offsets.iter().flatten().copied().collect();
-
-        (combined_paths, offsets, parts_len)
-    }
-
     #[must_use]
     pub fn to_svg(&self, values: &[f64], colors: &[String], config: &DiagramConfig) -> SVG {
         let PathLayout { x, y, combined_paths, offsets, diagram: polyominoes } = self;
