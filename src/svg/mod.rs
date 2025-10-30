@@ -5,7 +5,7 @@ mod offset;
 
 mod path_layout;
 
-pub use config::{CornerStyle, DiagramConfig, OffsetMethod};
+pub use config::{CornerStyle, DiagramConfig};
 use itertools::Itertools;
 pub use path_layout::{PathLayout, PathLayoutConst};
 

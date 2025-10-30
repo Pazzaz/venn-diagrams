@@ -2,8 +2,10 @@ mod greedy;
 mod optimizing;
 
 use crate::{
+    constants::VennDiagram,
     direction::{DirectedEdge, Direction, Edge},
     matrix::Matrix,
+    svg::{PathLayout, get_combined_paths, get_paths, get_polys},
 };
 
 #[derive(Debug, Default, Clone, Copy)]
@@ -12,34 +14,6 @@ pub(super) struct InnerOffset {
     pub(super) below: f64,
     pub(super) right: f64,
     pub(super) left: f64,
-}
-
-/// Method used to calculate the positions of each edge in a venn diagram.
-#[derive(Debug, Clone, Copy)]
-pub enum OffsetMethod {
-    /// Decide offsets greedily, placing larger edges before smaller edges.
-    /// Positions are calculated seperately for each column and each row.
-    Greedy,
-
-    /// Decide offsets by optimization, minimizing edge overlaps and gaps.
-    #[cfg(feature = "optimize")]
-    Optimizing,
-}
-
-impl OffsetMethod {
-    pub(super) fn get_offsets(
-        &self,
-        x: usize,
-        y: usize,
-        combined_paths: &[Vec<DirectedEdge>],
-    ) -> Vec<Vec<i32>> {
-        match self {
-            OffsetMethod::Greedy => greedy::get_offsets(x, y, combined_paths),
-
-            #[cfg(feature = "optimize")]
-            OffsetMethod::Optimizing => optimizing::get_offsets(x, y, combined_paths),
-        }
-    }
 }
 
 #[derive(Debug, Default, Clone)]
@@ -104,4 +78,28 @@ pub(super) fn inner_offset(
     }
 
     inner_offset
+}
+
+impl VennDiagram {
+    /// Decide offsets greedily, placing larger edges before smaller edges.
+    /// Positions are calculated seperately for each column and each row.
+    pub fn layout_greedy(self) -> PathLayout {
+        let polys = get_polys(self.x(), self.y(), &self.polyominos);
+        let paths = get_paths(&polys);
+        let combined_paths = get_combined_paths(paths);
+        let offsets = greedy::get_offsets(self.x(), self.y(), &combined_paths);
+
+        PathLayout { x: self.x(), y: self.y(), combined_paths, offsets, diagram: self }
+    }
+
+    /// Decide offsets by optimization, minimizing edge overlaps and gaps.
+    #[cfg(feature = "optimize")]
+    pub fn layout_optimize(self) -> PathLayout {
+        let polys = get_polys(self.x(), self.y(), &self.polyominos);
+        let paths = get_paths(&polys);
+        let combined_paths = get_combined_paths(paths);
+        let offsets = optimizing::get_offsets(self.x(), self.y(), &combined_paths);
+
+        PathLayout { x: self.x(), y: self.y(), combined_paths, offsets, diagram: self }
+    }
 }

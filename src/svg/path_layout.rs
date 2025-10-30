@@ -6,10 +6,7 @@ use svg::{
 use crate::{
     constants::{ConstVennDiagram, VennDiagram},
     direction::DirectedEdge,
-    svg::{
-        DiagramConfig, OffsetMethod, draw_circle, get_combined_paths, get_paths, get_points,
-        get_polys, get_rounded_paths, inner_offset,
-    },
+    svg::{DiagramConfig, draw_circle, get_points, get_rounded_paths, inner_offset},
 };
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -73,15 +70,6 @@ impl<const L: usize, const K: usize, const X: usize, const Y: usize>
 impl PathLayout {
     pub const fn n(&self) -> usize {
         self.combined_paths.len()
-    }
-
-    pub fn from_diagram(diagram: VennDiagram, offset_method: OffsetMethod) -> Self {
-        let polys = get_polys(diagram.x(), diagram.y(), &diagram.polyominos);
-        let paths = get_paths(&polys);
-        let combined_paths = get_combined_paths(paths);
-        let offsets = offset_method.get_offsets(diagram.x(), diagram.y(), &combined_paths);
-
-        Self { x: diagram.x(), y: diagram.y(), combined_paths, offsets, diagram }
     }
 
     #[must_use]
