@@ -11,8 +11,8 @@ use crate::{
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct PathLayout {
-    pub(crate) x: usize,
-    pub(crate) y: usize,
+    pub(crate) width: usize,
+    pub(crate) height: usize,
     pub(crate) combined_paths: Vec<Vec<DirectedEdge>>,
     pub(crate) offsets: Vec<Vec<i32>>,
     pub(crate) diagram: VennDiagram,
@@ -63,7 +63,7 @@ impl<const L: usize, const K: usize, const X: usize, const Y: usize>
         let offsets = iterate(&value.offsets, &value.parts_len).map(|x| x.to_vec()).collect();
         let polyominoes = value.diagram.into();
 
-        PathLayout { x: X, y: Y, combined_paths, offsets, diagram: polyominoes }
+        PathLayout { width: X, height: Y, combined_paths, offsets, diagram: polyominoes }
     }
 }
 
@@ -74,29 +74,36 @@ impl PathLayout {
 
     #[must_use]
     pub fn to_svg(&self, values: &[f64], colors: &[String], config: &DiagramConfig) -> SVG {
-        let PathLayout { x, y, combined_paths, offsets, diagram: polyominoes } = self;
-        let internal_offsets = inner_offset(*x, *y, offsets, combined_paths, config.line_width);
+        let PathLayout { width, height, combined_paths, offsets, diagram: polyominoes } = self;
+        let internal_offsets =
+            inner_offset(*width, *height, offsets, combined_paths, config.line_width);
 
-        let points =
-            get_points(*x, *y, combined_paths, offsets, config.line_width, config.corner_offset);
+        let points = get_points(
+            *width,
+            *height,
+            combined_paths,
+            offsets,
+            config.line_width,
+            config.corner_offset,
+        );
 
         let paths = get_rounded_paths(&points, config.corner_style).unwrap();
 
         // Then we create the svg
         let min_x = -0.5;
-        let width = (x + 1) as f64;
+        let total_width = (width + 1) as f64;
 
         let min_y = -0.5;
-        let height = (y + 1) as f64;
+        let total_height = (height + 1) as f64;
 
-        let mut out = Document::new().set("viewBox", (min_x, min_y, width, height));
+        let mut out = Document::new().set("viewBox", (min_x, min_y, total_width, total_height));
 
         if let Some(width_mul) = config.width_mul {
-            out = out.set("width", format!("{}px", width_mul * width));
+            out = out.set("width", format!("{}px", width_mul * total_width));
         }
 
         if let Some(height_mul) = config.height_mul {
-            out = out.set("height", format!("{}px", height_mul * width));
+            out = out.set("height", format!("{}px", height_mul * total_width));
         }
 
         let mut mask = Mask::new().set("id", "background_mask");
@@ -105,13 +112,11 @@ impl PathLayout {
             mask = mask.add(part);
         }
 
-        let defs = Definitions::new().add(mask);
-
-        out = out.add(defs);
+        out = out.add(Definitions::new().add(mask));
 
         let rect = Rectangle::new()
-            .set("width", width)
-            .set("height", height)
+            .set("width", total_width)
+            .set("height", total_height)
             .set("x", min_x)
             .set("y", min_y)
             .set("mask", "url(#background_mask)");
@@ -137,13 +142,11 @@ impl PathLayout {
             out = out.add(path);
         }
 
-        let n = self.n();
-
-        let mut pairs = vec![false; n];
-        for x in 0..*x {
-            for y in 0..*y {
+        let mut pairs = vec![false; self.n()];
+        for x in 0..*width {
+            for y in 0..*height {
                 let mut any_true = false;
-                for i in 0..n {
+                for i in 0..self.n() {
                     let v = polyominoes.polyominos[i][(x, y)];
                     any_true |= v;
                     pairs[i] = v;

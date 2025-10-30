@@ -7,14 +7,14 @@ use crate::{
 };
 
 pub(super) fn get_offsets(
-    x: usize,
-    y: usize,
+    width: usize,
+    height: usize,
     combined_paths: &[Vec<DirectedEdge>],
 ) -> Vec<Vec<i32>> {
     let mut offsets: Vec<Vec<i32>> =
         combined_paths.iter().map(|x| vec![i32::MIN; x.len()]).collect();
-    let mut columns = vec![Vec::new(); x + 1];
-    let mut rows = vec![Vec::new(); y + 1];
+    let mut columns = vec![Vec::new(); width + 1];
+    let mut rows = vec![Vec::new(); height + 1];
 
     let mut directions: Vec<Vec<Option<Direction>>> = Vec::new();
 
@@ -49,7 +49,7 @@ pub(super) fn get_offsets(
     }
 
     // We choose the position in each column seperately
-    for i in 0..=x {
+    for i in 0..=width {
         // We sort each edge that's contained is this column such that we start by
         // placing the longest edges
         columns[i].sort_by(|a, b| a.len.cmp(&b.len).reverse());
@@ -61,7 +61,7 @@ pub(super) fn get_offsets(
 
         let middle = len / 2;
 
-        let mut occupied = Matrix::new(len, y, false);
+        let mut occupied = Matrix::new(len, height, false);
 
         for &EdgeInfo { from, to, direction, p_i, e_i, .. } in column {
             let first_possible_left =
@@ -98,7 +98,7 @@ pub(super) fn get_offsets(
     }
 
     // We choose the position in each row seperately
-    for i in 0..=y {
+    for i in 0..=height {
         // We sort each edge that's contained is this row such that we start by
         // placing the longest edges
         rows[i].sort_by(|a, b| a.len.cmp(&b.len).reverse());
@@ -109,7 +109,7 @@ pub(super) fn get_offsets(
 
         let middle = len / 2;
 
-        let mut occupied = Matrix::new(len, x, false);
+        let mut occupied = Matrix::new(len, width, false);
 
         for &EdgeInfo { from, to, direction, p_i, e_i, .. } in row {
             let first_possible_left =

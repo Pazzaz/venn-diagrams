@@ -27,15 +27,15 @@ struct EdgeInfo {
 }
 
 pub(super) fn inner_offset(
-    max_x: usize,
-    max_y: usize,
+    width: usize,
+    height: usize,
     path_offsets: &[Vec<i32>],
     combined_paths: &[Vec<DirectedEdge>],
     line_width: f64,
 ) -> Matrix<InnerOffset> {
     let min_offset: InnerOffset =
         InnerOffset { above: f64::MIN, below: f64::MIN, right: f64::MIN, left: f64::MIN };
-    let mut inner_offset: Matrix<InnerOffset> = Matrix::new(max_x, max_y, min_offset);
+    let mut inner_offset: Matrix<InnerOffset> = Matrix::new(width, height, min_offset);
 
     for (path, offsets) in combined_paths.iter().zip(path_offsets) {
         for (&edge, offset) in path.iter().zip(offsets) {
@@ -49,7 +49,7 @@ pub(super) fn inner_offset(
                                 box_above.below = -offset;
                             }
                         }
-                        if y != max_y {
+                        if y != height {
                             let box_below = &mut inner_offset[(i, y)];
                             if offset > box_below.above {
                                 box_below.above = offset;
@@ -65,7 +65,7 @@ pub(super) fn inner_offset(
                                 box_left.right = -offset;
                             }
                         }
-                        if x != max_x {
+                        if x != width {
                             let box_right = &mut inner_offset[(x, j)];
                             if offset > box_right.left {
                                 box_right.left = offset;
@@ -84,22 +84,34 @@ impl VennDiagram {
     /// Decide offsets greedily, placing larger edges before smaller edges.
     /// Positions are calculated seperately for each column and each row.
     pub fn layout_greedy(self) -> PathLayout {
-        let polys = get_polys(self.x(), self.y(), &self.polyominos);
+        let polys = get_polys(self.width(), self.height(), &self.polyominos);
         let paths = get_paths(&polys);
         let combined_paths = get_combined_paths(paths);
-        let offsets = greedy::get_offsets(self.x(), self.y(), &combined_paths);
+        let offsets = greedy::get_offsets(self.width(), self.height(), &combined_paths);
 
-        PathLayout { x: self.x(), y: self.y(), combined_paths, offsets, diagram: self }
+        PathLayout {
+            width: self.width(),
+            height: self.height(),
+            combined_paths,
+            offsets,
+            diagram: self,
+        }
     }
 
     /// Decide offsets by optimization, minimizing edge overlaps and gaps.
     #[cfg(feature = "optimize")]
     pub fn layout_optimize(self) -> PathLayout {
-        let polys = get_polys(self.x(), self.y(), &self.polyominos);
+        let polys = get_polys(self.width(), self.height(), &self.polyominos);
         let paths = get_paths(&polys);
         let combined_paths = get_combined_paths(paths);
-        let offsets = optimizing::get_offsets(self.x(), self.y(), &combined_paths);
+        let offsets = optimizing::get_offsets(self.width(), self.height(), &combined_paths);
 
-        PathLayout { x: self.x(), y: self.y(), combined_paths, offsets, diagram: self }
+        PathLayout {
+            width: self.width(),
+            height: self.height(),
+            combined_paths,
+            offsets,
+            diagram: self,
+        }
     }
 }

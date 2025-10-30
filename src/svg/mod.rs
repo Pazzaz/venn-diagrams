@@ -133,14 +133,14 @@ fn get_paths(polys: &[Vec<Edge>]) -> Vec<Vec<DirectedEdge>> {
     paths
 }
 
-fn get_polys(x: usize, y: usize, polyominos: &[Polyomino]) -> Vec<Vec<Edge>> {
+fn get_polys(width: usize, height: usize, polyominos: &[Polyomino]) -> Vec<Vec<Edge>> {
     let mut polys: Vec<Vec<Edge>> = Vec::new();
 
     for poly in polyominos {
         let mut edges: Vec<Edge> = Vec::new();
 
-        for i in 0..x {
-            for j in 0..y {
+        for i in 0..width {
+            for j in 0..height {
                 if poly[(i, j)] {
                     // Left
                     if i == 0 || !poly[(i - 1, j)] {
@@ -151,11 +151,11 @@ fn get_polys(x: usize, y: usize, polyominos: &[Polyomino]) -> Vec<Vec<Edge>> {
                         edges.push(Edge::new_horizontal(j, i, i + 1));
                     }
                     // Right
-                    if i == (x - 1) || !poly[(i + 1, j)] {
+                    if i == (width - 1) || !poly[(i + 1, j)] {
                         edges.push(Edge::new_vertical(i + 1, j, j + 1));
                     }
                     // Down
-                    if j == (y - 1) || !poly[(i, j + 1)] {
+                    if j == (height - 1) || !poly[(i, j + 1)] {
                         edges.push(Edge::new_horizontal(j + 1, i, i + 1));
                     }
                 }
@@ -168,8 +168,8 @@ fn get_polys(x: usize, y: usize, polyominos: &[Polyomino]) -> Vec<Vec<Edge>> {
 }
 
 fn get_points(
-    x: usize,
-    y: usize,
+    width: usize,
+    height: usize,
     combined_paths: &[Vec<DirectedEdge>],
     offsets: &[Vec<i32>],
     line_width: f64,
@@ -179,7 +179,8 @@ fn get_points(
     let mut points: Vec<Vec<BasicCorner>> = Vec::new();
     let mut group_offsets: Vec<Vec<Option<i32>>> = Vec::new();
 
-    let mut positioned_corners: Matrix<Vec<(usize, usize)>> = Matrix::new(x + 1, y + 1, Vec::new());
+    let mut positioned_corners: Matrix<Vec<(usize, usize)>> =
+        Matrix::new(width + 1, height + 1, Vec::new());
 
     for (i, (path_edges, path_offsets)) in combined_paths.iter().zip(offsets).enumerate() {
         let mut out = Vec::new();
@@ -223,8 +224,8 @@ fn get_points(
     }
 
     // Then we look at each corner and align the turns
-    for j in 0..=y {
-        for i in 0..=x {
+    for j in 0..=height {
+        for i in 0..=width {
             // Sort corners according to their category
             positioned_corners[(i, j)].sort_by_key(|(i, j)| points[*i][*j].group_category());
             // Group them according to their position

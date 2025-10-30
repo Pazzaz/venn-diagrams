@@ -58,23 +58,23 @@ fn corner_intersection(d1: Diagonal, d2: Diagonal) -> Option<Case> {
 const CORNER_WEIGHT: usize = 10;
 
 pub(super) fn get_offsets(
-    x: usize,
-    y: usize,
+    width: usize,
+    height: usize,
     combined_paths: &[Vec<DirectedEdge>],
 ) -> Vec<Vec<i32>> {
     let n = combined_paths.len();
 
     let mut offsets: Vec<Vec<i32>> =
         combined_paths.iter().map(|x| vec![i32::MIN; x.len()]).collect();
-    let mut row_edges: Matrix<Vec<Int>> = Matrix::new(x, y + 1, Vec::new());
-    let mut column_edges: Matrix<Vec<Int>> = Matrix::new(x + 1, y, Vec::new());
+    let mut row_edges: Matrix<Vec<Int>> = Matrix::new(width, height + 1, Vec::new());
+    let mut column_edges: Matrix<Vec<Int>> = Matrix::new(width + 1, height, Vec::new());
 
     let solver = Optimize::new();
 
     // Create a variable for each edge
     let mut offset_variables: Vec<Vec<Int>> = Vec::new();
 
-    let mut crossings = Matrix::new(x + 1, y + 1, CornerCrossings::default());
+    let mut crossings = Matrix::new(width + 1, height + 1, CornerCrossings::default());
 
     // Create a variable for each edge
     let path_variables: Vec<Vec<Int>> = combined_paths
@@ -154,14 +154,14 @@ pub(super) fn get_offsets(
     };
 
     // Include penalty for gaps
-    for j in 0..=y {
-        for i in 0..x {
+    for j in 0..=height {
+        for i in 0..width {
             f(&row_edges[(i, j)]);
         }
     }
 
-    for j in 0..y {
-        for i in 0..=x {
+    for j in 0..height {
+        for i in 0..=width {
             f(&column_edges[(i, j)]);
         }
     }
@@ -201,8 +201,8 @@ pub(super) fn get_offsets(
         }
     }
 
-    for j in 0..=y {
-        for i in 0..=x {
+    for j in 0..=height {
+        for i in 0..=width {
             let crossing = &crossings[(i, j)];
             for corner in &crossing.corners {
                 for edge in &crossing.crossing_horizontal {
@@ -273,8 +273,8 @@ pub(super) fn get_offsets(
     }
 
     // None of the column edges overlap
-    for i in 0..=x {
-        for j in 0..y {
+    for i in 0..=width {
+        for j in 0..height {
             let edges = &column_edges[(i, j)];
             let k = edges.len();
             for p in 0..k {
@@ -288,8 +288,8 @@ pub(super) fn get_offsets(
     }
 
     // None of the row edges overlap
-    for i in 0..x {
-        for j in 0..=y {
+    for i in 0..width {
+        for j in 0..=height {
             let edges = &row_edges[(i, j)];
             let k = edges.len();
             for p in 0..k {

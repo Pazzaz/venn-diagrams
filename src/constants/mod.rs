@@ -32,8 +32,8 @@ pub fn path_layout_to_const(
 ) -> Option<String> {
     let l: usize = path_layout.combined_paths.iter().map(Vec::len).sum();
     let k: usize = path_layout.combined_paths.len();
-    let x: usize = path_layout.x;
-    let y: usize = path_layout.y;
+    let x: usize = path_layout.width;
+    let y: usize = path_layout.height;
 
     let combined_paths: Vec<_> = path_layout.combined_paths.iter().flatten().collect();
     let offsets: Vec<_> = path_layout.offsets.iter().flatten().collect();

@@ -134,26 +134,30 @@ impl<const N: usize, const X: usize, const Y: usize> From<ConstVennDiagram<N, X,
     for VennDiagram
 {
     fn from(value: ConstVennDiagram<N, X, Y>) -> Self {
-        Self { x: X, y: Y, polyominos: value.polyominos.into_iter().map(Into::into).collect() }
+        Self {
+            width: X,
+            height: Y,
+            polyominos: value.polyominos.into_iter().map(Into::into).collect(),
+        }
     }
 }
 
 #[derive(Debug, PartialEq, Eq)]
 pub struct VennDiagram {
-    x: usize,
-    y: usize,
+    width: usize,
+    height: usize,
     pub(crate) polyominos: Vec<Polyomino>,
 }
 
 impl VennDiagram {
     #[must_use]
-    pub fn x(&self) -> usize {
-        self.x
+    pub fn width(&self) -> usize {
+        self.width
     }
 
     #[must_use]
-    pub fn y(&self) -> usize {
-        self.y
+    pub fn height(&self) -> usize {
+        self.height
     }
 
     #[must_use]
@@ -164,12 +168,12 @@ impl VennDiagram {
 
 impl Clone for VennDiagram {
     fn clone(&self) -> Self {
-        Self { x: self.x, y: self.y, polyominos: self.polyominos.clone() }
+        Self { width: self.width, height: self.height, polyominos: self.polyominos.clone() }
     }
 
     fn clone_from(&mut self, source: &Self) {
-        self.x = source.x;
-        self.y = source.y;
+        self.width = source.width;
+        self.height = source.height;
         self.polyominos.clone_from(&source.polyominos);
     }
 }

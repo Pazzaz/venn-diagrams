@@ -47,36 +47,36 @@ impl<const X: usize, const Y: usize> IndexMut<(usize, usize)> for ConstPolyomino
 
 #[derive(Debug, PartialEq, Eq)]
 pub struct Polyomino {
-    x: usize,
-    y: usize,
+    width: usize,
+    height: usize,
     values: Vec<bool>,
 }
 
 impl Polyomino {
     #[must_use]
-    pub fn x(&self) -> usize {
-        self.x
+    pub fn width(&self) -> usize {
+        self.width
     }
 
     #[must_use]
-    pub fn y(&self) -> usize {
-        self.y
+    pub fn height(&self) -> usize {
+        self.height
     }
 
     #[must_use]
     pub fn empty(x: usize, y: usize) -> Self {
-        Self { x, y, values: vec![false; x * y] }
+        Self { width: x, height: y, values: vec![false; x * y] }
     }
 }
 
 impl Clone for Polyomino {
     fn clone(&self) -> Self {
-        Self { x: self.x, y: self.y, values: self.values.clone() }
+        Self { width: self.width, height: self.height, values: self.values.clone() }
     }
 
     fn clone_from(&mut self, source: &Self) {
-        self.x = source.x;
-        self.y = source.y;
+        self.width = source.width;
+        self.height = source.height;
         self.values.clone_from(&source.values);
     }
 }
@@ -85,21 +85,21 @@ impl Index<(usize, usize)> for Polyomino {
     type Output = bool;
 
     fn index(&self, (x, y): (usize, usize)) -> &Self::Output {
-        &self.values[y * self.x + x]
+        &self.values[y * self.width + x]
     }
 }
 
 impl IndexMut<(usize, usize)> for Polyomino {
     fn index_mut(&mut self, (x, y): (usize, usize)) -> &mut Self::Output {
-        &mut self.values[y * self.x + x]
+        &mut self.values[y * self.width + x]
     }
 }
 
 impl<const X: usize, const Y: usize> From<ConstPolyomino<X, Y>> for Polyomino {
     fn from(value: ConstPolyomino<X, Y>) -> Self {
         Polyomino {
-            x: X,
-            y: Y,
+            width: X,
+            height: Y,
             values: value.values.into_iter().flat_map(IntoIterator::into_iter).collect(),
         }
     }
