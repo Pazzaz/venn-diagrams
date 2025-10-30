@@ -9,6 +9,8 @@ use crate::{
     svg::{DiagramConfig, draw_circle, get_points, get_rounded_paths, inner_offset},
 };
 
+/// A Venn diagram with a computed layout of each polyomino border. For the
+/// static version, see [`PathLayoutConst`].
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct PathLayout {
     pub(crate) width: usize,
@@ -18,11 +20,21 @@ pub struct PathLayout {
     pub(crate) diagram: VennDiagram,
 }
 
+/// A Venn diagram with a computed layout of each polyomino border. For the
+/// allocated version, see [`PathLayout`].
 #[derive(Debug, Clone)]
 pub struct PathLayoutConst<const L: usize, const K: usize, const X: usize, const Y: usize> {
+    /// Edges of polyomino borders.
     pub combined_paths: [DirectedEdge; L],
+
+    /// Offset positions of each edge, in every polyomino border.
     pub offsets: [i32; L],
+
+    /// The number of edges of each polyomino. Sum of all values in `parts_len`
+    /// must sum to `L`.
     pub parts_len: [usize; K],
+
+    /// The Venn diagram itself.
     pub diagram: ConstVennDiagram<K, X, Y>,
 }
 
@@ -68,10 +80,12 @@ impl<const L: usize, const K: usize, const X: usize, const Y: usize>
 }
 
 impl PathLayout {
+    /// Number of sets/polyominos.
     pub const fn n(&self) -> usize {
         self.combined_paths.len()
     }
 
+    /// Render as an SVG.
     #[must_use]
     pub fn to_svg(&self, values: &[f64], colors: &[String], config: &DiagramConfig) -> SVG {
         let Self { width, height, combined_paths, offsets, diagram: polyominoes } = self;
@@ -142,6 +156,7 @@ impl PathLayout {
             out = out.add(path);
         }
 
+        // Draw the pie charts
         let mut pairs = vec![false; self.n()];
         for x in 0..*width {
             for y in 0..*height {

@@ -2,9 +2,13 @@ use svg::node::element::{Path, path::Data};
 
 use crate::direction::Direction;
 
+/// How each corner of a polyomino border should be drawn.
 #[derive(Debug, Clone, Copy)]
 pub enum CornerStyle {
+    /// Each corner consists of two 45° turns
     Straight,
+
+    /// Each corner is circular; a quarter turn.
     Smooth,
 }
 

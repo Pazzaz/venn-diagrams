@@ -1,3 +1,5 @@
+//! Drawing Venn diagrams as SVGs.
+
 mod circles;
 mod config;
 mod corner;
