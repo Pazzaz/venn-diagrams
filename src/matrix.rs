@@ -1,7 +1,7 @@
 use std::ops::{Index, IndexMut};
 
 #[derive(Debug, Clone)]
-pub(crate) struct Matrix<T: Clone> {
+pub(crate) struct Matrix<T> {
     // We don't need to store height, because we have the width and total size
     width: usize,
     values: Vec<T>,
@@ -17,7 +17,7 @@ impl<T: Clone> Matrix<T> {
     }
 }
 
-impl<T: Clone> Index<(usize, usize)> for Matrix<T> {
+impl<T> Index<(usize, usize)> for Matrix<T> {
     type Output = T;
 
     fn index(&self, (x, y): (usize, usize)) -> &Self::Output {
@@ -25,7 +25,7 @@ impl<T: Clone> Index<(usize, usize)> for Matrix<T> {
     }
 }
 
-impl<T: Clone> IndexMut<(usize, usize)> for Matrix<T> {
+impl<T> IndexMut<(usize, usize)> for Matrix<T> {
     fn index_mut(&mut self, (x, y): (usize, usize)) -> &mut Self::Output {
         &mut self.values[y * self.width + x]
     }
