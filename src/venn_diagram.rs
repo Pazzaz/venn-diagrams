@@ -87,7 +87,9 @@ impl<const N: usize, const X: usize, const Y: usize> ConstVennDiagram<N, X, Y> {
     }
 
     /// Create a Venn diagram from an array of arrays of strings, where each
-    /// string is a sequence of `0` and `1`. ```
+    /// string is a sequence of `0` and `1`.
+    ///
+    /// ```
     /// use venn_diagrams::venn_diagram::ConstVennDiagram;
     ///
     /// let s = [
@@ -104,7 +106,8 @@ impl<const N: usize, const X: usize, const Y: usize> ConstVennDiagram<N, X, Y> {
     ///         "0011",
     ///     ],
     /// ];
-    /// let venn_diagram: ConstVennDiagram<3, 4, 2> = ConstVennDiagram::from_binary_str(s);
+    /// let venn_diagram: ConstVennDiagram<3, 4, 2> =
+    ///     ConstVennDiagram::from_binary_str(s);
     /// ```
     #[must_use]
     pub const fn from_binary_str(grids: [[&str; Y]; N]) -> Self {
@@ -120,6 +123,7 @@ impl<const N: usize, const X: usize, const Y: usize> ConstVennDiagram<N, X, Y> {
 
     /// Create a Venn diagram from an array of arrays of strings, where each
     /// string is a sequence of letters that are part of that intersection.
+    ///
     /// ```
     /// use venn_diagrams::venn_diagram::ConstVennDiagram;
     ///
