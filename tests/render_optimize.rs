@@ -55,7 +55,12 @@ fn three_docs() {
     let paths: PathLayout = PATHLAYOUT_THREE_OPTIMIZING.into();
     let values = &[0.3, 0.3, 0.4];
     let colors = &["MediumVioletRed", "DarkOrange", "DeepSkyBlue"];
-    let svg = paths.to_svg(values, colors, &DiagramConfig::default());
+
+    // We set custom id, as the docs page will have multiple SVG embedded
+    let mut config = DiagramConfig::default();
+    config.id = Some(0);
+
+    let svg = paths.to_svg(values, colors, &config);
     insta::assert_binary_snapshot!(
         "three_docs.svg",
         svg.to_string().as_bytes().into_iter().cloned().collect()

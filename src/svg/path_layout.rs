@@ -120,7 +120,13 @@ impl PathLayout {
             out = out.set("height", format!("{}px", height_mul * total_width));
         }
 
-        let mut mask = Mask::new().set("id", "background_mask");
+        let mask_id = match config.id {
+            Some(id) => &format!("background_mask_{id}"),
+            None => "background_mask",
+        };
+
+        let mut mask = Mask::new().set("id", mask_id);
+
         for path in &paths {
             let part = path.clone().set("fill", "white").set("stroke", "none");
             mask = mask.add(part);
@@ -133,7 +139,7 @@ impl PathLayout {
             .set("height", total_height)
             .set("x", min_x)
             .set("y", min_y)
-            .set("mask", "url(#background_mask)");
+            .set("mask", format!("url(#{mask_id})"));
 
         out = out.add(rect);
 

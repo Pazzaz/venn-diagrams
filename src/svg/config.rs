@@ -40,6 +40,11 @@ pub struct DiagramConfig {
 
     /// Scale factor for the height (in pixels) of the SVG, if any.
     pub height_mul: Option<f64>,
+
+    /// Number used to set Id of the mask. Nessesary when there are multiple
+    /// of the same SVG on the same page. If not used, the SVG may use each
+    /// values from eachother, creating corrupted results.
+    pub id: Option<usize>,
 }
 
 impl Default for DiagramConfig {
@@ -55,6 +60,7 @@ impl Default for DiagramConfig {
             corner_offset: 0.15,
             width_mul: Some(80.0),
             height_mul: None,
+            id: None,
         }
     }
 }
