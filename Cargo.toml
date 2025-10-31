@@ -2,7 +2,7 @@
 name = "venn-diagrams"
 description = "Generate SVG venn diagrams"
 authors = ["Pazzaz <pazzaz.sundqvist@gmail.com>"]
-version = "0.1.1"
+version = "0.2.0"
 edition = "2024"
 license = "MIT"
 homepage = "https://github.com/Pazzaz/venn-diagrams"
