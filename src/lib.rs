@@ -5,6 +5,8 @@
 //!
 //! # Example
 //!
+//! Consider three sets which consist of 30%, 30% and 40%.
+//!
 //! ```
 //! use venn_diagrams::svg::DiagramConfig;
 //! use venn_diagrams::constants::d3::THREE;
@@ -22,13 +24,13 @@
 //! let svg = paths.to_svg(values, colors, &DiagramConfig::default());
 //! ```
 //!
-//! And then the SVG looks like this:
+//! Then the SVG looks like this:
 //! <div align="center">
 #![doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/tests/snapshots/normal__three_docs.snap.svg"))]
 //! </div>
 //!
 //! If we want to minimize the number of edge crossings we can use an optimized
-//! layout
+//! layout.
 //!
 //! ```
 //! use venn_diagrams::constants::d3::PATHLAYOUT_THREE_OPTIMIZING;
@@ -42,8 +44,7 @@
 //! let svg = paths.to_svg(values, colors, &DiagramConfig::default());
 //! ```
 //!
-//! Which looks like this:
-//!
+//! The resulting SVG looks like this:
 //!
 //! <div align="center">
 #![doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/tests/snapshots/render_optimize__three_docs.snap.svg"))]
