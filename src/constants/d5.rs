@@ -1,18 +1,19 @@
 //! Venn diagram for five sets.
 //!
-//! The set itself is [`FIVE`], and the premade layout is
+//! The diagram itself is [`FIVE`], and the premade layout is
 //! [`PATHLAYOUT_FIVE_OPTIMIZING`].
-
+//!
+//! # Example
+#![doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/tests/common/snapshots/render_optimize__common__five.snap.svg"))]
 use crate::{
     diagram::DiagramConst,
     direction::DirectedEdge::{Horizontal, Vertical},
     svg::PathLayoutConst,
 };
 
-/// A Venn diagram for 5 groups.
+/// A Venn diagram for 5 sets.
 ///
-/// # Example
-#[doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/tests/common/snapshots/render_optimize__common__five.snap.svg"))]
+/// For more info, see [`d5`][super::d5].
 pub const FIVE: DiagramConst<5, 7, 7> = DiagramConst::from_letters(STR);
 
 #[rustfmt::skip]

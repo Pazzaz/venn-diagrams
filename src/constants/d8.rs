@@ -1,18 +1,19 @@
 //! Venn diagram for eight sets.
 //!
-//! The set itself is [`EIGHT`], and the premade layout is
+//! The diagram itself is [`EIGHT`], and the premade layout is
 //! [`PATHLAYOUT_EIGHT_OPTIMIZING`].
-
+//!
+//! # Example
+#![doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/tests/common/snapshots/render_optimize__common__eight.snap.svg"))]
 use crate::{
     diagram::DiagramConst,
     direction::DirectedEdge::{Horizontal, Vertical},
     svg::PathLayoutConst,
 };
 
-/// A Venn diagram for 8 groups.
+/// A Venn diagram for 8 sets.
 ///
-/// # Example
-#[doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/tests/common/snapshots/render_optimize__common__eight.snap.svg"))]
+/// For more info, see [`d8`][super::d8].
 pub const EIGHT: DiagramConst<8, 17, 15> = DiagramConst::from_binary_str(GRIDS);
 
 #[rustfmt::skip]

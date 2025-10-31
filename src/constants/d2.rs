@@ -1,7 +1,10 @@
 //! Venn diagram for two sets.
 //!
-//! The set itself is [`TWO`], and the premade layout is
+//! The diagram itself is [`TWO`], and the premade layout is
 //! [`PATHLAYOUT_TWO_OPTIMIZING`].
+//!
+//! # Example
+#![doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/tests/common/snapshots/render_optimize__common__two.snap.svg"))]
 
 use crate::{
     diagram::DiagramConst,
@@ -11,8 +14,7 @@ use crate::{
 
 /// A Venn diagram for 2 sets.
 ///
-/// # Example
-#[doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/tests/common/snapshots/render_optimize__common__two.snap.svg"))]
+/// For more info, see [`d2`][super::d2].
 pub const TWO: DiagramConst<2, 3, 1> = DiagramConst::from_letters(STR);
 
 #[rustfmt::skip]

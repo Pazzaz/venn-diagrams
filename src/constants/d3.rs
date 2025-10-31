@@ -1,17 +1,19 @@
 //! Venn diagram for three sets.
 //!
-//! The set itself is [`THREE`], and the premade layout is
+//! The diagram itself is [`THREE`], and the premade layout is
 //! [`PATHLAYOUT_THREE_OPTIMIZING`].
+//!
+//! # Example
+#![doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/tests/common/snapshots/render_optimize__common__three.snap.svg"))]
 use crate::{
     diagram::DiagramConst,
     direction::DirectedEdge::{Horizontal, Vertical},
     svg::PathLayoutConst,
 };
 
-/// A Venn diagram for 3 groups.
+/// A Venn diagram for 3 sets.
 ///
-/// # Example
-#[doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/tests/common/snapshots/render_optimize__common__three.snap.svg"))]
+/// For more info, see [`d3`][super::d3].
 pub const THREE: DiagramConst<3, 5, 2> = DiagramConst::from_letters(STR);
 
 #[rustfmt::skip]

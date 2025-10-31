@@ -1,18 +1,19 @@
 //! Venn diagram for four sets.
 //!
-//! The set itself is [`FOUR`], and the premade layout is
+//! The diagram itself is [`FOUR`], and the premade layout is
 //! [`PATHLAYOUT_FOUR_OPTIMIZING`].
-
+//!
+//! # Example
+#![doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/tests/common/snapshots/render_optimize__common__four.snap.svg"))]
 use crate::{
     diagram::DiagramConst,
     direction::DirectedEdge::{Horizontal, Vertical},
     svg::PathLayoutConst,
 };
 
-/// A Venn diagram for 4 groups.
+/// A Venn diagram for 4 sets.
 ///
-/// # Example
-#[doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/tests/common/snapshots/render_optimize__common__four.snap.svg"))]
+/// For more info, see [`d4`][super::d4].
 pub const FOUR: DiagramConst<4, 5, 5> = DiagramConst::from_letters(STR);
 
 #[rustfmt::skip]

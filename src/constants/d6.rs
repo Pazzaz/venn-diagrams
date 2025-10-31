@@ -1,7 +1,10 @@
 //! Venn diagram for six sets.
 //!
-//! The set itself is [`SIX`], and the premade layout is
+//! The diagram itself is [`SIX`], and the premade layout is
 //! [`PATHLAYOUT_SIX_OPTIMIZING`].
+//!
+//! # Example
+#![doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/tests/common/snapshots/render_optimize__common__six.snap.svg"))]
 
 use crate::{
     diagram::DiagramConst,
@@ -9,10 +12,9 @@ use crate::{
     svg::PathLayoutConst,
 };
 
-/// A Venn diagram for 6 groups.
+/// A Venn diagram for 6 sets.
 ///
-/// # Example
-#[doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/tests/common/snapshots/render_optimize__common__six.snap.svg"))]
+/// For more info, see [`d6`][super::d6].
 pub const SIX: DiagramConst<6, 11, 11> = DiagramConst::from_binary_str(GRIDS);
 
 #[rustfmt::skip]

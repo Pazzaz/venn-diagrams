@@ -1,18 +1,19 @@
 //! Venn diagram for seven sets.
 //!
-//! The set itself is [`SEVEN`], and the premade layout is
+//! The diagram itself is [`SEVEN`], and the premade layout is
 //! [`PATHLAYOUT_SEVEN_OPTIMIZING`].
-
+//!
+//! # Example
+#![doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/tests/common/snapshots/render_optimize__common__seven.snap.svg"))]
 use crate::{
     diagram::DiagramConst,
     direction::DirectedEdge::{Horizontal, Vertical},
     svg::PathLayoutConst,
 };
 
-/// A Venn diagram for 7 groups.
+/// A Venn diagram for 7 sets.
 ///
-/// # Example
-#[doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/tests/common/snapshots/render_optimize__common__seven.snap.svg"))]
+/// For more info, see [`d7`][super::d7].
 pub const SEVEN: DiagramConst<7, 14, 14> = DiagramConst::from_binary_str(GRIDS);
 
 #[rustfmt::skip]

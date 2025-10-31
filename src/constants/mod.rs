@@ -1,6 +1,8 @@
-//! There are premade Venn diagrams for 2 to 8 groups: [2][d2::TWO],
-//! [3][d3::THREE], [4][d4::FOUR], [5][d5::FIVE], [6][d6::SIX], [7][d7::SEVEN],
-//! [8][d8::EIGHT].
+//! Premade Venn diagrams
+//!
+//! For 2 to 8 sets: [2][d2],
+//! [3][d3], [4][d4], [5][d5], [6][d6], [7][d7],
+//! [8][d8].
 
 pub mod d2;
 pub mod d3;
