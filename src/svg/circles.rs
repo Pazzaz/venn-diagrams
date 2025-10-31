@@ -22,7 +22,7 @@ pub(super) fn draw_circle(
     out: SVG,
     config: &DiagramConfig,
     values: &[f64],
-    colors: &[String],
+    colors: &[&str],
 ) -> SVG {
     let n = mask.len();
     debug_assert!(values.len() == n && colors.len() == n);
@@ -38,14 +38,14 @@ pub(super) fn draw_circle(
             continue;
         }
         let size = values[i];
-        let color = &colors[i];
+        let color = colors[i];
 
         let mut circle = Circle::new()
             .set("r", radius)
             .set("cx", cx)
             .set("cy", cy)
             .set("fill", "transparent")
-            .set("stroke", color.as_str())
+            .set("stroke", color)
             .set("stroke-width", radius * 2.0)
             .set("stroke-dasharray", format!("{}, {}", c * size, c));
         if added != 0.0 {

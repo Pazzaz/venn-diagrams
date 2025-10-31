@@ -87,7 +87,7 @@ impl PathLayout {
 
     /// Render as an SVG.
     #[must_use]
-    pub fn to_svg(&self, values: &[f64], colors: &[String], config: &DiagramConfig) -> SVG {
+    pub fn to_svg(&self, values: &[f64], colors: &[&str], config: &DiagramConfig) -> SVG {
         let Self { width, height, combined_paths, offsets, diagram: polyominoes } = self;
         let internal_offsets =
             inner_offset(*width, *height, offsets, combined_paths, config.line_width);
@@ -140,7 +140,7 @@ impl PathLayout {
         for (path, color) in paths.iter().zip(colors) {
             let path = path
                 .clone()
-                .set("fill", color.clone())
+                .set("fill", *color)
                 .set("fill-opacity", 0.2)
                 .set("stroke", "none")
                 .set("stroke-width", 0.05);
@@ -151,7 +151,7 @@ impl PathLayout {
             let path = path
                 .clone()
                 .set("fill", "none")
-                .set("stroke", color.clone())
+                .set("stroke", *color)
                 .set("stroke-width", config.line_width);
             out = out.add(path);
         }

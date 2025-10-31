@@ -1,5 +1,6 @@
 use venn_diagrams::{
-    constants,
+    constants::{self, d3::THREE},
+    diagram::Diagram,
     svg::{CornerStyle, DiagramConfig},
 };
 
@@ -54,4 +55,18 @@ fn eight_straight() {
     let mut config = DiagramConfig::default();
     config.corner_style = CornerStyle::Straight;
     test_venn_greedy("eight_straight.svg", constants::d8::EIGHT.into(), &mut config);
+}
+
+// Used on the frontpage of the docs
+#[test]
+fn three_docs() {
+    let venn: Diagram = THREE.into();
+    let paths = venn.layout_greedy();
+    let values = &[0.3, 0.3, 0.4];
+    let colors = &["MediumVioletRed", "DarkOrange", "DeepSkyBlue"];
+    let svg = paths.to_svg(values, colors, &DiagramConfig::default());
+    insta::assert_binary_snapshot!(
+        "three_docs.svg",
+        svg.to_string().as_bytes().into_iter().cloned().collect()
+    );
 }

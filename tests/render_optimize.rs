@@ -1,4 +1,7 @@
-use venn_diagrams::{constants, svg::DiagramConfig};
+use venn_diagrams::{
+    constants::{self, d3::PATHLAYOUT_THREE_OPTIMIZING},
+    svg::{DiagramConfig, PathLayout},
+};
 
 use crate::common::test_render_paths;
 
@@ -44,4 +47,17 @@ fn seven() {
 fn eight() {
     let paths = constants::d8::PATHLAYOUT_EIGHT_OPTIMIZING;
     test_render_paths("eight.svg", paths.into(), &DiagramConfig::default())
+}
+
+// Used on the frontpage of the docs
+#[test]
+fn three_docs() {
+    let paths: PathLayout = PATHLAYOUT_THREE_OPTIMIZING.into();
+    let values = &[0.3, 0.3, 0.4];
+    let colors = &["MediumVioletRed", "DarkOrange", "DeepSkyBlue"];
+    let svg = paths.to_svg(values, colors, &DiagramConfig::default());
+    insta::assert_binary_snapshot!(
+        "three_docs.svg",
+        svg.to_string().as_bytes().into_iter().cloned().collect()
+    );
 }

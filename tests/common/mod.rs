@@ -21,11 +21,7 @@ pub fn test_venn_greedy(name: &str, venn: Diagram, config: &DiagramConfig) {
 
     let paths = venn.layout_greedy();
 
-    let svg = paths.to_svg(
-        &values,
-        &colors.iter().map(ToString::to_string).collect::<Vec<String>>(),
-        config,
-    );
+    let svg = paths.to_svg(&values, &colors, config);
     insta::assert_binary_snapshot!(name, svg.to_string().as_bytes().into_iter().cloned().collect());
 }
 
@@ -34,10 +30,6 @@ pub fn test_render_paths(name: &str, path_layout: PathLayout, config: &DiagramCo
     let n = path_layout.n();
     let colors = &COLORS[0..n];
     let values = normalize(&VALUES[0..n]);
-    let svg = path_layout.to_svg(
-        &values,
-        &colors.iter().map(ToString::to_string).collect::<Vec<String>>(),
-        config,
-    );
+    let svg = path_layout.to_svg(&values, &colors, config);
     insta::assert_binary_snapshot!(name, svg.to_string().as_bytes().into_iter().cloned().collect());
 }
