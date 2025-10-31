@@ -35,6 +35,12 @@ fn six() {
 }
 
 #[test]
+fn seven() {
+    let paths = constants::d7::PATHLAYOUT_SEVEN_OPTIMIZING;
+    test_render_paths("seven.svg", paths.into(), &DiagramConfig::default())
+}
+
+#[test]
 fn eight() {
     let paths = constants::d8::PATHLAYOUT_EIGHT_OPTIMIZING;
     test_render_paths("eight.svg", paths.into(), &DiagramConfig::default())

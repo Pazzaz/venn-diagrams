@@ -30,6 +30,20 @@ fn five() {
 
 #[test]
 #[ignore = "expensive"]
+fn six() {
+    let diagram: VennDiagram = constants::d6::SIX.into();
+    assert!(diagram.layout_optimize() == constants::d6::PATHLAYOUT_SIX_OPTIMIZING.into());
+}
+
+#[test]
+#[ignore = "expensive"]
+fn seven() {
+    let diagram: VennDiagram = constants::d7::SEVEN.into();
+    assert!(diagram.layout_optimize() == constants::d7::PATHLAYOUT_SEVEN_OPTIMIZING.into());
+}
+
+#[test]
+#[ignore = "expensive"]
 fn eight() {
     let diagram: VennDiagram = constants::d8::EIGHT.into();
     assert!(diagram.layout_optimize() == constants::d8::PATHLAYOUT_EIGHT_OPTIMIZING.into());

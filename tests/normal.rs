@@ -13,6 +13,11 @@ fn eight() {
 }
 
 #[test]
+fn seven() {
+    test_venn_greedy("seven.svg", constants::d7::SEVEN.into(), &DiagramConfig::default());
+}
+
+#[test]
 fn six() {
     test_venn_greedy("six.svg", constants::d6::SIX.into(), &DiagramConfig::default());
 }
