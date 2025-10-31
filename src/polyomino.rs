@@ -25,6 +25,18 @@ impl<const X: usize, const Y: usize> ConstPolyomino<X, Y> {
         Self { values: [[false; X]; Y] }
     }
 
+    /// Create a polyomino from an arrays of strings.
+    /// ```
+    /// use venn_diagrams::polyomino::ConstPolyomino;
+    ///
+    /// let s = [
+    ///     "1000",
+    ///     "1100",
+    /// ];
+    /// let venn_diagram: ConstPolyomino<4, 2> = ConstPolyomino::from_binary_str(s);
+    /// ```
+    ///
+    /// Panics if the input is invalid, i.e. if strings are too long.
     #[must_use]
     pub const fn from_binary_str(grid: [&str; Y]) -> Self {
         let mut out = Self::empty();
@@ -32,6 +44,9 @@ impl<const X: usize, const Y: usize> ConstPolyomino<X, Y> {
         let mut y = 0;
         while y != Y {
             let row = grid[y].as_bytes();
+            if row.len() != X {
+                panic!("Invalid row length");
+            }
             let mut x = 0;
             while x != X {
                 if row[x] == b'1' {

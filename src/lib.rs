@@ -14,6 +14,8 @@
 //! [wp-venn]: https://en.wikipedia.org/wiki/Venn_diagram
 //! [wp-poly]: https://en.wikipedia.org/wiki/Polyomino
 
+#![warn(missing_docs)]
+
 mod direction;
 
 pub mod constants;

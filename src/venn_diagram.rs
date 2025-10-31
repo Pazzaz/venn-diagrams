@@ -86,6 +86,26 @@ impl<const N: usize, const X: usize, const Y: usize> ConstVennDiagram<N, X, Y> {
         true
     }
 
+    /// Create a Venn diagram from an array of arrays of strings, where each
+    /// string is a sequence of `0` and `1`. ```
+    /// use venn_diagrams::venn_diagram::ConstVennDiagram;
+    ///
+    /// let s = [
+    ///     [
+    ///         "1000",
+    ///         "1100",
+    ///     ],
+    ///     [
+    ///         "1110",
+    ///         "0100",
+    ///     ],
+    ///     [
+    ///         "0110",
+    ///         "0011",
+    ///     ],
+    /// ];
+    /// let venn_diagram: ConstVennDiagram<3, 4, 2> = ConstVennDiagram::from_binary_str(s);
+    /// ```
     #[must_use]
     pub const fn from_binary_str(grids: [[&str; Y]; N]) -> Self {
         let mut out = [ConstPolyomino::empty(); N];
@@ -98,6 +118,17 @@ impl<const N: usize, const X: usize, const Y: usize> ConstVennDiagram<N, X, Y> {
         Self::new(out)
     }
 
+    /// Create a Venn diagram from an array of arrays of strings, where each
+    /// string is a sequence of letters that are part of that intersection.
+    /// ```
+    /// use venn_diagrams::venn_diagram::ConstVennDiagram;
+    ///
+    /// let s = [
+    ///     ["AB", "BC", "BC", ""],
+    ///     ["A",  "AB", "C",  "C"],
+    /// ];
+    /// let venn_diagram: ConstVennDiagram<3, 4, 2> = ConstVennDiagram::from_letters(s);
+    /// ```
     #[must_use]
     pub const fn from_letters(boxes: [[&str; X]; Y]) -> Self {
         let mut out = [ConstPolyomino::empty(); N];
