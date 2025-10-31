@@ -4,16 +4,16 @@
 //! [`PATHLAYOUT_EIGHT_OPTIMIZING`].
 
 use crate::{
+    diagram::DiagramConst,
     direction::DirectedEdge::{Horizontal, Vertical},
     svg::PathLayoutConst,
-    venn_diagram::ConstVennDiagram,
 };
 
 /// A Venn diagram for 8 groups.
 ///
 /// # Example
 #[doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/tests/common/snapshots/render_optimize__common__eight.snap.svg"))]
-pub const EIGHT: ConstVennDiagram<8, 17, 15> = ConstVennDiagram::from_binary_str(GRIDS);
+pub const EIGHT: DiagramConst<8, 17, 15> = DiagramConst::from_binary_str(GRIDS);
 
 #[rustfmt::skip]
 const GRIDS: [[&str; 15]; 8] = [

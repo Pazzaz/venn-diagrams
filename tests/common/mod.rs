@@ -1,6 +1,6 @@
 use venn_diagrams::{
+    diagram::Diagram,
     svg::{DiagramConfig, PathLayout},
-    venn_diagram::VennDiagram,
 };
 
 pub const COLORS: [&str; 8] =
@@ -14,7 +14,7 @@ pub fn normalize(values: &[f64]) -> Vec<f64> {
 
 // See: https://github.com/rust-lang/rust/issues/46379
 #[allow(unused)]
-pub fn test_venn_greedy(name: &str, venn: VennDiagram, config: &DiagramConfig) {
+pub fn test_venn_greedy(name: &str, venn: Diagram, config: &DiagramConfig) {
     let n = venn.n();
     let colors = &COLORS[0..n];
     let values = normalize(&VALUES[0..n]);

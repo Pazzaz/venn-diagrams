@@ -24,4 +24,4 @@ pub mod svg;
 
 mod matrix;
 
-pub mod venn_diagram;
+pub mod diagram;

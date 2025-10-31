@@ -4,8 +4,8 @@
 //! [polyomino][crate::polyomino] module).
 //!
 //! There are two versions:
-//! - [`VennDiagram`], dynamic version
-//! - [`ConstVennDiagram`], static version
+//! - [`Diagram`], dynamic version
+//! - [`DiagramConst`], static version
 
 use crate::polyomino::{ConstPolyomino, Polyomino};
 
@@ -16,11 +16,11 @@ use crate::polyomino::{ConstPolyomino, Polyomino};
 /// - `X`, maximum width of the Venn diagram
 /// - `Y`, maximum height of the Venn diagram
 #[derive(Debug, Clone)]
-pub struct ConstVennDiagram<const N: usize, const X: usize, const Y: usize> {
+pub struct DiagramConst<const N: usize, const X: usize, const Y: usize> {
     pub(crate) polyominos: [ConstPolyomino<X, Y>; N],
 }
 
-impl<const N: usize, const X: usize, const Y: usize> ConstVennDiagram<N, X, Y> {
+impl<const N: usize, const X: usize, const Y: usize> DiagramConst<N, X, Y> {
     /// Create a new Venn diagram from an array of polyominos.
     #[must_use]
     pub const fn new(polyominos: [ConstPolyomino<X, Y>; N]) -> Self {
@@ -90,7 +90,7 @@ impl<const N: usize, const X: usize, const Y: usize> ConstVennDiagram<N, X, Y> {
     /// string is a sequence of `0` and `1`.
     ///
     /// ```
-    /// use venn_diagrams::venn_diagram::ConstVennDiagram;
+    /// use venn_diagrams::diagram::DiagramConst;
     ///
     /// let s = [
     ///     [
@@ -106,8 +106,8 @@ impl<const N: usize, const X: usize, const Y: usize> ConstVennDiagram<N, X, Y> {
     ///         "0011",
     ///     ],
     /// ];
-    /// let venn_diagram: ConstVennDiagram<3, 4, 2> =
-    ///     ConstVennDiagram::from_binary_str(s);
+    /// let venn_diagram: DiagramConst<3, 4, 2> =
+    ///     DiagramConst::from_binary_str(s);
     /// ```
     #[must_use]
     pub const fn from_binary_str(grids: [[&str; Y]; N]) -> Self {
@@ -125,13 +125,13 @@ impl<const N: usize, const X: usize, const Y: usize> ConstVennDiagram<N, X, Y> {
     /// string is a sequence of letters that are part of that intersection.
     ///
     /// ```
-    /// use venn_diagrams::venn_diagram::ConstVennDiagram;
+    /// use venn_diagrams::diagram::DiagramConst;
     ///
     /// let s = [
     ///     ["AB", "BC", "BC", ""],
     ///     ["A",  "AB", "C",  "C"],
     /// ];
-    /// let venn_diagram: ConstVennDiagram<3, 4, 2> = ConstVennDiagram::from_letters(s);
+    /// let venn_diagram: DiagramConst<3, 4, 2> = DiagramConst::from_letters(s);
     /// ```
     #[must_use]
     pub const fn from_letters(boxes: [[&str; X]; Y]) -> Self {
@@ -182,10 +182,8 @@ impl<const N: usize, const X: usize, const Y: usize> ConstVennDiagram<N, X, Y> {
     }
 }
 
-impl<const N: usize, const X: usize, const Y: usize> From<ConstVennDiagram<N, X, Y>>
-    for VennDiagram
-{
-    fn from(value: ConstVennDiagram<N, X, Y>) -> Self {
+impl<const N: usize, const X: usize, const Y: usize> From<DiagramConst<N, X, Y>> for Diagram {
+    fn from(value: DiagramConst<N, X, Y>) -> Self {
         Self {
             width: X,
             height: Y,
@@ -196,13 +194,13 @@ impl<const N: usize, const X: usize, const Y: usize> From<ConstVennDiagram<N, X,
 
 /// A dynamically allocated Venn diagram.
 #[derive(Debug, PartialEq, Eq)]
-pub struct VennDiagram {
+pub struct Diagram {
     width: usize,
     height: usize,
     pub(crate) polyominos: Vec<Polyomino>,
 }
 
-impl VennDiagram {
+impl Diagram {
     /// Maximum width of the Venn diagram.
     #[must_use]
     pub fn width(&self) -> usize {
@@ -222,7 +220,7 @@ impl VennDiagram {
     }
 }
 
-impl Clone for VennDiagram {
+impl Clone for Diagram {
     fn clone(&self) -> Self {
         Self { width: self.width, height: self.height, polyominos: self.polyominos.clone() }
     }

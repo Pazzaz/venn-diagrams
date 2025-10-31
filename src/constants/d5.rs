@@ -4,16 +4,16 @@
 //! [`PATHLAYOUT_FIVE_OPTIMIZING`].
 
 use crate::{
+    diagram::DiagramConst,
     direction::DirectedEdge::{Horizontal, Vertical},
     svg::PathLayoutConst,
-    venn_diagram::ConstVennDiagram,
 };
 
 /// A Venn diagram for 5 groups.
 ///
 /// # Example
 #[doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/tests/common/snapshots/render_optimize__common__five.snap.svg"))]
-pub const FIVE: ConstVennDiagram<5, 7, 7> = ConstVennDiagram::from_letters(STR);
+pub const FIVE: DiagramConst<5, 7, 7> = DiagramConst::from_letters(STR);
 
 #[rustfmt::skip]
 const STR: [[&str; 7]; 7] = [

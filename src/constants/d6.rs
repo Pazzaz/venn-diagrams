@@ -4,16 +4,16 @@
 //! [`PATHLAYOUT_SIX_OPTIMIZING`].
 
 use crate::{
+    diagram::DiagramConst,
     direction::DirectedEdge::{Horizontal, Vertical},
     svg::PathLayoutConst,
-    venn_diagram::ConstVennDiagram,
 };
 
 /// A Venn diagram for 6 groups.
 ///
 /// # Example
 #[doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/tests/common/snapshots/render_optimize__common__six.snap.svg"))]
-pub const SIX: ConstVennDiagram<6, 11, 11> = ConstVennDiagram::from_binary_str(GRIDS);
+pub const SIX: DiagramConst<6, 11, 11> = DiagramConst::from_binary_str(GRIDS);
 
 #[rustfmt::skip]
 const GRIDS: [[&str; 11]; 6] = [

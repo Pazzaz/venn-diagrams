@@ -2,10 +2,10 @@ mod greedy;
 mod optimizing;
 
 use crate::{
+    diagram::Diagram,
     direction::{DirectedEdge, Direction, Edge},
     matrix::Matrix,
     svg::{PathLayout, get_combined_paths, get_paths, get_polys},
-    venn_diagram::VennDiagram,
 };
 
 #[derive(Debug, Default, Clone, Copy)]
@@ -80,7 +80,7 @@ pub(super) fn inner_offset(
     inner_offset
 }
 
-impl VennDiagram {
+impl Diagram {
     /// Decide offsets greedily, placing larger edges before smaller edges.
     /// Positions are calculated seperately for each column and each row.
     pub fn layout_greedy(self) -> PathLayout {

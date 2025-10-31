@@ -4,9 +4,9 @@ use svg::{
 };
 
 use crate::{
+    diagram::{Diagram, DiagramConst},
     direction::DirectedEdge,
     svg::{DiagramConfig, draw_circle, get_points, get_rounded_paths, inner_offset},
-    venn_diagram::{ConstVennDiagram, VennDiagram},
 };
 
 /// A Venn diagram with a computed layout of each polyomino border. For the
@@ -17,7 +17,7 @@ pub struct PathLayout {
     pub(crate) height: usize,
     pub(crate) combined_paths: Vec<Vec<DirectedEdge>>,
     pub(crate) offsets: Vec<Vec<i32>>,
-    pub(crate) diagram: VennDiagram,
+    pub(crate) diagram: Diagram,
 }
 
 /// A Venn diagram with a computed layout of each polyomino border. For the
@@ -35,7 +35,7 @@ pub struct PathLayoutConst<const L: usize, const K: usize, const X: usize, const
     pub parts_len: [usize; K],
 
     /// The Venn diagram itself.
-    pub diagram: ConstVennDiagram<K, X, Y>,
+    pub diagram: DiagramConst<K, X, Y>,
 }
 
 struct PartsIterator<'a, T> {

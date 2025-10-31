@@ -4,16 +4,16 @@
 //! [`PATHLAYOUT_TWO_OPTIMIZING`].
 
 use crate::{
+    diagram::DiagramConst,
     direction::DirectedEdge::{Horizontal, Vertical},
     svg::PathLayoutConst,
-    venn_diagram::ConstVennDiagram,
 };
 
 /// A Venn diagram for 2 sets.
 ///
 /// # Example
 #[doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/tests/common/snapshots/render_optimize__common__two.snap.svg"))]
-pub const TWO: ConstVennDiagram<2, 3, 1> = ConstVennDiagram::from_letters(STR);
+pub const TWO: DiagramConst<2, 3, 1> = DiagramConst::from_letters(STR);
 
 #[rustfmt::skip]
 const STR: [[&str; 3]; 1] = [
