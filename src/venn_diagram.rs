@@ -1,17 +1,34 @@
+//! ## Venn diagrams
+//!
+//! A Venn diagram consists of multiple polyominos (see the
+//! [polyomino][crate::polyomino] module).
+//!
+//! There are two versions:
+//! - [`VennDiagram`], dynamic version
+//! - [`ConstVennDiagram`], static version
+
 use crate::polyomino::{ConstPolyomino, Polyomino};
 
+/// A statically allocated Venn diagram.
+///
+/// It has three generic parameters:
+/// - `N`, number of polyominos
+/// - `X`, maximum width of the Venn diagram
+/// - `Y`, maximum height of the Venn diagram
 #[derive(Debug, Clone)]
 pub struct ConstVennDiagram<const N: usize, const X: usize, const Y: usize> {
     pub(crate) polyominos: [ConstPolyomino<X, Y>; N],
 }
 
 impl<const N: usize, const X: usize, const Y: usize> ConstVennDiagram<N, X, Y> {
+    /// Create a new Venn diagram from an array of polyominos.
     #[must_use]
     pub const fn new(polyominos: [ConstPolyomino<X, Y>; N]) -> Self {
         Self { polyominos }
     }
 
-    /// The venn diagram consists of all subsets (except the empty subset)
+    /// Check if the Venn diagram consists of all subsets (except the empty
+    /// subset)
     #[must_use]
     pub const fn complete(&self) -> bool {
         // We check that each group is the right size
@@ -142,6 +159,7 @@ impl<const N: usize, const X: usize, const Y: usize> From<ConstVennDiagram<N, X,
     }
 }
 
+/// A dynamically allocated Venn diagram.
 #[derive(Debug, PartialEq, Eq)]
 pub struct VennDiagram {
     width: usize,
@@ -150,16 +168,19 @@ pub struct VennDiagram {
 }
 
 impl VennDiagram {
+    /// Maximum width of the Venn diagram.
     #[must_use]
     pub fn width(&self) -> usize {
         self.width
     }
 
+    /// Maximum height of the Venn diagram.
     #[must_use]
     pub fn height(&self) -> usize {
         self.height
     }
 
+    /// Number of polyominos.
     #[must_use]
     pub fn n(&self) -> usize {
         self.polyominos.len()

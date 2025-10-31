@@ -2,10 +2,10 @@ mod greedy;
 mod optimizing;
 
 use crate::{
-    constants::VennDiagram,
     direction::{DirectedEdge, Direction, Edge},
     matrix::Matrix,
     svg::{PathLayout, get_combined_paths, get_paths, get_polys},
+    venn_diagram::VennDiagram,
 };
 
 #[derive(Debug, Default, Clone, Copy)]

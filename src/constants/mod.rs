@@ -1,11 +1,3 @@
-//! ## Venn diagrams
-//!
-//! A Venn diagram consists of multiple polyominos (see the
-//! [polyomino][crate::polyomino] module).
-//!
-//! There's the static version, [`ConstVennDiagram`], and a dynamic version
-//! [`VennDiagram`].
-//!
 //! There are premade Venn diagrams for 2 to 8 groups: [2][d2::TWO],
 //! [3][d3::THREE], [4][d4::FOUR], [5][d5::FIVE], [6][d6::SIX], [7][d7::SEVEN],
 //! [8][d8::EIGHT].
@@ -18,10 +10,7 @@ pub mod d6;
 pub mod d7;
 pub mod d8;
 
-mod venn_diagram;
 use std::fmt::Write;
-
-pub use venn_diagram::{ConstVennDiagram, VennDiagram};
 
 use crate::svg::PathLayout;
 

@@ -1,7 +1,7 @@
-use super::venn_diagram::ConstVennDiagram;
 use crate::{
     direction::DirectedEdge::{Horizontal, Vertical},
     svg::PathLayoutConst,
+    venn_diagram::ConstVennDiagram,
 };
 
 /// A Venn diagram for 7 groups.

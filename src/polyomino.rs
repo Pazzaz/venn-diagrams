@@ -1,11 +1,25 @@
+//! ## Polyominos
+//!
+//! A Polyomino is a collection of cells on a square grid.
+//!
+//! There are two versions:
+//! - [`Polyomino`], dynamic version
+//! - [`ConstPolyomino`], static version
+
 use std::ops::{Index, IndexMut};
 
+/// A statically allocated polyomino.
+///
+/// It has two generic parameters:
+/// - `X`, maximum width of the polyomino
+/// - `Y`, maximum height of the polyomino
 #[derive(Debug, Clone, Copy)]
 pub struct ConstPolyomino<const X: usize, const Y: usize> {
     pub(crate) values: [[bool; X]; Y],
 }
 
 impl<const X: usize, const Y: usize> ConstPolyomino<X, Y> {
+    /// Create an empty polyomino of width `X` and height `Y`.
     #[must_use]
     pub const fn empty() -> Self {
         Self { values: [[false; X]; Y] }
@@ -45,6 +59,7 @@ impl<const X: usize, const Y: usize> IndexMut<(usize, usize)> for ConstPolyomino
     }
 }
 
+/// A dynamically allocated polyomino.
 #[derive(Debug, PartialEq, Eq)]
 pub struct Polyomino {
     width: usize,
@@ -53,16 +68,19 @@ pub struct Polyomino {
 }
 
 impl Polyomino {
+    /// Maximum width of the polyomino.
     #[must_use]
     pub fn width(&self) -> usize {
         self.width
     }
 
+    /// Maximum height of the polyomino.
     #[must_use]
     pub fn height(&self) -> usize {
         self.height
     }
 
+    /// Create an empty polyomino of width `x` and height `y`.
     #[must_use]
     pub fn empty(x: usize, y: usize) -> Self {
         Self { width: x, height: y, values: vec![false; x * y] }

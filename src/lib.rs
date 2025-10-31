@@ -21,3 +21,5 @@ pub mod polyomino;
 pub mod svg;
 
 mod matrix;
+
+pub mod venn_diagram;

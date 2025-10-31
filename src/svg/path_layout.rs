@@ -4,9 +4,9 @@ use svg::{
 };
 
 use crate::{
-    constants::{ConstVennDiagram, VennDiagram},
     direction::DirectedEdge,
     svg::{DiagramConfig, draw_circle, get_points, get_rounded_paths, inner_offset},
+    venn_diagram::{ConstVennDiagram, VennDiagram},
 };
 
 /// A Venn diagram with a computed layout of each polyomino border. For the

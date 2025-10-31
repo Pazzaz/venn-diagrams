@@ -1,6 +1,6 @@
 #![cfg(feature = "optimize")]
 
-use venn_diagrams::constants::{self, VennDiagram};
+use venn_diagrams::{constants, venn_diagram::VennDiagram};
 
 mod common;
 
