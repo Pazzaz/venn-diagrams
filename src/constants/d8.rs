@@ -9,6 +9,9 @@
 //! ![Eight sets][example]
 //!
 //! </div>
+//!
+//! # Source
+//! Sourced from [\[2012\]](crate#ref-2012).
 #![doc = embed_doc_image::embed_image!("example", "tests/common/snapshots/render_optimize__common__eight.snap.svg")]
 use crate::{
     diagram::DiagramConst,
