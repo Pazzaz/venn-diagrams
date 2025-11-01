@@ -4,7 +4,12 @@
 //! [`PATHLAYOUT_TWO_OPTIMIZING`].
 //!
 //! # Example
-#![doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/tests/common/snapshots/render_optimize__common__two.snap.svg"))]
+//! <div align="center">
+//!
+//! ![Two sets][example]
+//!
+//! </div>
+#![doc = embed_doc_image::embed_image!("example", "tests/common/snapshots/render_optimize__common__two.snap.svg")]
 
 use crate::{
     diagram::DiagramConst,

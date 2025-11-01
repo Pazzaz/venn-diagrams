@@ -4,7 +4,12 @@
 //! [`PATHLAYOUT_FIVE_OPTIMIZING`].
 //!
 //! # Example
-#![doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/tests/common/snapshots/render_optimize__common__five.snap.svg"))]
+//! <div align="center">
+//!
+//! ![Five sets][example]
+//!
+//! </div>
+#![doc = embed_doc_image::embed_image!("example", "tests/common/snapshots/render_optimize__common__five.snap.svg")]
 use crate::{
     diagram::DiagramConst,
     direction::DirectedEdge::{Horizontal, Vertical},
