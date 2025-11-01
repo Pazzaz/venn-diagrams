@@ -10,6 +10,7 @@ repository = "https://github.com/Pazzaz/venn-diagrams"
 keywords = ["plot", "visualization", "svg", "charts", "dataviz"]
 
 [dependencies]
+embed-doc-image = "0.1.4"
 itertools = "0.14.0"
 svg = "0.18.0"
 z3 = {version = "0.19.2", features = ["gh-release"], optional = true}

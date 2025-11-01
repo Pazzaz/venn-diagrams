@@ -25,8 +25,11 @@
 //! ```
 //!
 //! Then the SVG looks like this:
+//!
 //! <div align="center">
-#![doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/tests/snapshots/normal__three_docs.snap.svg"))]
+//!
+//! ![Three sets][greedy]
+//!
 //! </div>
 //!
 //! If we want to minimize the number of edge crossings we can use an optimized
@@ -47,7 +50,9 @@
 //! The resulting SVG looks like this:
 //!
 //! <div align="center">
-#![doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/tests/snapshots/render_optimize__three_docs.snap.svg"))]
+//!
+//! ![Three sets, optimized][optimized]
+//!
 //! </div>
 //!
 //! # Research
@@ -57,7 +62,8 @@
 //!
 //! [wp-venn]: https://en.wikipedia.org/wiki/Venn_diagram
 //! [wp-poly]: https://en.wikipedia.org/wiki/Polyomino
-
+#![doc = embed_doc_image::embed_image!("greedy", "tests/snapshots/normal__three_docs.snap.svg")]
+#![doc = embed_doc_image::embed_image!("optimized", "tests/snapshots/render_optimize__three_docs.snap.svg")]
 #![warn(missing_docs)]
 
 mod direction;
