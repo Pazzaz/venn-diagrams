@@ -45,6 +45,9 @@ pub struct DiagramConfig {
     /// of the same SVG on the same page. If not used, the SVG may use each
     /// values from eachother, creating corrupted results.
     pub id: Option<usize>,
+
+    /// Opacity of inside of each set in diagram
+    pub fill_opacity: f64,
 }
 
 impl Default for DiagramConfig {
@@ -61,6 +64,7 @@ impl Default for DiagramConfig {
             width_mul: Some(80.0),
             height_mul: None,
             id: None,
+            fill_opacity: 0.2,
         }
     }
 }

@@ -193,9 +193,8 @@ impl Layout {
             let path = path
                 .clone()
                 .set("fill", *color)
-                .set("fill-opacity", 0.2)
-                .set("stroke", "none")
-                .set("stroke-width", 0.05);
+                .set("fill-opacity", config.fill_opacity)
+                .set("stroke", "none");
             out = out.add(path);
         }
 
