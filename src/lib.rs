@@ -64,7 +64,10 @@
 //! [wp-poly]: https://en.wikipedia.org/wiki/Polyomino
 #![doc = embed_doc_image::embed_image!("greedy", "tests/snapshots/normal__three_docs.snap.svg")]
 #![doc = embed_doc_image::embed_image!("optimized", "tests/snapshots/render_optimize__three_docs.snap.svg")]
+// We document everything
 #![warn(missing_docs)]
+// We don't use unsafe
+#![deny(unsafe_code)]
 
 mod direction;
 
