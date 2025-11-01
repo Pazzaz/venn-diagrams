@@ -22,8 +22,14 @@ pub struct Layout {
 
 /// A Venn diagram with a computed layout of each polyomino border. For the
 /// allocated version, see [`Layout`].
+///
+/// It has four generic parameters:
+/// - `L`, total number of edges
+/// - `N`, number of polyominos
+/// - `X`, maximum width of the Venn diagram
+/// - `Y`, maximum height of the Venn diagram
 #[derive(Debug, Clone)]
-pub struct LayoutConst<const L: usize, const K: usize, const X: usize, const Y: usize> {
+pub struct LayoutConst<const L: usize, const N: usize, const X: usize, const Y: usize> {
     /// Edges of polyomino borders.
     pub combined_paths: [DirectedEdge; L],
 
@@ -32,10 +38,10 @@ pub struct LayoutConst<const L: usize, const K: usize, const X: usize, const Y: 
 
     /// The number of edges of each polyomino. Sum of all values in `parts_len`
     /// must sum to `L`.
-    pub parts_len: [usize; K],
+    pub parts_len: [usize; N],
 
     /// The Venn diagram itself.
-    pub diagram: DiagramConst<K, X, Y>,
+    pub diagram: DiagramConst<N, X, Y>,
 }
 
 struct PartsIterator<'a, T> {
