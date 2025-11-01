@@ -1,6 +1,6 @@
 use venn_diagrams::{
     diagram::Diagram,
-    svg::{DiagramConfig, PathLayout},
+    svg::{DiagramConfig, Layout},
 };
 
 pub const COLORS: [&str; 8] =
@@ -26,7 +26,7 @@ pub fn test_venn_greedy(name: &str, venn: Diagram, config: &DiagramConfig) {
 }
 
 #[allow(unused)]
-pub fn test_render_paths(name: &str, path_layout: PathLayout, config: &DiagramConfig) {
+pub fn test_render_paths(name: &str, path_layout: Layout, config: &DiagramConfig) {
     let n = path_layout.n();
     let colors = &COLORS[0..n];
     let values = normalize(&VALUES[0..n]);

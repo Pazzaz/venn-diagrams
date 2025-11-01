@@ -5,7 +5,7 @@ use crate::{
     diagram::Diagram,
     direction::{DirectedEdge, Direction, Edge},
     matrix::Matrix,
-    svg::{PathLayout, get_combined_paths, get_paths, get_polys},
+    svg::{Layout, get_combined_paths, get_paths, get_polys},
 };
 
 #[derive(Debug, Default, Clone, Copy)]
@@ -83,13 +83,13 @@ pub(super) fn inner_offset(
 impl Diagram {
     /// Decide offsets greedily, placing larger edges before smaller edges.
     /// Positions are calculated seperately for each column and each row.
-    pub fn layout_greedy(self) -> PathLayout {
+    pub fn layout_greedy(self) -> Layout {
         let polys = get_polys(self.width(), self.height(), &self.polyominos);
         let paths = get_paths(&polys);
         let combined_paths = get_combined_paths(paths);
         let offsets = greedy::get_offsets(self.width(), self.height(), &combined_paths);
 
-        PathLayout {
+        Layout {
             width: self.width(),
             height: self.height(),
             combined_paths,
@@ -100,13 +100,13 @@ impl Diagram {
 
     /// Decide offsets by optimization, minimizing edge overlaps and gaps.
     #[cfg(feature = "optimize")]
-    pub fn layout_optimize(self) -> PathLayout {
+    pub fn layout_optimize(self) -> Layout {
         let polys = get_polys(self.width(), self.height(), &self.polyominos);
         let paths = get_paths(&polys);
         let combined_paths = get_combined_paths(paths);
         let offsets = optimizing::get_offsets(self.width(), self.height(), &combined_paths);
 
-        PathLayout {
+        Layout {
             width: self.width(),
             height: self.height(),
             combined_paths,

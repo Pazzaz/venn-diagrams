@@ -10,9 +10,9 @@ use crate::{
 };
 
 /// A Venn diagram with a computed layout of each polyomino border. For the
-/// static version, see [`PathLayoutConst`].
+/// static version, see [`LayoutConst`].
 #[derive(Debug, Clone, PartialEq, Eq)]
-pub struct PathLayout {
+pub struct Layout {
     pub(crate) width: usize,
     pub(crate) height: usize,
     pub(crate) combined_paths: Vec<Vec<DirectedEdge>>,
@@ -21,9 +21,9 @@ pub struct PathLayout {
 }
 
 /// A Venn diagram with a computed layout of each polyomino border. For the
-/// allocated version, see [`PathLayout`].
+/// allocated version, see [`Layout`].
 #[derive(Debug, Clone)]
-pub struct PathLayoutConst<const L: usize, const K: usize, const X: usize, const Y: usize> {
+pub struct LayoutConst<const L: usize, const K: usize, const X: usize, const Y: usize> {
     /// Edges of polyomino borders.
     pub combined_paths: [DirectedEdge; L],
 
@@ -66,10 +66,10 @@ impl<'a, T> Iterator for PartsIterator<'a, T> {
     }
 }
 
-impl<const L: usize, const K: usize, const X: usize, const Y: usize>
-    From<PathLayoutConst<L, K, X, Y>> for PathLayout
+impl<const L: usize, const K: usize, const X: usize, const Y: usize> From<LayoutConst<L, K, X, Y>>
+    for Layout
 {
-    fn from(value: PathLayoutConst<L, K, X, Y>) -> Self {
+    fn from(value: LayoutConst<L, K, X, Y>) -> Self {
         let combined_paths =
             iterate(&value.combined_paths, &value.parts_len).map(|x| x.to_vec()).collect();
         let offsets = iterate(&value.offsets, &value.parts_len).map(|x| x.to_vec()).collect();
@@ -79,7 +79,7 @@ impl<const L: usize, const K: usize, const X: usize, const Y: usize>
     }
 }
 
-impl PathLayout {
+impl Layout {
     /// Number of sets/polyominos.
     pub const fn n(&self) -> usize {
         self.combined_paths.len()

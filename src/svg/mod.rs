@@ -5,11 +5,11 @@ mod config;
 mod corner;
 mod offset;
 
-mod path_layout;
+mod layout;
 
 pub use config::{CornerStyle, DiagramConfig};
 use itertools::Itertools;
-pub use path_layout::{PathLayout, PathLayoutConst};
+pub use layout::{Layout, LayoutConst};
 
 use self::{
     circles::{Coalition, draw_circle},

@@ -14,13 +14,13 @@ pub mod d8;
 
 use std::fmt::Write;
 
-use crate::svg::PathLayout;
+use crate::svg::Layout;
 
 // Function used to create a `PathLayoutConst` from a `PathLayout`.
 #[doc(hidden)]
 pub fn path_layout_to_const(
     variable_name: &str,
-    path_layout: PathLayout,
+    path_layout: Layout,
     diagram_name: &str,
 ) -> Option<String> {
     let l: usize = path_layout.combined_paths.iter().map(Vec::len).sum();

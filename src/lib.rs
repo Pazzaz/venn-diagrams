@@ -36,10 +36,10 @@
 //! layout.
 //!
 //! ```
-//! use venn_diagrams::constants::d3::PATHLAYOUT_THREE_OPTIMIZING;
-//! use venn_diagrams::svg::{DiagramConfig, PathLayout};
+//! use venn_diagrams::constants::d3::LAYOUT_OPTIMIZED_THREE;
+//! use venn_diagrams::svg::{DiagramConfig, Layout};
 //!
-//! let paths: PathLayout = PATHLAYOUT_THREE_OPTIMIZING.into();
+//! let paths: Layout = LAYOUT_OPTIMIZED_THREE.into();
 //!
 //! // Then we can render the SVG
 //! let values = &[0.3, 0.3, 0.4];
