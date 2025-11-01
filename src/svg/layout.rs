@@ -30,18 +30,58 @@ pub struct Layout {
 /// - `Y`, maximum height of the Venn diagram
 #[derive(Debug, Clone)]
 pub struct LayoutConst<const L: usize, const N: usize, const X: usize, const Y: usize> {
-    /// Edges of polyomino borders.
-    pub combined_paths: [DirectedEdge; L],
+    combined_paths: [DirectedEdge; L],
+    offsets: [i32; L],
+    parts_len: [usize; N],
+    diagram: DiagramConst<N, X, Y>,
+}
 
-    /// Offset positions of each edge, in every polyomino border.
-    pub offsets: [i32; L],
+impl<const L: usize, const N: usize, const X: usize, const Y: usize> LayoutConst<L, N, X, Y> {
+    /// Create a new `LayoutConst`, where the parameters are:
+    /// - `combined_paths`: Edges of polyomino borders.
+    /// - `offsets`: Offset positions of each edge, in every polyomino border.
+    /// - `parts_len`: The number of edges of each polyomino. Sum of all values
+    ///   in `parts_len` must sum to `L`.
+    /// - `diagram`: The Venn diagram itself.
+    ///
+    /// Returns `None` if the input is invalid.
+    pub const fn try_new(
+        combined_paths: [DirectedEdge; L],
+        offsets: [i32; L],
+        parts_len: [usize; N],
+        diagram: DiagramConst<N, X, Y>,
+    ) -> Option<Self> {
+        // `parts_len` must sum to L
+        let mut parts_len_sum: usize = 0;
+        let mut i = 0;
+        while i != N {
+            parts_len_sum += parts_len[i];
+            i += 1;
+        }
 
-    /// The number of edges of each polyomino. Sum of all values in `parts_len`
-    /// must sum to `L`.
-    pub parts_len: [usize; N],
+        if parts_len_sum == L {
+            Some(Self { combined_paths, offsets, parts_len, diagram })
+        } else {
+            None
+        }
+    }
 
-    /// The Venn diagram itself.
-    pub diagram: DiagramConst<N, X, Y>,
+    /// Create a new `LayoutConst`, where the parameters are:
+    /// - `combined_paths`: Edges of polyomino borders.
+    /// - `offsets`: Offset positions of each edge, in every polyomino border.
+    /// - `parts_len`: The number of edges of each polyomino. Sum of all values
+    ///   in `parts_len` must sum to `L`.
+    /// - `diagram`: The Venn diagram itself.
+    ///
+    /// Panics if the input is invalid.
+    pub const fn new(
+        combined_paths: [DirectedEdge; L],
+        offsets: [i32; L],
+        parts_len: [usize; N],
+        diagram: DiagramConst<N, X, Y>,
+    ) -> Self {
+        Self::try_new(combined_paths, offsets, parts_len, diagram).expect("Invalid parameters")
+    }
 }
 
 struct PartsIterator<'a, T> {

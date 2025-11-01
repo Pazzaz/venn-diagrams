@@ -37,14 +37,14 @@ pub fn path_layout_to_const(
     writeln!(&mut out, "#[rustfmt::skip]").ok()?;
     writeln!(
         &mut out,
-        "pub const {variable_name}: PathLayoutConst<{l}, {k}, {x}, {y}> = PathLayoutConst {{"
+        "pub const {variable_name}: LayoutConst<{l}, {k}, {x}, {y}> = LayoutConst::new("
     )
     .ok()?;
-    writeln!(&mut out, "    combined_paths: {combined_paths:?},").ok()?;
-    writeln!(&mut out, "    offsets: {offsets:?},").ok()?;
-    writeln!(&mut out, "    parts_len: {parts_len:?},").ok()?;
-    writeln!(&mut out, "    diagram: {diagram_name},").ok()?;
-    writeln!(&mut out, "}};").ok()?;
+    writeln!(&mut out, "    {combined_paths:?},").ok()?;
+    writeln!(&mut out, "    {offsets:?},").ok()?;
+    writeln!(&mut out, "    {parts_len:?},").ok()?;
+    writeln!(&mut out, "    {diagram_name},").ok()?;
+    writeln!(&mut out, ");").ok()?;
 
     Some(out)
 }
