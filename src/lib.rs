@@ -62,8 +62,8 @@
 //!
 //! [wp-venn]: https://en.wikipedia.org/wiki/Venn_diagram
 //! [wp-poly]: https://en.wikipedia.org/wiki/Polyomino
-#![doc = embed_doc_image::embed_image!("greedy", "snapshots/normal__common__three_docs.snap.svg")]
-#![doc = embed_doc_image::embed_image!("optimized", "snapshots/render_optimize__common__three_docs.snap.svg")]
+#![doc = embed_doc_image::embed_image!("greedy", "snapshots/normal__three_docs.snap.svg")]
+#![doc = embed_doc_image::embed_image!("optimized", "snapshots/render_optimize__three_docs.snap.svg")]
 // We document everything
 #![warn(missing_docs)]
 // We don't use unsafe

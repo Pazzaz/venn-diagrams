@@ -3,9 +3,18 @@ use venn_diagrams::{
     svg::{DiagramConfig, Layout},
 };
 
-use crate::common::{compare_snapshot, test_render_paths};
+use crate::common::{COLORS, VALUES, normalize};
 
+#[macro_use]
 mod common;
+
+pub fn test_render_paths(name: &str, path_layout: Layout, config: &DiagramConfig) {
+    let n = path_layout.n();
+    let colors = &COLORS[0..n];
+    let values = normalize(&VALUES[0..n]);
+    let svg = path_layout.to_svg(&values, &colors, config);
+    compare_snapshot!(name, svg);
+}
 
 #[test]
 fn two() {
@@ -57,5 +66,5 @@ fn three_docs() {
     let colors = &["MediumVioletRed", "DarkOrange", "DeepSkyBlue"];
 
     let svg = paths.to_svg(values, colors, &DiagramConfig::default());
-    compare_snapshot("three_docs.svg", svg);
+    compare_snapshot!("three_docs.svg", svg);
 }

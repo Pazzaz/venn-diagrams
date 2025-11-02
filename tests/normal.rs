@@ -4,9 +4,20 @@ use venn_diagrams::{
     svg::{CornerStyle, DiagramConfig},
 };
 
-use crate::common::{compare_snapshot, test_venn_greedy};
+use crate::common::{COLORS, VALUES, normalize};
 
+#[macro_use]
 mod common;
+
+pub fn test_venn_greedy(name: &str, venn: Diagram, config: &DiagramConfig) {
+    let n = venn.n();
+    let colors = &COLORS[0..n];
+    let values = normalize(&VALUES[0..n]);
+    let paths = venn.layout_greedy();
+
+    let svg = paths.to_svg(&values, &colors, config);
+    compare_snapshot!(name, svg);
+}
 
 #[test]
 fn eight() {
@@ -65,5 +76,5 @@ fn three_docs() {
     let values = &[0.3, 0.3, 0.4];
     let colors = &["MediumVioletRed", "DarkOrange", "DeepSkyBlue"];
     let svg = paths.to_svg(values, colors, &DiagramConfig::default());
-    compare_snapshot("three_docs.svg", svg);
+    compare_snapshot!("three_docs.svg", svg);
 }

@@ -12,7 +12,7 @@
 //!
 //! # Source
 //! Sourced from [\[2012\]](crate#ref-2012).
-#![doc = embed_doc_image::embed_image!("example", "snapshots/render_optimize__common__eight.snap.svg")]
+#![doc = embed_doc_image::embed_image!("example", "snapshots/render_optimize__eight.snap.svg")]
 use crate::{
     diagram::DiagramConst,
     direction::DirectedEdge::{Horizontal, Vertical},
