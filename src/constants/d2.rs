@@ -12,7 +12,7 @@
 //!
 //! # Source
 //! Sourced from [\[2006\]](crate#ref-2006).
-#![doc = embed_doc_image::embed_image!("example", "tests/common/snapshots/render_optimize__common__two.snap.svg")]
+#![doc = embed_doc_image::embed_image!("example", "snapshots/render_optimize__common__two.snap.svg")]
 
 use crate::{
     diagram::DiagramConst,

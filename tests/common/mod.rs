@@ -1,3 +1,6 @@
+use std::path::PathBuf;
+
+use svg::node::element::SVG;
 use venn_diagrams::{
     diagram::Diagram,
     svg::{DiagramConfig, Layout},
@@ -18,11 +21,10 @@ pub fn test_venn_greedy(name: &str, venn: Diagram, config: &DiagramConfig) {
     let n = venn.n();
     let colors = &COLORS[0..n];
     let values = normalize(&VALUES[0..n]);
-
     let paths = venn.layout_greedy();
 
     let svg = paths.to_svg(&values, &colors, config);
-    insta::assert_binary_snapshot!(name, svg.to_string().as_bytes().into_iter().cloned().collect());
+    compare_snapshot(name, svg);
 }
 
 #[allow(unused)]
@@ -31,5 +33,23 @@ pub fn test_render_paths(name: &str, path_layout: Layout, config: &DiagramConfig
     let colors = &COLORS[0..n];
     let values = normalize(&VALUES[0..n]);
     let svg = path_layout.to_svg(&values, &colors, config);
-    insta::assert_binary_snapshot!(name, svg.to_string().as_bytes().into_iter().cloned().collect());
+    compare_snapshot(name, svg);
+}
+
+pub fn compare_snapshot(name: &str, svg: SVG) {
+    let mut settings = insta::Settings::clone_current();
+    let root_dir = std::env::var("CARGO_MANIFEST_DIR")
+        .expect("Failed to retrieve value of CARGO_MANOFEST_DIR.");
+
+    let mut path = PathBuf::from(&root_dir);
+    path.push("snapshots");
+
+    settings.set_snapshot_path(path);
+
+    settings.bind(|| {
+        insta::assert_binary_snapshot!(
+            name,
+            svg.to_string().as_bytes().into_iter().cloned().collect()
+        );
+    });
 }

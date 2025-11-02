@@ -4,7 +4,7 @@ use venn_diagrams::{
     svg::{CornerStyle, DiagramConfig},
 };
 
-use crate::common::test_venn_greedy;
+use crate::common::{compare_snapshot, test_venn_greedy};
 
 mod common;
 
@@ -65,8 +65,5 @@ fn three_docs() {
     let values = &[0.3, 0.3, 0.4];
     let colors = &["MediumVioletRed", "DarkOrange", "DeepSkyBlue"];
     let svg = paths.to_svg(values, colors, &DiagramConfig::default());
-    insta::assert_binary_snapshot!(
-        "three_docs.svg",
-        svg.to_string().as_bytes().into_iter().cloned().collect()
-    );
+    compare_snapshot("three_docs.svg", svg);
 }
