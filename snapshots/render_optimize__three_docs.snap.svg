@@ -13,37 +13,37 @@
 <path d="M0.15,1 A0.15,0.15,0,0,1,0,0.85 L0,0.1 A0.15,0.15,0,0,1,0.15,-0.05 L2.85,-0.05 A0.15,0.15,0,0,1,3,0.1 L3,1.8 A0.15,0.15,0,0,1,2.85,1.95 L2.2,1.95 A0.15,0.15,0,0,1,2.05,1.8 L2.05,1.15 A0.15,0.15,0,0,0,1.9,1 z" fill="none" stroke="MediumVioletRed" stroke-width="0.05"/>
 <path d="M1.15,0.95 A0.15,0.15,0,0,1,1,0.8 L1,0.15 A0.15,0.15,0,0,1,1.15,0 L3.85,0 A0.15,0.15,0,0,1,4,0.15 L4,1.8 A0.15,0.15,0,0,1,3.85,1.95 L3.2,1.95 A0.15,0.15,0,0,1,3.05,1.8 L3.05,1.1 A0.15,0.15,0,0,0,2.9,0.95 z" fill="none" stroke="DarkOrange" stroke-width="0.05"/>
 <path d="M2.2,2 A0.2,0.2,0,0,1,2,1.8 L2,0.2 A0.15,0.15,0,0,1,2.15,0.05 L2.8,0.05 A0.15,0.15,0,0,1,2.95,0.2 L2.95,0.85 A0.15,0.15,0,0,0,3.1,1 L4.85,1 A0.15,0.15,0,0,1,5,1.15 L5,1.85 A0.15,0.15,0,0,1,4.85,2 z" fill="none" stroke="DeepSkyBlue" stroke-width="0.05"/>
-<g opacity="0.3" transform="rotate(-90 0.5 0.475)">
-<circle cx="0.5" cy="0.475" fill="transparent" r="0.175" stroke="MediumVioletRed" stroke-dasharray="0.32986722862692824, 1.0995574287564276" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M0.5,0.475 L0.5,0.125 A0.35,0.35,0,0,1,0.83286977,0.58315593 z" fill="MediumVioletRed" stroke="none"/>
 <circle cx="0.5" cy="0.475" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g transform="rotate(-90 1.5 0.475)">
-<circle cx="1.5" cy="0.475" fill="transparent" r="0.175" stroke="MediumVioletRed" stroke-dasharray="0.32986722862692824, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="1.5" cy="0.475" fill="transparent" r="0.175" stroke="DarkOrange" stroke-dasharray="0.32986722862692824, 1.0995574287564276" stroke-dashoffset="-0.32986722862692824" stroke-width="0.35"/>
+<g>
+<path d="M1.5,0.475 L1.5,0.125 A0.35,0.35,0,0,1,1.8328698,0.58315593 z" fill="MediumVioletRed" stroke="none"/>
+<path d="M1.5,0.475 L1.8328698,0.58315593 A0.35,0.35,0,0,1,1.2942752,0.75815594 z" fill="DarkOrange" stroke="none"/>
 <circle cx="1.5" cy="0.475" fill="transparent" r="0.35" stroke="white" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 2.475 0.5)">
-<circle cx="2.475" cy="0.5" fill="transparent" r="0.175" stroke="MediumVioletRed" stroke-dasharray="0.32986722862692824, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="2.475" cy="0.5" fill="transparent" r="0.175" stroke="DarkOrange" stroke-dasharray="0.32986722862692824, 1.0995574287564276" stroke-dashoffset="-0.32986722862692824" stroke-width="0.35"/>
-<circle cx="2.475" cy="0.5" fill="transparent" r="0.175" stroke="DeepSkyBlue" stroke-dasharray="0.43982297150257105, 1.0995574287564276" stroke-dashoffset="-0.6597344572538565" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M2.475,0.5 L2.475,0.15 A0.35,0.35,0,0,1,2.8078697,0.60815597 z" fill="MediumVioletRed" stroke="none"/>
+<path d="M2.475,0.5 L2.8078697,0.60815597 A0.35,0.35,0,0,1,2.2692752,0.783156 z" fill="DarkOrange" stroke="none"/>
+<path d="M2.475,0.5 L2.2692752,0.783156 A0.35,0.35,0,0,1,2.475,0.15 z" fill="DeepSkyBlue" stroke="none"/>
 <circle cx="2.475" cy="0.5" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g transform="rotate(-90 2.525 1.45)">
-<circle cx="2.525" cy="1.45" fill="transparent" r="0.175" stroke="MediumVioletRed" stroke-dasharray="0.32986722862692824, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="2.525" cy="1.45" fill="transparent" r="0.175" stroke="DeepSkyBlue" stroke-dasharray="0.43982297150257105, 1.0995574287564276" stroke-dashoffset="-0.32986722862692824" stroke-width="0.35"/>
+<g>
+<path d="M2.525,1.45 L2.525,1.1 A0.35,0.35,0,0,1,2.8578699,1.5581559 z" fill="MediumVioletRed" stroke="none"/>
+<path d="M2.525,1.45 L2.8578699,1.5581559 A0.35,0.35,0,0,1,2.1921303,1.5581559 z" fill="DeepSkyBlue" stroke="none"/>
 <circle cx="2.525" cy="1.45" fill="transparent" r="0.35" stroke="white" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 3.5 0.5)">
-<circle cx="3.5" cy="0.5" fill="transparent" r="0.175" stroke="DarkOrange" stroke-dasharray="0.32986722862692824, 1.0995574287564276" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M3.5,0.5 L3.5,0.15 A0.35,0.35,0,0,1,3.8328698,0.60815597 z" fill="DarkOrange" stroke="none"/>
 <circle cx="3.5" cy="0.5" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g transform="rotate(-90 3.525 1.475)">
-<circle cx="3.525" cy="1.475" fill="transparent" r="0.175" stroke="DarkOrange" stroke-dasharray="0.32986722862692824, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="3.525" cy="1.475" fill="transparent" r="0.175" stroke="DeepSkyBlue" stroke-dasharray="0.43982297150257105, 1.0995574287564276" stroke-dashoffset="-0.32986722862692824" stroke-width="0.35"/>
+<g>
+<path d="M3.525,1.475 L3.525,1.125 A0.35,0.35,0,0,1,3.8578699,1.583156 z" fill="DarkOrange" stroke="none"/>
+<path d="M3.525,1.475 L3.8578699,1.583156 A0.35,0.35,0,0,1,3.1921303,1.583156 z" fill="DeepSkyBlue" stroke="none"/>
 <circle cx="3.525" cy="1.475" fill="transparent" r="0.35" stroke="white" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 4.5 1.5)">
-<circle cx="4.5" cy="1.5" fill="transparent" r="0.175" stroke="DeepSkyBlue" stroke-dasharray="0.43982297150257105, 1.0995574287564276" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M4.5,1.5 L4.5,1.15 A0.35,0.35,0,0,1,4.7057247,1.7831559 z" fill="DeepSkyBlue" stroke="none"/>
 <circle cx="4.5" cy="1.5" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
 </svg>

@@ -16,81 +16,81 @@
 <path d="M2.2,5 A0.2,0.2,0,0,1,2,4.8 L2,1.2 A0.15,0.15,0,0,1,2.15,1.05 L2.85,1.05 A0.15,0.15,0,0,0,3,0.9 L3,0.15 A0.15,0.15,0,0,1,3.15,0 L3.85,0 A0.15,0.15,0,0,1,4,0.15 L4,3.9 A0.15,0.15,0,0,1,3.85,4.05 L3.2,4.05 A0.15,0.15,0,0,0,3.05,4.2 L3.05,4.8 A0.2,0.2,0,0,1,2.85,5 z" fill="none" stroke="#DDDD00" stroke-width="0.05"/>
 <path d="M0.2,3 A0.2,0.2,0,0,1,0,2.8 L0,2.15 A0.2,0.2,0,0,1,0.2,1.95 L0.8,1.95 A0.15,0.15,0,0,0,0.95,1.8 L0.95,1.15 A0.15,0.15,0,0,1,1.1,1 L4.85,1 A0.15,0.15,0,0,1,5,1.15 L5,1.85 A0.15,0.15,0,0,1,4.85,2 L4.1,2 A0.15,0.15,0,0,0,3.95,2.15 L3.95,2.85 A0.15,0.15,0,0,1,3.8,3 z" fill="none" stroke="#1B49DD" stroke-width="0.05"/>
 <path d="M0.2,2.95 A0.15,0.15,0,0,1,0.05,2.8 L0.05,2.15 A0.15,0.15,0,0,1,0.2,2 L3.9,2 A0.15,0.15,0,0,1,4.05,2.15 L4.05,2.85 A0.15,0.15,0,0,0,4.2,3 L4.85,3 A0.15,0.15,0,0,1,5,3.15 L5,3.85 A0.15,0.15,0,0,1,4.85,4 L1.15,4 A0.2,0.2,0,0,1,0.95,3.8 L0.95,3.1 A0.15,0.15,0,0,0,0.8,2.95 z" fill="none" stroke="#AF0000" stroke-width="0.05"/>
-<g opacity="0.3" transform="rotate(-90 0.525 2.475)">
-<circle cx="0.525" cy="2.475" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.2748893571891069, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="0.525" cy="2.475" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.09701977312556714, 1.0995574287564276" stroke-dashoffset="-0.2748893571891069" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M0.525,2.475 L0.525,2.125 A0.35,0.35,0,0,1,0.875,2.475 z" fill="#1B49DD" stroke="none"/>
+<path d="M0.525,2.475 L0.875,2.475 A0.35,0.35,0,0,1,0.822576,2.6592512 z" fill="#AF0000" stroke="none"/>
 <circle cx="0.525" cy="2.475" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 1.5 0.5)">
-<circle cx="1.5" cy="0.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.43254648851815347, 1.0995574287564276" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M1.5,0.5 L1.5,0.15 A0.35,0.35,0,0,1,1.7173172,0.77435964 z" fill="#EE2020" stroke="none"/>
 <circle cx="1.5" cy="0.5" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g transform="rotate(-90 1.5 1.5)">
-<circle cx="1.5" cy="1.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.43254648851815347, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="1.5" cy="1.5" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.2748893571891069, 1.0995574287564276" stroke-dashoffset="-0.43254648851815347" stroke-width="0.35"/>
+<g>
+<path d="M1.5,1.5 L1.5,1.15 A0.35,0.35,0,0,1,1.7173172,1.7743597 z" fill="#EE2020" stroke="none"/>
+<path d="M1.5,1.5 L1.7173172,1.7743597 A0.35,0.35,0,0,1,1.2256403,1.7173172 z" fill="#1B49DD" stroke="none"/>
 <circle cx="1.5" cy="1.5" fill="transparent" r="0.35" stroke="white" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 1.5 2.5)">
-<circle cx="1.5" cy="2.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.43254648851815347, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="1.5" cy="2.5" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.2748893571891069, 1.0995574287564276" stroke-dashoffset="-0.43254648851815347" stroke-width="0.35"/>
-<circle cx="1.5" cy="2.5" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.09701977312556714, 1.0995574287564276" stroke-dashoffset="-0.7074358457072604" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M1.5,2.5 L1.5,2.15 A0.35,0.35,0,0,1,1.7173172,2.7743597 z" fill="#EE2020" stroke="none"/>
+<path d="M1.5,2.5 L1.7173172,2.7743597 A0.35,0.35,0,0,1,1.2256403,2.7173173 z" fill="#1B49DD" stroke="none"/>
+<path d="M1.5,2.5 L1.2256403,2.7173173 A0.35,0.35,0,0,1,1.152332,2.5403352 z" fill="#AF0000" stroke="none"/>
 <circle cx="1.5" cy="2.5" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 1.5 3.475)">
-<circle cx="1.5" cy="3.475" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.43254648851815347, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="1.5" cy="3.475" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.09701977312556714, 1.0995574287564276" stroke-dashoffset="-0.43254648851815347" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M1.5,3.475 L1.5,3.125 A0.35,0.35,0,0,1,1.7173172,3.7493596 z" fill="#EE2020" stroke="none"/>
+<path d="M1.5,3.475 L1.7173172,3.7493596 A0.35,0.35,0,0,1,1.540335,3.822668 z" fill="#AF0000" stroke="none"/>
 <circle cx="1.5" cy="3.475" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 2.5 1.525)">
-<circle cx="2.5" cy="1.525" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.43254648851815347, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="2.5" cy="1.525" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2951018099236, 1.0995574287564276" stroke-dashoffset="-0.43254648851815347" stroke-width="0.35"/>
-<circle cx="2.5" cy="1.525" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.2748893571891069, 1.0995574287564276" stroke-dashoffset="-0.7276482984417535" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M2.5,1.525 L2.5,1.175 A0.35,0.35,0,0,1,2.7173173,1.7993597 z" fill="#EE2020" stroke="none"/>
+<path d="M2.5,1.525 L2.7173173,1.7993597 A0.35,0.35,0,0,1,2.202424,1.7092513 z" fill="#DDDD00" stroke="none"/>
+<path d="M2.5,1.525 L2.202424,1.7092513 A0.35,0.35,0,0,1,2.3157487,1.227424 z" fill="#1B49DD" stroke="none"/>
 <circle cx="2.5" cy="1.525" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 2.5 2.5)">
-<circle cx="2.5" cy="2.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.43254648851815347, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="2.5" cy="2.5" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2951018099236, 1.0995574287564276" stroke-dashoffset="-0.43254648851815347" stroke-width="0.35"/>
-<circle cx="2.5" cy="2.5" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.2748893571891069, 1.0995574287564276" stroke-dashoffset="-0.7276482984417535" stroke-width="0.35"/>
-<circle cx="2.5" cy="2.5" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.09701977312556714, 1.0995574287564276" stroke-dashoffset="-1.0025376556308605" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M2.5,2.5 L2.5,2.15 A0.35,0.35,0,0,1,2.7173173,2.7743597 z" fill="#EE2020" stroke="none"/>
+<path d="M2.5,2.5 L2.7173173,2.7743597 A0.35,0.35,0,0,1,2.202424,2.6842513 z" fill="#DDDD00" stroke="none"/>
+<path d="M2.5,2.5 L2.202424,2.6842513 A0.35,0.35,0,0,1,2.3157487,2.202424 z" fill="#1B49DD" stroke="none"/>
+<path d="M2.5,2.5 L2.3157487,2.202424 A0.35,0.35,0,0,1,2.5,2.15 z" fill="#AF0000" stroke="none"/>
 <circle cx="2.5" cy="2.5" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 2.5 3.5)">
-<circle cx="2.5" cy="3.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.43254648851815347, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="2.5" cy="3.5" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2951018099236, 1.0995574287564276" stroke-dashoffset="-0.43254648851815347" stroke-width="0.35"/>
-<circle cx="2.5" cy="3.5" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.09701977312556714, 1.0995574287564276" stroke-dashoffset="-0.7276482984417535" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M2.5,3.5 L2.5,3.15 A0.35,0.35,0,0,1,2.7173173,3.7743597 z" fill="#EE2020" stroke="none"/>
+<path d="M2.5,3.5 L2.7173173,3.7743597 A0.35,0.35,0,0,1,2.202424,3.6842513 z" fill="#DDDD00" stroke="none"/>
+<path d="M2.5,3.5 L2.202424,3.6842513 A0.35,0.35,0,0,1,2.15,3.5 z" fill="#AF0000" stroke="none"/>
 <circle cx="2.5" cy="3.5" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g transform="rotate(-90 2.525 4.475)">
-<circle cx="2.525" cy="4.475" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.43254648851815347, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="2.525" cy="4.475" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2951018099236, 1.0995574287564276" stroke-dashoffset="-0.43254648851815347" stroke-width="0.35"/>
+<g>
+<path d="M2.525,4.475 L2.525,4.125 A0.35,0.35,0,0,1,2.7423172,4.7493596 z" fill="#EE2020" stroke="none"/>
+<path d="M2.525,4.475 L2.7423172,4.7493596 A0.35,0.35,0,0,1,2.227424,4.659251 z" fill="#DDDD00" stroke="none"/>
 <circle cx="2.525" cy="4.475" fill="transparent" r="0.35" stroke="white" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 3.5 0.5)">
-<circle cx="3.5" cy="0.5" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2951018099236, 1.0995574287564276" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M3.5,0.5 L3.5,0.15 A0.35,0.35,0,0,1,3.8476682,0.54033506 z" fill="#DDDD00" stroke="none"/>
 <circle cx="3.5" cy="0.5" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g transform="rotate(-90 3.5 1.5)">
-<circle cx="3.5" cy="1.5" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2951018099236, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="3.5" cy="1.5" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.2748893571891069, 1.0995574287564276" stroke-dashoffset="-0.2951018099236" stroke-width="0.35"/>
+<g>
+<path d="M3.5,1.5 L3.5,1.15 A0.35,0.35,0,0,1,3.8476682,1.540335 z" fill="#DDDD00" stroke="none"/>
+<path d="M3.5,1.5 L3.8476682,1.540335 A0.35,0.35,0,0,1,3.4596648,1.847668 z" fill="#1B49DD" stroke="none"/>
 <circle cx="3.5" cy="1.5" fill="transparent" r="0.35" stroke="white" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 3.475 2.5)">
-<circle cx="3.475" cy="2.5" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2951018099236, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="3.475" cy="2.5" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.2748893571891069, 1.0995574287564276" stroke-dashoffset="-0.2951018099236" stroke-width="0.35"/>
-<circle cx="3.475" cy="2.5" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.09701977312556714, 1.0995574287564276" stroke-dashoffset="-0.5699911671127069" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M3.475,2.5 L3.475,2.15 A0.35,0.35,0,0,1,3.822668,2.5403352 z" fill="#DDDD00" stroke="none"/>
+<path d="M3.475,2.5 L3.822668,2.5403352 A0.35,0.35,0,0,1,3.434665,2.8476682 z" fill="#1B49DD" stroke="none"/>
+<path d="M3.475,2.5 L3.434665,2.8476682 A0.35,0.35,0,0,1,3.2576828,2.7743597 z" fill="#AF0000" stroke="none"/>
 <circle cx="3.475" cy="2.5" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 3.5 3.5)">
-<circle cx="3.5" cy="3.5" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2951018099236, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="3.5" cy="3.5" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.09701977312556714, 1.0995574287564276" stroke-dashoffset="-0.2951018099236" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M3.5,3.5 L3.5,3.15 A0.35,0.35,0,0,1,3.8476682,3.5403352 z" fill="#DDDD00" stroke="none"/>
+<path d="M3.5,3.5 L3.8476682,3.5403352 A0.35,0.35,0,0,1,3.7743597,3.7173173 z" fill="#AF0000" stroke="none"/>
 <circle cx="3.5" cy="3.5" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 4.5 1.5)">
-<circle cx="4.5" cy="1.5" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.2748893571891069, 1.0995574287564276" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M4.5,1.5 L4.5,1.15 A0.35,0.35,0,0,1,4.85,1.5 z" fill="#1B49DD" stroke="none"/>
 <circle cx="4.5" cy="1.5" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 4.5 3.5)">
-<circle cx="4.5" cy="3.5" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.09701977312556714, 1.0995574287564276" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M4.5,3.5 L4.5,3.15 A0.35,0.35,0,0,1,4.6842513,3.202424 z" fill="#AF0000" stroke="none"/>
 <circle cx="4.5" cy="3.5" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
 </svg>

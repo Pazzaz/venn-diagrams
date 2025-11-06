@@ -1,4 +1,6 @@
-use svg::node::element::{Circle, Group, SVG};
+use std::f64::{self, consts::PI};
+
+use svg::node::element::{Circle, Group, Path, SVG, path::Data};
 
 use super::{InnerOffset, config::DiagramConfig};
 
@@ -15,6 +17,44 @@ impl CircleConfig {
     }
 }
 
+fn x_pos(angle: f64) -> f64 {
+    (-angle + PI / 2.0).cos()
+}
+
+fn y_pos(angle: f64) -> f64 {
+    (-angle + PI / 2.0).sin()
+}
+
+// Outline piece of pie
+fn piece(cx: f64, cy: f64, r: f64, start: f64, end: f64) -> Path {
+    // They are both positive
+    debug_assert!(0.0 <= start);
+    debug_assert!(0.0 <= end);
+    debug_assert!(start <= end);
+
+    // We clamp start and end, sometimes end is slightly larger than TAU
+    let start = start.clamp(0.0, f64::consts::TAU);
+    let end = end.clamp(0.0, f64::consts::TAU);
+
+    let start_x = cx + x_pos(start) * r;
+    let start_y = cy - y_pos(start) * r;
+
+    let end_x = cx + x_pos(end) * r;
+    let end_y = cy - y_pos(end) * r;
+
+    let large_arc = if end - start <= PI { 0 } else { 1 };
+
+    let elliptical_params = (r, r, 0, large_arc, 1, end_x, end_y);
+
+    let data = Data::new()
+        .move_to((cx, cy))
+        .line_to((start_x, start_y))
+        .elliptical_arc_to(elliptical_params)
+        .close();
+
+    Path::new().set("d", data)
+}
+
 pub(super) fn draw_circle(
     cx: f64,
     cy: f64,
@@ -27,8 +67,7 @@ pub(super) fn draw_circle(
     let n = mask.len();
     debug_assert!(values.len() == n && colors.len() == n);
     let radius = config.radius;
-    let c = std::f64::consts::TAU * radius;
-    let mut group = Group::new().set("transform", format!("rotate(-90 {cx} {cy})"));
+    let mut group = Group::new();
 
     let coalition: Coalition = Coalition::from_values(mask, values);
 
@@ -40,20 +79,14 @@ pub(super) fn draw_circle(
         let size = values[i];
         let color = colors[i];
 
-        let mut circle = Circle::new()
-            .set("r", radius)
-            .set("cx", cx)
-            .set("cy", cy)
-            .set("fill", "transparent")
-            .set("stroke", color)
-            .set("stroke-width", radius * 2.0)
-            .set("stroke-dasharray", format!("{}, {}", c * size, c));
-        if added != 0.0 {
-            circle = circle.set("stroke-dashoffset", -added);
-        }
+        let end = added + size;
 
-        added += c * size;
-        group = group.add(circle);
+        let piece = piece(cx, cy, 2.0 * radius, f64::consts::TAU * added, f64::consts::TAU * end);
+
+        added = end;
+
+        let out = piece.set("fill", color).set("stroke", "none");
+        group = group.add(out);
     }
 
     let circle_config = config.circle_config(coalition);

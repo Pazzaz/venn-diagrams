@@ -25,833 +25,833 @@
 <path d="M1.1,10.05 A0.15,0.15,0,0,1,0.95,9.9 L0.95,9.25 A0.25,0.25,0,0,1,1.2,9 L5.8,9 A0.15,0.15,0,0,0,5.95,8.85 L5.95,8.25 A0.15,0.15,0,0,0,5.8,8.1 L3.15,8.1 A0.15,0.15,0,0,1,3,7.95 L3,7.1 A0.15,0.15,0,0,1,3.15,6.95 L5.75,6.95 A0.15,0.15,0,0,0,5.9,6.8 L5.9,6.2 A0.15,0.15,0,0,0,5.75,6.05 L5.15,6.05 A0.15,0.15,0,0,1,5,5.9 L5,5.2 A0.15,0.15,0,0,0,4.85,5.05 L4.2,5.05 A0.15,0.15,0,0,1,4.05,4.9 L4.05,4.2 A0.15,0.15,0,0,1,4.2,4.05 L4.8,4.05 A0.25,0.25,0,0,0,5.05,3.8 L5.05,2.2 A0.15,0.15,0,0,1,5.2,2.05 L5.9,2.05 A0.15,0.15,0,0,1,6.05,2.2 L6.05,4.85 A0.15,0.15,0,0,0,6.2,5 L6.85,5 A0.15,0.15,0,0,0,7,4.85 L7,1.15 A0.15,0.15,0,0,1,7.15,1 L7.85,1 A0.15,0.15,0,0,1,8,1.15 L8,6.9 A0.15,0.15,0,0,0,8.15,7.05 L8.8,7.05 A0.15,0.15,0,0,0,8.95,6.9 L8.95,4.25 A0.15,0.15,0,0,1,9.1,4.1 L9.9,4.1 A0.15,0.15,0,0,0,10.05,3.95 L10.05,3.15 A0.15,0.15,0,0,1,10.2,3 L10.8,3 A0.15,0.15,0,0,0,10.95,2.85 L10.95,2.25 A0.15,0.15,0,0,1,11.1,2.1 L11.85,2.1 A0.15,0.15,0,0,0,12,1.95 L12,0.1 A0.15,0.15,0,0,1,12.15,-0.05 L12.9,-0.05 A0.15,0.15,0,0,1,13.05,0.1 L13.05,1.9 A0.15,0.15,0,0,0,13.2,2.05 L13.85,2.05 A0.15,0.15,0,0,1,14,2.2 L14,2.85 A0.15,0.15,0,0,1,13.85,3 L12.2,3 A0.15,0.15,0,0,0,12.05,3.15 L12.05,4.95 A0.15,0.15,0,0,1,11.9,5.1 L10.15,5.1 A0.15,0.15,0,0,0,10,5.25 L10,5.95 A0.15,0.15,0,0,0,10.15,6.1 L11.85,6.1 A0.15,0.15,0,0,1,12,6.25 L12,6.8 A0.15,0.15,0,0,1,11.85,6.95 L10.15,6.95 A0.15,0.15,0,0,0,10,7.1 L10,7.85 A0.15,0.15,0,0,0,10.15,8 L13.9,8 A0.15,0.15,0,0,1,14.05,8.15 L14.05,9.85 A0.15,0.15,0,0,1,13.9,10 L10.25,10 A0.15,0.15,0,0,0,10.1,10.15 L10.1,12.8 A0.15,0.15,0,0,1,9.95,12.95 L9.2,12.95 A0.15,0.15,0,0,1,9.05,12.8 L9.05,9.1 A0.15,0.15,0,0,0,8.9,8.95 L7.1,8.95 A0.15,0.15,0,0,0,6.95,9.1 L6.95,10.85 A0.15,0.15,0,0,1,6.8,11 L6.2,11 A0.15,0.15,0,0,0,6.05,11.15 L6.05,12.8 A0.15,0.15,0,0,1,5.9,12.95 L5.15,12.95 A0.15,0.15,0,0,1,5,12.8 L5,10.25 A0.15,0.15,0,0,0,4.85,10.1 L3.2,10.1 A0.15,0.15,0,0,0,3.05,10.25 L3.05,11.85 A0.15,0.15,0,0,0,3.2,12 L3.85,12 A0.15,0.15,0,0,1,4,12.15 L4,12.85 A0.15,0.15,0,0,1,3.85,13 L2.15,13 A0.15,0.15,0,0,1,2,12.85 L2,10.2 A0.15,0.15,0,0,0,1.85,10.05 z" fill="none" stroke="#009933" stroke-width="0.05"/>
 <path d="M1.25,10.1 A0.15,0.15,0,0,1,1.1,9.95 L1.1,9.1 A0.15,0.15,0,0,1,1.25,8.95 L1.9,8.95 A0.15,0.15,0,0,0,2.05,8.8 L2.05,8.05 A0.15,0.15,0,0,1,2.2,7.9 L3.8,7.9 A0.15,0.15,0,0,0,3.95,7.75 L3.95,6.15 A0.15,0.15,0,0,1,4.1,6 L6.85,6 A0.15,0.15,0,0,0,7,5.85 L7,5.15 A0.15,0.15,0,0,1,7.15,5 L7.9,5 A0.15,0.15,0,0,0,8.05,4.85 L8.05,1.15 A0.15,0.15,0,0,1,8.2,1 L8.9,1 A0.15,0.15,0,0,0,9.05,0.85 L9.05,0.2 A0.15,0.15,0,0,1,9.2,0.05 L9.85,0.05 A0.15,0.15,0,0,1,10,0.2 L10,3.75 A0.15,0.15,0,0,0,10.15,3.9 L10.85,3.9 A0.15,0.15,0,0,0,11,3.75 L11,0.1 A0.15,0.15,0,0,1,11.15,-0.05 L11.9,-0.05 A0.15,0.15,0,0,1,12.05,0.1 L12.05,1.85 A0.15,0.15,0,0,0,12.2,2 L13.8,2 A0.15,0.15,0,0,1,13.95,2.15 L13.95,2.9 A0.15,0.15,0,0,1,13.8,3.05 L12.1,3.05 A0.15,0.15,0,0,0,11.95,3.2 L11.95,4.9 A0.15,0.15,0,0,1,11.8,5.05 L9.15,5.05 A0.15,0.15,0,0,0,9,5.2 L9,5.8 A0.15,0.15,0,0,0,9.15,5.95 L10.85,5.95 A0.15,0.15,0,0,1,11,6.1 L11,6.9 A0.15,0.15,0,0,1,10.85,7.05 L9.15,7.05 A0.15,0.15,0,0,0,9,7.2 L9,7.85 A0.15,0.15,0,0,0,9.15,8 L9.95,8 A0.15,0.15,0,0,1,10.1,8.15 L10.1,9.8 A0.15,0.15,0,0,0,10.25,9.95 L12.85,9.95 A0.15,0.15,0,0,0,13,9.8 L13,8.1 A0.15,0.15,0,0,1,13.15,7.95 L13.85,7.95 A0.15,0.15,0,0,1,14,8.1 L14,10.85 A0.15,0.15,0,0,1,13.85,11 L12.2,11 A0.15,0.15,0,0,0,12.05,11.15 L12.05,12.85 A0.15,0.15,0,0,1,11.9,13 L10.3,13 A0.15,0.15,0,0,1,10.15,12.85 L10.15,11.15 A0.15,0.15,0,0,0,10,11 L9.25,11 A0.15,0.15,0,0,0,9.1,11.15 L9.1,12.8 A0.15,0.15,0,0,1,8.95,12.95 L8.15,12.95 A0.15,0.15,0,0,1,8,12.8 L8,8.2 A0.15,0.15,0,0,0,7.85,8.05 L7.25,8.05 A0.15,0.15,0,0,0,7.1,8.2 L7.1,9.85 A0.15,0.15,0,0,1,6.95,10 L6.2,10 A0.15,0.15,0,0,0,6.05,10.15 L6.05,10.85 A0.15,0.15,0,0,1,5.9,11 L5.25,11 A0.15,0.15,0,0,1,5.1,10.85 L5.1,9.05 A0.15,0.15,0,0,0,4.95,8.9 L4.1,8.9 A0.15,0.15,0,0,0,3.95,9.05 L3.95,11.9 A0.15,0.15,0,0,1,3.8,12.05 L3.2,12.05 A0.15,0.15,0,0,0,3.05,12.2 L3.05,12.8 A0.15,0.15,0,0,1,2.9,12.95 L2.1,12.95 A0.15,0.15,0,0,1,1.95,12.8 L1.95,11.2 A0.15,0.15,0,0,1,2.1,11.05 L2.85,11.05 A0.15,0.15,0,0,0,3,10.9 L3,10.25 A0.15,0.15,0,0,0,2.85,10.1 z" fill="none" stroke="#231977" stroke-width="0.05"/>
 <path d="M1.2,10.95 A0.15,0.15,0,0,1,1.05,10.8 L1.05,9.25 A0.15,0.15,0,0,1,1.2,9.1 L1.8,9.1 A0.15,0.15,0,0,1,1.95,9.25 L1.95,9.75 A0.15,0.15,0,0,0,2.1,9.9 L2.85,9.9 A0.15,0.15,0,0,0,3,9.75 L3,9.25 A0.15,0.15,0,0,1,3.15,9.1 L4.85,9.1 A0.15,0.15,0,0,0,5,8.95 L5,6.2 A0.15,0.15,0,0,0,4.85,6.05 L4.1,6.05 A0.15,0.15,0,0,1,3.95,5.9 L3.95,4.2 A0.25,0.25,0,0,1,4.2,3.95 L4.8,3.95 A0.15,0.15,0,0,0,4.95,3.8 L4.95,2.2 A0.25,0.25,0,0,1,5.2,1.95 L5.85,1.95 A0.15,0.15,0,0,1,6,2.1 L6,6.85 A0.15,0.15,0,0,0,6.15,7 L6.85,7 A0.15,0.15,0,0,0,7,6.85 L7,6.15 A0.15,0.15,0,0,1,7.15,6 L8.95,6 A0.15,0.15,0,0,0,9.1,5.85 L9.1,3.15 A0.15,0.15,0,0,1,9.25,3 L9.9,3 A0.15,0.15,0,0,0,10.05,2.85 L10.05,0.2 A0.15,0.15,0,0,1,10.2,0.05 L12.75,0.05 A0.15,0.15,0,0,1,12.9,0.2 L12.9,1.8 A0.15,0.15,0,0,1,12.75,1.95 L11.25,1.95 A0.15,0.15,0,0,0,11.1,2.1 L11.1,2.85 A0.15,0.15,0,0,0,11.25,3 L11.75,3 A0.15,0.15,0,0,1,11.9,3.15 L11.9,3.95 A0.15,0.15,0,0,1,11.75,4.1 L10.15,4.1 A0.15,0.15,0,0,0,10,4.25 L10,4.8 A0.15,0.15,0,0,0,10.15,4.95 L12.8,4.95 A0.15,0.15,0,0,1,12.95,5.1 L12.95,5.9 A0.15,0.15,0,0,1,12.8,6.05 L10.15,6.05 A0.15,0.15,0,0,0,10,6.2 L10,6.8 A0.15,0.15,0,0,1,9.85,6.95 L8.15,6.95 A0.15,0.15,0,0,0,8,7.1 L8,7.85 A0.15,0.15,0,0,0,8.15,8 L8.85,8 A0.15,0.15,0,0,1,9,8.15 L9,8.8 A0.15,0.15,0,0,0,9.15,8.95 L11.9,8.95 A0.15,0.15,0,0,0,12.05,8.8 L12.05,8.2 A0.15,0.15,0,0,1,12.2,8.05 L13.8,8.05 A0.15,0.15,0,0,1,13.95,8.2 L13.95,10.9 A0.15,0.15,0,0,1,13.8,11.05 L12.1,11.05 A0.15,0.15,0,0,0,11.95,11.2 L11.95,12.8 A0.15,0.15,0,0,1,11.8,12.95 L10.05,12.95 A0.15,0.15,0,0,1,9.9,12.8 L9.9,10.15 A0.15,0.15,0,0,0,9.75,10 L8.2,10 A0.15,0.15,0,0,0,8.05,10.15 L8.05,13.85 A0.15,0.15,0,0,1,7.9,14 L7.15,14 A0.15,0.15,0,0,1,7,13.85 L7,9.15 A0.15,0.15,0,0,0,6.85,9 L6.2,9 A0.15,0.15,0,0,0,6.05,9.15 L6.05,9.85 A0.15,0.15,0,0,1,5.9,10 L5.2,10 A0.15,0.15,0,0,0,5.05,10.15 L5.05,12.8 A0.15,0.15,0,0,1,4.9,12.95 L4.25,12.95 A0.15,0.15,0,0,1,4.1,12.8 L4.1,11.15 A0.15,0.15,0,0,0,3.95,11 L3.1,11 A0.15,0.15,0,0,0,2.95,11.15 L2.95,11.85 A0.15,0.15,0,0,1,2.8,12 L2.25,12 A0.15,0.15,0,0,1,2.1,11.85 L2.1,11.1 A0.15,0.15,0,0,0,1.95,10.95 z" fill="none" stroke="#83CF39" stroke-width="0.05"/>
-<g opacity="0.3" transform="rotate(-90 0.5 7.550000000000001)">
-<circle cx="0.5" cy="7.550000000000001" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M0.5,7.55 L0.5,7.2 A0.35,0.35,0,0,1,0.65313303,7.2352777 z" fill="#AF0000" stroke="none"/>
 <circle cx="0.5" cy="7.550000000000001" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 1.5 7.525)">
-<circle cx="1.5" cy="7.525" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="1.5" cy="7.525" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M1.5,7.525 L1.5,7.175 A0.35,0.35,0,0,1,1.8154414,7.6766467 z" fill="#EE2020" stroke="none"/>
+<path d="M1.5,7.525 L1.8154414,7.6766467 A0.35,0.35,0,0,1,1.7172982,7.7993746 z" fill="#AF0000" stroke="none"/>
 <circle cx="1.5" cy="7.525" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 1.525 9.55)">
-<circle cx="1.525" cy="9.55" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="1.525" cy="9.55" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.0792473822527155" stroke-width="0.35"/>
-<circle cx="1.525" cy="9.55" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.158494764505431" stroke-width="0.35"/>
-<circle cx="1.525" cy="9.55" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.22123227545549745" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M1.525,9.55 L1.525,9.2 A0.35,0.35,0,0,1,1.678133,9.235277 z" fill="#AF0000" stroke="none"/>
+<path d="M1.525,9.55 L1.678133,9.235277 A0.35,0.35,0,0,1,1.8003967,9.333999 z" fill="#009933" stroke="none"/>
+<path d="M1.525,9.55 L1.8003967,9.333999 A0.35,0.35,0,0,1,1.8586766,9.44436 z" fill="#231977" stroke="none"/>
+<path d="M1.525,9.55 L1.8586766,9.44436 A0.35,0.35,0,0,1,1.8748093,9.561555 z" fill="#83CF39" stroke="none"/>
 <circle cx="1.525" cy="9.55" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 1.525 10.524999999999999)">
-<circle cx="1.525" cy="10.524999999999999" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="1.525" cy="10.524999999999999" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.22453424971602726" stroke-width="0.35"/>
-<circle cx="1.525" cy="10.524999999999999" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.30378163196874275" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M1.525,10.525 L1.525,10.175 A0.35,0.35,0,0,1,1.8606104,10.4256735 z" fill="#1B49DD" stroke="none"/>
+<path d="M1.525,10.525 L1.8606104,10.4256735 A0.35,0.35,0,0,1,1.8702407,10.582522 z" fill="#AF0000" stroke="none"/>
+<path d="M1.525,10.525 L1.8702407,10.582522 A0.35,0.35,0,0,1,1.8313568,10.69425 z" fill="#83CF39" stroke="none"/>
 <circle cx="1.525" cy="10.524999999999999" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 2.5 7.5)">
-<circle cx="2.5" cy="7.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="2.5" cy="7.5" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="2.5" cy="7.5" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.5943553668953663" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M2.5,7.5 L2.5,7.15 A0.35,0.35,0,0,1,2.8154414,7.6516466 z" fill="#EE2020" stroke="none"/>
+<path d="M2.5,7.5 L2.8154414,7.6516466 A0.35,0.35,0,0,1,2.4118078,7.8387065 z" fill="#DDDD00" stroke="none"/>
+<path d="M2.5,7.5 L2.4118078,7.8387065 A0.35,0.35,0,0,1,2.272505,7.765981 z" fill="#AF0000" stroke="none"/>
 <circle cx="2.5" cy="7.5" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 2.525 8.525)">
-<circle cx="2.525" cy="8.525" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="2.525" cy="8.525" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.2410441210186763" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M2.525,8.525 L2.525,8.175 A0.35,0.35,0,0,1,2.8684747,8.45773 z" fill="#DDDD00" stroke="none"/>
+<path d="M2.525,8.525 L2.8684747,8.45773 A0.35,0.35,0,0,1,2.8702407,8.582522 z" fill="#231977" stroke="none"/>
 <circle cx="2.525" cy="8.525" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 2.525 9.45)">
-<circle cx="2.525" cy="9.45" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="2.525" cy="9.45" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.2410441210186763" stroke-width="0.35"/>
-<circle cx="2.525" cy="9.45" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.32029150327139183" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M2.525,9.45 L2.525,9.1 A0.35,0.35,0,0,1,2.8684747,9.3827305 z" fill="#DDDD00" stroke="none"/>
+<path d="M2.525,9.45 L2.8684747,9.3827305 A0.35,0.35,0,0,1,2.8632867,9.539789 z" fill="#009933" stroke="none"/>
+<path d="M2.525,9.45 L2.8632867,9.539789 A0.35,0.35,0,0,1,2.8102756,9.652776 z" fill="#231977" stroke="none"/>
 <circle cx="2.525" cy="9.45" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 2.5 10.55)">
-<circle cx="2.5" cy="10.55" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="2.5" cy="10.55" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.22453424971602726" stroke-width="0.35"/>
-<circle cx="2.5" cy="10.55" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.30378163196874275" stroke-width="0.35"/>
-<circle cx="2.5" cy="10.55" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.38302901422145824" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M2.5,10.55 L2.5,10.2 A0.35,0.35,0,0,1,2.8356104,10.450674 z" fill="#1B49DD" stroke="none"/>
+<path d="M2.5,10.55 L2.8356104,10.450674 A0.35,0.35,0,0,1,2.8452408,10.607522 z" fill="#AF0000" stroke="none"/>
+<path d="M2.5,10.55 L2.8452408,10.607522 A0.35,0.35,0,0,1,2.7852757,10.752775 z" fill="#009933" stroke="none"/>
+<path d="M2.5,10.55 L2.7852757,10.752775 A0.35,0.35,0,0,1,2.7014275,10.836229 z" fill="#83CF39" stroke="none"/>
 <circle cx="2.5" cy="10.55" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 2.5250000000000004 11.525)">
-<circle cx="2.5250000000000004" cy="11.525" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="2.5250000000000004" cy="11.525" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.22453424971602726" stroke-width="0.35"/>
-<circle cx="2.5250000000000004" cy="11.525" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.30378163196874275" stroke-width="0.35"/>
-<circle cx="2.5250000000000004" cy="11.525" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.36651914291880916" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M2.525,11.525 L2.525,11.175 A0.35,0.35,0,0,1,2.8606102,11.4256735 z" fill="#1B49DD" stroke="none"/>
+<path d="M2.525,11.525 L2.8606102,11.4256735 A0.35,0.35,0,0,1,2.8702407,11.582522 z" fill="#009933" stroke="none"/>
+<path d="M2.525,11.525 L2.8702407,11.582522 A0.35,0.35,0,0,1,2.8281088,11.7 z" fill="#231977" stroke="none"/>
+<path d="M2.525,11.525 L2.8281088,11.7 A0.35,0.35,0,0,1,2.752495,11.790981 z" fill="#83CF39" stroke="none"/>
 <circle cx="2.5250000000000004" cy="11.525" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 2.525 12.475)">
-<circle cx="2.525" cy="12.475" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="2.525" cy="12.475" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.22453424971602726" stroke-width="0.35"/>
-<circle cx="2.525" cy="12.475" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.30378163196874275" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M2.525,12.475 L2.525,12.125 A0.35,0.35,0,0,1,2.8606102,12.375674 z" fill="#1B49DD" stroke="none"/>
+<path d="M2.525,12.475 L2.8606102,12.375674 A0.35,0.35,0,0,1,2.8702407,12.532522 z" fill="#009933" stroke="none"/>
+<path d="M2.525,12.475 L2.8702407,12.532522 A0.35,0.35,0,0,1,2.8281088,12.65 z" fill="#231977" stroke="none"/>
 <circle cx="2.525" cy="12.475" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 3.475 7.5)">
-<circle cx="3.475" cy="7.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="3.475" cy="7.5" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="3.475" cy="7.5" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.5943553668953663" stroke-width="0.35"/>
-<circle cx="3.475" cy="7.5" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.6736027491480818" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M3.475,7.5 L3.475,7.15 A0.35,0.35,0,0,1,3.7904413,7.6516466 z" fill="#EE2020" stroke="none"/>
+<path d="M3.475,7.5 L3.7904413,7.6516466 A0.35,0.35,0,0,1,3.3868077,7.8387065 z" fill="#DDDD00" stroke="none"/>
+<path d="M3.475,7.5 L3.3868077,7.8387065 A0.35,0.35,0,0,1,3.247505,7.765981 z" fill="#AF0000" stroke="none"/>
+<path d="M3.475,7.5 L3.247505,7.765981 A0.35,0.35,0,0,1,3.1540618,7.639638 z" fill="#009933" stroke="none"/>
 <circle cx="3.475" cy="7.5" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 3.525 8.55)">
-<circle cx="3.525" cy="8.55" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="3.525" cy="8.55" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.2410441210186763" stroke-width="0.35"/>
-<circle cx="3.525" cy="8.55" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.46557837073470354" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M3.525,8.55 L3.525,8.2 A0.35,0.35,0,0,1,3.8684747,8.482731 z" fill="#DDDD00" stroke="none"/>
+<path d="M3.525,8.55 L3.8684747,8.482731 A0.35,0.35,0,0,1,3.686978,8.860263 z" fill="#1B49DD" stroke="none"/>
+<path d="M3.525,8.55 L3.686978,8.860263 A0.35,0.35,0,0,1,3.5678182,8.897371 z" fill="#231977" stroke="none"/>
 <circle cx="3.525" cy="8.55" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 3.45 9.524999999999999)">
-<circle cx="3.45" cy="9.524999999999999" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="3.45" cy="9.524999999999999" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.2410441210186763" stroke-width="0.35"/>
-<circle cx="3.45" cy="9.524999999999999" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.32029150327139183" stroke-width="0.35"/>
-<circle cx="3.45" cy="9.524999999999999" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.3830290142214583" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M3.45,9.525 L3.45,9.175 A0.35,0.35,0,0,1,3.7934747,9.45773 z" fill="#DDDD00" stroke="none"/>
+<path d="M3.45,9.525 L3.7934747,9.45773 A0.35,0.35,0,0,1,3.7882867,9.614789 z" fill="#009933" stroke="none"/>
+<path d="M3.45,9.525 L3.7882867,9.614789 A0.35,0.35,0,0,1,3.7352755,9.727776 z" fill="#231977" stroke="none"/>
+<path d="M3.45,9.525 L3.7352755,9.727776 A0.35,0.35,0,0,1,3.6514275,9.811229 z" fill="#83CF39" stroke="none"/>
 <circle cx="3.45" cy="9.524999999999999" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 3.5 10.55)">
-<circle cx="3.5" cy="10.55" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="3.5" cy="10.55" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.22453424971602726" stroke-width="0.35"/>
-<circle cx="3.5" cy="10.55" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.30378163196874275" stroke-width="0.35"/>
-<circle cx="3.5" cy="10.55" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.36651914291880916" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M3.5,10.55 L3.5,10.2 A0.35,0.35,0,0,1,3.8356104,10.450674 z" fill="#1B49DD" stroke="none"/>
+<path d="M3.5,10.55 L3.8356104,10.450674 A0.35,0.35,0,0,1,3.8452408,10.607522 z" fill="#AF0000" stroke="none"/>
+<path d="M3.5,10.55 L3.8452408,10.607522 A0.35,0.35,0,0,1,3.803109,10.725 z" fill="#231977" stroke="none"/>
+<path d="M3.5,10.55 L3.803109,10.725 A0.35,0.35,0,0,1,3.727495,10.815981 z" fill="#83CF39" stroke="none"/>
 <circle cx="3.5" cy="10.55" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 3.5 11.5)">
-<circle cx="3.5" cy="11.5" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="3.5" cy="11.5" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.22453424971602726" stroke-width="0.35"/>
-<circle cx="3.5" cy="11.5" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.30378163196874275" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M3.5,11.5 L3.5,11.15 A0.35,0.35,0,0,1,3.8356104,11.400674 z" fill="#1B49DD" stroke="none"/>
+<path d="M3.5,11.5 L3.8356104,11.400674 A0.35,0.35,0,0,1,3.8452408,11.557523 z" fill="#AF0000" stroke="none"/>
+<path d="M3.5,11.5 L3.8452408,11.557523 A0.35,0.35,0,0,1,3.803109,11.675 z" fill="#231977" stroke="none"/>
 <circle cx="3.5" cy="11.5" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 3.525 12.525)">
-<circle cx="3.525" cy="12.525" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="3.525" cy="12.525" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.22453424971602726" stroke-width="0.35"/>
-<circle cx="3.525" cy="12.525" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.30378163196874275" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M3.525,12.525 L3.525,12.175 A0.35,0.35,0,0,1,3.8606102,12.4256735 z" fill="#1B49DD" stroke="none"/>
+<path d="M3.525,12.525 L3.8606102,12.4256735 A0.35,0.35,0,0,1,3.8702407,12.582522 z" fill="#AF0000" stroke="none"/>
+<path d="M3.525,12.525 L3.8702407,12.582522 A0.35,0.35,0,0,1,3.8102756,12.727776 z" fill="#009933" stroke="none"/>
 <circle cx="3.525" cy="12.525" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 3.525 13.475)">
-<circle cx="3.525" cy="13.475" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="3.525" cy="13.475" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.22453424971602726" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M3.525,13.475 L3.525,13.125 A0.35,0.35,0,0,1,3.8606102,13.375674 z" fill="#1B49DD" stroke="none"/>
+<path d="M3.525,13.475 L3.8606102,13.375674 A0.35,0.35,0,0,1,3.8702407,13.532522 z" fill="#AF0000" stroke="none"/>
 <circle cx="3.525" cy="13.475" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 4.525 4.525)">
-<circle cx="4.525" cy="4.525" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="4.525" cy="4.525" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.2410441210186763" stroke-width="0.35"/>
-<circle cx="4.525" cy="4.525" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.32029150327139183" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M4.525,4.525 L4.525,4.175 A0.35,0.35,0,0,1,4.8684745,4.457731 z" fill="#DDDD00" stroke="none"/>
+<path d="M4.525,4.525 L4.8684745,4.457731 A0.35,0.35,0,0,1,4.863287,4.614789 z" fill="#009933" stroke="none"/>
+<path d="M4.525,4.525 L4.863287,4.614789 A0.35,0.35,0,0,1,4.8140507,4.722357 z" fill="#83CF39" stroke="none"/>
 <circle cx="4.525" cy="4.525" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 4.525 5.525)">
-<circle cx="4.525" cy="5.525" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="4.525" cy="5.525" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.2410441210186763" stroke-width="0.35"/>
-<circle cx="4.525" cy="5.525" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.32029150327139183" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M4.525,5.525 L4.525,5.175 A0.35,0.35,0,0,1,4.8684745,5.457731 z" fill="#DDDD00" stroke="none"/>
+<path d="M4.525,5.525 L4.8684745,5.457731 A0.35,0.35,0,0,1,4.863287,5.614789 z" fill="#AF0000" stroke="none"/>
+<path d="M4.525,5.525 L4.863287,5.614789 A0.35,0.35,0,0,1,4.8140507,5.722357 z" fill="#83CF39" stroke="none"/>
 <circle cx="4.525" cy="5.525" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 4.525 6.5)">
-<circle cx="4.525" cy="6.5" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="4.525" cy="6.5" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.2410441210186763" stroke-width="0.35"/>
-<circle cx="4.525" cy="6.5" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.32029150327139183" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M4.525,6.5 L4.525,6.15 A0.35,0.35,0,0,1,4.8684745,6.4327307 z" fill="#DDDD00" stroke="none"/>
+<path d="M4.525,6.5 L4.8684745,6.4327307 A0.35,0.35,0,0,1,4.863287,6.589789 z" fill="#AF0000" stroke="none"/>
+<path d="M4.525,6.5 L4.863287,6.589789 A0.35,0.35,0,0,1,4.8102756,6.7027755 z" fill="#231977" stroke="none"/>
 <circle cx="4.525" cy="6.5" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 4.475 7.475)">
-<circle cx="4.475" cy="7.475" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="4.475" cy="7.475" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="4.475" cy="7.475" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.5943553668953663" stroke-width="0.35"/>
-<circle cx="4.475" cy="7.475" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.6736027491480818" stroke-width="0.35"/>
-<circle cx="4.475" cy="7.475" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.7528501314007974" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M4.475,7.475 L4.475,7.125 A0.35,0.35,0,0,1,4.7904415,7.626647 z" fill="#EE2020" stroke="none"/>
+<path d="M4.475,7.475 L4.7904415,7.626647 A0.35,0.35,0,0,1,4.3868074,7.8137064 z" fill="#DDDD00" stroke="none"/>
+<path d="M4.475,7.475 L4.3868074,7.8137064 A0.35,0.35,0,0,1,4.2475047,7.740981 z" fill="#AF0000" stroke="none"/>
+<path d="M4.475,7.475 L4.2475047,7.740981 A0.35,0.35,0,0,1,4.154062,7.614638 z" fill="#009933" stroke="none"/>
+<path d="M4.475,7.475 L4.154062,7.614638 A0.35,0.35,0,0,1,4.125471,7.4931526 z" fill="#231977" stroke="none"/>
 <circle cx="4.475" cy="7.475" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g transform="rotate(-90 4.525 8.5)">
-<circle cx="4.525" cy="8.5" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="4.525" cy="8.5" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.2410441210186763" stroke-width="0.35"/>
-<circle cx="4.525" cy="8.5" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.46557837073470354" stroke-width="0.35"/>
-<circle cx="4.525" cy="8.5" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.5448257529874191" stroke-width="0.35"/>
+<g>
+<path d="M4.525,8.5 L4.525,8.15 A0.35,0.35,0,0,1,4.8684745,8.432731 z" fill="#DDDD00" stroke="none"/>
+<path d="M4.525,8.5 L4.8684745,8.432731 A0.35,0.35,0,0,1,4.686978,8.810263 z" fill="#1B49DD" stroke="none"/>
+<path d="M4.525,8.5 L4.686978,8.810263 A0.35,0.35,0,0,1,4.5349045,8.84986 z" fill="#AF0000" stroke="none"/>
+<path d="M4.525,8.5 L4.5349045,8.84986 A0.35,0.35,0,0,1,4.4115195,8.831093 z" fill="#231977" stroke="none"/>
 <circle cx="4.525" cy="8.5" fill="transparent" r="0.35" stroke="white" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 4.525 9.6)">
-<circle cx="4.525" cy="9.6" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="4.525" cy="9.6" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="4.525" cy="9.6" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.5778454955927173" stroke-width="0.35"/>
-<circle cx="4.525" cy="9.6" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.6570928778454328" stroke-width="0.35"/>
-<circle cx="4.525" cy="9.6" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.7363402600981483" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M4.525,9.6 L4.525,9.25 A0.35,0.35,0,0,1,4.840441,9.751647 z" fill="#EE2020" stroke="none"/>
+<path d="M4.525,9.6 L4.840441,9.751647 A0.35,0.35,0,0,1,4.4691067,9.945508 z" fill="#1B49DD" stroke="none"/>
+<path d="M4.525,9.6 L4.4691067,9.945508 A0.35,0.35,0,0,1,4.3235726,9.886229 z" fill="#AF0000" stroke="none"/>
+<path d="M4.525,9.6 L4.3235726,9.886229 A0.35,0.35,0,0,1,4.218643,9.76925 z" fill="#009933" stroke="none"/>
+<path d="M4.525,9.6 L4.218643,9.76925 A0.35,0.35,0,0,1,4.179759,9.657522 z" fill="#83CF39" stroke="none"/>
 <circle cx="4.525" cy="9.6" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 4.475 10.55)">
-<circle cx="4.475" cy="10.55" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="4.475" cy="10.55" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="4.475" cy="10.55" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.5778454955927173" stroke-width="0.35"/>
-<circle cx="4.475" cy="10.55" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.6570928778454328" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M4.475,10.55 L4.475,10.2 A0.35,0.35,0,0,1,4.7904415,10.701647 z" fill="#EE2020" stroke="none"/>
+<path d="M4.475,10.55 L4.7904415,10.701647 A0.35,0.35,0,0,1,4.419107,10.895508 z" fill="#1B49DD" stroke="none"/>
+<path d="M4.475,10.55 L4.419107,10.895508 A0.35,0.35,0,0,1,4.2735724,10.836229 z" fill="#AF0000" stroke="none"/>
+<path d="M4.475,10.55 L4.2735724,10.836229 A0.35,0.35,0,0,1,4.1897244,10.752775 z" fill="#83CF39" stroke="none"/>
 <circle cx="4.475" cy="10.55" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 4.55 11.5)">
-<circle cx="4.55" cy="11.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="4.55" cy="11.5" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="4.55" cy="11.5" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.5778454955927173" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M4.55,11.5 L4.55,11.15 A0.35,0.35,0,0,1,4.8654413,11.651647 z" fill="#EE2020" stroke="none"/>
+<path d="M4.55,11.5 L4.8654413,11.651647 A0.35,0.35,0,0,1,4.494107,11.845509 z" fill="#1B49DD" stroke="none"/>
+<path d="M4.55,11.5 L4.494107,11.845509 A0.35,0.35,0,0,1,4.382197,11.807152 z" fill="#83CF39" stroke="none"/>
 <circle cx="4.55" cy="11.5" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 4.55 12.475)">
-<circle cx="4.55" cy="12.475" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="4.55" cy="12.475" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.22453424971602726" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M4.55,12.475 L4.55,12.125 A0.35,0.35,0,0,1,4.8856106,12.375674 z" fill="#1B49DD" stroke="none"/>
+<path d="M4.55,12.475 L4.8856106,12.375674 A0.35,0.35,0,0,1,4.899529,12.493153 z" fill="#83CF39" stroke="none"/>
 <circle cx="4.55" cy="12.475" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 5.475 2.525)">
-<circle cx="5.475" cy="2.525" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="5.475" cy="2.525" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.22453424971602726" stroke-width="0.35"/>
-<circle cx="5.475" cy="2.525" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.30378163196874275" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M5.475,2.525 L5.475,2.175 A0.35,0.35,0,0,1,5.8106103,2.4256737 z" fill="#1B49DD" stroke="none"/>
+<path d="M5.475,2.525 L5.8106103,2.4256737 A0.35,0.35,0,0,1,5.820241,2.5825224 z" fill="#009933" stroke="none"/>
+<path d="M5.475,2.525 L5.820241,2.5825224 A0.35,0.35,0,0,1,5.781357,2.69425 z" fill="#83CF39" stroke="none"/>
 <circle cx="5.475" cy="2.525" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 5.55 3.5)">
-<circle cx="5.55" cy="3.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="5.55" cy="3.5" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="5.55" cy="3.5" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.5778454955927173" stroke-width="0.35"/>
-<circle cx="5.55" cy="3.5" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.6570928778454328" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M5.55,3.5 L5.55,3.15 A0.35,0.35,0,0,1,5.8654413,3.6516469 z" fill="#EE2020" stroke="none"/>
+<path d="M5.55,3.5 L5.8654413,3.6516469 A0.35,0.35,0,0,1,5.494107,3.8455083 z" fill="#1B49DD" stroke="none"/>
+<path d="M5.55,3.5 L5.494107,3.8455083 A0.35,0.35,0,0,1,5.3485727,3.786229 z" fill="#009933" stroke="none"/>
+<path d="M5.55,3.5 L5.3485727,3.786229 A0.35,0.35,0,0,1,5.2647243,3.7027752 z" fill="#83CF39" stroke="none"/>
 <circle cx="5.55" cy="3.5" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g transform="rotate(-90 5.475 4.525)">
-<circle cx="5.475" cy="4.525" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="5.475" cy="4.525" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.2410441210186763" stroke-width="0.35"/>
-<circle cx="5.475" cy="4.525" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.46557837073470354" stroke-width="0.35"/>
-<circle cx="5.475" cy="4.525" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.5448257529874191" stroke-width="0.35"/>
+<g>
+<path d="M5.475,4.525 L5.475,4.175 A0.35,0.35,0,0,1,5.818475,4.457731 z" fill="#DDDD00" stroke="none"/>
+<path d="M5.475,4.525 L5.818475,4.457731 A0.35,0.35,0,0,1,5.636978,4.835263 z" fill="#1B49DD" stroke="none"/>
+<path d="M5.475,4.525 L5.636978,4.835263 A0.35,0.35,0,0,1,5.484905,4.87486 z" fill="#009933" stroke="none"/>
+<path d="M5.475,4.525 L5.484905,4.87486 A0.35,0.35,0,0,1,5.3677864,4.8581743 z" fill="#83CF39" stroke="none"/>
 <circle cx="5.475" cy="4.525" fill="transparent" r="0.35" stroke="white" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 5.475 5.525)">
-<circle cx="5.475" cy="5.525" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="5.475" cy="5.525" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.2410441210186763" stroke-width="0.35"/>
-<circle cx="5.475" cy="5.525" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.32029150327139183" stroke-width="0.35"/>
-<circle cx="5.475" cy="5.525" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.3995388855241073" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M5.475,5.525 L5.475,5.175 A0.35,0.35,0,0,1,5.818475,5.457731 z" fill="#DDDD00" stroke="none"/>
+<path d="M5.475,5.525 L5.818475,5.457731 A0.35,0.35,0,0,1,5.813287,5.614789 z" fill="#AF0000" stroke="none"/>
+<path d="M5.475,5.525 L5.813287,5.614789 A0.35,0.35,0,0,1,5.739905,5.753747 z" fill="#009933" stroke="none"/>
+<path d="M5.475,5.525 L5.739905,5.753747 A0.35,0.35,0,0,1,5.648568,5.828931 z" fill="#83CF39" stroke="none"/>
 <circle cx="5.475" cy="5.525" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 5.45 6.5)">
-<circle cx="5.45" cy="6.5" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="5.45" cy="6.5" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.2410441210186763" stroke-width="0.35"/>
-<circle cx="5.45" cy="6.5" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.32029150327139183" stroke-width="0.35"/>
-<circle cx="5.45" cy="6.5" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.3830290142214583" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M5.45,6.5 L5.45,6.15 A0.35,0.35,0,0,1,5.7934747,6.4327307 z" fill="#DDDD00" stroke="none"/>
+<path d="M5.45,6.5 L5.7934747,6.4327307 A0.35,0.35,0,0,1,5.7882867,6.589789 z" fill="#AF0000" stroke="none"/>
+<path d="M5.45,6.5 L5.7882867,6.589789 A0.35,0.35,0,0,1,5.7352757,6.7027755 z" fill="#231977" stroke="none"/>
+<path d="M5.45,6.5 L5.7352757,6.7027755 A0.35,0.35,0,0,1,5.6514273,6.786229 z" fill="#83CF39" stroke="none"/>
 <circle cx="5.45" cy="6.5" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 5.525 7.475)">
-<circle cx="5.525" cy="7.475" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="5.525" cy="7.475" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="5.525" cy="7.475" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.5943553668953663" stroke-width="0.35"/>
-<circle cx="5.525" cy="7.475" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.6736027491480818" stroke-width="0.35"/>
-<circle cx="5.525" cy="7.475" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.7528501314007974" stroke-width="0.35"/>
-<circle cx="5.525" cy="7.475" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.8155876423508638" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M5.525,7.475 L5.525,7.125 A0.35,0.35,0,0,1,5.840441,7.626647 z" fill="#EE2020" stroke="none"/>
+<path d="M5.525,7.475 L5.840441,7.626647 A0.35,0.35,0,0,1,5.4368076,7.8137064 z" fill="#DDDD00" stroke="none"/>
+<path d="M5.525,7.475 L5.4368076,7.8137064 A0.35,0.35,0,0,1,5.297505,7.740981 z" fill="#AF0000" stroke="none"/>
+<path d="M5.525,7.475 L5.297505,7.740981 A0.35,0.35,0,0,1,5.204062,7.614638 z" fill="#009933" stroke="none"/>
+<path d="M5.525,7.475 L5.204062,7.614638 A0.35,0.35,0,0,1,5.175471,7.4931526 z" fill="#231977" stroke="none"/>
+<path d="M5.525,7.475 L5.175471,7.4931526 A0.35,0.35,0,0,1,5.1893897,7.375674 z" fill="#83CF39" stroke="none"/>
 <circle cx="5.525" cy="7.475" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 5.475 8.524999999999999)">
-<circle cx="5.475" cy="8.524999999999999" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="5.475" cy="8.524999999999999" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.2410441210186763" stroke-width="0.35"/>
-<circle cx="5.475" cy="8.524999999999999" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.46557837073470354" stroke-width="0.35"/>
-<circle cx="5.475" cy="8.524999999999999" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.5448257529874191" stroke-width="0.35"/>
-<circle cx="5.475" cy="8.524999999999999" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.6075632639374855" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M5.475,8.525 L5.475,8.175 A0.35,0.35,0,0,1,5.818475,8.45773 z" fill="#DDDD00" stroke="none"/>
+<path d="M5.475,8.525 L5.818475,8.45773 A0.35,0.35,0,0,1,5.636978,8.835263 z" fill="#1B49DD" stroke="none"/>
+<path d="M5.475,8.525 L5.636978,8.835263 A0.35,0.35,0,0,1,5.484905,8.87486 z" fill="#AF0000" stroke="none"/>
+<path d="M5.475,8.525 L5.484905,8.87486 A0.35,0.35,0,0,1,5.3615193,8.856092 z" fill="#231977" stroke="none"/>
+<path d="M5.475,8.525 L5.3615193,8.856092 A0.35,0.35,0,0,1,5.257702,8.799375 z" fill="#83CF39" stroke="none"/>
 <circle cx="5.475" cy="8.524999999999999" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 5.55 9.55)">
-<circle cx="5.55" cy="9.55" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="5.55" cy="9.55" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="5.55" cy="9.55" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.5778454955927173" stroke-width="0.35"/>
-<circle cx="5.55" cy="9.55" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.6570928778454328" stroke-width="0.35"/>
-<circle cx="5.55" cy="9.55" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.7198303887954992" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M5.55,9.55 L5.55,9.2 A0.35,0.35,0,0,1,5.8654413,9.701647 z" fill="#EE2020" stroke="none"/>
+<path d="M5.55,9.55 L5.8654413,9.701647 A0.35,0.35,0,0,1,5.494107,9.895508 z" fill="#1B49DD" stroke="none"/>
+<path d="M5.55,9.55 L5.494107,9.895508 A0.35,0.35,0,0,1,5.3485727,9.836229 z" fill="#009933" stroke="none"/>
+<path d="M5.55,9.55 L5.3485727,9.836229 A0.35,0.35,0,0,1,5.260949,9.747356 z" fill="#231977" stroke="none"/>
+<path d="M5.55,9.55 L5.260949,9.747356 A0.35,0.35,0,0,1,5.2117133,9.639789 z" fill="#83CF39" stroke="none"/>
 <circle cx="5.55" cy="9.55" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 5.55 10.5)">
-<circle cx="5.55" cy="10.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="5.55" cy="10.5" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="5.55" cy="10.5" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.5778454955927173" stroke-width="0.35"/>
-<circle cx="5.55" cy="10.5" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.6570928778454328" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M5.55,10.5 L5.55,10.15 A0.35,0.35,0,0,1,5.8654413,10.651647 z" fill="#EE2020" stroke="none"/>
+<path d="M5.55,10.5 L5.8654413,10.651647 A0.35,0.35,0,0,1,5.494107,10.845509 z" fill="#1B49DD" stroke="none"/>
+<path d="M5.55,10.5 L5.494107,10.845509 A0.35,0.35,0,0,1,5.3485727,10.786229 z" fill="#009933" stroke="none"/>
+<path d="M5.55,10.5 L5.3485727,10.786229 A0.35,0.35,0,0,1,5.260949,10.697357 z" fill="#231977" stroke="none"/>
 <circle cx="5.55" cy="10.5" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 5.525 11.5)">
-<circle cx="5.525" cy="11.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="5.525" cy="11.5" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="5.525" cy="11.5" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.5778454955927173" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M5.525,11.5 L5.525,11.15 A0.35,0.35,0,0,1,5.840441,11.651647 z" fill="#EE2020" stroke="none"/>
+<path d="M5.525,11.5 L5.840441,11.651647 A0.35,0.35,0,0,1,5.4691067,11.845509 z" fill="#1B49DD" stroke="none"/>
+<path d="M5.525,11.5 L5.4691067,11.845509 A0.35,0.35,0,0,1,5.3235726,11.786229 z" fill="#009933" stroke="none"/>
 <circle cx="5.525" cy="11.5" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 5.525 12.475)">
-<circle cx="5.525" cy="12.475" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="5.525" cy="12.475" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.22453424971602726" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M5.525,12.475 L5.525,12.125 A0.35,0.35,0,0,1,5.8606105,12.375674 z" fill="#1B49DD" stroke="none"/>
+<path d="M5.525,12.475 L5.8606105,12.375674 A0.35,0.35,0,0,1,5.8702407,12.532522 z" fill="#009933" stroke="none"/>
 <circle cx="5.525" cy="12.475" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 6.475 1.5)">
-<circle cx="6.475" cy="1.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M6.475,1.5 L6.475,1.15 A0.35,0.35,0,0,1,6.7904415,1.6516467 z" fill="#EE2020" stroke="none"/>
 <circle cx="6.475" cy="1.5" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g transform="rotate(-90 6.55 2.5)">
-<circle cx="6.55" cy="2.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="6.55" cy="2.5" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
+<g>
+<path d="M6.55,2.5 L6.55,2.15 A0.35,0.35,0,0,1,6.8654413,2.6516469 z" fill="#EE2020" stroke="none"/>
+<path d="M6.55,2.5 L6.8654413,2.6516469 A0.35,0.35,0,0,1,6.4618077,2.8387065 z" fill="#DDDD00" stroke="none"/>
 <circle cx="6.55" cy="2.5" fill="transparent" r="0.35" stroke="white" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 6.55 3.5)">
-<circle cx="6.55" cy="3.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="6.55" cy="3.5" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="6.55" cy="3.5" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.5943553668953663" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M6.55,3.5 L6.55,3.15 A0.35,0.35,0,0,1,6.8654413,3.6516469 z" fill="#EE2020" stroke="none"/>
+<path d="M6.55,3.5 L6.8654413,3.6516469 A0.35,0.35,0,0,1,6.4618077,3.8387065 z" fill="#DDDD00" stroke="none"/>
+<path d="M6.55,3.5 L6.4618077,3.8387065 A0.35,0.35,0,0,1,6.200191,3.5115547 z" fill="#1B49DD" stroke="none"/>
 <circle cx="6.55" cy="3.5" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 6.55 4.5)">
-<circle cx="6.55" cy="4.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="6.55" cy="4.5" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="6.55" cy="4.5" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.5943553668953663" stroke-width="0.35"/>
-<circle cx="6.55" cy="4.5" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.8188896166113935" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M6.55,4.5 L6.55,4.15 A0.35,0.35,0,0,1,6.8654413,4.6516466 z" fill="#EE2020" stroke="none"/>
+<path d="M6.55,4.5 L6.8654413,4.6516466 A0.35,0.35,0,0,1,6.4618077,4.8387065 z" fill="#DDDD00" stroke="none"/>
+<path d="M6.55,4.5 L6.4618077,4.8387065 A0.35,0.35,0,0,1,6.200191,4.5115547 z" fill="#1B49DD" stroke="none"/>
+<path d="M6.55,4.5 L6.200191,4.5115547 A0.35,0.35,0,0,1,6.2303934,4.357341 z" fill="#AF0000" stroke="none"/>
 <circle cx="6.55" cy="4.5" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 6.525 5.5)">
-<circle cx="6.525" cy="5.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="6.525" cy="5.5" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="6.525" cy="5.5" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.5943553668953663" stroke-width="0.35"/>
-<circle cx="6.525" cy="5.5" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.8188896166113935" stroke-width="0.35"/>
-<circle cx="6.525" cy="5.5" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.898136998864109" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M6.525,5.5 L6.525,5.15 A0.35,0.35,0,0,1,6.840441,5.6516466 z" fill="#EE2020" stroke="none"/>
+<path d="M6.525,5.5 L6.840441,5.6516466 A0.35,0.35,0,0,1,6.4368076,5.8387065 z" fill="#DDDD00" stroke="none"/>
+<path d="M6.525,5.5 L6.4368076,5.8387065 A0.35,0.35,0,0,1,6.175191,5.5115547 z" fill="#1B49DD" stroke="none"/>
+<path d="M6.525,5.5 L6.175191,5.5115547 A0.35,0.35,0,0,1,6.2053933,5.357341 z" fill="#AF0000" stroke="none"/>
+<path d="M6.525,5.5 L6.2053933,5.357341 A0.35,0.35,0,0,1,6.3000245,5.2318845 z" fill="#009933" stroke="none"/>
 <circle cx="6.525" cy="5.5" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 6.525 6.5)">
-<circle cx="6.525" cy="6.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="6.525" cy="6.5" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="6.525" cy="6.5" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.5943553668953663" stroke-width="0.35"/>
-<circle cx="6.525" cy="6.5" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.8188896166113935" stroke-width="0.35"/>
-<circle cx="6.525" cy="6.5" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.898136998864109" stroke-width="0.35"/>
-<circle cx="6.525" cy="6.5" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.9773843811168246" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M6.525,6.5 L6.525,6.15 A0.35,0.35,0,0,1,6.840441,6.6516466 z" fill="#EE2020" stroke="none"/>
+<path d="M6.525,6.5 L6.840441,6.6516466 A0.35,0.35,0,0,1,6.4368076,6.8387065 z" fill="#DDDD00" stroke="none"/>
+<path d="M6.525,6.5 L6.4368076,6.8387065 A0.35,0.35,0,0,1,6.175191,6.5115547 z" fill="#1B49DD" stroke="none"/>
+<path d="M6.525,6.5 L6.175191,6.5115547 A0.35,0.35,0,0,1,6.2053933,6.357341 z" fill="#AF0000" stroke="none"/>
+<path d="M6.525,6.5 L6.2053933,6.357341 A0.35,0.35,0,0,1,6.3000245,6.2318845 z" fill="#009933" stroke="none"/>
+<path d="M6.525,6.5 L6.3000245,6.2318845 A0.35,0.35,0,0,1,6.408401,6.169993 z" fill="#231977" stroke="none"/>
 <circle cx="6.525" cy="6.5" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 6.525 7.5)">
-<circle cx="6.525" cy="7.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="6.525" cy="7.5" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="6.525" cy="7.5" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.5943553668953663" stroke-width="0.35"/>
-<circle cx="6.525" cy="7.5" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.8188896166113935" stroke-width="0.35"/>
-<circle cx="6.525" cy="7.5" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.898136998864109" stroke-width="0.35"/>
-<circle cx="6.525" cy="7.5" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.9773843811168246" stroke-width="0.35"/>
-<circle cx="6.525" cy="7.5" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-1.040121892066891" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M6.525,7.5 L6.525,7.15 A0.35,0.35,0,0,1,6.840441,7.6516466 z" fill="#EE2020" stroke="none"/>
+<path d="M6.525,7.5 L6.840441,7.6516466 A0.35,0.35,0,0,1,6.4368076,7.8387065 z" fill="#DDDD00" stroke="none"/>
+<path d="M6.525,7.5 L6.4368076,7.8387065 A0.35,0.35,0,0,1,6.175191,7.5115547 z" fill="#1B49DD" stroke="none"/>
+<path d="M6.525,7.5 L6.175191,7.5115547 A0.35,0.35,0,0,1,6.2053933,7.357341 z" fill="#AF0000" stroke="none"/>
+<path d="M6.525,7.5 L6.2053933,7.357341 A0.35,0.35,0,0,1,6.3000245,7.2318845 z" fill="#009933" stroke="none"/>
+<path d="M6.525,7.5 L6.3000245,7.2318845 A0.35,0.35,0,0,1,6.408401,7.169993 z" fill="#231977" stroke="none"/>
+<path d="M6.525,7.5 L6.408401,7.169993 A0.35,0.35,0,0,1,6.525,7.15 z" fill="#83CF39" stroke="none"/>
 <circle cx="6.525" cy="7.5" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 6.55 8.5)">
-<circle cx="6.55" cy="8.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="6.55" cy="8.5" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="6.55" cy="8.5" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.5778454955927173" stroke-width="0.35"/>
-<circle cx="6.55" cy="8.5" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.6570928778454328" stroke-width="0.35"/>
-<circle cx="6.55" cy="8.5" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.7363402600981483" stroke-width="0.35"/>
-<circle cx="6.55" cy="8.5" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.7990777710482148" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M6.55,8.5 L6.55,8.15 A0.35,0.35,0,0,1,6.8654413,8.651647 z" fill="#EE2020" stroke="none"/>
+<path d="M6.55,8.5 L6.8654413,8.651647 A0.35,0.35,0,0,1,6.494107,8.845509 z" fill="#1B49DD" stroke="none"/>
+<path d="M6.55,8.5 L6.494107,8.845509 A0.35,0.35,0,0,1,6.3485727,8.786229 z" fill="#AF0000" stroke="none"/>
+<path d="M6.55,8.5 L6.3485727,8.786229 A0.35,0.35,0,0,1,6.2436433,8.66925 z" fill="#009933" stroke="none"/>
+<path d="M6.55,8.5 L6.2436433,8.66925 A0.35,0.35,0,0,1,6.2037354,8.550999 z" fill="#231977" stroke="none"/>
+<path d="M6.55,8.5 L6.2037354,8.550999 A0.35,0.35,0,0,1,6.2065253,8.432731 z" fill="#83CF39" stroke="none"/>
 <circle cx="6.55" cy="8.5" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 6.5 9.5)">
-<circle cx="6.5" cy="9.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="6.5" cy="9.5" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="6.5" cy="9.5" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.5778454955927173" stroke-width="0.35"/>
-<circle cx="6.5" cy="9.5" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.6570928778454328" stroke-width="0.35"/>
-<circle cx="6.5" cy="9.5" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.7363402600981483" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M6.5,9.5 L6.5,9.15 A0.35,0.35,0,0,1,6.815441,9.651647 z" fill="#EE2020" stroke="none"/>
+<path d="M6.5,9.5 L6.815441,9.651647 A0.35,0.35,0,0,1,6.4441066,9.845509 z" fill="#1B49DD" stroke="none"/>
+<path d="M6.5,9.5 L6.4441066,9.845509 A0.35,0.35,0,0,1,6.2985725,9.786229 z" fill="#AF0000" stroke="none"/>
+<path d="M6.5,9.5 L6.2985725,9.786229 A0.35,0.35,0,0,1,6.193643,9.66925 z" fill="#009933" stroke="none"/>
+<path d="M6.5,9.5 L6.193643,9.66925 A0.35,0.35,0,0,1,6.1537356,9.550999 z" fill="#231977" stroke="none"/>
 <circle cx="6.5" cy="9.5" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 6.5 10.5)">
-<circle cx="6.5" cy="10.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="6.5" cy="10.5" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="6.5" cy="10.5" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.5778454955927173" stroke-width="0.35"/>
-<circle cx="6.5" cy="10.5" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.6570928778454328" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M6.5,10.5 L6.5,10.15 A0.35,0.35,0,0,1,6.815441,10.651647 z" fill="#EE2020" stroke="none"/>
+<path d="M6.5,10.5 L6.815441,10.651647 A0.35,0.35,0,0,1,6.4441066,10.845509 z" fill="#1B49DD" stroke="none"/>
+<path d="M6.5,10.5 L6.4441066,10.845509 A0.35,0.35,0,0,1,6.2985725,10.786229 z" fill="#AF0000" stroke="none"/>
+<path d="M6.5,10.5 L6.2985725,10.786229 A0.35,0.35,0,0,1,6.193643,10.66925 z" fill="#009933" stroke="none"/>
 <circle cx="6.5" cy="10.5" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 6.5 11.5)">
-<circle cx="6.5" cy="11.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="6.5" cy="11.5" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="6.5" cy="11.5" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.5778454955927173" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M6.5,11.5 L6.5,11.15 A0.35,0.35,0,0,1,6.815441,11.651647 z" fill="#EE2020" stroke="none"/>
+<path d="M6.5,11.5 L6.815441,11.651647 A0.35,0.35,0,0,1,6.4441066,11.845509 z" fill="#1B49DD" stroke="none"/>
+<path d="M6.5,11.5 L6.4441066,11.845509 A0.35,0.35,0,0,1,6.2985725,11.786229 z" fill="#AF0000" stroke="none"/>
 <circle cx="6.5" cy="11.5" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g transform="rotate(-90 6.5 12.5)">
-<circle cx="6.5" cy="12.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="6.5" cy="12.5" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
+<g>
+<path d="M6.5,12.5 L6.5,12.15 A0.35,0.35,0,0,1,6.815441,12.651647 z" fill="#EE2020" stroke="none"/>
+<path d="M6.5,12.5 L6.815441,12.651647 A0.35,0.35,0,0,1,6.4441066,12.845509 z" fill="#1B49DD" stroke="none"/>
 <circle cx="6.5" cy="12.5" fill="transparent" r="0.35" stroke="white" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 6.475 13.5)">
-<circle cx="6.475" cy="13.5" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M6.475,13.5 L6.475,13.15 A0.35,0.35,0,0,1,6.8106103,13.400674 z" fill="#1B49DD" stroke="none"/>
 <circle cx="6.475" cy="13.5" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 7.525 1.5)">
-<circle cx="7.525" cy="1.5" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M7.525,1.5 L7.525,1.15 A0.35,0.35,0,0,1,7.678133,1.1852775 z" fill="#009933" stroke="none"/>
 <circle cx="7.525" cy="1.5" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 7.525 2.5)">
-<circle cx="7.525" cy="2.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="7.525" cy="2.5" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M7.525,2.5 L7.525,2.15 A0.35,0.35,0,0,1,7.840441,2.6516469 z" fill="#EE2020" stroke="none"/>
+<path d="M7.525,2.5 L7.840441,2.6516469 A0.35,0.35,0,0,1,7.742298,2.7743747 z" fill="#009933" stroke="none"/>
 <circle cx="7.525" cy="2.5" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 7.525 3.5)">
-<circle cx="7.525" cy="3.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="7.525" cy="3.5" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="7.525" cy="3.5" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.5943553668953663" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M7.525,3.5 L7.525,3.15 A0.35,0.35,0,0,1,7.840441,3.6516469 z" fill="#EE2020" stroke="none"/>
+<path d="M7.525,3.5 L7.840441,3.6516469 A0.35,0.35,0,0,1,7.4368076,3.8387065 z" fill="#DDDD00" stroke="none"/>
+<path d="M7.525,3.5 L7.4368076,3.8387065 A0.35,0.35,0,0,1,7.297505,3.7659812 z" fill="#009933" stroke="none"/>
 <circle cx="7.525" cy="3.5" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 7.525 4.5)">
-<circle cx="7.525" cy="4.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="7.525" cy="4.5" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="7.525" cy="4.5" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.5943553668953663" stroke-width="0.35"/>
-<circle cx="7.525" cy="4.5" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.8188896166113935" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M7.525,4.5 L7.525,4.15 A0.35,0.35,0,0,1,7.840441,4.6516466 z" fill="#EE2020" stroke="none"/>
+<path d="M7.525,4.5 L7.840441,4.6516466 A0.35,0.35,0,0,1,7.4368076,4.8387065 z" fill="#DDDD00" stroke="none"/>
+<path d="M7.525,4.5 L7.4368076,4.8387065 A0.35,0.35,0,0,1,7.175191,4.5115547 z" fill="#1B49DD" stroke="none"/>
+<path d="M7.525,4.5 L7.175191,4.5115547 A0.35,0.35,0,0,1,7.2053933,4.357341 z" fill="#009933" stroke="none"/>
 <circle cx="7.525" cy="4.5" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 7.525 5.5)">
-<circle cx="7.525" cy="5.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="7.525" cy="5.5" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="7.525" cy="5.5" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.5943553668953663" stroke-width="0.35"/>
-<circle cx="7.525" cy="5.5" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.8188896166113935" stroke-width="0.35"/>
-<circle cx="7.525" cy="5.5" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.898136998864109" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M7.525,5.5 L7.525,5.15 A0.35,0.35,0,0,1,7.840441,5.6516466 z" fill="#EE2020" stroke="none"/>
+<path d="M7.525,5.5 L7.840441,5.6516466 A0.35,0.35,0,0,1,7.4368076,5.8387065 z" fill="#DDDD00" stroke="none"/>
+<path d="M7.525,5.5 L7.4368076,5.8387065 A0.35,0.35,0,0,1,7.175191,5.5115547 z" fill="#1B49DD" stroke="none"/>
+<path d="M7.525,5.5 L7.175191,5.5115547 A0.35,0.35,0,0,1,7.2053933,5.357341 z" fill="#009933" stroke="none"/>
+<path d="M7.525,5.5 L7.2053933,5.357341 A0.35,0.35,0,0,1,7.275768,5.25427 z" fill="#231977" stroke="none"/>
 <circle cx="7.525" cy="5.5" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 7.525 6.475)">
-<circle cx="7.525" cy="6.475" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="7.525" cy="6.475" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="7.525" cy="6.475" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.5943553668953663" stroke-width="0.35"/>
-<circle cx="7.525" cy="6.475" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.8188896166113935" stroke-width="0.35"/>
-<circle cx="7.525" cy="6.475" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.898136998864109" stroke-width="0.35"/>
-<circle cx="7.525" cy="6.475" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.9608745098141754" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M7.525,6.475 L7.525,6.125 A0.35,0.35,0,0,1,7.840441,6.626647 z" fill="#EE2020" stroke="none"/>
+<path d="M7.525,6.475 L7.840441,6.626647 A0.35,0.35,0,0,1,7.4368076,6.8137064 z" fill="#DDDD00" stroke="none"/>
+<path d="M7.525,6.475 L7.4368076,6.8137064 A0.35,0.35,0,0,1,7.175191,6.4865546 z" fill="#1B49DD" stroke="none"/>
+<path d="M7.525,6.475 L7.175191,6.4865546 A0.35,0.35,0,0,1,7.2053933,6.3323407 z" fill="#009933" stroke="none"/>
+<path d="M7.525,6.475 L7.2053933,6.3323407 A0.35,0.35,0,0,1,7.275768,6.22927 z" fill="#231977" stroke="none"/>
+<path d="M7.525,6.475 L7.275768,6.22927 A0.35,0.35,0,0,1,7.371867,6.1602774 z" fill="#83CF39" stroke="none"/>
 <circle cx="7.525" cy="6.475" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 7.5 7.5)">
-<circle cx="7.5" cy="7.5" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="7.5" cy="7.5" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.2410441210186763" stroke-width="0.35"/>
-<circle cx="7.5" cy="7.5" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.46557837073470354" stroke-width="0.35"/>
-<circle cx="7.5" cy="7.5" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.5448257529874191" stroke-width="0.35"/>
-<circle cx="7.5" cy="7.5" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.6240731352401346" stroke-width="0.35"/>
-<circle cx="7.5" cy="7.5" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.686810646190201" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M7.5,7.5 L7.5,7.15 A0.35,0.35,0,0,1,7.843475,7.4327307 z" fill="#DDDD00" stroke="none"/>
+<path d="M7.5,7.5 L7.843475,7.4327307 A0.35,0.35,0,0,1,7.6619782,7.810263 z" fill="#1B49DD" stroke="none"/>
+<path d="M7.5,7.5 L7.6619782,7.810263 A0.35,0.35,0,0,1,7.5099044,7.8498597 z" fill="#AF0000" stroke="none"/>
+<path d="M7.5,7.5 L7.5099044,7.8498597 A0.35,0.35,0,0,1,7.3558345,7.81893 z" fill="#009933" stroke="none"/>
+<path d="M7.5,7.5 L7.3558345,7.81893 A0.35,0.35,0,0,1,7.253097,7.7480702 z" fill="#231977" stroke="none"/>
+<path d="M7.5,7.5 L7.253097,7.7480702 A0.35,0.35,0,0,1,7.184559,7.6516466 z" fill="#83CF39" stroke="none"/>
 <circle cx="7.5" cy="7.5" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 7.525 8.5)">
-<circle cx="7.525" cy="8.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="7.525" cy="8.5" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="7.525" cy="8.5" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.5943553668953663" stroke-width="0.35"/>
-<circle cx="7.525" cy="8.5" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.8188896166113935" stroke-width="0.35"/>
-<circle cx="7.525" cy="8.5" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.898136998864109" stroke-width="0.35"/>
-<circle cx="7.525" cy="8.5" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.9773843811168246" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M7.525,8.5 L7.525,8.15 A0.35,0.35,0,0,1,7.840441,8.651647 z" fill="#EE2020" stroke="none"/>
+<path d="M7.525,8.5 L7.840441,8.651647 A0.35,0.35,0,0,1,7.4368076,8.838707 z" fill="#DDDD00" stroke="none"/>
+<path d="M7.525,8.5 L7.4368076,8.838707 A0.35,0.35,0,0,1,7.175191,8.511555 z" fill="#1B49DD" stroke="none"/>
+<path d="M7.525,8.5 L7.175191,8.511555 A0.35,0.35,0,0,1,7.2053933,8.357341 z" fill="#AF0000" stroke="none"/>
+<path d="M7.525,8.5 L7.2053933,8.357341 A0.35,0.35,0,0,1,7.3000245,8.231884 z" fill="#009933" stroke="none"/>
+<path d="M7.525,8.5 L7.3000245,8.231884 A0.35,0.35,0,0,1,7.4021955,8.172252 z" fill="#83CF39" stroke="none"/>
 <circle cx="7.525" cy="8.5" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 7.525 9.475)">
-<circle cx="7.525" cy="9.475" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="7.525" cy="9.475" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="7.525" cy="9.475" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.5943553668953663" stroke-width="0.35"/>
-<circle cx="7.525" cy="9.475" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.8188896166113935" stroke-width="0.35"/>
-<circle cx="7.525" cy="9.475" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.898136998864109" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M7.525,9.475 L7.525,9.125 A0.35,0.35,0,0,1,7.840441,9.626647 z" fill="#EE2020" stroke="none"/>
+<path d="M7.525,9.475 L7.840441,9.626647 A0.35,0.35,0,0,1,7.4368076,9.813706 z" fill="#DDDD00" stroke="none"/>
+<path d="M7.525,9.475 L7.4368076,9.813706 A0.35,0.35,0,0,1,7.175191,9.486555 z" fill="#1B49DD" stroke="none"/>
+<path d="M7.525,9.475 L7.175191,9.486555 A0.35,0.35,0,0,1,7.2053933,9.33234 z" fill="#AF0000" stroke="none"/>
+<path d="M7.525,9.475 L7.2053933,9.33234 A0.35,0.35,0,0,1,7.271176,9.234016 z" fill="#83CF39" stroke="none"/>
 <circle cx="7.525" cy="9.475" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 7.525 10.5)">
-<circle cx="7.525" cy="10.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="7.525" cy="10.5" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="7.525" cy="10.5" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.5943553668953663" stroke-width="0.35"/>
-<circle cx="7.525" cy="10.5" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.8188896166113935" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M7.525,10.5 L7.525,10.15 A0.35,0.35,0,0,1,7.840441,10.651647 z" fill="#EE2020" stroke="none"/>
+<path d="M7.525,10.5 L7.840441,10.651647 A0.35,0.35,0,0,1,7.4368076,10.838707 z" fill="#DDDD00" stroke="none"/>
+<path d="M7.525,10.5 L7.4368076,10.838707 A0.35,0.35,0,0,1,7.175191,10.511555 z" fill="#1B49DD" stroke="none"/>
+<path d="M7.525,10.5 L7.175191,10.511555 A0.35,0.35,0,0,1,7.1913233,10.39436 z" fill="#83CF39" stroke="none"/>
 <circle cx="7.525" cy="10.5" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 7.525 11.5)">
-<circle cx="7.525" cy="11.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="7.525" cy="11.5" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="7.525" cy="11.5" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.5943553668953663" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M7.525,11.5 L7.525,11.15 A0.35,0.35,0,0,1,7.840441,11.651647 z" fill="#EE2020" stroke="none"/>
+<path d="M7.525,11.5 L7.840441,11.651647 A0.35,0.35,0,0,1,7.4368076,11.838707 z" fill="#DDDD00" stroke="none"/>
+<path d="M7.525,11.5 L7.4368076,11.838707 A0.35,0.35,0,0,1,7.329009,11.789978 z" fill="#83CF39" stroke="none"/>
 <circle cx="7.525" cy="11.5" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 7.475 12.5)">
-<circle cx="7.475" cy="12.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="7.475" cy="12.5" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M7.475,12.5 L7.475,12.15 A0.35,0.35,0,0,1,7.7904415,12.651647 z" fill="#EE2020" stroke="none"/>
+<path d="M7.475,12.5 L7.7904415,12.651647 A0.35,0.35,0,0,1,7.721903,12.748071 z" fill="#83CF39" stroke="none"/>
 <circle cx="7.475" cy="12.5" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 7.525 13.5)">
-<circle cx="7.525" cy="13.5" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M7.525,13.5 L7.525,13.15 A0.35,0.35,0,0,1,7.6415987,13.169992 z" fill="#83CF39" stroke="none"/>
 <circle cx="7.525" cy="13.5" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 8.525 1.5)">
-<circle cx="8.525" cy="1.5" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M8.525,1.5 L8.525,1.15 A0.35,0.35,0,0,1,8.647804,1.1722516 z" fill="#231977" stroke="none"/>
 <circle cx="8.525" cy="1.5" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 8.525 2.5)">
-<circle cx="8.525" cy="2.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="8.525" cy="2.5" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M8.525,2.5 L8.525,2.15 A0.35,0.35,0,0,1,8.840442,2.6516469 z" fill="#EE2020" stroke="none"/>
+<path d="M8.525,2.5 L8.840442,2.6516469 A0.35,0.35,0,0,1,8.767179,2.7526846 z" fill="#231977" stroke="none"/>
 <circle cx="8.525" cy="2.5" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 8.525 3.5)">
-<circle cx="8.525" cy="3.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="8.525" cy="3.5" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="8.525" cy="3.5" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.5943553668953663" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M8.525,3.5 L8.525,3.15 A0.35,0.35,0,0,1,8.840442,3.6516469 z" fill="#EE2020" stroke="none"/>
+<path d="M8.525,3.5 L8.840442,3.6516469 A0.35,0.35,0,0,1,8.436808,3.8387065 z" fill="#DDDD00" stroke="none"/>
+<path d="M8.525,3.5 L8.436808,3.8387065 A0.35,0.35,0,0,1,8.323572,3.786229 z" fill="#231977" stroke="none"/>
 <circle cx="8.525" cy="3.5" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 8.475000000000001 4.5)">
-<circle cx="8.475000000000001" cy="4.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="8.475000000000001" cy="4.5" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="8.475000000000001" cy="4.5" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.5943553668953663" stroke-width="0.35"/>
-<circle cx="8.475000000000001" cy="4.5" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.8188896166113935" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M8.475,4.5 L8.475,4.15 A0.35,0.35,0,0,1,8.7904415,4.6516466 z" fill="#EE2020" stroke="none"/>
+<path d="M8.475,4.5 L8.7904415,4.6516466 A0.35,0.35,0,0,1,8.386807,4.8387065 z" fill="#DDDD00" stroke="none"/>
+<path d="M8.475,4.5 L8.386807,4.8387065 A0.35,0.35,0,0,1,8.125191,4.5115547 z" fill="#1B49DD" stroke="none"/>
+<path d="M8.475,4.5 L8.125191,4.5115547 A0.35,0.35,0,0,1,8.143376,4.3880825 z" fill="#231977" stroke="none"/>
 <circle cx="8.475000000000001" cy="4.5" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 8.5 5.5)">
-<circle cx="8.5" cy="5.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="8.5" cy="5.5" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="8.5" cy="5.5" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.5943553668953663" stroke-width="0.35"/>
-<circle cx="8.5" cy="5.5" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.8188896166113935" stroke-width="0.35"/>
-<circle cx="8.5" cy="5.5" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.898136998864109" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M8.5,5.5 L8.5,5.15 A0.35,0.35,0,0,1,8.815441,5.6516466 z" fill="#EE2020" stroke="none"/>
+<path d="M8.5,5.5 L8.815441,5.6516466 A0.35,0.35,0,0,1,8.411808,5.8387065 z" fill="#DDDD00" stroke="none"/>
+<path d="M8.5,5.5 L8.411808,5.8387065 A0.35,0.35,0,0,1,8.15019,5.5115547 z" fill="#1B49DD" stroke="none"/>
+<path d="M8.5,5.5 L8.15019,5.5115547 A0.35,0.35,0,0,1,8.180393,5.357341 z" fill="#AF0000" stroke="none"/>
+<path d="M8.5,5.5 L8.180393,5.357341 A0.35,0.35,0,0,1,8.250768,5.25427 z" fill="#231977" stroke="none"/>
 <circle cx="8.5" cy="5.5" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 8.5 6.475)">
-<circle cx="8.5" cy="6.475" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="8.5" cy="6.475" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="8.5" cy="6.475" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.5943553668953663" stroke-width="0.35"/>
-<circle cx="8.5" cy="6.475" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.8188896166113935" stroke-width="0.35"/>
-<circle cx="8.5" cy="6.475" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.898136998864109" stroke-width="0.35"/>
-<circle cx="8.5" cy="6.475" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.9608745098141754" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M8.5,6.475 L8.5,6.125 A0.35,0.35,0,0,1,8.815441,6.626647 z" fill="#EE2020" stroke="none"/>
+<path d="M8.5,6.475 L8.815441,6.626647 A0.35,0.35,0,0,1,8.411808,6.8137064 z" fill="#DDDD00" stroke="none"/>
+<path d="M8.5,6.475 L8.411808,6.8137064 A0.35,0.35,0,0,1,8.15019,6.4865546 z" fill="#1B49DD" stroke="none"/>
+<path d="M8.5,6.475 L8.15019,6.4865546 A0.35,0.35,0,0,1,8.180393,6.3323407 z" fill="#AF0000" stroke="none"/>
+<path d="M8.5,6.475 L8.180393,6.3323407 A0.35,0.35,0,0,1,8.250768,6.22927 z" fill="#231977" stroke="none"/>
+<path d="M8.5,6.475 L8.250768,6.22927 A0.35,0.35,0,0,1,8.346867,6.1602774 z" fill="#83CF39" stroke="none"/>
 <circle cx="8.5" cy="6.475" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 8.5 7.525)">
-<circle cx="8.5" cy="7.525" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="8.5" cy="7.525" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.2410441210186763" stroke-width="0.35"/>
-<circle cx="8.5" cy="7.525" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.46557837073470354" stroke-width="0.35"/>
-<circle cx="8.5" cy="7.525" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.5448257529874191" stroke-width="0.35"/>
-<circle cx="8.5" cy="7.525" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.6240731352401346" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M8.5,7.525 L8.5,7.175 A0.35,0.35,0,0,1,8.843474,7.457731 z" fill="#DDDD00" stroke="none"/>
+<path d="M8.5,7.525 L8.843474,7.457731 A0.35,0.35,0,0,1,8.661978,7.835263 z" fill="#1B49DD" stroke="none"/>
+<path d="M8.5,7.525 L8.661978,7.835263 A0.35,0.35,0,0,1,8.509905,7.87486 z" fill="#AF0000" stroke="none"/>
+<path d="M8.5,7.525 L8.509905,7.87486 A0.35,0.35,0,0,1,8.355835,7.84393 z" fill="#009933" stroke="none"/>
+<path d="M8.5,7.525 L8.355835,7.84393 A0.35,0.35,0,0,1,8.253097,7.7730703 z" fill="#231977" stroke="none"/>
 <circle cx="8.5" cy="7.525" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 8.525 8.5)">
-<circle cx="8.525" cy="8.5" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="8.525" cy="8.5" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.2410441210186763" stroke-width="0.35"/>
-<circle cx="8.525" cy="8.5" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.46557837073470354" stroke-width="0.35"/>
-<circle cx="8.525" cy="8.5" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.5448257529874191" stroke-width="0.35"/>
-<circle cx="8.525" cy="8.5" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.6075632639374855" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M8.525,8.5 L8.525,8.15 A0.35,0.35,0,0,1,8.868475,8.432731 z" fill="#DDDD00" stroke="none"/>
+<path d="M8.525,8.5 L8.868475,8.432731 A0.35,0.35,0,0,1,8.686978,8.810263 z" fill="#1B49DD" stroke="none"/>
+<path d="M8.525,8.5 L8.686978,8.810263 A0.35,0.35,0,0,1,8.5349045,8.84986 z" fill="#009933" stroke="none"/>
+<path d="M8.525,8.5 L8.5349045,8.84986 A0.35,0.35,0,0,1,8.41152,8.831093 z" fill="#231977" stroke="none"/>
+<path d="M8.525,8.5 L8.41152,8.831093 A0.35,0.35,0,0,1,8.307702,8.774375 z" fill="#83CF39" stroke="none"/>
 <circle cx="8.525" cy="8.5" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 8.5 9.55)">
-<circle cx="8.5" cy="9.55" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="8.5" cy="9.55" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="8.5" cy="9.55" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.5778454955927173" stroke-width="0.35"/>
-<circle cx="8.5" cy="9.55" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.6570928778454328" stroke-width="0.35"/>
-<circle cx="8.5" cy="9.55" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.7198303887954992" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M8.5,9.55 L8.5,9.2 A0.35,0.35,0,0,1,8.815441,9.701647 z" fill="#EE2020" stroke="none"/>
+<path d="M8.5,9.55 L8.815441,9.701647 A0.35,0.35,0,0,1,8.444107,9.895508 z" fill="#1B49DD" stroke="none"/>
+<path d="M8.5,9.55 L8.444107,9.895508 A0.35,0.35,0,0,1,8.298573,9.836229 z" fill="#AF0000" stroke="none"/>
+<path d="M8.5,9.55 L8.298573,9.836229 A0.35,0.35,0,0,1,8.210949,9.747356 z" fill="#231977" stroke="none"/>
+<path d="M8.5,9.55 L8.210949,9.747356 A0.35,0.35,0,0,1,8.161714,9.639789 z" fill="#83CF39" stroke="none"/>
 <circle cx="8.5" cy="9.55" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 8.55 10.5)">
-<circle cx="8.55" cy="10.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="8.55" cy="10.5" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="8.55" cy="10.5" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.5778454955927173" stroke-width="0.35"/>
-<circle cx="8.55" cy="10.5" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.6570928778454328" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M8.55,10.5 L8.55,10.15 A0.35,0.35,0,0,1,8.865441,10.651647 z" fill="#EE2020" stroke="none"/>
+<path d="M8.55,10.5 L8.865441,10.651647 A0.35,0.35,0,0,1,8.494107,10.845509 z" fill="#1B49DD" stroke="none"/>
+<path d="M8.55,10.5 L8.494107,10.845509 A0.35,0.35,0,0,1,8.348573,10.786229 z" fill="#AF0000" stroke="none"/>
+<path d="M8.55,10.5 L8.348573,10.786229 A0.35,0.35,0,0,1,8.260949,10.697357 z" fill="#231977" stroke="none"/>
 <circle cx="8.55" cy="10.5" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 8.524999999999999 11.5)">
-<circle cx="8.524999999999999" cy="11.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="8.524999999999999" cy="11.5" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="8.524999999999999" cy="11.5" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.5778454955927173" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M8.525,11.5 L8.525,11.15 A0.35,0.35,0,0,1,8.840442,11.651647 z" fill="#EE2020" stroke="none"/>
+<path d="M8.525,11.5 L8.840442,11.651647 A0.35,0.35,0,0,1,8.469107,11.845509 z" fill="#1B49DD" stroke="none"/>
+<path d="M8.525,11.5 L8.469107,11.845509 A0.35,0.35,0,0,1,8.351432,11.803931 z" fill="#231977" stroke="none"/>
 <circle cx="8.524999999999999" cy="11.5" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 8.524999999999999 12.475)">
-<circle cx="8.524999999999999" cy="12.475" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="8.524999999999999" cy="12.475" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.22453424971602726" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M8.525,12.475 L8.525,12.125 A0.35,0.35,0,0,1,8.86061,12.375674 z" fill="#1B49DD" stroke="none"/>
+<path d="M8.525,12.475 L8.86061,12.375674 A0.35,0.35,0,0,1,8.874125,12.499744 z" fill="#231977" stroke="none"/>
 <circle cx="8.524999999999999" cy="12.475" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 9.525 0.525)">
-<circle cx="9.525" cy="0.525" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="9.525" cy="0.525" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.0792473822527155" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M9.525,0.525 L9.525,0.175 A0.35,0.35,0,0,1,9.678133,0.21027747 z" fill="#AF0000" stroke="none"/>
+<path d="M9.525,0.525 L9.678133,0.21027747 A0.35,0.35,0,0,1,9.778824,0.284016 z" fill="#231977" stroke="none"/>
 <circle cx="9.525" cy="0.525" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 9.525 1.5)">
-<circle cx="9.525" cy="1.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="9.525" cy="1.5" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="9.525" cy="1.5" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.43255862812940543" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M9.525,1.5 L9.525,1.15 A0.35,0.35,0,0,1,9.840442,1.6516467 z" fill="#EE2020" stroke="none"/>
+<path d="M9.525,1.5 L9.840442,1.6516467 A0.35,0.35,0,0,1,9.742298,1.7743747 z" fill="#AF0000" stroke="none"/>
+<path d="M9.525,1.5 L9.742298,1.7743747 A0.35,0.35,0,0,1,9.632214,1.8331746 z" fill="#231977" stroke="none"/>
 <circle cx="9.525" cy="1.5" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 9.525 2.5)">
-<circle cx="9.525" cy="2.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="9.525" cy="2.5" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="9.525" cy="2.5" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.5943553668953663" stroke-width="0.35"/>
-<circle cx="9.525" cy="2.5" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.6736027491480818" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M9.525,2.5 L9.525,2.15 A0.35,0.35,0,0,1,9.840442,2.6516469 z" fill="#EE2020" stroke="none"/>
+<path d="M9.525,2.5 L9.840442,2.6516469 A0.35,0.35,0,0,1,9.436808,2.8387065 z" fill="#DDDD00" stroke="none"/>
+<path d="M9.525,2.5 L9.436808,2.8387065 A0.35,0.35,0,0,1,9.297505,2.7659812 z" fill="#AF0000" stroke="none"/>
+<path d="M9.525,2.5 L9.297505,2.7659812 A0.35,0.35,0,0,1,9.218643,2.66925 z" fill="#231977" stroke="none"/>
 <circle cx="9.525" cy="2.5" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 9.55 3.475)">
-<circle cx="9.55" cy="3.475" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="9.55" cy="3.475" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="9.55" cy="3.475" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.5943553668953663" stroke-width="0.35"/>
-<circle cx="9.55" cy="3.475" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.6736027491480818" stroke-width="0.35"/>
-<circle cx="9.55" cy="3.475" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.7363402600981482" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M9.55,3.475 L9.55,3.125 A0.35,0.35,0,0,1,9.865441,3.6266468 z" fill="#EE2020" stroke="none"/>
+<path d="M9.55,3.475 L9.865441,3.6266468 A0.35,0.35,0,0,1,9.461807,3.8137066 z" fill="#DDDD00" stroke="none"/>
+<path d="M9.55,3.475 L9.461807,3.8137066 A0.35,0.35,0,0,1,9.322505,3.740981 z" fill="#AF0000" stroke="none"/>
+<path d="M9.55,3.475 L9.322505,3.740981 A0.35,0.35,0,0,1,9.243644,3.64425 z" fill="#231977" stroke="none"/>
+<path d="M9.55,3.475 L9.243644,3.64425 A0.35,0.35,0,0,1,9.20476,3.5325224 z" fill="#83CF39" stroke="none"/>
 <circle cx="9.55" cy="3.475" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 9.55 4.55)">
-<circle cx="9.55" cy="4.55" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="9.55" cy="4.55" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.22453424971602726" stroke-width="0.35"/>
-<circle cx="9.55" cy="4.55" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.30378163196874275" stroke-width="0.35"/>
-<circle cx="9.55" cy="4.55" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.38302901422145824" stroke-width="0.35"/>
-<circle cx="9.55" cy="4.55" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.4457665251715247" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M9.55,4.55 L9.55,4.2 A0.35,0.35,0,0,1,9.885611,4.4506736 z" fill="#1B49DD" stroke="none"/>
+<path d="M9.55,4.55 L9.885611,4.4506736 A0.35,0.35,0,0,1,9.895241,4.6075225 z" fill="#AF0000" stroke="none"/>
+<path d="M9.55,4.55 L9.895241,4.6075225 A0.35,0.35,0,0,1,9.835276,4.752775 z" fill="#009933" stroke="none"/>
+<path d="M9.55,4.55 L9.835276,4.752775 A0.35,0.35,0,0,1,9.745991,4.839978 z" fill="#231977" stroke="none"/>
+<path d="M9.55,4.55 L9.745991,4.839978 A0.35,0.35,0,0,1,9.638192,4.8887067 z" fill="#83CF39" stroke="none"/>
 <circle cx="9.55" cy="4.55" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 9.55 5.5)">
-<circle cx="9.55" cy="5.5" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="9.55" cy="5.5" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.2410441210186763" stroke-width="0.35"/>
-<circle cx="9.55" cy="5.5" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.46557837073470354" stroke-width="0.35"/>
-<circle cx="9.55" cy="5.5" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.5448257529874191" stroke-width="0.35"/>
-<circle cx="9.55" cy="5.5" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.6240731352401346" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M9.55,5.5 L9.55,5.15 A0.35,0.35,0,0,1,9.893475,5.4327307 z" fill="#DDDD00" stroke="none"/>
+<path d="M9.55,5.5 L9.893475,5.4327307 A0.35,0.35,0,0,1,9.711978,5.810263 z" fill="#1B49DD" stroke="none"/>
+<path d="M9.55,5.5 L9.711978,5.810263 A0.35,0.35,0,0,1,9.559905,5.8498597 z" fill="#AF0000" stroke="none"/>
+<path d="M9.55,5.5 L9.559905,5.8498597 A0.35,0.35,0,0,1,9.405834,5.81893 z" fill="#009933" stroke="none"/>
+<path d="M9.55,5.5 L9.405834,5.81893 A0.35,0.35,0,0,1,9.307821,5.7526846 z" fill="#83CF39" stroke="none"/>
 <circle cx="9.55" cy="5.5" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 9.525 6.475)">
-<circle cx="9.525" cy="6.475" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="9.525" cy="6.475" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.2410441210186763" stroke-width="0.35"/>
-<circle cx="9.525" cy="6.475" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.32029150327139183" stroke-width="0.35"/>
-<circle cx="9.525" cy="6.475" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.3995388855241073" stroke-width="0.35"/>
-<circle cx="9.525" cy="6.475" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.46227639647417373" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M9.525,6.475 L9.525,6.125 A0.35,0.35,0,0,1,9.868475,6.4077306 z" fill="#DDDD00" stroke="none"/>
+<path d="M9.525,6.475 L9.868475,6.4077306 A0.35,0.35,0,0,1,9.863287,6.564789 z" fill="#AF0000" stroke="none"/>
+<path d="M9.525,6.475 L9.863287,6.564789 A0.35,0.35,0,0,1,9.789906,6.7037473 z" fill="#009933" stroke="none"/>
+<path d="M9.525,6.475 L9.789906,6.7037473 A0.35,0.35,0,0,1,9.692803,6.7821517 z" fill="#231977" stroke="none"/>
+<path d="M9.525,6.475 L9.692803,6.7821517 A0.35,0.35,0,0,1,9.5808935,6.8205085 z" fill="#83CF39" stroke="none"/>
 <circle cx="9.525" cy="6.475" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g transform="rotate(-90 9.5 7.525)">
-<circle cx="9.5" cy="7.525" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="9.5" cy="7.525" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.2410441210186763" stroke-width="0.35"/>
-<circle cx="9.5" cy="7.525" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.46557837073470354" stroke-width="0.35"/>
-<circle cx="9.5" cy="7.525" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.5448257529874191" stroke-width="0.35"/>
+<g>
+<path d="M9.5,7.525 L9.5,7.175 A0.35,0.35,0,0,1,9.843474,7.457731 z" fill="#DDDD00" stroke="none"/>
+<path d="M9.5,7.525 L9.843474,7.457731 A0.35,0.35,0,0,1,9.661978,7.835263 z" fill="#1B49DD" stroke="none"/>
+<path d="M9.5,7.525 L9.661978,7.835263 A0.35,0.35,0,0,1,9.509905,7.87486 z" fill="#AF0000" stroke="none"/>
+<path d="M9.5,7.525 L9.509905,7.87486 A0.35,0.35,0,0,1,9.355835,7.84393 z" fill="#009933" stroke="none"/>
 <circle cx="9.5" cy="7.525" fill="transparent" r="0.35" stroke="white" stroke-width="0.025"/>
 </g>
-<g transform="rotate(-90 9.55 8.475000000000001)">
-<circle cx="9.55" cy="8.475000000000001" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="9.55" cy="8.475000000000001" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.2410441210186763" stroke-width="0.35"/>
-<circle cx="9.55" cy="8.475000000000001" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.46557837073470354" stroke-width="0.35"/>
-<circle cx="9.55" cy="8.475000000000001" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.5448257529874191" stroke-width="0.35"/>
+<g>
+<path d="M9.55,8.475 L9.55,8.125 A0.35,0.35,0,0,1,9.893475,8.407731 z" fill="#DDDD00" stroke="none"/>
+<path d="M9.55,8.475 L9.893475,8.407731 A0.35,0.35,0,0,1,9.711978,8.785263 z" fill="#1B49DD" stroke="none"/>
+<path d="M9.55,8.475 L9.711978,8.785263 A0.35,0.35,0,0,1,9.559905,8.82486 z" fill="#009933" stroke="none"/>
+<path d="M9.55,8.475 L9.559905,8.82486 A0.35,0.35,0,0,1,9.43652,8.806092 z" fill="#231977" stroke="none"/>
 <circle cx="9.55" cy="8.475000000000001" fill="transparent" r="0.35" stroke="white" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 9.5 9.55)">
-<circle cx="9.5" cy="9.55" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="9.5" cy="9.55" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="9.5" cy="9.55" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.43255862812940543" stroke-width="0.35"/>
-<circle cx="9.5" cy="9.55" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.5118060103821209" stroke-width="0.35"/>
-<circle cx="9.5" cy="9.55" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.5745435213321873" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M9.5,9.55 L9.5,9.2 A0.35,0.35,0,0,1,9.815441,9.701647 z" fill="#EE2020" stroke="none"/>
+<path d="M9.5,9.55 L9.815441,9.701647 A0.35,0.35,0,0,1,9.7172985,9.824375 z" fill="#AF0000" stroke="none"/>
+<path d="M9.5,9.55 L9.7172985,9.824375 A0.35,0.35,0,0,1,9.575351,9.891792 z" fill="#009933" stroke="none"/>
+<path d="M9.5,9.55 L9.575351,9.891792 A0.35,0.35,0,0,1,9.450636,9.896502 z" fill="#231977" stroke="none"/>
+<path d="M9.5,9.55 L9.450636,9.896502 A0.35,0.35,0,0,1,9.338022,9.860263 z" fill="#83CF39" stroke="none"/>
 <circle cx="9.5" cy="9.55" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g transform="rotate(-90 9.475000000000001 10.5)">
-<circle cx="9.475000000000001" cy="10.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="9.475000000000001" cy="10.5" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="9.475000000000001" cy="10.5" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.43255862812940543" stroke-width="0.35"/>
-<circle cx="9.475000000000001" cy="10.5" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.5118060103821209" stroke-width="0.35"/>
+<g>
+<path d="M9.475,10.5 L9.475,10.15 A0.35,0.35,0,0,1,9.7904415,10.651647 z" fill="#EE2020" stroke="none"/>
+<path d="M9.475,10.5 L9.7904415,10.651647 A0.35,0.35,0,0,1,9.692298,10.774375 z" fill="#AF0000" stroke="none"/>
+<path d="M9.475,10.5 L9.692298,10.774375 A0.35,0.35,0,0,1,9.550351,10.841793 z" fill="#009933" stroke="none"/>
+<path d="M9.475,10.5 L9.550351,10.841793 A0.35,0.35,0,0,1,9.425635,10.846501 z" fill="#231977" stroke="none"/>
 <circle cx="9.475000000000001" cy="10.5" fill="transparent" r="0.35" stroke="white" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 9.475 11.5)">
-<circle cx="9.475" cy="11.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="9.475" cy="11.5" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="9.475" cy="11.5" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.43255862812940543" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M9.475,11.5 L9.475,11.15 A0.35,0.35,0,0,1,9.7904415,11.651647 z" fill="#EE2020" stroke="none"/>
+<path d="M9.475,11.5 L9.7904415,11.651647 A0.35,0.35,0,0,1,9.692298,11.774375 z" fill="#AF0000" stroke="none"/>
+<path d="M9.475,11.5 L9.692298,11.774375 A0.35,0.35,0,0,1,9.550351,11.841793 z" fill="#009933" stroke="none"/>
 <circle cx="9.475" cy="11.5" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 9.5 12.475)">
-<circle cx="9.5" cy="12.475" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="9.5" cy="12.475" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.0792473822527155" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M9.5,12.475 L9.5,12.125 A0.35,0.35,0,0,1,9.653133,12.160277 z" fill="#AF0000" stroke="none"/>
+<path d="M9.5,12.475 L9.653133,12.160277 A0.35,0.35,0,0,1,9.775396,12.258999 z" fill="#009933" stroke="none"/>
 <circle cx="9.5" cy="12.475" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 10.525 0.525)">
-<circle cx="10.525" cy="0.525" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="10.525" cy="0.525" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.0792473822527155" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M10.525,0.525 L10.525,0.175 A0.35,0.35,0,0,1,10.678133,0.21027747 z" fill="#AF0000" stroke="none"/>
+<path d="M10.525,0.525 L10.678133,0.21027747 A0.35,0.35,0,0,1,10.774232,0.27926993 z" fill="#83CF39" stroke="none"/>
 <circle cx="10.525" cy="0.525" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 10.525 1.5)">
-<circle cx="10.525" cy="1.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="10.525" cy="1.5" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="10.525" cy="1.5" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.43255862812940543" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M10.525,1.5 L10.525,1.15 A0.35,0.35,0,0,1,10.840442,1.6516467 z" fill="#EE2020" stroke="none"/>
+<path d="M10.525,1.5 L10.840442,1.6516467 A0.35,0.35,0,0,1,10.742298,1.7743747 z" fill="#AF0000" stroke="none"/>
+<path d="M10.525,1.5 L10.742298,1.7743747 A0.35,0.35,0,0,1,10.63848,1.8310925 z" fill="#83CF39" stroke="none"/>
 <circle cx="10.525" cy="1.5" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 10.5 2.5)">
-<circle cx="10.5" cy="2.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="10.5" cy="2.5" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="10.5" cy="2.5" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.5943553668953663" stroke-width="0.35"/>
-<circle cx="10.5" cy="2.5" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.6736027491480818" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M10.5,2.5 L10.5,2.15 A0.35,0.35,0,0,1,10.815441,2.6516469 z" fill="#EE2020" stroke="none"/>
+<path d="M10.5,2.5 L10.815441,2.6516469 A0.35,0.35,0,0,1,10.411808,2.8387065 z" fill="#DDDD00" stroke="none"/>
+<path d="M10.5,2.5 L10.411808,2.8387065 A0.35,0.35,0,0,1,10.272505,2.7659812 z" fill="#AF0000" stroke="none"/>
+<path d="M10.5,2.5 L10.272505,2.7659812 A0.35,0.35,0,0,1,10.196891,2.675 z" fill="#83CF39" stroke="none"/>
 <circle cx="10.5" cy="2.5" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 10.525 3.45)">
-<circle cx="10.525" cy="3.45" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="10.525" cy="3.45" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="10.525" cy="3.45" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.5943553668953663" stroke-width="0.35"/>
-<circle cx="10.525" cy="3.45" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.6736027491480818" stroke-width="0.35"/>
-<circle cx="10.525" cy="3.45" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.7528501314007974" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M10.525,3.45 L10.525,3.1 A0.35,0.35,0,0,1,10.840442,3.6016467 z" fill="#EE2020" stroke="none"/>
+<path d="M10.525,3.45 L10.840442,3.6016467 A0.35,0.35,0,0,1,10.436808,3.7887065 z" fill="#DDDD00" stroke="none"/>
+<path d="M10.525,3.45 L10.436808,3.7887065 A0.35,0.35,0,0,1,10.297505,3.7159812 z" fill="#AF0000" stroke="none"/>
+<path d="M10.525,3.45 L10.297505,3.7159812 A0.35,0.35,0,0,1,10.2040615,3.5896378 z" fill="#009933" stroke="none"/>
+<path d="M10.525,3.45 L10.2040615,3.5896378 A0.35,0.35,0,0,1,10.175876,3.474744 z" fill="#83CF39" stroke="none"/>
 <circle cx="10.525" cy="3.45" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 10.5 4.525)">
-<circle cx="10.5" cy="4.525" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="10.5" cy="4.525" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.22453424971602726" stroke-width="0.35"/>
-<circle cx="10.5" cy="4.525" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.30378163196874275" stroke-width="0.35"/>
-<circle cx="10.5" cy="4.525" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.38302901422145824" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M10.5,4.525 L10.5,4.175 A0.35,0.35,0,0,1,10.83561,4.425674 z" fill="#1B49DD" stroke="none"/>
+<path d="M10.5,4.525 L10.83561,4.425674 A0.35,0.35,0,0,1,10.845241,4.5825224 z" fill="#AF0000" stroke="none"/>
+<path d="M10.5,4.525 L10.845241,4.5825224 A0.35,0.35,0,0,1,10.785275,4.727775 z" fill="#009933" stroke="none"/>
+<path d="M10.5,4.525 L10.785275,4.727775 A0.35,0.35,0,0,1,10.6959915,4.8149786 z" fill="#231977" stroke="none"/>
 <circle cx="10.5" cy="4.525" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g transform="rotate(-90 10.5 5.525)">
-<circle cx="10.5" cy="5.525" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="10.5" cy="5.525" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.2410441210186763" stroke-width="0.35"/>
-<circle cx="10.5" cy="5.525" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.46557837073470354" stroke-width="0.35"/>
-<circle cx="10.5" cy="5.525" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.5448257529874191" stroke-width="0.35"/>
+<g>
+<path d="M10.5,5.525 L10.5,5.175 A0.35,0.35,0,0,1,10.843474,5.457731 z" fill="#DDDD00" stroke="none"/>
+<path d="M10.5,5.525 L10.843474,5.457731 A0.35,0.35,0,0,1,10.661978,5.835263 z" fill="#1B49DD" stroke="none"/>
+<path d="M10.5,5.525 L10.661978,5.835263 A0.35,0.35,0,0,1,10.509905,5.87486 z" fill="#AF0000" stroke="none"/>
+<path d="M10.5,5.525 L10.509905,5.87486 A0.35,0.35,0,0,1,10.392787,5.8581743 z" fill="#83CF39" stroke="none"/>
 <circle cx="10.5" cy="5.525" fill="transparent" r="0.35" stroke="white" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 10.5 6.525)">
-<circle cx="10.5" cy="6.525" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="10.5" cy="6.525" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.2410441210186763" stroke-width="0.35"/>
-<circle cx="10.5" cy="6.525" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.32029150327139183" stroke-width="0.35"/>
-<circle cx="10.5" cy="6.525" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.3995388855241073" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M10.5,6.525 L10.5,6.175 A0.35,0.35,0,0,1,10.843474,6.457731 z" fill="#DDDD00" stroke="none"/>
+<path d="M10.5,6.525 L10.843474,6.457731 A0.35,0.35,0,0,1,10.838286,6.614789 z" fill="#AF0000" stroke="none"/>
+<path d="M10.5,6.525 L10.838286,6.614789 A0.35,0.35,0,0,1,10.764905,6.753747 z" fill="#009933" stroke="none"/>
+<path d="M10.5,6.525 L10.764905,6.753747 A0.35,0.35,0,0,1,10.667803,6.832152 z" fill="#231977" stroke="none"/>
 <circle cx="10.5" cy="6.525" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 10.5 7.525)">
-<circle cx="10.5" cy="7.525" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="10.5" cy="7.525" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.2410441210186763" stroke-width="0.35"/>
-<circle cx="10.5" cy="7.525" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.46557837073470354" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M10.5,7.525 L10.5,7.175 A0.35,0.35,0,0,1,10.843474,7.457731 z" fill="#DDDD00" stroke="none"/>
+<path d="M10.5,7.525 L10.843474,7.457731 A0.35,0.35,0,0,1,10.661978,7.835263 z" fill="#1B49DD" stroke="none"/>
+<path d="M10.5,7.525 L10.661978,7.835263 A0.35,0.35,0,0,1,10.509905,7.87486 z" fill="#AF0000" stroke="none"/>
 <circle cx="10.5" cy="7.525" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 10.55 8.5)">
-<circle cx="10.55" cy="8.5" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="10.55" cy="8.5" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.2410441210186763" stroke-width="0.35"/>
-<circle cx="10.55" cy="8.5" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.46557837073470354" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M10.55,8.5 L10.55,8.15 A0.35,0.35,0,0,1,10.893475,8.432731 z" fill="#DDDD00" stroke="none"/>
+<path d="M10.55,8.5 L10.893475,8.432731 A0.35,0.35,0,0,1,10.711978,8.810263 z" fill="#1B49DD" stroke="none"/>
+<path d="M10.55,8.5 L10.711978,8.810263 A0.35,0.35,0,0,1,10.559905,8.84986 z" fill="#009933" stroke="none"/>
 <circle cx="10.55" cy="8.5" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 10.55 9.475)">
-<circle cx="10.55" cy="9.475" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="10.55" cy="9.475" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="10.55" cy="9.475" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.5943553668953663" stroke-width="0.35"/>
-<circle cx="10.55" cy="9.475" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.8188896166113935" stroke-width="0.35"/>
-<circle cx="10.55" cy="9.475" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.898136998864109" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M10.55,9.475 L10.55,9.125 A0.35,0.35,0,0,1,10.865441,9.626647 z" fill="#EE2020" stroke="none"/>
+<path d="M10.55,9.475 L10.865441,9.626647 A0.35,0.35,0,0,1,10.461807,9.813706 z" fill="#DDDD00" stroke="none"/>
+<path d="M10.55,9.475 L10.461807,9.813706 A0.35,0.35,0,0,1,10.200191,9.486555 z" fill="#1B49DD" stroke="none"/>
+<path d="M10.55,9.475 L10.200191,9.486555 A0.35,0.35,0,0,1,10.230393,9.33234 z" fill="#009933" stroke="none"/>
+<path d="M10.55,9.475 L10.230393,9.33234 A0.35,0.35,0,0,1,10.296176,9.234016 z" fill="#83CF39" stroke="none"/>
 <circle cx="10.55" cy="9.475" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 10.55 10.5)">
-<circle cx="10.55" cy="10.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="10.55" cy="10.5" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="10.55" cy="10.5" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.5943553668953663" stroke-width="0.35"/>
-<circle cx="10.55" cy="10.5" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.8188896166113935" stroke-width="0.35"/>
-<circle cx="10.55" cy="10.5" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.8816271275614599" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M10.55,10.5 L10.55,10.15 A0.35,0.35,0,0,1,10.865441,10.651647 z" fill="#EE2020" stroke="none"/>
+<path d="M10.55,10.5 L10.865441,10.651647 A0.35,0.35,0,0,1,10.461807,10.838707 z" fill="#DDDD00" stroke="none"/>
+<path d="M10.55,10.5 L10.461807,10.838707 A0.35,0.35,0,0,1,10.200191,10.511555 z" fill="#1B49DD" stroke="none"/>
+<path d="M10.55,10.5 L10.200191,10.511555 A0.35,0.35,0,0,1,10.218376,10.3880825 z" fill="#231977" stroke="none"/>
+<path d="M10.55,10.5 L10.218376,10.3880825 A0.35,0.35,0,0,1,10.274603,10.2839985 z" fill="#83CF39" stroke="none"/>
 <circle cx="10.55" cy="10.5" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g transform="rotate(-90 10.575 11.5)">
-<circle cx="10.575" cy="11.5" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="10.575" cy="11.5" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.2410441210186763" stroke-width="0.35"/>
-<circle cx="10.575" cy="11.5" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.46557837073470354" stroke-width="0.35"/>
-<circle cx="10.575" cy="11.5" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.52831588168477" stroke-width="0.35"/>
+<g>
+<path d="M10.575,11.5 L10.575,11.15 A0.35,0.35,0,0,1,10.918474,11.432731 z" fill="#DDDD00" stroke="none"/>
+<path d="M10.575,11.5 L10.918474,11.432731 A0.35,0.35,0,0,1,10.736978,11.810263 z" fill="#1B49DD" stroke="none"/>
+<path d="M10.575,11.5 L10.736978,11.810263 A0.35,0.35,0,0,1,10.617818,11.847371 z" fill="#231977" stroke="none"/>
+<path d="M10.575,11.5 L10.617818,11.847371 A0.35,0.35,0,0,1,10.499649,11.841793 z" fill="#83CF39" stroke="none"/>
 <circle cx="10.575" cy="11.5" fill="transparent" r="0.35" stroke="white" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 10.575 12.475)">
-<circle cx="10.575" cy="12.475" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="10.575" cy="12.475" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.2410441210186763" stroke-width="0.35"/>
-<circle cx="10.575" cy="12.475" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.30378163196874275" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M10.575,12.475 L10.575,12.125 A0.35,0.35,0,0,1,10.918474,12.407731 z" fill="#DDDD00" stroke="none"/>
+<path d="M10.575,12.475 L10.918474,12.407731 A0.35,0.35,0,0,1,10.92024,12.532522 z" fill="#231977" stroke="none"/>
+<path d="M10.575,12.475 L10.92024,12.532522 A0.35,0.35,0,0,1,10.881356,12.64425 z" fill="#83CF39" stroke="none"/>
 <circle cx="10.575" cy="12.475" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 11.5 0.525)">
-<circle cx="11.5" cy="0.525" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="11.5" cy="0.525" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.0792473822527155" stroke-width="0.35"/>
-<circle cx="11.5" cy="0.525" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.14198489320278196" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M11.5,0.525 L11.5,0.175 A0.35,0.35,0,0,1,11.653133,0.21027747 z" fill="#AF0000" stroke="none"/>
+<path d="M11.5,0.525 L11.653133,0.21027747 A0.35,0.35,0,0,1,11.753824,0.284016 z" fill="#231977" stroke="none"/>
+<path d="M11.5,0.525 L11.753824,0.284016 A0.35,0.35,0,0,1,11.819607,0.38234058 z" fill="#83CF39" stroke="none"/>
 <circle cx="11.5" cy="0.525" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g transform="rotate(-90 11.5 1.475)">
-<circle cx="11.5" cy="1.475" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="11.5" cy="1.475" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="11.5" cy="1.475" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.43255862812940543" stroke-width="0.35"/>
-<circle cx="11.5" cy="1.475" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.4952961390794719" stroke-width="0.35"/>
+<g>
+<path d="M11.5,1.475 L11.5,1.125 A0.35,0.35,0,0,1,11.815441,1.6266468 z" fill="#EE2020" stroke="none"/>
+<path d="M11.5,1.475 L11.815441,1.6266468 A0.35,0.35,0,0,1,11.7172985,1.7493747 z" fill="#AF0000" stroke="none"/>
+<path d="M11.5,1.475 L11.7172985,1.7493747 A0.35,0.35,0,0,1,11.607213,1.8081746 z" fill="#231977" stroke="none"/>
+<path d="M11.5,1.475 L11.607213,1.8081746 A0.35,0.35,0,0,1,11.490095,1.8248599 z" fill="#83CF39" stroke="none"/>
 <circle cx="11.5" cy="1.475" fill="transparent" r="0.35" stroke="white" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 11.55 2.55)">
-<circle cx="11.55" cy="2.55" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="11.55" cy="2.55" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="11.55" cy="2.55" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.5943553668953663" stroke-width="0.35"/>
-<circle cx="11.55" cy="2.55" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.6736027491480818" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M11.55,2.55 L11.55,2.2 A0.35,0.35,0,0,1,11.865441,2.7016468 z" fill="#EE2020" stroke="none"/>
+<path d="M11.55,2.55 L11.865441,2.7016468 A0.35,0.35,0,0,1,11.461807,2.8887064 z" fill="#DDDD00" stroke="none"/>
+<path d="M11.55,2.55 L11.461807,2.8887064 A0.35,0.35,0,0,1,11.322505,2.8159811 z" fill="#009933" stroke="none"/>
+<path d="M11.55,2.55 L11.322505,2.8159811 A0.35,0.35,0,0,1,11.243644,2.71925 z" fill="#231977" stroke="none"/>
 <circle cx="11.55" cy="2.55" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 11.475000000000001 3.475)">
-<circle cx="11.475000000000001" cy="3.475" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="11.475000000000001" cy="3.475" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="11.475000000000001" cy="3.475" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.5943553668953663" stroke-width="0.35"/>
-<circle cx="11.475000000000001" cy="3.475" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.6736027491480818" stroke-width="0.35"/>
-<circle cx="11.475000000000001" cy="3.475" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.7363402600981482" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M11.475,3.475 L11.475,3.125 A0.35,0.35,0,0,1,11.7904415,3.6266468 z" fill="#EE2020" stroke="none"/>
+<path d="M11.475,3.475 L11.7904415,3.6266468 A0.35,0.35,0,0,1,11.386807,3.8137066 z" fill="#DDDD00" stroke="none"/>
+<path d="M11.475,3.475 L11.386807,3.8137066 A0.35,0.35,0,0,1,11.247505,3.740981 z" fill="#009933" stroke="none"/>
+<path d="M11.475,3.475 L11.247505,3.740981 A0.35,0.35,0,0,1,11.168643,3.64425 z" fill="#231977" stroke="none"/>
+<path d="M11.475,3.475 L11.168643,3.64425 A0.35,0.35,0,0,1,11.129759,3.5325224 z" fill="#83CF39" stroke="none"/>
 <circle cx="11.475000000000001" cy="3.475" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 11.475 4.5)">
-<circle cx="11.475" cy="4.5" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="11.475" cy="4.5" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.0792473822527155" stroke-width="0.35"/>
-<circle cx="11.475" cy="4.5" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.158494764505431" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M11.475,4.5 L11.475,4.15 A0.35,0.35,0,0,1,11.628133,4.1852775 z" fill="#AF0000" stroke="none"/>
+<path d="M11.475,4.5 L11.628133,4.1852775 A0.35,0.35,0,0,1,11.750397,4.2839985 z" fill="#009933" stroke="none"/>
+<path d="M11.475,4.5 L11.750397,4.2839985 A0.35,0.35,0,0,1,11.808677,4.3943596 z" fill="#231977" stroke="none"/>
 <circle cx="11.475" cy="4.5" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 11.5 5.550000000000001)">
-<circle cx="11.5" cy="5.550000000000001" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="11.5" cy="5.550000000000001" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.2410441210186763" stroke-width="0.35"/>
-<circle cx="11.5" cy="5.550000000000001" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.46557837073470354" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M11.5,5.55 L11.5,5.2 A0.35,0.35,0,0,1,11.843474,5.482731 z" fill="#DDDD00" stroke="none"/>
+<path d="M11.5,5.55 L11.843474,5.482731 A0.35,0.35,0,0,1,11.661978,5.860263 z" fill="#1B49DD" stroke="none"/>
+<path d="M11.5,5.55 L11.661978,5.860263 A0.35,0.35,0,0,1,11.549364,5.896501 z" fill="#83CF39" stroke="none"/>
 <circle cx="11.5" cy="5.550000000000001" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 11.5 6.525)">
-<circle cx="11.5" cy="6.525" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="11.5" cy="6.525" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.2410441210186763" stroke-width="0.35"/>
-<circle cx="11.5" cy="6.525" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.32029150327139183" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M11.5,6.525 L11.5,6.175 A0.35,0.35,0,0,1,11.843474,6.457731 z" fill="#DDDD00" stroke="none"/>
+<path d="M11.5,6.525 L11.843474,6.457731 A0.35,0.35,0,0,1,11.838286,6.614789 z" fill="#AF0000" stroke="none"/>
+<path d="M11.5,6.525 L11.838286,6.614789 A0.35,0.35,0,0,1,11.764905,6.753747 z" fill="#009933" stroke="none"/>
 <circle cx="11.5" cy="6.525" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 11.5 7.525)">
-<circle cx="11.5" cy="7.525" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="11.5" cy="7.525" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.2410441210186763" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M11.5,7.525 L11.5,7.175 A0.35,0.35,0,0,1,11.843474,7.457731 z" fill="#DDDD00" stroke="none"/>
+<path d="M11.5,7.525 L11.843474,7.457731 A0.35,0.35,0,0,1,11.661978,7.835263 z" fill="#1B49DD" stroke="none"/>
 <circle cx="11.5" cy="7.525" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 11.5 8.5)">
-<circle cx="11.5" cy="8.5" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="11.5" cy="8.5" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.2410441210186763" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M11.5,8.5 L11.5,8.15 A0.35,0.35,0,0,1,11.843474,8.432731 z" fill="#DDDD00" stroke="none"/>
+<path d="M11.5,8.5 L11.843474,8.432731 A0.35,0.35,0,0,1,11.838286,8.589789 z" fill="#009933" stroke="none"/>
 <circle cx="11.5" cy="8.5" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 11.5 9.475)">
-<circle cx="11.5" cy="9.475" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="11.5" cy="9.475" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="11.5" cy="9.475" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.5943553668953663" stroke-width="0.35"/>
-<circle cx="11.5" cy="9.475" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.6736027491480818" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M11.5,9.475 L11.5,9.125 A0.35,0.35,0,0,1,11.815441,9.626647 z" fill="#EE2020" stroke="none"/>
+<path d="M11.5,9.475 L11.815441,9.626647 A0.35,0.35,0,0,1,11.411808,9.813706 z" fill="#DDDD00" stroke="none"/>
+<path d="M11.5,9.475 L11.411808,9.813706 A0.35,0.35,0,0,1,11.272505,9.740981 z" fill="#009933" stroke="none"/>
+<path d="M11.5,9.475 L11.272505,9.740981 A0.35,0.35,0,0,1,11.196891,9.65 z" fill="#83CF39" stroke="none"/>
 <circle cx="11.5" cy="9.475" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 11.5 10.5)">
-<circle cx="11.5" cy="10.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="11.5" cy="10.5" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="11.5" cy="10.5" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.5943553668953663" stroke-width="0.35"/>
-<circle cx="11.5" cy="10.5" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.6570928778454327" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M11.5,10.5 L11.5,10.15 A0.35,0.35,0,0,1,11.815441,10.651647 z" fill="#EE2020" stroke="none"/>
+<path d="M11.5,10.5 L11.815441,10.651647 A0.35,0.35,0,0,1,11.411808,10.838707 z" fill="#DDDD00" stroke="none"/>
+<path d="M11.5,10.5 L11.411808,10.838707 A0.35,0.35,0,0,1,11.298573,10.786229 z" fill="#231977" stroke="none"/>
+<path d="M11.5,10.5 L11.298573,10.786229 A0.35,0.35,0,0,1,11.214725,10.702775 z" fill="#83CF39" stroke="none"/>
 <circle cx="11.5" cy="10.5" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 11.5 11.525)">
-<circle cx="11.5" cy="11.525" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="11.5" cy="11.525" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="11.5" cy="11.525" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.5778454955927173" stroke-width="0.35"/>
-<circle cx="11.5" cy="11.525" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.6405830065427837" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M11.5,11.525 L11.5,11.175 A0.35,0.35,0,0,1,11.815441,11.676647 z" fill="#EE2020" stroke="none"/>
+<path d="M11.5,11.525 L11.815441,11.676647 A0.35,0.35,0,0,1,11.444107,11.870508 z" fill="#1B49DD" stroke="none"/>
+<path d="M11.5,11.525 L11.444107,11.870508 A0.35,0.35,0,0,1,11.326431,11.828931 z" fill="#231977" stroke="none"/>
+<path d="M11.5,11.525 L11.326431,11.828931 A0.35,0.35,0,0,1,11.235095,11.753747 z" fill="#83CF39" stroke="none"/>
 <circle cx="11.5" cy="11.525" fill="transparent" r="0.35" stroke="green" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 11.5 12.475)">
-<circle cx="11.5" cy="12.475" fill="transparent" r="0.175" stroke="#1B49DD" stroke-dasharray="0.22453424971602726, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="11.5" cy="12.475" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.22453424971602726" stroke-width="0.35"/>
-<circle cx="11.5" cy="12.475" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.2872717606660937" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M11.5,12.475 L11.5,12.125 A0.35,0.35,0,0,1,11.83561,12.375674 z" fill="#1B49DD" stroke="none"/>
+<path d="M11.5,12.475 L11.83561,12.375674 A0.35,0.35,0,0,1,11.849124,12.499744 z" fill="#231977" stroke="none"/>
+<path d="M11.5,12.475 L11.849124,12.499744 A0.35,0.35,0,0,1,11.820938,12.614638 z" fill="#83CF39" stroke="none"/>
 <circle cx="11.5" cy="12.475" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 12.475000000000001 0.525)">
-<circle cx="12.475000000000001" cy="0.525" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="12.475000000000001" cy="0.525" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.0792473822527155" stroke-width="0.35"/>
-<circle cx="12.475000000000001" cy="0.525" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.158494764505431" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M12.475,0.525 L12.475,0.175 A0.35,0.35,0,0,1,12.628133,0.21027747 z" fill="#AF0000" stroke="none"/>
+<path d="M12.475,0.525 L12.628133,0.21027747 A0.35,0.35,0,0,1,12.750397,0.30899847 z" fill="#009933" stroke="none"/>
+<path d="M12.475,0.525 L12.750397,0.30899847 A0.35,0.35,0,0,1,12.806624,0.41308263 z" fill="#83CF39" stroke="none"/>
 <circle cx="12.475000000000001" cy="0.525" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g transform="rotate(-90 12.475000000000001 1.475)">
-<circle cx="12.475000000000001" cy="1.475" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="12.475000000000001" cy="1.475" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="12.475000000000001" cy="1.475" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.43255862812940543" stroke-width="0.35"/>
-<circle cx="12.475000000000001" cy="1.475" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.5118060103821209" stroke-width="0.35"/>
+<g>
+<path d="M12.475,1.475 L12.475,1.125 A0.35,0.35,0,0,1,12.7904415,1.6266468 z" fill="#EE2020" stroke="none"/>
+<path d="M12.475,1.475 L12.7904415,1.6266468 A0.35,0.35,0,0,1,12.692298,1.7493747 z" fill="#AF0000" stroke="none"/>
+<path d="M12.475,1.475 L12.692298,1.7493747 A0.35,0.35,0,0,1,12.550351,1.8167927 z" fill="#009933" stroke="none"/>
+<path d="M12.475,1.475 L12.550351,1.8167927 A0.35,0.35,0,0,1,12.432182,1.822371 z" fill="#83CF39" stroke="none"/>
 <circle cx="12.475000000000001" cy="1.475" fill="transparent" r="0.35" stroke="white" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 12.5 2.5)">
-<circle cx="12.5" cy="2.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="12.5" cy="2.5" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="12.5" cy="2.5" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.43255862812940543" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M12.5,2.5 L12.5,2.15 A0.35,0.35,0,0,1,12.815441,2.6516469 z" fill="#EE2020" stroke="none"/>
+<path d="M12.5,2.5 L12.815441,2.6516469 A0.35,0.35,0,0,1,12.7172985,2.7743747 z" fill="#009933" stroke="none"/>
+<path d="M12.5,2.5 L12.7172985,2.7743747 A0.35,0.35,0,0,1,12.607213,2.8331745 z" fill="#231977" stroke="none"/>
 <circle cx="12.5" cy="2.5" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 12.475 5.475)">
-<circle cx="12.475" cy="5.475" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="12.475" cy="5.475" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.2410441210186763" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M12.475,5.475 L12.475,5.125 A0.35,0.35,0,0,1,12.818475,5.4077306 z" fill="#DDDD00" stroke="none"/>
+<path d="M12.475,5.475 L12.818475,5.4077306 A0.35,0.35,0,0,1,12.821264,5.5259986 z" fill="#83CF39" stroke="none"/>
 <circle cx="12.475" cy="5.475" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 12.475 6.55)">
-<circle cx="12.475" cy="6.55" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="12.475" cy="6.55" fill="transparent" r="0.175" stroke="#AF0000" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.2410441210186763" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M12.475,6.55 L12.475,6.2 A0.35,0.35,0,0,1,12.818475,6.482731 z" fill="#DDDD00" stroke="none"/>
+<path d="M12.475,6.55 L12.818475,6.482731 A0.35,0.35,0,0,1,12.813287,6.639789 z" fill="#AF0000" stroke="none"/>
 <circle cx="12.475" cy="6.55" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 12.5 7.5)">
-<circle cx="12.5" cy="7.5" fill="transparent" r="0.175" stroke="#DDDD00" stroke-dasharray="0.2410441210186763, 1.0995574287564276" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M12.5,7.5 L12.5,7.15 A0.35,0.35,0,0,1,12.843474,7.4327307 z" fill="#DDDD00" stroke="none"/>
 <circle cx="12.5" cy="7.5" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 12.525 8.525)">
-<circle cx="12.525" cy="8.525" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="12.525" cy="8.525" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.0792473822527155" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M12.525,8.525 L12.525,8.175 A0.35,0.35,0,0,1,12.678133,8.210278 z" fill="#009933" stroke="none"/>
+<path d="M12.525,8.525 L12.678133,8.210278 A0.35,0.35,0,0,1,12.774232,8.27927 z" fill="#83CF39" stroke="none"/>
 <circle cx="12.525" cy="8.525" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 12.5 9.475)">
-<circle cx="12.5" cy="9.475" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="12.5" cy="9.475" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="12.5" cy="9.475" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.43255862812940543" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M12.5,9.475 L12.5,9.125 A0.35,0.35,0,0,1,12.815441,9.626647 z" fill="#EE2020" stroke="none"/>
+<path d="M12.5,9.475 L12.815441,9.626647 A0.35,0.35,0,0,1,12.7172985,9.749374 z" fill="#009933" stroke="none"/>
+<path d="M12.5,9.475 L12.7172985,9.749374 A0.35,0.35,0,0,1,12.613481,9.806092 z" fill="#83CF39" stroke="none"/>
 <circle cx="12.5" cy="9.475" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 12.5 10.475)">
-<circle cx="12.5" cy="10.475" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="12.5" cy="10.475" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="12.5" cy="10.475" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.41604875682675635" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M12.5,10.475 L12.5,10.125 A0.35,0.35,0,0,1,12.815441,10.626647 z" fill="#EE2020" stroke="none"/>
+<path d="M12.5,10.475 L12.815441,10.626647 A0.35,0.35,0,0,1,12.742179,10.727685 z" fill="#231977" stroke="none"/>
+<path d="M12.5,10.475 L12.742179,10.727685 A0.35,0.35,0,0,1,12.644165,10.79393 z" fill="#83CF39" stroke="none"/>
 <circle cx="12.5" cy="10.475" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 13.475 2.525)">
-<circle cx="13.475" cy="2.525" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="13.475" cy="2.525" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.0792473822527155" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M13.475,2.525 L13.475,2.175 A0.35,0.35,0,0,1,13.628133,2.2102776 z" fill="#009933" stroke="none"/>
+<path d="M13.475,2.525 L13.628133,2.2102776 A0.35,0.35,0,0,1,13.728825,2.2840161 z" fill="#231977" stroke="none"/>
 <circle cx="13.475" cy="2.525" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 13.475 8.525)">
-<circle cx="13.475" cy="8.525" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="13.475" cy="8.525" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.0792473822527155" stroke-width="0.35"/>
-<circle cx="13.475" cy="8.525" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.14198489320278196" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M13.475,8.525 L13.475,8.175 A0.35,0.35,0,0,1,13.628133,8.210278 z" fill="#009933" stroke="none"/>
+<path d="M13.475,8.525 L13.628133,8.210278 A0.35,0.35,0,0,1,13.728825,8.284016 z" fill="#231977" stroke="none"/>
+<path d="M13.475,8.525 L13.728825,8.284016 A0.35,0.35,0,0,1,13.794606,8.38234 z" fill="#83CF39" stroke="none"/>
 <circle cx="13.475" cy="8.525" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
-<g transform="rotate(-90 13.45 9.5)">
-<circle cx="13.45" cy="9.5" fill="transparent" r="0.175" stroke="#EE2020" stroke-dasharray="0.35331124587668994, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="13.45" cy="9.5" fill="transparent" r="0.175" stroke="#009933" stroke-dasharray="0.0792473822527155, 1.0995574287564276" stroke-dashoffset="-0.35331124587668994" stroke-width="0.35"/>
-<circle cx="13.45" cy="9.5" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-dashoffset="-0.43255862812940543" stroke-width="0.35"/>
-<circle cx="13.45" cy="9.5" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.4952961390794719" stroke-width="0.35"/>
+<g>
+<path d="M13.45,9.5 L13.45,9.15 A0.35,0.35,0,0,1,13.765441,9.651647 z" fill="#EE2020" stroke="none"/>
+<path d="M13.45,9.5 L13.765441,9.651647 A0.35,0.35,0,0,1,13.667298,9.774375 z" fill="#009933" stroke="none"/>
+<path d="M13.45,9.5 L13.667298,9.774375 A0.35,0.35,0,0,1,13.557214,9.833175 z" fill="#231977" stroke="none"/>
+<path d="M13.45,9.5 L13.557214,9.833175 A0.35,0.35,0,0,1,13.440095,9.84986 z" fill="#83CF39" stroke="none"/>
 <circle cx="13.45" cy="9.5" fill="transparent" r="0.35" stroke="white" stroke-width="0.025"/>
 </g>
-<g opacity="0.3" transform="rotate(-90 13.475 10.525)">
-<circle cx="13.475" cy="10.525" fill="transparent" r="0.175" stroke="#231977" stroke-dasharray="0.06273751095006644, 1.0995574287564276" stroke-width="0.35"/>
-<circle cx="13.475" cy="10.525" fill="transparent" r="0.175" stroke="#83CF39" stroke-dasharray="0.05943553668953663, 1.0995574287564276" stroke-dashoffset="-0.06273751095006644" stroke-width="0.35"/>
+<g opacity="0.3">
+<path d="M13.475,10.525 L13.475,10.175 A0.35,0.35,0,0,1,13.597804,10.197251 z" fill="#231977" stroke="none"/>
+<path d="M13.475,10.525 L13.597804,10.197251 A0.35,0.35,0,0,1,13.699976,10.256885 z" fill="#83CF39" stroke="none"/>
 <circle cx="13.475" cy="10.525" fill="transparent" r="0.35" stroke="red" stroke-width="0.025"/>
 </g>
 </svg>
